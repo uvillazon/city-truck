@@ -201,6 +201,7 @@
     <Content Include="App\Model\Combustibles\DetallesVenta.js" />
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
+    <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
     <Content Include="App\Model\Ingresos\Ingresos.js" />
     <Content Include="App\Model\Ventas\DetallesVenta.js" />
@@ -246,6 +247,7 @@
     <Content Include="App\Store\Combustibles\DetallesVenta.js" />
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
+    <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
     <Content Include="App\Store\Ventas\DetallesVenta.js" />
@@ -313,6 +315,9 @@
     <Content Include="App\View\Clientes\GridClientes.js" />
     <Content Include="App\View\Clientes\Grids.js" />
     <Content Include="App\View\Clientes\Principal.js" />
+    <Content Include="App\View\Egresos\FormEgreso.js" />
+    <Content Include="App\View\Egresos\GridEgresos.js" />
+    <Content Include="App\View\Egresos\Principal.js" />
     <Content Include="App\View\Ingresos\FormIngreso.js" />
     <Content Include="App\View\Ingresos\Forms.js" />
     <Content Include="App\View\Ingresos\Grids.js" />
