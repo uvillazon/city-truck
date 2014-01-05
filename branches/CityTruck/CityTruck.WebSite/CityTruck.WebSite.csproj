@@ -206,6 +206,7 @@
     <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
     <Content Include="App\Model\Ingresos\Ingresos.js" />
+    <Content Include="App\Model\Tanques\Tanques.js" />
     <Content Include="App\Model\Ventas\DetallesVenta.js" />
     <Content Include="App\Model\Ventas\Ventas.js" />
     <Content Include="App\Model\Imagenes\Imagenes.js" />
@@ -254,6 +255,7 @@
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
+    <Content Include="App\Store\Tanques\Tanques.js" />
     <Content Include="App\Store\Ventas\DetallesVenta.js" />
     <Content Include="App\Store\Ventas\Ventas.js" />
     <Content Include="App\Store\Imagenes\Imagenes.js" />
@@ -333,6 +335,9 @@
     <Content Include="App\View\Ingresos\Grids.js" />
     <Content Include="App\View\Ingresos\GridIngresos.js" />
     <Content Include="App\View\Ingresos\Principal.js" />
+    <Content Include="App\View\Tanques\FormAjustarTanque.js" />
+    <Content Include="App\View\Tanques\GridTanques.js" />
+    <Content Include="App\View\Tanques\Principal.js" />
     <Content Include="App\View\Ventas\FormCrearVenta.js" />
     <Content Include="App\View\Ventas\Forms.js" />
     <Content Include="App\View\Ventas\GridVentas.js" />
