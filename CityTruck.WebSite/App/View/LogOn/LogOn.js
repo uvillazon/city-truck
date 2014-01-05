@@ -14,6 +14,7 @@ Ext.onReady(function () {
         // Specific attributes for the text fields for username / password. 
         // The "name" attribute defines the name of variables sent to the server.
         items: [{
+            itemId: 'loginField',
             fieldLabel: 'Usuario',
             name: 'loginUsername',
             allowBlank: false
@@ -29,47 +30,15 @@ Ext.onReady(function () {
             text: 'Login',
             formBind: true,
             // Function that fires when user clicks the button 
-            handler: function () {
-                login.getForm().submit({
-                    method: 'POST',
-                    url: 'LogOn',
-                    waitTitle: 'Conectando',
-                    waitMsg: 'Verificando credenciales...',
-
-                    // Functions that fire (success or failure) when the server responds. 
-                    // The one that executes is determined by the 
-                    // response that comes from login.asp as seen below. The server would 
-                    // actually respond with valid JSON, 
-                    // something like: response.write "{ success: true}" or 
-                    // response.write "{ success: false, errors: { reason: 'Login failed. Try again.' }}" 
-                    // depending on the logic contained within your server script.
-                    // If a success occurs, the user is notified with an alert messagebox, 
-                    // and when they click "OK", they are redirected to whatever page
-                    // you define as redirect. 
-
-                    success: function () {
-                        //Ext.Msg.alert('Status', 'Login Successful!', function (btn, text) {
-                        //    if (btn == 'ok') {
-                        //var redirect = 'http://elfpre02/SisMan/';
-                        var redirect = '/';
-                        window.location = redirect;
-                        win.hide();
-                        //    }
-                        //});
-                    },
-
-                    // Failure function, see comment above re: success and failure. 
-                    // You can see here, if login fails, it throws a messagebox
-                    // at the user telling him / her as much.  
-
-                    failure: function (form, action) {
-                        var razon = action.result;
-                        Ext.Msg.alert('Error en el acceso!', razon.msg);
-                        login.getForm().reset();
-                    }
+            handler: submit
+        }], listeners: {
+            afterRender: function (thisForm, options) {
+                this.keyNav = Ext.create('Ext.util.KeyNav', this.el, {
+                    enter: submit,
+                    scope: this
                 });
             }
-        }]
+        }
     });
 
 
@@ -86,4 +55,46 @@ Ext.onReady(function () {
         items: [login]
     });
     win.show();
+    login.down('#loginField').focus(false, 200);
+
+    function submit() {
+        login.getForm().submit({
+            method: 'POST',
+            url: 'LogOn',
+            waitTitle: 'Conectando',
+            waitMsg: 'Verificando credenciales...',
+
+            // Functions that fire (success or failure) when the server responds. 
+            // The one that executes is determined by the 
+            // response that comes from login.asp as seen below. The server would 
+            // actually respond with valid JSON, 
+            // something like: response.write "{ success: true}" or 
+            // response.write "{ success: false, errors: { reason: 'Login failed. Try again.' }}" 
+            // depending on the logic contained within your server script.
+            // If a success occurs, the user is notified with an alert messagebox, 
+            // and when they click "OK", they are redirected to whatever page
+            // you define as redirect. 
+
+            success: function () {
+                //Ext.Msg.alert('Status', 'Login Successful!', function (btn, text) {
+                //    if (btn == 'ok') {
+                //var redirect = 'http://elfpre02/SisMan/';
+                var redirect = '/';
+                window.location = redirect;
+                win.hide();
+                //    }
+                //});
+            },
+
+            // Failure function, see comment above re: success and failure. 
+            // You can see here, if login fails, it throws a messagebox
+            // at the user telling him / her as much.  
+
+            failure: function (form, action) {
+                var razon = action.result;
+                Ext.Msg.alert('Error en el acceso!', razon.msg);
+                login.getForm().reset();
+            }
+        });
+    }
 });
