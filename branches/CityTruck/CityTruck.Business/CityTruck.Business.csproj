@@ -75,6 +75,7 @@
     <Content Include="DataMigration\version1\MenuUpdate_consumoPropio.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_cuentasPC.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_otrosEgresos.sql" />
+    <Content Include="DataMigration\version1\ordenEjecucion.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
