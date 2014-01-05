@@ -201,6 +201,7 @@
     <Content Include="App\Model\Combustibles\DetallesVenta.js" />
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
+    <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
     <Content Include="App\Model\CuentasPC\CuentasPC.js" />
     <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
@@ -248,6 +249,7 @@
     <Content Include="App\Store\Combustibles\DetallesVenta.js" />
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
+    <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
     <Content Include="App\Store\CuentasPC\CuentasPC.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
@@ -317,6 +319,9 @@
     <Content Include="App\View\Clientes\GridClientes.js" />
     <Content Include="App\View\Clientes\Grids.js" />
     <Content Include="App\View\Clientes\Principal.js" />
+    <Content Include="App\View\ConsumoPropio\FormConsumoPropio.js" />
+    <Content Include="App\View\ConsumoPropio\GridConsumoPropio.js" />
+    <Content Include="App\View\ConsumoPropio\Principal.js" />
     <Content Include="App\View\CuentasPC\FormCuentaPC.js" />
     <Content Include="App\View\CuentasPC\GridCuentasPC.js" />
     <Content Include="App\View\CuentasPC\Principal.js" />
