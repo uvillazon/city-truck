@@ -46,8 +46,49 @@
                 me.winCrearCuentaPC.show();
             }
         } else if (btn.getItemId() == 'btn_Kardex') {
+            var buttonGroup = [{
+                xtype: 'button',
+                text: 'Detalle',
+                iconCls: 'report',
+                minHeight: 27,
+                minWidth: 80,
+                handler: function () {
+                    alert('Evento Detalle');
+                }
+
+            }, {
+                xtype: 'button',
+                text: 'Amortizaci\u00F3n',
+                iconCls: 'add',
+                minHeight: 27,
+                minWidth: 80,
+                handler: function () {
+                    alert('Evento Amortizaci\u00F3n');
+                }
+
+            },{
+                xtype: 'button',
+                text: 'Imprimir',
+                iconCls: 'printer',
+                minHeight: 27,
+                minWidth: 80,
+                handler: function () {
+                    alert('Evento Imprimir');
+                }
+
+            }, {
+                xtype: 'button',
+                text: 'Cerrar',
+                iconCls: 'cross',
+                minHeight: 27,
+                minWidth: 80,
+                handler: function () {
+                    this.up('window').hide();
+                }
+
+            }];
             if (me.winKardexCuentaPC == null) {
-                me.winKardexCuentaPC = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
+                me.winKardexCuentaPC = Ext.create("App.Config.Abstract.Window", { botones: false, buttons: buttonGroup });
                 me.gridKardexCuentaPC = Ext.create("App.View.CuentasPC.GridKardexCuentaPC", {
                     region: 'center',
                     width: 700,
@@ -58,7 +99,6 @@
                 me.winKardexCuentaPC.add(me.gridKardexCuentaPC);
                 me.winKardexCuentaPC.show();
             } else {
-                me.gridKardexCuentaPC.getForm().reset();
                 me.winKardexCuentaPC.show();
             }
         } else {
