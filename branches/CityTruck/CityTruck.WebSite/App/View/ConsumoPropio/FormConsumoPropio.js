@@ -40,7 +40,7 @@
             fieldLabel: "Consumo (Lts)",
             name: "CONSUMOLTS",
             allowDecimals: true,
-            maxValue: 999999999,
+            maxValue: 999999999
         });
         me.txt_importe = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Consumon (Imp)",

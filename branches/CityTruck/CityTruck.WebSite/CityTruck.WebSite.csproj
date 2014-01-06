@@ -329,6 +329,7 @@
     <Content Include="App\View\CuentasPC\Principal.js" />
     <Content Include="App\View\Egresos\FormEgreso.js" />
     <Content Include="App\View\Egresos\GridEgresos.js" />
+    <Content Include="App\View\CuentasPC\GridKardexCuentaPC.js" />
     <Content Include="App\View\Egresos\Principal.js" />
     <Content Include="App\View\Ingresos\FormIngreso.js" />
     <Content Include="App\View\Ingresos\Forms.js" />
