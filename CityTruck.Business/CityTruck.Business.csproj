@@ -72,6 +72,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_GENERAR_POS_TURNOS.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_consumoPropio.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_cuentasPC.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_otrosEgresos.sql" />
