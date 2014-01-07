@@ -8,10 +8,10 @@
     initComponent: function () {
         var me = this;
         //me.store = Ext.create("App.Store.Listas.Listas");
-        if (me.opcion == "GridVentas") {
+        if (me.opcion == "GridVentasEditar") {
             me.title = "Ventas";
             me.pieTitulo = "Ventas";
-            me.CargarGridVentas();
+            me.CargarGridVentasEditar();
         }
         else if (me.opcion == "GridVentasCredito") {
             me.title = "Ventas a Credito";
@@ -24,13 +24,22 @@
         
         this.callParent(arguments);
     },
-    CargarGridVentas : function(){
+    CargarGridVentasEditar : function(){
         var me = this;
-      me.store = Ext.create("App.Store.Ventas.DetallesVenta");
+        me.store = Ext.create("App.Store.Ventas.DetallesVenta");
+        
+        me.plugins = [
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        ];
         me.columns = [
-           { header: "Producto", width: 120, sortable: true, dataIndex: "PRODUCTO" },
+           { header: "Producto", width: 150, sortable: true, dataIndex: "PRODUCTO" },
            { header: "Entrada Lts.", width: 80, sortable: false, dataIndex: "ENT_LITTER" },
-           { header: "Salida Lts.", width: 80, sortable: false, dataIndex: "SAL_LITTER" },
+           { header: "Salida Lts.", width: 80, sortable: false, dataIndex: "SAL_LITTER" ,editor: {
+                    xtype: 'numberfield',
+                } 
+           },
            { header: "Total", width: 80, sortable: false, dataIndex: "TOTAL" }
         ];
 

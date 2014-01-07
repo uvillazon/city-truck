@@ -77,12 +77,14 @@ namespace CityTruck.WebSite.Controllers
         {
             filtros.Entidad = posTurnos;
             var result = _serPos.ObtenerPosTurnos(paginacion, filtros);
+            bool nuevo = false;
             if (paginacion.total == 0)
             {
                 try
                 {
                     var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
                     result = _serPos.ObtenerPosTurnos(paginacion, filtros);
+                    nuevo = true;
                 }
                 catch (Exception)
                 {
@@ -97,7 +99,7 @@ namespace CityTruck.WebSite.Controllers
                 ID_POS = x.ID_POS,
                 ID_POS_TURNO = x.ID_POS_TURNO,
                 ENT_LITTER = x.ENT_LITTER,
-                SAL_LITTER = x.SAL_LITTER,
+                SAL_LITTER = nuevo== true?x.ENT_LITTER : x.SAL_LITTER,
                 TOTAL = x.ENT_LITTER - x.SAL_LITTER
             
             });
