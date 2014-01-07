@@ -11,7 +11,11 @@ namespace CityTruck.Services.Interfaces
     public interface IIngresosServices
     {
         IEnumerable<SG_INGRESOS> ObtenerIngresosPaginado(PagingInfo paginacion);
-        RespuestaSP SP_GrabarIngreso(SG_CAJAS caja);
+        RespuestaSP SP_GrabarIngreso(SG_INGRESOS ing,int ID_USR);
+
+        IEnumerable<SG_EGRESOS> ObtenerEgresosPaginado(PagingInfo paginacion);
+        RespuestaSP SP_GrabarEgreso(SG_EGRESOS egr, int ID_USR);
+
 
     }
 }

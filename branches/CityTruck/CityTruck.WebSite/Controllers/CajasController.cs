@@ -24,6 +24,14 @@ namespace CityTruck.WebSite.Controllers
         public ActionResult ObtenerCajasPaginado(PagingInfo paginacion)
         {
             var cajas = _serCaj.ObtenerCajasPaginado(paginacion);
+            var formatData = cajas.Select(x => new
+            {
+                ID_CAJA = x.ID_CAJA,
+                NOMBRE = x.NOMBRE,
+                CODIGO = x.CODIGO,
+                DESCRIPCION = x.DESCRIPCION,
+                COMPRAS = x.SG_COMPRAS.Count(),
+            });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = cajas, Total = paginacion.total }) + ");";
             return JavaScript(callback1);

@@ -72,6 +72,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CombustiblesController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\EgresosController.cs" />
     <Compile Include="Controllers\IngresosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListasController.cs" />

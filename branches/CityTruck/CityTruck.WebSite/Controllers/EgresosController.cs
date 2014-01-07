@@ -13,23 +13,23 @@ using CityTruck.Model;
 
 namespace CityTruck.WebSite.Controllers
 {
-    public class IngresosController : Controller
+    public class EgresosController : Controller
     {
         private IIngresosServices _serIng;
-        public IngresosController(IIngresosServices serIng)
+        public EgresosController(IIngresosServices serIng)
         {
             _serIng = serIng;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerIngresosPaginado(PagingInfo paginacion)
+        public ActionResult ObtenerEgresosPaginado(PagingInfo paginacion)
         {
-            var cajas = _serIng.ObtenerIngresosPaginado(paginacion);
+            var cajas = _serIng.ObtenerEgresosPaginado(paginacion);
             var formatData = cajas.Select(x => new
             {
                 ID_CAJA = x.ID_CAJA,
                 IMPORTE = x.IMPORTE,
-                ID_INGRESO = x.ID_INGRESO,
+                ID_EGRESO = x.ID_EGRESO,
                 NRO_COMP = x.NRO_COMP,
                 LOGIN = x.ID_USUARIO,
                 FECHA = x.FECHA,

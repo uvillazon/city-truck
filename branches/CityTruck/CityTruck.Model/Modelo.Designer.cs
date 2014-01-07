@@ -28,6 +28,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_INGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_INGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_INGRESOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_COMPRAS_R02", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_COMPRAS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_COMPRAS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_COMPRAS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_EGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_EGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_EGRESOS), true)]
 
 #endregion
 
@@ -302,6 +303,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_CLIENTES> _SG_CLIENTES;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_EGRESOS> SG_EGRESOS
+        {
+            get
+            {
+                if ((_SG_EGRESOS == null))
+                {
+                    _SG_EGRESOS = base.CreateObjectSet<SG_EGRESOS>("SG_EGRESOS");
+                }
+                return _SG_EGRESOS;
+            }
+        }
+        private ObjectSet<SG_EGRESOS> _SG_EGRESOS;
 
         #endregion
         #region Métodos AddTo
@@ -416,6 +433,14 @@ namespace CityTruck.Model
         public void AddToSG_CLIENTES(SG_CLIENTES sG_CLIENTES)
         {
             base.AddObject("SG_CLIENTES", sG_CLIENTES);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_EGRESOS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_EGRESOS(SG_EGRESOS sG_EGRESOS)
+        {
+            base.AddObject("SG_EGRESOS", sG_EGRESOS);
         }
 
         #endregion
@@ -719,6 +744,81 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_POS_TURNO", p_ID_POS_TURNOParameter, p_ID_POSParameter, p_TURNOParameter, p_FECHAParameter, p_ENT_LITTERParameter, p_SAL_LITTERParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_INGRESO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_INGRESOS(Nullable<global::System.Decimal> p_ID_INGRESO, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_INGRESOParameter;
+            if (p_ID_INGRESO.HasValue)
+            {
+                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", p_ID_INGRESO);
+            }
+            else
+            {
+                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_CONCEPTOParameter;
+            if (p_CONCEPTO != null)
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
+            }
+            else
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_INGRESOS", p_ID_INGRESOParameter, p_FECHAParameter, p_CONCEPTOParameter, p_ID_CAJAParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
         }
 
         #endregion
@@ -1028,6 +1128,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_COMPRAS>("Model.SG_COMPRAS_R02", "SG_COMPRAS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_EGRESOS_R01", "SG_EGRESOS")]
+        public EntityCollection<SG_EGRESOS> SG_EGRESOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_EGRESOS>("Model.SG_EGRESOS_R01", "SG_EGRESOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_EGRESOS>("Model.SG_EGRESOS_R01", "SG_EGRESOS", value);
                 }
             }
         }
@@ -2085,6 +2207,308 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMBUSTIBLES>("Model.SG_COMPRAS_R01", "SG_COMBUSTIBLES", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_EGRESOS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_EGRESOS : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_EGRESOS.
+        /// </summary>
+        /// <param name="iD_EGRESO">Valor inicial de la propiedad ID_EGRESO.</param>
+        /// <param name="nRO_COMP">Valor inicial de la propiedad NRO_COMP.</param>
+        /// <param name="fECHA">Valor inicial de la propiedad FECHA.</param>
+        /// <param name="rEGISTRAR">Valor inicial de la propiedad REGISTRAR.</param>
+        /// <param name="cONCEPTO">Valor inicial de la propiedad CONCEPTO.</param>
+        /// <param name="iD_CAJA">Valor inicial de la propiedad ID_CAJA.</param>
+        /// <param name="iMPORTE">Valor inicial de la propiedad IMPORTE.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        public static SG_EGRESOS CreateSG_EGRESOS(global::System.Int32 iD_EGRESO, global::System.Int32 nRO_COMP, global::System.DateTime fECHA, global::System.String rEGISTRAR, global::System.String cONCEPTO, global::System.Int32 iD_CAJA, global::System.Decimal iMPORTE, global::System.Int16 iD_USUARIO)
+        {
+            SG_EGRESOS sG_EGRESOS = new SG_EGRESOS();
+            sG_EGRESOS.ID_EGRESO = iD_EGRESO;
+            sG_EGRESOS.NRO_COMP = nRO_COMP;
+            sG_EGRESOS.FECHA = fECHA;
+            sG_EGRESOS.REGISTRAR = rEGISTRAR;
+            sG_EGRESOS.CONCEPTO = cONCEPTO;
+            sG_EGRESOS.ID_CAJA = iD_CAJA;
+            sG_EGRESOS.IMPORTE = iMPORTE;
+            sG_EGRESOS.ID_USUARIO = iD_USUARIO;
+            return sG_EGRESOS;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_EGRESO
+        {
+            get
+            {
+                return _ID_EGRESO;
+            }
+            set
+            {
+                if (_ID_EGRESO != value)
+                {
+                    OnID_EGRESOChanging(value);
+                    ReportPropertyChanging("ID_EGRESO");
+                    _ID_EGRESO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_EGRESO");
+                    OnID_EGRESOChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_EGRESO;
+        partial void OnID_EGRESOChanging(global::System.Int32 value);
+        partial void OnID_EGRESOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NRO_COMP
+        {
+            get
+            {
+                return _NRO_COMP;
+            }
+            set
+            {
+                OnNRO_COMPChanging(value);
+                ReportPropertyChanging("NRO_COMP");
+                _NRO_COMP = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NRO_COMP");
+                OnNRO_COMPChanged();
+            }
+        }
+        private global::System.Int32 _NRO_COMP;
+        partial void OnNRO_COMPChanging(global::System.Int32 value);
+        partial void OnNRO_COMPChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String REGISTRAR
+        {
+            get
+            {
+                return _REGISTRAR;
+            }
+            set
+            {
+                OnREGISTRARChanging(value);
+                ReportPropertyChanging("REGISTRAR");
+                _REGISTRAR = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("REGISTRAR");
+                OnREGISTRARChanged();
+            }
+        }
+        private global::System.String _REGISTRAR;
+        partial void OnREGISTRARChanging(global::System.String value);
+        partial void OnREGISTRARChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CONCEPTO
+        {
+            get
+            {
+                return _CONCEPTO;
+            }
+            set
+            {
+                OnCONCEPTOChanging(value);
+                ReportPropertyChanging("CONCEPTO");
+                _CONCEPTO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CONCEPTO");
+                OnCONCEPTOChanged();
+            }
+        }
+        private global::System.String _CONCEPTO;
+        partial void OnCONCEPTOChanging(global::System.String value);
+        partial void OnCONCEPTOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_CAJA
+        {
+            get
+            {
+                return _ID_CAJA;
+            }
+            set
+            {
+                OnID_CAJAChanging(value);
+                ReportPropertyChanging("ID_CAJA");
+                _ID_CAJA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_CAJA");
+                OnID_CAJAChanged();
+            }
+        }
+        private global::System.Int32 _ID_CAJA;
+        partial void OnID_CAJAChanging(global::System.Int32 value);
+        partial void OnID_CAJAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal IMPORTE
+        {
+            get
+            {
+                return _IMPORTE;
+            }
+            set
+            {
+                OnIMPORTEChanging(value);
+                ReportPropertyChanging("IMPORTE");
+                _IMPORTE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IMPORTE");
+                OnIMPORTEChanged();
+            }
+        }
+        private global::System.Decimal _IMPORTE;
+        partial void OnIMPORTEChanging(global::System.Decimal value);
+        partial void OnIMPORTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_EGRESOS_R01", "SG_CAJAS")]
+        public SG_CAJAS SG_CAJAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_EGRESOS_R01", "SG_CAJAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_EGRESOS_R01", "SG_CAJAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_CAJAS> SG_CAJASReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_EGRESOS_R01", "SG_CAJAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_CAJAS>("Model.SG_EGRESOS_R01", "SG_CAJAS", value);
                 }
             }
         }

@@ -10,6 +10,7 @@ using CityTruck.Business.Interfaces;
 using System.Linq.Dynamic;
 using LinqKit;
 using CityTruck.Business;
+using System.Data.Objects;
 
 namespace CityTruck.Services
 {
@@ -37,7 +38,47 @@ namespace CityTruck.Services
             return result;
         }
 
-        public RespuestaSP SP_GrabarIngreso(SG_CAJAS caja)
+        public RespuestaSP SP_GrabarIngreso(SG_INGRESOS ing,int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                //var manager = new SG_INGRESOSManager(uow);
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_EGRESOS> ObtenerEgresosPaginado(PagingInfo paginacion)
+        {
+            IQueryable<SG_EGRESOS> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_EGRESOSManager(uow);
+                result = manager.BuscarTodos();
+
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+
+            });
+            return result;
+        }
+
+        public RespuestaSP SP_GrabarEgreso(SG_EGRESOS egr, int ID_USR)
         {
             throw new NotImplementedException();
         }
