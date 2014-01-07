@@ -78,6 +78,10 @@
     <Content Include="DataMigration\version1\MenuUpdate_otrosEgresos.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_Tanques.sql" />
     <Content Include="DataMigration\version1\ordenEjecucion.sql" />
+    <Content Include="DataMigration\version1\P_SG_GENERAR_POS_TURNOS.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_INGRESOS.sql" />
+    <Content Include="DataMigration\version1\Q_SG_INGRESOS.sql" />
+    <Content Include="DataMigration\version1\SG_EGRESOS_TABLE.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
