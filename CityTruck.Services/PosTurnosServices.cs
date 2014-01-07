@@ -28,7 +28,8 @@ namespace CityTruck.Services
             ExecuteManager(uow =>
             {
                 var manager = new SG_POS_TURNOSManager(uow);
-                result = manager.BuscarTodos(x=>x.FECHA == filtros.Entidad.FECHA);
+                result = manager.BuscarTodos();
+                //result = manager.BuscarTodos(x=>x.FECHA == filtros.Entidad.FECHA);
                 filtros.FiltrarDatos();
                 result = filtros.Diccionario.Count() > 0 ? result.Where(filtros.Predicado, filtros.Diccionario.Values.ToArray()) : result;
                 paginacion.total = result.Count();

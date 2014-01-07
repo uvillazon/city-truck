@@ -13,10 +13,10 @@
     CargarComponentes: function () {
         var me = this;
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
-                    opcion: 'GridVentas',
+                    opcion: 'GridVentasEditar',
                     colspan: 2,
-                    width: 400,
-                    height : 200
+                    width: 500,
+                    height : 300
                 });
         me.toolbarVenta = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
@@ -82,6 +82,19 @@
             }
             else{
                 Ext.Msg.alert("Seleccione Fecha primero");
+            }
+        });
+        me.gridVenta.on('edit', function(editor, e){
+//            alert(e.field);
+            if (e.field == "SAL_LITTER"){
+//                alert(e.value);
+                if(e.value > e.record.get('ENT_LITTER')){
+                    Ext.Msg.alert("Error","El valor de salida no puede ser mayor al de la entrada");
+                    e.record.set('SAL_LITTER',0);
+                }
+                else{
+                    e.record.set('TOTAL',e.record.get('ENT_LITTER') - e.value);
+                }
             }
         });
     },
