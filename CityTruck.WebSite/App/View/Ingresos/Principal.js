@@ -42,6 +42,7 @@
                 })
 
                 me.winCrearIngreso.add(me.formIngreso);
+                me.winCrearIngreso.btn_guardar.on('click', me.GuardarIngresos, this);
                 me.winCrearIngreso.show();
             } else {
                 me.formIngreso.getForm().reset();
@@ -51,6 +52,10 @@
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
+    },
+    GuardarIngresos: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
     }
     //    CargarDatos: function (grid, td, cellIndex, record, tr, owIndex, e, eOpts) {
     //        var me = this;
