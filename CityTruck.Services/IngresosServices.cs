@@ -80,7 +80,25 @@ namespace CityTruck.Services
 
         public RespuestaSP SP_GrabarEgreso(SG_EGRESOS egr, int ID_USR)
         {
-            throw new NotImplementedException();
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_EGRESOS(egr.ID_EGRESO, egr.FECHA, egr.CONCEPTO, egr.ID_CAJA, egr.IMPORTE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
         }
     }
 }

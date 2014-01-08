@@ -79,7 +79,9 @@
     <Content Include="DataMigration\version1\MenuUpdate_Tanques.sql" />
     <Content Include="DataMigration\version1\ordenEjecucion.sql" />
     <Content Include="DataMigration\version1\P_SG_GENERAR_POS_TURNOS.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_EGRESOS.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_INGRESOS.sql" />
+    <Content Include="DataMigration\version1\Q_SG_EGRESOS.sql" />
     <Content Include="DataMigration\version1\Q_SG_INGRESOS.sql" />
     <Content Include="DataMigration\version1\SG_EGRESOS_TABLE.sql" />
   </ItemGroup>
