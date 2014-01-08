@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
+using CityTruck.Model;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -21,12 +22,40 @@ namespace CityTruck.WebSite.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObteneComprasPaginado(PagingInfo paginacion)
+        public ActionResult ObtenerComprasPaginado(PagingInfo paginacion)
         {
-            var cajas = _serCmp.ObtenerComprasPaginado(paginacion,null,null);
+            var compras = _serCmp.ObtenerComprasPaginado(paginacion,null,null);
+
+            var formatData = compras.Select(x => new
+            {
+               FECHA = x.FECHA,
+                CANTIDAD = x.CANTIDAD,
+                IMPORTE = x.IMPORTE,
+                FORMULARIO = x.FORMULARIO,
+                TOTAL = x.TOTAL,
+                PRECIO = x.PRECIO,
+                NRO_COMP = x.NRO_COMP,
+                NRO_FACTURA = x.NRO_FACTURA,
+                ID_CAJA = x.ID_CAJA,
+                ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
+                TIPO = x.TIPO,
+                USUARIO = x.ID_USUARIO,
+                CUENTA = x.SG_CAJAS.DESCRIPCION,
+                COMBUSTIBLE = x.SG_COMBUSTIBLES.DESCRIPCION,
+            });
+
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = cajas, Total = paginacion.total }) + ");";
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
+        }
+
+        [HttpPost]
+        public JsonResult GuardarCompra(SG_COMPRAS comp)
+        {
+            int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+            RespuestaSP respuestaSP = new RespuestaSP();
+            respuestaSP = _serCmp.SP_GrabarCompra(comp, id_usr);
+            return Json(respuestaSP);
         }
     }
 }

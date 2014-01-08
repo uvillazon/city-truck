@@ -37,9 +37,9 @@
         me.store_cuenta = Ext.create('App.Store.Cajas.Cajas').load();
         me.cbx_cuenta = Ext.create("App.Config.Componente.ComboBase", {
             fieldLabel: "Origen Cuenta",
-            name: "ID_CUENTA",
+            name: "ID_CAJA",
             displayField: 'NOMBRE',
-            valueField : 'ID_CUENTA',
+            valueField : 'ID_CAJA',
             store: me.store_cuenta,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,

@@ -895,6 +895,147 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_EGRESOS", p_ID_EGRESOParameter, p_FECHAParameter, p_CONCEPTOParameter, p_ID_CAJAParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_COMPRA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CANTIDAD">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NRO_FACTURA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TIPO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_PRECIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FORMULARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TOTAL">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_COMPRAS(Nullable<global::System.Decimal> p_ID_COMPRA, Nullable<global::System.DateTime> p_FECHA, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_CANTIDAD, Nullable<global::System.Decimal> p_NRO_FACTURA, global::System.String p_TIPO, Nullable<global::System.Decimal> p_PRECIO, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_FORMULARIO, Nullable<global::System.Decimal> p_TOTAL, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_COMPRAParameter;
+            if (p_ID_COMPRA.HasValue)
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", p_ID_COMPRA);
+            }
+            else
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_ID_COMBUSTIBLEParameter;
+            if (p_ID_COMBUSTIBLE.HasValue)
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
+            }
+            else
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_CANTIDADParameter;
+            if (p_CANTIDAD.HasValue)
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", p_CANTIDAD);
+            }
+            else
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_NRO_FACTURAParameter;
+            if (p_NRO_FACTURA.HasValue)
+            {
+                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", p_NRO_FACTURA);
+            }
+            else
+            {
+                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_TIPOParameter;
+            if (p_TIPO != null)
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", p_TIPO);
+            }
+            else
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_PRECIOParameter;
+            if (p_PRECIO.HasValue)
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", p_PRECIO);
+            }
+            else
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FORMULARIOParameter;
+            if (p_FORMULARIO.HasValue)
+            {
+                p_FORMULARIOParameter = new ObjectParameter("P_FORMULARIO", p_FORMULARIO);
+            }
+            else
+            {
+                p_FORMULARIOParameter = new ObjectParameter("P_FORMULARIO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_TOTALParameter;
+            if (p_TOTAL.HasValue)
+            {
+                p_TOTALParameter = new ObjectParameter("P_TOTAL", p_TOTAL);
+            }
+            else
+            {
+                p_TOTALParameter = new ObjectParameter("P_TOTAL", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_COMPRAS", p_ID_COMPRAParameter, p_FECHAParameter, p_ID_COMBUSTIBLEParameter, p_ID_CAJAParameter, p_CANTIDADParameter, p_NRO_FACTURAParameter, p_TIPOParameter, p_PRECIOParameter, p_IMPORTEParameter, p_FORMULARIOParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }
