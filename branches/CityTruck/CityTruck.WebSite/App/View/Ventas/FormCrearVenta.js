@@ -1,6 +1,6 @@
 ﻿Ext.define("App.View.Ventas.FormCrearVenta", {
     extend: "App.Config.Abstract.Form",
-//    title: "Datos de Orden de Trabajo",
+//    title: "Datos de Orden de Trabajo",dsdsdsddsdsdsds
     cargarStores: true,
     columns: 2,
     initComponent: function () {
