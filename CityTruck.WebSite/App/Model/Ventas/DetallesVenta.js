@@ -7,7 +7,8 @@
             { type: "float", name: "ENT_LITTER" },
             { type: "float", name: "SAL_LITTER" },
             { type: "float", name: "TOTAL" },
-            { type: "string", name: "PRODUCTO" }
+            { type: "string", name: "PRODUCTO" },
+            { type: "string", name: "CODIGO" }
         ]
 });
 

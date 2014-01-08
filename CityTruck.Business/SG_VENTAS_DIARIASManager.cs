@@ -18,7 +18,10 @@ namespace CityTruck.Business
 
         public IQueryable<SG_VENTAS_DIARIAS> ObtenerVentasPorMesyAnio(string ANIO, string MES){
             var context = (CityTruckContext)Context;
-            var query = context.SG_VENTAS_DIARIAS.Where(x => x.FECHA.Month == 10 && x.FECHA.Year == 2013);
+            int anio = Convert.ToInt32(ANIO);
+            int mes = Convert.ToInt32(MES);
+
+            var query = context.SG_VENTAS_DIARIAS.Where(x => x.FECHA.Month == mes && x.FECHA.Year == anio);
             //var query = from c in context.sg
             //            join r in _dbContext.MN_OT_POSTES_INTERV on c.ID_POSTE equals r.ID_POSTE
             //            where r.ID_OT == ID_OT

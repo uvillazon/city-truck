@@ -21,12 +21,15 @@ namespace CityTruck.Services
         {
             //_manListas = manListas;
         }
-        public IEnumerable<SG_VENTAS_DIARIAS> ObtenerVentasDiariasPaginado(PagingInfo paginacion, string ANIO , string MES)
+        public IEnumerable<SG_VENTAS_DIARIAS> ObtenerVentasDiariasPaginado(PagingInfo paginacion, string ANIO, string MES, string ANIO_MES = null)
         {
             IQueryable<SG_VENTAS_DIARIAS> result = null;
             ExecuteManager(uow =>
             {
                 var managerVentas = new SG_VENTAS_DIARIASManager(uow);
+                result = managerVentas.BuscarTodos();
+                //result = result.Where(x => x.FECHA.ToString("MM-yyyy") == ANIO_MES);
+
                 result = managerVentas.ObtenerVentasPorMesyAnio(ANIO,MES);
 
                 paginacion.total = result.Count();
@@ -54,5 +57,7 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+      
     }
 }

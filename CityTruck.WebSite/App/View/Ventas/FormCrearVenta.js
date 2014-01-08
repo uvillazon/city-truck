@@ -16,7 +16,8 @@
                     opcion: 'GridVentasEditar',
                     colspan: 2,
                     width: 500,
-                    height : 300
+                    height : 300,
+                    rowspan : 2,
                 });
         me.toolbarVenta = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
@@ -24,7 +25,7 @@
         me.formSubTotales = Ext.create("App.View.Ventas.Forms", {
             opcion: 'formSubTotales',
             botones: false,
-            width: 350,
+//            width: 350,
             colspan: 2
         });
         Funciones.BloquearFormularioReadOnly(me.formSubTotales);
@@ -50,13 +51,15 @@
             displayField: 'VALOR',
 //            valueField: 'CODIGO',
             store: me.store_turno,
-            //afterLabelTextTpl: Constantes.REQUERIDO,
+            afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
         me.txt_nombres  = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Nombres",
             name: "NOMBRES",
             width: 350,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
 
         });
         me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
@@ -64,7 +67,7 @@
             name: "FECHA",
         });
       
-            me.items=  [me.gridVenta, me.formSubTotales, me.gridVentaCredito, me.formResumen];
+            me.items=  [me.gridVenta, me.formSubTotales,  me.formResumen,me.gridVentaCredito];
             me.tbar= [me.date_fecha, me.cbx_turno, me.txt_nombres]
 
 
@@ -94,11 +97,49 @@
                 }
                 else{
                     e.record.set('TOTAL',e.record.get('ENT_LITTER') - e.value);
+                    me.CargarTotales();
                 }
             }
         });
     },
+    CargarTotales : function(){
+        var me = this;
+        var totalGasolina = 0;
+        var totalDiesel = 0;
+        me.gridVenta.getStore().each(function(record){
+//            alert(record.get('TOTAL'));
+            if(record.get('CODIGO')== 'GASOLINA'){
+                totalGasolina= totalGasolina +  record.get('TOTAL');
+            }
+            else if(record.get('CODIGO')== 'DIESEL'){
+                totalDiesel= totalDiesel +  record.get('TOTAL');
+            }
+            else{
+                alert('No existe Codigo falta Implementar');
+            }
+
+        });
+
+        me.formSubTotales.txt_diesel.setValue(totalDiesel);
+        me.formSubTotales.txt_gasolina.setValue(totalGasolina);
+        me.formSubTotales.txt_total.setValue(totalDiesel + totalGasolina);
+
+    },
     EventosVenta : function(btn){
-   
+    var me = this;
+        if(btn.getItemId() == "btn_GuardarCambios"){
+            if(me.isValid() == true){
+//                alert("sadsadadsadsadad");
+                 Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, null, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
+            }
+            else{
+                
+                Ext.Msg.alert("Error","Falta Completar el formulario");
+            }
+        }
+        else{
+            Ext.Msg.alert("Error","No existe la opcion");
+        }
+
     }
 });
