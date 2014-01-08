@@ -13,6 +13,7 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_COMPRAS> ObtenerComprasPaginado(PagingInfo paginacion ,string ANIO,string MES);
         IEnumerable<SG_COMPRAS> ObtenerComprasPorCriterio(Expression<Func<SG_COMPRAS, bool>> criterio);
+        RespuestaSP SP_GrabarCompra(SG_COMPRAS comp, int ID_USR);
         //SG_USUARIOS
     }
 }

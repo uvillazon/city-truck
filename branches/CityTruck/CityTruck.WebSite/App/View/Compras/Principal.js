@@ -34,69 +34,27 @@
     EventosCompras: function (btn) {
         var me = this;
         if (btn.getItemId() == "btn_Crear") {
-            if (me.winCrearIngreso == null) {
-                me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Compra' });
-                me.formIngreso = Ext.create("App.View.Compras.FormCompra", {
+            if (me.winCrearCompra == null) {
+                me.winCrearCompra = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Compra' });
+                me.formCompra = Ext.create("App.View.Compras.FormCompra", {
                     columns: 2,
                     title: 'Formulario de Registro de Compras ',
                     botones: false
                 })
 
-                me.winCrearIngreso.add(me.formIngreso);
-                me.winCrearIngreso.show();
+                me.winCrearCompra.add(me.formCompra);
+                me.winCrearCompra.btn_guardar.on('click', me.GuardarCompras, this);
+                me.winCrearCompra.show();
             } else {
-                me.formIngreso.getForm().reset();
-                me.winCrearIngreso.show();
+                me.formCompra.getForm().reset();
+                me.winCrearCompra.show();
             }
         }
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
-    }
-    //    CargarDatos: function (grid, td, cellIndex, record, tr, owIndex, e, eOpts) {
-    //        var me = this;
-    //        me.formulario.CargarDatos(record);
-    //        me.panelImagen.setTitle("Visor de Imagenes - "+record.get('COD_ALTERNATIVO'));
-    //        me.ViewImagen.store.setExtraParams({ TABLA: me.Tabla, ID_TABLA: record.get(me.idTabla) });
-    //        me.ViewImagen.store.load();
-
-    //    },
-    //    EventosBoton: function (btn) {
-    //        var me = this;
-
-    //        if (btn.getItemId() == '') {
-
-    //        }
-    //        else {
-    //            alert("No se Selecciono ningun botton");
-    //        }
-    //    },
-    //    EventoConfiguracion: function (btn) {
-    //        me = this;
-    //        if (btn.getItemId() == 'btn_configuracionUC') {
-    //            if (me.winConfig == null) {
-    //                me.winConfig = Ext.create("App.Config.Abstract.Window");
-    //                me.formConfig = Ext.create("App.View.Postes.Forms", { opcion: 'FormConfiguracionCodSol', title: 'Formulario de Configuracion Codigo Solucion y Materiales' });
-    //                me.winConfig.add(me.formConfig);
-    //                me.winConfig.show();
-    //            }
-    //            else {
-    //                me.formConfig.getForm().reset();
-    //                me.winConfig.show();
-    //            }
-    //        }
-    //        else if (btn.getItemId() == 'btn_configuracionCodMat') {
-    //            if (me.winConfigMat == null) {
-    //                me.winConfigMat = Ext.create("App.Config.Abstract.Window");
-    //                me.formConfigMat = Ext.create("App.View.Postes.Forms", { opcion: 'FormConfiguracionCodMan', title: 'Formulario de Configuracion Codigo Materiales y Cod. Soluciones' });
-    //                me.winConfigMat.add(me.formConfigMat);
-    //                me.winConfigMat.show();
-    //            }
-    //            else {
-    //                me.formConfigMat.getForm().reset();
-    //                me.winConfigMat.show();
-    //            }
-    //        }
-    //        else { alert("Selecione uina opcion") }
-    //    }
+    }, GuardarCompras: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Compras', 'GuardarCompra', me.winCrearCompra, me.formCompra, me.grid, 'Esta Seguro de Guardar la Compra?', null, me.winCrearCompra);
+    } 
 });
