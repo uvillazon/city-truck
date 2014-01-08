@@ -15,7 +15,8 @@ Ext.define("App.Config.Abstract.Store", {
     remoteSort: true,
     autoLoad: false,
     sortProperty: '',
-    sortDirection : 'DESC',
+    sortDirection: 'DESC',
+    pageSize : 50,
     constructor: function (options) {
         var me = this;
 

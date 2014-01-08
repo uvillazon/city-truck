@@ -13,7 +13,8 @@
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridVentas") {
-            me.CargarGridVentas();
+            me.cargarGridVentas();
+            me.eventosGrid();
         }
         else {
             alert("No selecciono ninguna opcion");
@@ -22,7 +23,7 @@
     },
     buscarBotonCodigo: function () {
         var me = this;
-        alert('buscar');
+        //        alert('buscar');
         //me.store.setExtraParam('codigo', 'CODIGO');
         //if (me.borrarParametros) { 
         // me.store.limpiarParametros();
@@ -31,7 +32,21 @@
         //me.bar.moveFirst();
 
     },
-    CargarGridVentas: function () {
+    eventosGrid: function () {
+        var me = this;
+        me.cbx_mes.on('select', function (cmb, record) {
+            me.store.setExtraParam('MES', record[0].get('CODIGO'));
+            me.store.setExtraParam('ANIO', me.cbx_anio.getValue());
+            me.store.load();
+        });
+        me.cbx_anio.on('select', function (cmb, record) {
+            me.store.setExtraParam('ANIO', record[0].get('CODIGO'));
+            me.store.setExtraParam('MES', me.cbx_mes.getValue());
+            me.store.load();
+        });
+
+    },
+    cargarGridVentas: function () {
         var me = this;
         var fecha_actual = new Date();
         me.store = Ext.create("App.Store.Ventas.Ventas");
@@ -61,16 +76,16 @@
             //afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
-        me.button_search = Ext.create('Ext.Button', {
-            pressed: true,
-            text: 'Buscar',
-            hidden: me.busqueda,
-            iconCls: 'zoom',
-            tooltip: 'Buscar por Mes',
-            enableToggle: true,
-            scope: this
+        //        me.button_search = Ext.create('Ext.Button', {
+        //            pressed: true,
+        //            text: 'Buscar',
+        //            hidden: me.busqueda,
+        //            iconCls: 'zoom',
+        //            tooltip: 'Buscar por Mes',
+        //            enableToggle: true,
+        //            scope: this
 
-        });
+        //        });
 
         me.store_mes.on('load', function () {
             var meses = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
@@ -85,8 +100,8 @@
             items: [
             me.cbx_mes,
             me.cbx_anio,
-            me.button_search,
-            me.button_new
+            //            me.button_search,
+            //            me.button_new
             ]
         });
 
@@ -106,7 +121,7 @@
             { header: "Turno<br>Tarde", width: 100, sortable: false, dataIndex: "VENTA_TARDE" },
             { header: "Turno<br>Noche", width: 100, sortable: false, dataIndex: "VENTA_NOCHE" }
         ];
-        me.button_search.on('click', this.buscarBotonCodigo, this);
+        //        me.button_search.on('click', this.buscarBotonCodigo, this);
         this.dockedItems = me.toolBar;
         me.dock = this.dockedItems;
 

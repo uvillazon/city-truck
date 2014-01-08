@@ -14,10 +14,11 @@
     mensaje: '',
     titulo: '',
     scope: this,
-    opc: '', 
+    opc: '',
     initComponent: function () {
         var me = this;
         me.ConvertirCampoRequerido();
+        me.width = me.fieldLabel == ''? me.width - me.labelWidth : me.width;
         if (me.titulo != '') {
             me.on('render', function (obj) {
                 obj.tip = Ext.create('Ext.tip.ToolTip', {

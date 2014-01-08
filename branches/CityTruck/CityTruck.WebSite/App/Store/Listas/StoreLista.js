@@ -13,7 +13,7 @@
             simpleSortMode: true
      },
      sorters: [{
-         property: 'VALOR',
+         property: 'CODIGO',
             direction: 'ASC'
         }]
 });

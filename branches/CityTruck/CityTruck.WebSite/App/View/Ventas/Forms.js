@@ -18,44 +18,54 @@
     },
     CargarFormSubTotales: function () {
         var me = this;
-
+        var label1 = Ext.create("Ext.form.Label", {
+            text: 'Sub. Total Litros',
+            cls : 'resaltarAzulRight',
+            
+        });
+        var label2 = Ext.create("Ext.form.Label", {
+            text: 'Sub. Total Bs',
+            cls : 'resaltarAzul',
+        });
         me.txt_diesel = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Subtotal Diesel",
-            name: "COD_POSTE",
-            width: 200,
+            name: "SUB_DIESEL",
+//            width: 200,
             colspan: 1,
             emptyText: ''
         });
         me.txt_diesel_bs = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "",
-            name: "COD_POSTE",
-            width: 70,
+            name: "SUB_DIESEL_BS",
+//            width: 70,
             colspan: 1,
             emptyText: ''
         });
         me.txt_gasolina = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Subtotal Gasolina",
-            name: "AREA_UBIC",
-            width: 200,
+            name: "SUB_GASOLINA",
+//            width: 200,
             emptyText: '',
             colspan: 1
         });
         me.txt_gasolina_bs = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "",
-            name: "AREA_UBIC",
-            width: 70,
+            name: "SUB_GASOLINA_BS",
+//            width: 150,
             colspan: 1,
             emptyText: ''
         });
         me.txt_total = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Total",
-            name: "UBICACION",
-            width: 200,
+            name: "TOTAL",
+//            width: 200,
             colspan: 2,
             emptyText: ''
         });
 
         me.items = [
+        label1,
+        label2,
         me.txt_diesel,
         me.txt_diesel_bs,
         me.txt_gasolina,

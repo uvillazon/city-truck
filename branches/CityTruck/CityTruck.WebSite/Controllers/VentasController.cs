@@ -16,7 +16,7 @@ namespace CityTruck.WebSite.Controllers
     {
         private IVentasDiariasServices _serVen;
         private IPosTurnosServices _serPos;
-        public VentasController(IVentasDiariasServices serVen,IPosTurnosServices serPos)
+        public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos)
         {
             _serVen = serVen;
             _serPos = serPos;
@@ -25,9 +25,14 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerVentasDiarias(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
-            DateTime fecha = DateTime.Now;
-            var mes = DateTime.Now.ToString("MMMMMMMMMMMMM");
-            var result = _serVen.ObtenerVentasDiariasPaginado(paginacion, ANIO, MES).GroupBy(y => new { y.FECHA }).Select(z => new
+            //string mes, anio;
+            if (ANIO == null && MES == null)
+            {
+                //DateTime fecha = DateTime.Now;
+                MES = DateTime.Now.ToString("MM");
+                ANIO = DateTime.Now.ToString("yyyy");
+            }
+            var result = _serVen.ObtenerVentasDiariasPaginado(paginacion,ANIO,MES).GroupBy(y => new { y.FECHA }).Select(z => new
             {
                 FECHA = z.Key.FECHA,
                 TOTAL = z.Sum(x => x.TOTAL)
@@ -43,16 +48,18 @@ namespace CityTruck.WebSite.Controllers
                 var ventadiaria = _serVen.ObtenerVentasDiariasPorCriterio(x => x.FECHA == item.FECHA);
                 foreach (var diario in ventadiaria)
                 {
-                    if (diario.TURNO == "DIA") {
+                    if (diario.TURNO == "DIA")
+                    {
                         venDia.VENTA_DIA = diario.TOTAL;
-                        
+
                     }
                     else if (diario.TURNO == "TARDE")
                     {
                         venDia.VENTA_TARDE = diario.TOTAL;
 
                     }
-                    else {
+                    else
+                    {
                         venDia.VENTA_NOCHE = diario.TOTAL;
                     }
                 }
@@ -88,20 +95,21 @@ namespace CityTruck.WebSite.Controllers
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
-                
+
             }
             var formattData = result.Select(x => new
             {
-                PRODUCTO = x.SG_POS.CODIGO+" - "+x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                PRODUCTO = x.SG_POS.CODIGO + " - " + x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                CODIGO = x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
                 ID_POS = x.ID_POS,
                 ID_POS_TURNO = x.ID_POS_TURNO,
                 ENT_LITTER = x.ENT_LITTER,
-                SAL_LITTER = nuevo== true?x.ENT_LITTER : x.SAL_LITTER,
+                SAL_LITTER = nuevo == true ? x.ENT_LITTER : x.SAL_LITTER,
                 TOTAL = x.ENT_LITTER - x.SAL_LITTER
-            
+
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Total = paginacion.total, Rows = formattData }) + ");";
@@ -110,6 +118,11 @@ namespace CityTruck.WebSite.Controllers
 
             return JavaScript(callback1);
 
+        }
+        [HttpPost]
+        public JsonResult GuardarVentasDiarias(string ventas, string nombres) {
+
+            return Json(new { success = true, msg = "Todo OK" });
         }
     }
 }
