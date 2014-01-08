@@ -416,6 +416,15 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_EGRESOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_EGRESO" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_CONCEPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
+          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_INGRESOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_INGRESO" Type="number" Mode="In" />
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
@@ -545,6 +554,15 @@
             <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
             <End Role="SG_EGRESOS" EntitySet="SG_EGRESOS" />
           </AssociationSet>
+          <FunctionImport Name="P_SG_GUARDAR_EGRESOS">
+            <Parameter Name="P_ID_EGRESO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
+            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1088,6 +1106,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_EGRESOS" FunctionName="Model.Store.P_SG_GUARDAR_EGRESOS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -33,7 +33,7 @@ namespace CityTruck.WebSite.Controllers
                 COMPRAS = x.SG_COMPRAS.Count(),
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = cajas, Total = paginacion.total }) + ");";
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
         }
     }

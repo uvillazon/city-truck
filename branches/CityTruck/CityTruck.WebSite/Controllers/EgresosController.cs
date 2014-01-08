@@ -41,10 +41,10 @@ namespace CityTruck.WebSite.Controllers
             return JavaScript(callback1);
         }
         [HttpPost]
-        public JsonResult GuardarIngreso(SG_INGRESOS ing) {
+        public JsonResult GuardarEgreso(SG_EGRESOS egr) {
             int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
             RespuestaSP respuestaSP = new RespuestaSP();
-            respuestaSP = _serIng.SP_GrabarIngreso(ing,id_usr);
+            respuestaSP = _serIng.SP_GrabarEgreso(egr,id_usr);
             return Json(respuestaSP);
         }
     }
