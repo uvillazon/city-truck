@@ -10,6 +10,7 @@ using CityTruck.Business.Interfaces;
 using System.Linq.Dynamic;
 using LinqKit;
 using CityTruck.Business;
+using System.Data.Objects;
 
 namespace CityTruck.Services
 {
@@ -58,6 +59,38 @@ namespace CityTruck.Services
             return result;
         }
 
-      
+
+
+
+        public RespuestaSP SP_GrabarVentasDiarias(SG_POS_TURNOS p, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                //var manager = new SG_INGRESOSManager(uow);
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_POS_TURNO(p.ID_POS_TURNO, p.ID_POS, p.TURNO, p.FECHA, p.ENT_LITTER, p.SAL_LITTER, p.TOTAL, ID_USR, p_res);
+                //context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
+
+
+        public RespuestaSP SP_GrabarVentasDiarias(string Ventas, int ID_USR)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

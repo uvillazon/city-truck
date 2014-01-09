@@ -13,6 +13,10 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_VENTAS_DIARIAS> ObtenerVentasDiariasPaginado(PagingInfo paginacion ,string ANIO,string MES , string ANIO_MES = null);
         IEnumerable<SG_VENTAS_DIARIAS> ObtenerVentasDiariasPorCriterio(Expression<Func<SG_VENTAS_DIARIAS, bool>> criterio);
+
+        RespuestaSP SP_GrabarVentasDiarias(SG_POS_TURNOS p, int ID_USR);
+
+        RespuestaSP SP_GrabarVentasDiarias(string Ventas, int ID_USR);
         //SG_USUARIOS
     }
 }
