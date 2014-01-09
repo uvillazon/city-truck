@@ -9,6 +9,8 @@ using System.Web.Script.Serialization;
 using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
+using Newtonsoft.Json;
+using CityTruck.Model;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -32,7 +34,7 @@ namespace CityTruck.WebSite.Controllers
                 MES = DateTime.Now.ToString("MM");
                 ANIO = DateTime.Now.ToString("yyyy");
             }
-            var result = _serVen.ObtenerVentasDiariasPaginado(paginacion,ANIO,MES).GroupBy(y => new { y.FECHA }).Select(z => new
+            var result = _serVen.ObtenerVentasDiariasPaginado(paginacion, ANIO, MES).GroupBy(y => new { y.FECHA }).Select(z => new
             {
                 FECHA = z.Key.FECHA,
                 TOTAL = z.Sum(x => x.TOTAL)
@@ -120,9 +122,45 @@ namespace CityTruck.WebSite.Controllers
 
         }
         [HttpPost]
-        public JsonResult GuardarVentasDiarias(string ventas, string nombres) {
+        public JsonResult GuardarVentasDiarias(string ventas, string nombres,DateTime FECHA,string TURNO)
+        {
+            try
+            {
 
-            return Json(new { success = true, msg = "Todo OK" });
+
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                dynamic pos_ventas = JsonConvert.DeserializeObject(ventas);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+
+                foreach (var o in pos_ventas)
+                {
+                    //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res
+                    SG_POS_TURNOS pos = new SG_POS_TURNOS
+                    {
+                        ID_POS_TURNO = o.ID_POS_TURNO,
+                        ID_POS = o.ID_POS,
+                        FECHA = FECHA,
+                        ENT_LITTER = o.ENT_LITTER,
+                        SAL_LITTER = o.SAL_LITTER,
+                        TOTAL = o.TOTAL,
+                        TURNO = TURNO,
+                        ID_USUARIO = (short)id_usr
+                    };
+
+                    respuestaRSP = _serVen.SP_GrabarVentasDiarias(pos, id_usr);
+
+                    if (!respuestaRSP.success)
+                    {
+                        return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
+                    }
+                }
+                return Json(new { success = true, msg = "Todo OK" });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

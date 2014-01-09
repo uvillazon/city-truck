@@ -1036,6 +1036,81 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_COMPRAS", p_ID_COMPRAParameter, p_FECHAParameter, p_ID_COMBUSTIBLEParameter, p_ID_CAJAParameter, p_CANTIDADParameter, p_NRO_FACTURAParameter, p_TIPOParameter, p_PRECIOParameter, p_IMPORTEParameter, p_FORMULARIOParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_POS_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_POS">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_SAL_LITTER">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_VENTAS_DIARIAS(Nullable<global::System.Decimal> p_ID_POS_TURNO, Nullable<global::System.Decimal> p_ID_POS, Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, Nullable<global::System.Decimal> p_SAL_LITTER, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_POS_TURNOParameter;
+            if (p_ID_POS_TURNO.HasValue)
+            {
+                p_ID_POS_TURNOParameter = new ObjectParameter("P_ID_POS_TURNO", p_ID_POS_TURNO);
+            }
+            else
+            {
+                p_ID_POS_TURNOParameter = new ObjectParameter("P_ID_POS_TURNO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_POSParameter;
+            if (p_ID_POS.HasValue)
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", p_ID_POS);
+            }
+            else
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_TURNOParameter;
+            if (p_TURNO != null)
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
+            }
+            else
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_SAL_LITTERParameter;
+            if (p_SAL_LITTER.HasValue)
+            {
+                p_SAL_LITTERParameter = new ObjectParameter("P_SAL_LITTER", p_SAL_LITTER);
+            }
+            else
+            {
+                p_SAL_LITTERParameter = new ObjectParameter("P_SAL_LITTER", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_VENTAS_DIARIAS", p_ID_POS_TURNOParameter, p_ID_POSParameter, p_FECHAParameter, p_TURNOParameter, p_SAL_LITTERParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }
