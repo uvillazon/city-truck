@@ -179,22 +179,6 @@ namespace CityTruck.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SG_VENTAS_DIARIAS> SG_VENTAS_DIARIAS
-        {
-            get
-            {
-                if ((_SG_VENTAS_DIARIAS == null))
-                {
-                    _SG_VENTAS_DIARIAS = base.CreateObjectSet<SG_VENTAS_DIARIAS>("SG_VENTAS_DIARIAS");
-                }
-                return _SG_VENTAS_DIARIAS;
-            }
-        }
-        private ObjectSet<SG_VENTAS_DIARIAS> _SG_VENTAS_DIARIAS;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SG_COMBUSTIBLES> SG_COMBUSTIBLES
         {
             get
@@ -319,6 +303,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_EGRESOS> _SG_EGRESOS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_VENTAS_DIARIAS> SG_VENTAS_DIARIAS
+        {
+            get
+            {
+                if ((_SG_VENTAS_DIARIAS == null))
+                {
+                    _SG_VENTAS_DIARIAS = base.CreateObjectSet<SG_VENTAS_DIARIAS>("SG_VENTAS_DIARIAS");
+                }
+                return _SG_VENTAS_DIARIAS;
+            }
+        }
+        private ObjectSet<SG_VENTAS_DIARIAS> _SG_VENTAS_DIARIAS;
 
         #endregion
         #region Métodos AddTo
@@ -369,14 +369,6 @@ namespace CityTruck.Model
         public void AddToSG_USUARIOS(SG_USUARIOS sG_USUARIOS)
         {
             base.AddObject("SG_USUARIOS", sG_USUARIOS);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SG_VENTAS_DIARIAS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSG_VENTAS_DIARIAS(SG_VENTAS_DIARIAS sG_VENTAS_DIARIAS)
-        {
-            base.AddObject("SG_VENTAS_DIARIAS", sG_VENTAS_DIARIAS);
         }
     
         /// <summary>
@@ -441,6 +433,14 @@ namespace CityTruck.Model
         public void AddToSG_EGRESOS(SG_EGRESOS sG_EGRESOS)
         {
             base.AddObject("SG_EGRESOS", sG_EGRESOS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_VENTAS_DIARIAS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_VENTAS_DIARIAS(SG_VENTAS_DIARIAS sG_VENTAS_DIARIAS)
+        {
+            base.AddObject("SG_VENTAS_DIARIAS", sG_VENTAS_DIARIAS);
         }
 
         #endregion
@@ -5148,6 +5148,30 @@ namespace CityTruck.Model
         private global::System.String _TURNO;
         partial void OnTURNOChanging(global::System.String value);
         partial void OnTURNOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RESPONSABLE
+        {
+            get
+            {
+                return _RESPONSABLE;
+            }
+            set
+            {
+                OnRESPONSABLEChanging(value);
+                ReportPropertyChanging("RESPONSABLE");
+                _RESPONSABLE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RESPONSABLE");
+                OnRESPONSABLEChanged();
+            }
+        }
+        private global::System.String _RESPONSABLE;
+        partial void OnRESPONSABLEChanging(global::System.String value);
+        partial void OnRESPONSABLEChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.

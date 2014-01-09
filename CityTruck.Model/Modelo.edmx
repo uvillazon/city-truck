@@ -256,6 +256,7 @@
           </Key>
           <Property Name="ID_VENTA" Type="number" Nullable="false" Precision="5" />
           <Property Name="TURNO" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="RESPONSABLE" Type="varchar2" MaxLength="250" />
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="TOTAL" Type="number" Nullable="false" Precision="15" Scale="5" />
         </EntityType>
@@ -416,21 +417,6 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
-        <Function Name="P_SG_GUARDAR_COMPRAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
-          <Parameter Name="P_ID_COMPRA" Type="number" Mode="In" />
-          <Parameter Name="P_FECHA" Type="date" Mode="In" />
-          <Parameter Name="P_ID_COMBUSTIBLE" Type="number" Mode="In" />
-          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
-          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
-          <Parameter Name="P_NRO_FACTURA" Type="number" Mode="In" />
-          <Parameter Name="P_TIPO" Type="varchar2" Mode="In" />
-          <Parameter Name="P_PRECIO" Type="number" Mode="In" />
-          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
-          <Parameter Name="P_FORMULARIO" Type="number" Mode="In" />
-          <Parameter Name="P_TOTAL" Type="number" Mode="In" />
-          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
-          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
-        </Function>
         <Function Name="P_SG_GUARDAR_EGRESOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_EGRESO" Type="number" Mode="In" />
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
@@ -491,7 +477,6 @@
             <End Role="SG_PERFILES" EntitySet="SG_PERFILES" />
             <End Role="SG_USUARIOS" EntitySet="SG_USUARIOS" />
           </AssociationSet>
-          <EntitySet Name="SG_VENTAS_DIARIAS" EntityType="Model.SG_VENTAS_DIARIAS" />
           <FunctionImport Name="P_SG_ALTA_LISTA">
             <Parameter Name="P_LISTA" Mode="In" Type="String" />
             <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
@@ -593,6 +578,7 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SG_VENTAS_DIARIAS" EntityType="Model.SG_VENTAS_DIARIAS" />
         </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -732,15 +718,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SG_VENTAS_DIARIAS">
-          <Key>
-            <PropertyRef Name="ID_VENTA" />
-          </Key>
-          <Property Type="Int16" Name="ID_VENTA" Nullable="false" />
-          <Property Type="String" Name="TURNO" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="FECHA" Nullable="false" />
-          <Property Type="Decimal" Name="TOTAL" Nullable="false" Precision="15" Scale="5" />
-        </EntityType>
         <EntityType Name="SG_COMBUSTIBLES">
           <Key>
             <PropertyRef Name="ID_COMBUSTIBLE" />
@@ -941,6 +918,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SG_VENTAS_DIARIAS">
+          <Key>
+            <PropertyRef Name="ID_VENTA" />
+          </Key>
+          <Property Type="Int16" Name="ID_VENTA" Nullable="false" />
+          <Property Type="String" Name="TURNO" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RESPONSABLE" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="Decimal" Name="TOTAL" Nullable="false" Precision="15" Scale="5" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -997,16 +984,6 @@
             <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
             <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="SG_VENTAS_DIARIAS">
-            <EntityTypeMapping TypeName="Model.SG_VENTAS_DIARIAS">
-              <MappingFragment StoreEntitySet="SG_VENTAS_DIARIAS">
-                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
-                <ScalarProperty Name="TURNO" ColumnName="TURNO" />
-                <ScalarProperty Name="ID_VENTA" ColumnName="ID_VENTA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_ALTA_LISTA" FunctionName="Model.Store.P_SG_ALTA_LISTA" />
           <FunctionImportMapping FunctionImportName="P_SG_GRABAR_LISTAS_ITEMS" FunctionName="Model.Store.P_SG_GRABAR_LISTAS_ITEMS" />
           <EntitySetMapping Name="SG_COMBUSTIBLES">
@@ -1137,7 +1114,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_EGRESOS" FunctionName="Model.Store.P_SG_GUARDAR_EGRESOS" />
-          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_COMPRAS" FunctionName="Model.Store.P_SG_GUARDAR_COMPRAS" />
+          <EntitySetMapping Name="SG_VENTAS_DIARIAS">
+            <EntityTypeMapping TypeName="Model.SG_VENTAS_DIARIAS">
+              <MappingFragment StoreEntitySet="SG_VENTAS_DIARIAS">
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+                <ScalarProperty Name="TURNO" ColumnName="TURNO" />
+                <ScalarProperty Name="ID_VENTA" ColumnName="ID_VENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1158,7 +1145,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Modelo" ZoomLevel="86">
+      <Diagram Name="Modelo" ZoomLevel="11">
         <EntityTypeShape EntityType="Model.SG_LISTAS" Width="1.5" PointX="0.75" PointY="1" Height="2.5571907552083326" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_LISTAS_ITEMS" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_MENU_OPCIONES" Width="1.5" PointX="0.75" PointY="10.5" Height="2.9417936197916639" IsExpanded="true" />
@@ -1176,24 +1163,21 @@
           <ConnectorPoint PointX="3.9784615384615383" PointY="3.7494921874999996" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_PERFILES_OPCIONES_R02" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.15625" PointY="10.5" />
-          <ConnectorPoint PointX="2.15625" PointY="5.8362939453125" />
-          <ConnectorPoint PointX="3.125" PointY="5.8362939453125" />
+          <ConnectorPoint PointX="2.25" PointY="11.31224609375" />
+          <ConnectorPoint PointX="3.15625" PointY="11.31224609375" />
+          <ConnectorPoint PointX="3.15625" PointY="6.922587890625" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_PERFILES_OPCIONES_R01" ManuallyRouted="false">
           <ConnectorPoint PointX="1.25" PointY="8.125" />
-          <ConnectorPoint PointX="1.25" PointY="6.4106934179687505" />
-          <ConnectorPoint PointX="2.0729166666666665" PointY="6.41069341796875" />
-          <ConnectorPoint PointX="2.2395833333333335" PointY="6.4106934179687505" />
-          <ConnectorPoint PointX="3.125" PointY="6.4106934179687505" />
+          <ConnectorPoint PointX="1.25" PointY="5.8362939453125" />
+          <ConnectorPoint PointX="3.125" PointY="5.8362939453125" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_USUARIOS_R01" ManuallyRouted="false">
           <ConnectorPoint PointX="2" PointY="9.2112939453125" />
-          <ConnectorPoint PointX="2.0729166666666665" PointY="9.2112939453125" />
-          <ConnectorPoint PointX="2.2395833333333335" PointY="9.2112939453125" />
+          <ConnectorPoint PointX="3.0729166666666665" PointY="9.2112939453125" />
+          <ConnectorPoint PointX="3.2395833333333335" PointY="9.2112939453125" />
           <ConnectorPoint PointX="3.25" PointY="9.2112939453125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.SG_VENTAS_DIARIAS" Width="1.5" PointX="5.25" PointY="1.5" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="Model.SG_COMBUSTIBLES" Width="1.5" PointX="5.75" PointY="3.5" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="Model.SG_POS" Width="1.5" PointX="9.125" PointY="3.5" Height="2.7494921874999996" />
         <AssociationConnector Association="Model.SG_POS_R01" >
@@ -1223,11 +1207,9 @@
           <ConnectorPoint PointX="11.5" PointY="6.6412972005208335" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_COMPRAS_R01" >
-          <ConnectorPoint PointX="7.25" PointY="3.5" />
-          <ConnectorPoint PointX="7.625" PointY="3.125" />
-          <ConnectorPoint PointX="7.625" PointY="2.5" />
-          <ConnectorPoint PointX="11.125" PointY="2.5" />
-          <ConnectorPoint PointX="11.5" PointY="2.875" />
+          <ConnectorPoint PointX="6.5" PointY="3.5" />
+          <ConnectorPoint PointX="6.5" PointY="3.1874995" />
+          <ConnectorPoint PointX="11.5" PointY="3.1874995" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CLIENTES" Width="1.5" PointX="3.375" PointY="11.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="Model.SG_EGRESOS" Width="1.5" PointX="10.125" PointY="12" Height="2.9417936197916674" />
@@ -1236,6 +1218,7 @@
           <ConnectorPoint PointX="8.625" PointY="13.470896809895834" />
           <ConnectorPoint PointX="10.125" PointY="13.470896809895834" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Model.SG_VENTAS_DIARIAS" Width="1.5" PointX="5" PointY="0.5" Height="1.9802864583333388" />
       </Diagram>
     </Diagrams>
   </Designer>
