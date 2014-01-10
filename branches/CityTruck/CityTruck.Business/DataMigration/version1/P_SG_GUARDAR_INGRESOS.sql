@@ -28,16 +28,23 @@ IF v_res='0' THEN
          --creacion
         v_id_ingreso := Q_SG_INGRESOS.nextval;
         select MAx(NRO_COMP) INTO v_nro FROM SG_INGRESOS ;
-       
-        INSERT INTO SG_INGRESOS VALUES  (v_id_ingreso, v_nro + 1 , p_fecha, 'OTROS INGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
+       if v_nro is null then
+            v_nro:= 0;
+        end if;
+        INSERT INTO SG_INGRESOS VALUES  (v_id_ingreso, v_nro, p_fecha, 'OTROS INGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
         
         v_res := '0';
+         IF v_res = '0' THEN
+            INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
+             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_ingreso , 'INGRESO' ,p_fecha,'INGRESO  NRO: '||v_nro ||  '- '||p_concepto,p_importe,0,0,p_id_usr,sysdate );
+        END IF;
     --ELSE
         --editar
     END IF;
 END IF;
     if v_res = 0 THEN
         v_res := '1';
+         P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
      COMMIT;
 
     ELSE

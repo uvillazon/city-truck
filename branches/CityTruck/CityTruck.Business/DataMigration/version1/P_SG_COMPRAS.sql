@@ -18,6 +18,7 @@ IS
  v_cnt NUMBER:=0;
  v_res VARCHAR2(1000):='0';
  v_id_compra  SG_COMPRAS.ID_COMPRA%type;
+ v_conbustible  SG_COMBUSTIBLES.NOMBRE%type;
  v_nro  SG_COMPRAS.NRO_COMP%type;
  v_errC SG_AUX_LOG_ERRORES.cod_error%type;
  v_errD SG_AUX_LOG_ERRORES.desc_error%type;
@@ -46,6 +47,13 @@ IF v_res='0' THEN
          p_total, p_id_usr, sysdate );
         
         v_res := '0';
+        IF v_res = '0' THEN
+             SELECT NOMBRE into v_conbustible FROM SG_COMBUSTIBLES WHERE ID_COMBUSTIBLE = p_id_combustible ;
+            --vamos a insertar kardex efectivo
+            INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
+             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_compra , 'COMPRA' ,p_fecha,'COMPRA  NRO: '||v_nro ||  'DE '||v_conbustible,0,p_total,0,p_id_usr,sysdate );
+          
+        END IF;
     --ELSE
         --editar
     END IF;
@@ -53,7 +61,7 @@ END IF;
     if v_res = 0 THEN
         v_res := '1';
      COMMIT;
-
+        P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
     ELSE
         ROLLBACK;
         

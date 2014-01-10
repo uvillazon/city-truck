@@ -35,6 +35,13 @@ IF v_res='0' THEN
         INSERT INTO SG_EGRESOS VALUES  (v_id_egreso, v_nro + 1 , p_fecha, 'OTROS EGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
         
         v_res := '0';
+         IF v_res = '0' THEN
+           
+            --vamos a insertar kardex efectivo
+            INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
+             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_egreso , 'EGRESO' ,p_fecha,'EGRESO  NRO: '||v_nro ||  '- '||p_concepto,0,p_importe,0,p_id_usr,sysdate );
+          
+        END IF;
     --ELSE
         --editar
     END IF;
@@ -42,6 +49,7 @@ END IF;
     if v_res = 0 THEN
         v_res := '1';
      COMMIT;
+      P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
 
     ELSE
         ROLLBACK;
