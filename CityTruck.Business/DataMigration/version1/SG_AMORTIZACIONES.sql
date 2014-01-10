@@ -6,7 +6,7 @@ DROP TABLE CITYTRUCK.SG_AMORTIZACIONES CASCADE CONSTRAINTS;
 CREATE TABLE CITYTRUCK.SG_AMORTIZACIONES
 (
   ID_AMORTIZACION  NUMBER(7)                    NOT NULL,
-  ID_CLIENTE       NUMBER(5)                    NOT NULL,
+  ID_CLIENTE       NUMBER(7)                    NOT NULL,
   ID_CAJA          NUMBER(7)                    NOT NULL,
   NRO_COMP         NUMBER(7)                    NOT NULL,
   FECHA            DATE                         NOT NULL,
