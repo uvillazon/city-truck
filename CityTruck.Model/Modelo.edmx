@@ -417,6 +417,21 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_COMPRAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_COMPRA" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_ID_COMBUSTIBLE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_NRO_FACTURA" Type="number" Mode="In" />
+          <Parameter Name="P_TIPO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="number" Mode="In" />
+          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
+          <Parameter Name="P_FORMULARIO" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_EGRESOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_EGRESO" Type="number" Mode="In" />
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
@@ -443,15 +458,6 @@
           <Parameter Name="P_ENT_LITTER" Type="number" Mode="In" />
           <Parameter Name="P_SAL_LITTER" Type="number" Mode="In" />
           <Parameter Name="P_TOTAL" Type="number" Mode="In" />
-          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
-          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
-        </Function>
-        <Function Name="P_SG_GUARDAR_VENTAS_DIARIAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
-          <Parameter Name="P_ID_POS_TURNO" Type="number" Mode="In" />
-          <Parameter Name="P_ID_POS" Type="number" Mode="In" />
-          <Parameter Name="P_FECHA" Type="date" Mode="In" />
-          <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
-          <Parameter Name="P_SAL_LITTER" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
@@ -569,21 +575,6 @@
             <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
             <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
             <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="P_SG_GUARDAR_COMPRAS">
-            <Parameter Name="P_ID_COMPRA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
-            <Parameter Name="P_ID_COMBUSTIBLE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
-            <Parameter Name="P_NRO_FACTURA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_TIPO" Mode="In" Type="String" />
-            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FORMULARIO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
@@ -1143,7 +1134,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_VENTAS_DIARIAS" FunctionName="Model.Store.P_SG_GUARDAR_VENTAS_DIARIAS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
