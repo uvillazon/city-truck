@@ -24,6 +24,7 @@
         var me = this;
         var fecha_actual = new Date();
         me.store = Ext.create("App.Store.CuentasPC.CuentasPC");
+        me.store.setExtraParams({ID_CAJA : 9});
         me.store.load();
         //me.CargarComponentes();
 

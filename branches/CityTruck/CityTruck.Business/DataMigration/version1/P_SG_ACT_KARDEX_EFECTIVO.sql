@@ -16,7 +16,7 @@ BEGIN
     --1paso Obtener ultimo saldo del kardex cliente
                     select count(1) into v_cnt from SG_KARDEX_EFECTIVO 
                     where ID_CAJA   = p_id_caja
-                    and FECHA  < TO_DATE(p_fecha, 'DD/MM/YYYY HH24:MI:SS');
+                    and FECHA  <p_fecha;
                      if v_cnt = 0 then
                         v_saldo :=0;
                      else
