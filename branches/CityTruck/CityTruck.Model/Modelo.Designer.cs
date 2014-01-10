@@ -1213,6 +1213,92 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_COMPRAS", p_ID_COMPRAParameter, p_FECHAParameter, p_ID_COMBUSTIBLEParameter, p_ID_CAJAParameter, p_CANTIDADParameter, p_NRO_FACTURAParameter, p_TIPOParameter, p_PRECIOParameter, p_IMPORTEParameter, p_FORMULARIOParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NOMBRE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NRO_CUENTA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_MONEDA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_DESCRIPCION">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_SALDO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_CAJAS(Nullable<global::System.Decimal> p_ID_CAJA, global::System.String p_NOMBRE, global::System.String p_NRO_CUENTA, global::System.String p_MONEDA, global::System.String p_DESCRIPCION, Nullable<global::System.Decimal> p_SALDO, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_NOMBREParameter;
+            if (p_NOMBRE != null)
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", p_NOMBRE);
+            }
+            else
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NRO_CUENTAParameter;
+            if (p_NRO_CUENTA != null)
+            {
+                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", p_NRO_CUENTA);
+            }
+            else
+            {
+                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_MONEDAParameter;
+            if (p_MONEDA != null)
+            {
+                p_MONEDAParameter = new ObjectParameter("P_MONEDA", p_MONEDA);
+            }
+            else
+            {
+                p_MONEDAParameter = new ObjectParameter("P_MONEDA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_DESCRIPCIONParameter;
+            if (p_DESCRIPCION != null)
+            {
+                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", p_DESCRIPCION);
+            }
+            else
+            {
+                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_SALDOParameter;
+            if (p_SALDO.HasValue)
+            {
+                p_SALDOParameter = new ObjectParameter("P_SALDO", p_SALDO);
+            }
+            else
+            {
+                p_SALDOParameter = new ObjectParameter("P_SALDO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_CAJAS", p_ID_CAJAParameter, p_NOMBREParameter, p_NRO_CUENTAParameter, p_MONEDAParameter, p_DESCRIPCIONParameter, p_SALDOParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }

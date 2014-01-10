@@ -10,6 +10,7 @@ using CityTruck.Business.Interfaces;
 using System.Linq.Dynamic;
 using LinqKit;
 using CityTruck.Business;
+using System.Data.Objects;
 
 namespace CityTruck.Services
 {
@@ -36,9 +37,27 @@ namespace CityTruck.Services
             return result;
         }
 
-        public RespuestaSP SP_GrabarCaja(SG_CAJAS caja)
+        public RespuestaSP SP_GrabarCaja(SG_CAJAS caja, int ID_USR)
         {
-            throw new NotImplementedException();
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_CAJAS(caja.ID_CAJA, caja.NOMBRE, caja.NRO_CUENTA, caja.MONEDA, caja.DESCRIPCION, caja.SALDO, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
         }
     }
 }
