@@ -12,7 +12,8 @@ p_res OUT VARCHAR2
 IS
  v_cnt NUMBER:=0;
  v_res VARCHAR2(1000):='0';
- v_id_caja  SG_CAJAS.ID_CAJA %type;
+ v_fecha SG_KARDEX_EFECTIVO.FECHA%type; 
+ v_id_caja  SG_CAJAS.ID_CAJA%type;
  v_nro  SG_CAJAS.CODIGO %type;
  v_errC SG_AUX_LOG_ERRORES.cod_error%type;
  v_errD SG_AUX_LOG_ERRORES.desc_error%type;
@@ -28,6 +29,7 @@ IF v_res='0' THEN
 --vamos a crear nuestra secuencia
    if p_id_caja = 0 THEN
          --creacion
+         select TO_DATE(TO_CHAR(sysdate, 'MM/DD/YYYY') , 'MM/DD/YYYY')  into v_fecha from dual;
         v_id_caja := Q_SG_CAJAS.nextval;
         select MAx(CODIGO) INTO v_nro FROM SG_CAJAS;
        
@@ -35,13 +37,13 @@ IF v_res='0' THEN
             v_nro:= 0;
         end if;
         INSERT INTO SG_CAJAS  VALUES  (v_id_caja, v_nro + 1 , p_nombre, p_nro_cuenta,
-        p_moneda ,p_descripcion ,p_saldo ,p_id_usr, sysdate );
+        p_moneda ,p_descripcion ,p_saldo ,p_id_usr, v_fecha );
         
         v_res := '0';
          IF v_res = '0' THEN
              
             INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
-             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , v_id_caja , v_id_caja , 'CAJA' ,sysdate,'CREACION CUENTA:'||p_nombre,p_saldo,0,0,p_id_usr,sysdate );
+             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , v_id_caja , v_id_caja , 'CAJA' ,v_fecha ,'CREACION CUENTA:'||p_nombre,p_saldo,0,0,p_id_usr,sysdate );
           
         END IF;
     --ELSE
@@ -51,7 +53,7 @@ END IF;
     if v_res = 0 THEN
         v_res := '1';
      COMMIT;
-      P_SG_ACT_KARDEX_EFECTIVO(v_id_caja,sysdate,p_id_usr,v_res);
+      P_SG_ACT_KARDEX_EFECTIVO(v_id_caja, v_fecha ,p_id_usr,v_res);
 
     ELSE
         ROLLBACK;

@@ -16,9 +16,11 @@ namespace CityTruck.WebSite.Controllers
     public class CajasController : Controller
     {
         private ICajasServices _serCaj;
-        public CajasController(ICajasServices serCaj)
+        private IKardexEfectivoServices _serKar;
+        public CajasController(ICajasServices serCaj,IKardexEfectivoServices serKar)
         {
             _serCaj = serCaj;
+            _serKar = serKar;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -35,6 +37,25 @@ namespace CityTruck.WebSite.Controllers
                 MONEDA = x.MONEDA,
                 SALDO = x.SALDO,
                 COMPRAS = x.SG_COMPRAS.Count(),
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerKardexEfectivoPaginado(PagingInfo paginacion,FiltrosModel<KardexEfectivoModel> filtros ,KardexEfectivoModel Kardex )
+        {
+            filtros.Entidad = Kardex;
+            var kardexd = _serKar.ObtenerKardexEfectivo(paginacion,filtros);
+            var formatData = kardexd.Select(x => new
+            {
+                ID_CAJA = x.ID_CAJA,
+                ID_KARDEX = x.ID_KARDEX,
+                FECHA = x.FECHA,
+                INGRESO = x.INGRESO,
+                EGRESO = x.EGRESO,
+                SALDO = x.SALDO,
+                DETALLE = x.DETALLE,
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
