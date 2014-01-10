@@ -34,6 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_CLIENTE_R01", "SG_CLIENTES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES), "SG_KARDEX_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R02", "SG_CLIENTES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_EFECTIVO_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_KARDEX_EFECTIVO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_EFECTIVO), true)]
 
 #endregion
 
@@ -372,6 +373,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_VENTAS_CREDITO> _SG_VENTAS_CREDITO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_KARDEX_EFECTIVO> SG_KARDEX_EFECTIVO
+        {
+            get
+            {
+                if ((_SG_KARDEX_EFECTIVO == null))
+                {
+                    _SG_KARDEX_EFECTIVO = base.CreateObjectSet<SG_KARDEX_EFECTIVO>("SG_KARDEX_EFECTIVO");
+                }
+                return _SG_KARDEX_EFECTIVO;
+            }
+        }
+        private ObjectSet<SG_KARDEX_EFECTIVO> _SG_KARDEX_EFECTIVO;
 
         #endregion
         #region Métodos AddTo
@@ -518,6 +535,14 @@ namespace CityTruck.Model
         public void AddToSG_VENTAS_CREDITO(SG_VENTAS_CREDITO sG_VENTAS_CREDITO)
         {
             base.AddObject("SG_VENTAS_CREDITO", sG_VENTAS_CREDITO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_KARDEX_EFECTIVO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_KARDEX_EFECTIVO(SG_KARDEX_EFECTIVO sG_KARDEX_EFECTIVO)
+        {
+            base.AddObject("SG_KARDEX_EFECTIVO", sG_KARDEX_EFECTIVO);
         }
 
         #endregion
@@ -1880,6 +1905,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_AMORTIZACIONES>("Model.SG_AMORTIZACIONES_R02", "SG_AMORTIZACIONES", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_KARDEX_EFECTIVO_R01", "SG_KARDEX_EFECTIVO")]
+        public EntityCollection<SG_KARDEX_EFECTIVO> SG_KARDEX_EFECTIVO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_KARDEX_EFECTIVO>("Model.SG_KARDEX_EFECTIVO_R01", "SG_KARDEX_EFECTIVO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_KARDEX_EFECTIVO>("Model.SG_KARDEX_EFECTIVO_R01", "SG_KARDEX_EFECTIVO", value);
                 }
             }
         }
@@ -3986,6 +4033,360 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_CLIENTES>("Model.SG_KARDEX_CLIENTE_R01", "SG_CLIENTES", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_KARDEX_EFECTIVO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_KARDEX_EFECTIVO : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_KARDEX_EFECTIVO.
+        /// </summary>
+        /// <param name="iD_KARDEX">Valor inicial de la propiedad ID_KARDEX.</param>
+        /// <param name="iD_CAJA">Valor inicial de la propiedad ID_CAJA.</param>
+        /// <param name="iD_OPERACION">Valor inicial de la propiedad ID_OPERACION.</param>
+        /// <param name="oPERACION">Valor inicial de la propiedad OPERACION.</param>
+        /// <param name="fECHA">Valor inicial de la propiedad FECHA.</param>
+        /// <param name="dETALLE">Valor inicial de la propiedad DETALLE.</param>
+        /// <param name="iNGRESO">Valor inicial de la propiedad INGRESO.</param>
+        /// <param name="eGRESO">Valor inicial de la propiedad EGRESO.</param>
+        /// <param name="sALDO">Valor inicial de la propiedad SALDO.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        public static SG_KARDEX_EFECTIVO CreateSG_KARDEX_EFECTIVO(global::System.Int32 iD_KARDEX, global::System.Int32 iD_CAJA, global::System.Int32 iD_OPERACION, global::System.String oPERACION, global::System.DateTime fECHA, global::System.String dETALLE, global::System.Decimal iNGRESO, global::System.Decimal eGRESO, global::System.Decimal sALDO, global::System.Int16 iD_USUARIO)
+        {
+            SG_KARDEX_EFECTIVO sG_KARDEX_EFECTIVO = new SG_KARDEX_EFECTIVO();
+            sG_KARDEX_EFECTIVO.ID_KARDEX = iD_KARDEX;
+            sG_KARDEX_EFECTIVO.ID_CAJA = iD_CAJA;
+            sG_KARDEX_EFECTIVO.ID_OPERACION = iD_OPERACION;
+            sG_KARDEX_EFECTIVO.OPERACION = oPERACION;
+            sG_KARDEX_EFECTIVO.FECHA = fECHA;
+            sG_KARDEX_EFECTIVO.DETALLE = dETALLE;
+            sG_KARDEX_EFECTIVO.INGRESO = iNGRESO;
+            sG_KARDEX_EFECTIVO.EGRESO = eGRESO;
+            sG_KARDEX_EFECTIVO.SALDO = sALDO;
+            sG_KARDEX_EFECTIVO.ID_USUARIO = iD_USUARIO;
+            return sG_KARDEX_EFECTIVO;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_KARDEX
+        {
+            get
+            {
+                return _ID_KARDEX;
+            }
+            set
+            {
+                if (_ID_KARDEX != value)
+                {
+                    OnID_KARDEXChanging(value);
+                    ReportPropertyChanging("ID_KARDEX");
+                    _ID_KARDEX = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_KARDEX");
+                    OnID_KARDEXChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_KARDEX;
+        partial void OnID_KARDEXChanging(global::System.Int32 value);
+        partial void OnID_KARDEXChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_CAJA
+        {
+            get
+            {
+                return _ID_CAJA;
+            }
+            set
+            {
+                OnID_CAJAChanging(value);
+                ReportPropertyChanging("ID_CAJA");
+                _ID_CAJA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_CAJA");
+                OnID_CAJAChanged();
+            }
+        }
+        private global::System.Int32 _ID_CAJA;
+        partial void OnID_CAJAChanging(global::System.Int32 value);
+        partial void OnID_CAJAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_OPERACION
+        {
+            get
+            {
+                return _ID_OPERACION;
+            }
+            set
+            {
+                OnID_OPERACIONChanging(value);
+                ReportPropertyChanging("ID_OPERACION");
+                _ID_OPERACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_OPERACION");
+                OnID_OPERACIONChanged();
+            }
+        }
+        private global::System.Int32 _ID_OPERACION;
+        partial void OnID_OPERACIONChanging(global::System.Int32 value);
+        partial void OnID_OPERACIONChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String OPERACION
+        {
+            get
+            {
+                return _OPERACION;
+            }
+            set
+            {
+                OnOPERACIONChanging(value);
+                ReportPropertyChanging("OPERACION");
+                _OPERACION = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("OPERACION");
+                OnOPERACIONChanged();
+            }
+        }
+        private global::System.String _OPERACION;
+        partial void OnOPERACIONChanging(global::System.String value);
+        partial void OnOPERACIONChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DETALLE
+        {
+            get
+            {
+                return _DETALLE;
+            }
+            set
+            {
+                OnDETALLEChanging(value);
+                ReportPropertyChanging("DETALLE");
+                _DETALLE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DETALLE");
+                OnDETALLEChanged();
+            }
+        }
+        private global::System.String _DETALLE;
+        partial void OnDETALLEChanging(global::System.String value);
+        partial void OnDETALLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal INGRESO
+        {
+            get
+            {
+                return _INGRESO;
+            }
+            set
+            {
+                OnINGRESOChanging(value);
+                ReportPropertyChanging("INGRESO");
+                _INGRESO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("INGRESO");
+                OnINGRESOChanged();
+            }
+        }
+        private global::System.Decimal _INGRESO;
+        partial void OnINGRESOChanging(global::System.Decimal value);
+        partial void OnINGRESOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal EGRESO
+        {
+            get
+            {
+                return _EGRESO;
+            }
+            set
+            {
+                OnEGRESOChanging(value);
+                ReportPropertyChanging("EGRESO");
+                _EGRESO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EGRESO");
+                OnEGRESOChanged();
+            }
+        }
+        private global::System.Decimal _EGRESO;
+        partial void OnEGRESOChanging(global::System.Decimal value);
+        partial void OnEGRESOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal SALDO
+        {
+            get
+            {
+                return _SALDO;
+            }
+            set
+            {
+                OnSALDOChanging(value);
+                ReportPropertyChanging("SALDO");
+                _SALDO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALDO");
+                OnSALDOChanged();
+            }
+        }
+        private global::System.Decimal _SALDO;
+        partial void OnSALDOChanging(global::System.Decimal value);
+        partial void OnSALDOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_KARDEX_EFECTIVO_R01", "SG_CAJAS")]
+        public SG_CAJAS SG_CAJAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_KARDEX_EFECTIVO_R01", "SG_CAJAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_KARDEX_EFECTIVO_R01", "SG_CAJAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_CAJAS> SG_CAJASReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_KARDEX_EFECTIVO_R01", "SG_CAJAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_CAJAS>("Model.SG_KARDEX_EFECTIVO_R01", "SG_CAJAS", value);
                 }
             }
         }

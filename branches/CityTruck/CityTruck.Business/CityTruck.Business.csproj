@@ -73,6 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\SG_KARDEX_EFECTIVO_TABLE.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_KARDEX_CLIENTE.sql" />
     <Content Include="DataMigration\version1\SG_AMORTIZACIONES.sql" />
     <Content Include="DataMigration\version1\SG_KARDEX_CLIENTE.sql" />
