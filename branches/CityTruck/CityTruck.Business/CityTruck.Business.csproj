@@ -73,6 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_COMPRAS.sql" />
+    <Content Include="DataMigration\version1\Q_SG_COMPRAS.sql" />
     <Content Include="DataMigration\version1\SG_VENTAS_DIARIAS_TABLE.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_consumoPropio.sql" />
     <Content Include="DataMigration\version1\MenuUpdate_cuentasPC.sql" />
