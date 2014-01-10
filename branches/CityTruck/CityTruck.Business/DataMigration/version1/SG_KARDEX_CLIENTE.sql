@@ -6,7 +6,7 @@ DROP TABLE CITYTRUCK.SG_KARDEX_CLIENTE CASCADE CONSTRAINTS;
 CREATE TABLE CITYTRUCK.SG_KARDEX_CLIENTE
 (
   ID_KARDEX     NUMBER(7)                       NOT NULL,
-  ID_CLIENTE    NUMBER(5)                       NOT NULL,
+  ID_CLIENTE    NUMBER(7)                       NOT NULL,
   ID_OPERACION  NUMBER(7)                       NOT NULL,
   OPERACION     VARCHAR2(250 BYTE)              NOT NULL,
   FECHA         DATE                            NOT NULL,

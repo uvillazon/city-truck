@@ -7,7 +7,7 @@ CREATE TABLE CITYTRUCK.SG_VENTAS_CREDITO
 (
   ID_VENTA        NUMBER(7)                     NOT NULL,
   ID_COMBUSTIBLE  NUMBER(5)                     NOT NULL,
-  ID_CLIENTE      NUMBER(5)                     NOT NULL,
+  ID_CLIENTE      NUMBER(7)                     NOT NULL,
   NRO_COMP        NUMBER(7)                     NOT NULL,
   FECHA           DATE                          NOT NULL,
   TURNO           VARCHAR2(40 BYTE)             NOT NULL,

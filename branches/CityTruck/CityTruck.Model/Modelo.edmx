@@ -94,7 +94,7 @@
             <PropertyRef Name="ID_AMORTIZACION" />
           </Key>
           <Property Name="ID_AMORTIZACION" Type="number" Nullable="false" Precision="7" />
-          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="7" />
           <Property Name="ID_CAJA" Type="number" Nullable="false" Precision="7" />
           <Property Name="NRO_COMP" Type="number" Nullable="false" Precision="7" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -198,7 +198,7 @@
             <PropertyRef Name="ID_KARDEX" />
           </Key>
           <Property Name="ID_KARDEX" Type="number" Nullable="false" Precision="7" />
-          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="7" />
           <Property Name="ID_OPERACION" Type="number" Nullable="false" Precision="7" />
           <Property Name="OPERACION" Type="varchar2" Nullable="false" MaxLength="250" />
           <Property Name="FECHA" Type="date" Nullable="false" />
@@ -309,7 +309,7 @@
           </Key>
           <Property Name="ID_VENTA" Type="number" Nullable="false" Precision="7" />
           <Property Name="ID_COMBUSTIBLE" Type="number" Nullable="false" Precision="5" />
-          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="7" />
           <Property Name="NRO_COMP" Type="number" Nullable="false" Precision="7" />
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="TURNO" Type="varchar2" Nullable="false" MaxLength="40" />
@@ -756,7 +756,7 @@
             <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
             <End Role="SG_VENTAS_CREDITO" EntitySet="SG_VENTAS_CREDITO" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
             <PropertyRef Name="ID_LISTA" />
@@ -1115,7 +1115,7 @@
             <PropertyRef Name="ID_AMORTIZACION" />
           </Key>
           <Property Type="Int32" Name="ID_AMORTIZACION" Nullable="false" />
-          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="ID_CLIENTE" Nullable="false" />
           <Property Type="Int32" Name="ID_CAJA" Nullable="false" />
           <Property Type="Int32" Name="NRO_COMP" Nullable="false" />
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
@@ -1131,7 +1131,7 @@
             <PropertyRef Name="ID_KARDEX" />
           </Key>
           <Property Type="Int32" Name="ID_KARDEX" Nullable="false" />
-          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="ID_CLIENTE" Nullable="false" />
           <Property Type="Int32" Name="ID_OPERACION" Nullable="false" />
           <Property Type="String" Name="OPERACION" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
@@ -1149,7 +1149,7 @@
           </Key>
           <Property Type="Int32" Name="ID_VENTA" Nullable="false" />
           <Property Type="Int16" Name="ID_COMBUSTIBLE" Nullable="false" />
-          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="ID_CLIENTE" Nullable="false" />
           <Property Type="Int32" Name="NRO_COMP" Nullable="false" />
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
           <Property Type="String" Name="TURNO" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -1222,7 +1222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1534,12 +1534,12 @@
         <EntityTypeShape EntityType="Model.SG_POS_TURNOS" Width="1.5" PointX="5.875" PointY="6.125" Height="2.7494921875000031" />
         <AssociationConnector Association="Model.SG_POS_TURNOS_R01" >
           <ConnectorPoint PointX="10" PointY="6.2494921875" />
-          <ConnectorPoint PointX="10" PointY="7.068245384114582" />
-          <ConnectorPoint PointX="8.5520833333333339" PointY="7.0682453841145811" />
-          <ConnectorPoint PointX="8.3854166666666661" PointY="7.068245384114582" />
-          <ConnectorPoint PointX="7.708333333333333" PointY="7.0682453841145811" />
-          <ConnectorPoint PointX="7.541666666666667" PointY="7.068245384114582" />
-          <ConnectorPoint PointX="7.375" PointY="7.068245384114582" />
+          <ConnectorPoint PointX="10" PointY="7.1643986002604167" />
+          <ConnectorPoint PointX="8.5520833333333339" PointY="7.1643986002604159" />
+          <ConnectorPoint PointX="8.3854166666666661" PointY="7.1643986002604167" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="7.1643986002604159" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="7.1643986002604167" />
+          <ConnectorPoint PointX="7.375" PointY="7.1643986002604167" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CAJAS" Width="1.5" PointX="7.875" PointY="7.75" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="Model.SG_INGRESOS" Width="1.5" PointX="10.625" PointY="7.75" Height="2.9417936197916745" />
@@ -1597,7 +1597,7 @@
           <ConnectorPoint PointX="8.625" PointY="12.375" />
           <ConnectorPoint PointX="8.625" PointY="12.75" />
         </AssociationConnector>
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>
