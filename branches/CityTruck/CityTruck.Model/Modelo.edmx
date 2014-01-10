@@ -588,6 +588,21 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_COMPRAS">
+            <Parameter Name="P_ID_COMPRA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ID_COMBUSTIBLE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NRO_FACTURA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TIPO" Mode="In" Type="String" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FORMULARIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1134,6 +1149,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_COMPRAS" FunctionName="Model.Store.P_SG_GUARDAR_COMPRAS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
