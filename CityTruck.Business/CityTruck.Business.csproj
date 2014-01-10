@@ -73,6 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_POS_TURNO.sql" />
     <Content Include="DataMigration\version1\P_SG_OBTENER_ULTIMO_LITTER.sql" />
     <Content Include="DataMigration\version1\SG_VENTAS_DIARIAS.sql" />
     <Content Include="DataMigration\version1\P_SG_COMPRAS.sql" />
