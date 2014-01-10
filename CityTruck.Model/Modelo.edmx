@@ -580,6 +580,16 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_CAJAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_NRO_CUENTA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_MONEDA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_SALDO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_COMPRAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_COMPRA" Type="number" Mode="In" />
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
@@ -794,6 +804,16 @@
             <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
             <End Role="SG_KARDEX_EFECTIVO" EntitySet="SG_KARDEX_EFECTIVO" />
           </AssociationSet>
+          <FunctionImport Name="P_SG_GUARDAR_CAJAS">
+            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_NRO_CUENTA" Mode="In" Type="String" />
+            <Parameter Name="P_MONEDA" Mode="In" Type="String" />
+            <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="P_SALDO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1555,6 +1575,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CAJAS" FunctionName="Model.Store.P_SG_GUARDAR_CAJAS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

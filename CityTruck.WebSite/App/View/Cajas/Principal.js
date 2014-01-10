@@ -33,69 +33,27 @@
     },
     EventosCaja: function (btn) {
         var me = this;
-        if (btn.getItemId() == "btn_CrearVenta") {
-            if (me.winCrearVenta == null) {
-                me.winCrearVenta = Ext.create("App.Config.Abstract.Window");
-                me.panelVentas = Ext.create("App.View.Ventas.FormCrearVenta", {
-                    columns: 4,
-                    title : 'Formulario de Registro de Ventas ',
-                    botones : false
-                })
-
-                me.winCrearVenta.add(me.panelVentas);
-                me.winCrearVenta.show();
+        if (btn.getItemId() == "btn_CrearCaja") {
+            if (me.winCrearCaja == null) {
+                me.winCrearCaja = Ext.create("App.Config.Abstract.Window", {botones : true});
+                me.formCrearCaja = Ext.create("App.View.Cajas.FormCaja", {
+                    columns: 1,
+                    title: 'Registro de Cajas ',
+                    botones: false
+                });
+                me.winCrearCaja.add(me.formCrearCaja);
+                me.winCrearCaja.btn_guardar.on('click', me.GuardarCajas, this);
+                me.winCrearCaja.show();
             } else {
-                me.winCrearVenta.show();
+                me.winCrearCaja.show();
             }
         }
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
+    },
+    GuardarCajas: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Cajas', 'GuardarCaja', me.winCrearCaja, me.formCrearCaja, me.grid, 'Esta Seguro de Guardar la Caja?', null, me.winCrearCaja);
     }
-    //    CargarDatos: function (grid, td, cellIndex, record, tr, owIndex, e, eOpts) {
-    //        var me = this;
-    //        me.formulario.CargarDatos(record);
-    //        me.panelImagen.setTitle("Visor de Imagenes - "+record.get('COD_ALTERNATIVO'));
-    //        me.ViewImagen.store.setExtraParams({ TABLA: me.Tabla, ID_TABLA: record.get(me.idTabla) });
-    //        me.ViewImagen.store.load();
-
-    //    },
-    //    EventosBoton: function (btn) {
-    //        var me = this;
-
-    //        if (btn.getItemId() == '') {
-
-    //        }
-    //        else {
-    //            alert("No se Selecciono ningun botton");
-    //        }
-    //    },
-    //    EventoConfiguracion: function (btn) {
-    //        me = this;
-    //        if (btn.getItemId() == 'btn_configuracionUC') {
-    //            if (me.winConfig == null) {
-    //                me.winConfig = Ext.create("App.Config.Abstract.Window");
-    //                me.formConfig = Ext.create("App.View.Postes.Forms", { opcion: 'FormConfiguracionCodSol', title: 'Formulario de Configuracion Codigo Solucion y Materiales' });
-    //                me.winConfig.add(me.formConfig);
-    //                me.winConfig.show();
-    //            }
-    //            else {
-    //                me.formConfig.getForm().reset();
-    //                me.winConfig.show();
-    //            }
-    //        }
-    //        else if (btn.getItemId() == 'btn_configuracionCodMat') {
-    //            if (me.winConfigMat == null) {
-    //                me.winConfigMat = Ext.create("App.Config.Abstract.Window");
-    //                me.formConfigMat = Ext.create("App.View.Postes.Forms", { opcion: 'FormConfiguracionCodMan', title: 'Formulario de Configuracion Codigo Materiales y Cod. Soluciones' });
-    //                me.winConfigMat.add(me.formConfigMat);
-    //                me.winConfigMat.show();
-    //            }
-    //            else {
-    //                me.formConfigMat.getForm().reset();
-    //                me.winConfigMat.show();
-    //            }
-    //        }
-    //        else { alert("Selecione uina opcion") }
-    //    }
 });

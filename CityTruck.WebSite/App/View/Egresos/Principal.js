@@ -39,7 +39,7 @@
                     columns: 1,
                     title: 'Formulario de Registro de Otros Egresos ',
                     botones: false
-                })
+                });
 
                 me.winCrearEgreso.add(me.formEgreso);
                 me.winCrearEgreso.btn_guardar.on('click', me.GuardarEgresos, this);
@@ -54,6 +54,6 @@
     }, GuardarEgresos: function () {
         var me = this;
         Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Guardar el Egreso?', null, me.winCrearEgreso);
-    } 
+    }
 
 });

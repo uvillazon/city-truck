@@ -310,7 +310,7 @@
     <Content Include="App\Store\SolicitudesMantenimiento\SolicitudesMantenimientoCombo.js" />
     <Content Include="App\Store\SolicitudesMantenimiento\SolicitudesMantenimientoFiltrados.js" />
     <Content Include="App\View\BandejasEntrada\Principal.js" />
-    <Content Include="App\View\Cajas\FormCrearVenta.js" />
+    <Content Include="App\View\Cajas\FormCaja.js" />
     <Content Include="App\View\Cajas\Forms.js" />
     <Content Include="App\View\Cajas\Grids.js" />
     <Content Include="App\View\Cajas\GridCajas.js" />

@@ -73,10 +73,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_CAJAS.sql" />
+    <Content Include="DataMigration\version1\Q_SG_CAJAS.sql" />
+    <Content Include="DataMigration\version1\SG_KARDEX_EFECTIVO_TABLE.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_KARDEX_CLIENTE.sql" />
     <Content Include="DataMigration\version1\SG_AMORTIZACIONES.sql" />
     <Content Include="DataMigration\version1\SG_KARDEX_CLIENTE.sql" />
-    <Content Include="DataMigration\version1\SG_KARDEX_EFECTIVO_TABLE.sql" />
     <Content Include="DataMigration\version1\SG_VENTAS_CREDITO_TABLE.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_POS_TURNO.sql" />
     <Content Include="DataMigration\version1\P_SG_OBTENER_ULTIMO_LITTER.sql" />
