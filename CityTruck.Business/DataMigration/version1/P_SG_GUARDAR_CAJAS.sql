@@ -38,6 +38,12 @@ IF v_res='0' THEN
         p_moneda ,p_descripcion ,p_saldo ,p_id_usr, sysdate );
         
         v_res := '0';
+         IF v_res = '0' THEN
+             
+            INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
+             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , v_id_caja , v_id_caja , 'CAJA' ,sysdate,'CREACION CUENTA:'||p_nombre,p_saldo,0,0,p_id_usr,sysdate );
+          
+        END IF;
     --ELSE
         --editar
     END IF;
@@ -45,6 +51,7 @@ END IF;
     if v_res = 0 THEN
         v_res := '1';
      COMMIT;
+      P_SG_ACT_KARDEX_EFECTIVO(v_id_caja,sysdate,p_id_usr,v_res);
 
     ELSE
         ROLLBACK;
