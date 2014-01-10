@@ -6,12 +6,14 @@
     <edmx:StorageModels>
     <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="SG_AMORTIZACIONES" EntityType="Model.Store.SG_AMORTIZACIONES" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_CAJAS" EntityType="Model.Store.SG_CAJAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_CLIENTES" EntityType="Model.Store.SG_CLIENTES" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_COMBUSTIBLES" EntityType="Model.Store.SG_COMBUSTIBLES" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_COMPRAS" EntityType="Model.Store.SG_COMPRAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_EGRESOS" EntityType="Model.Store.SG_EGRESOS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_INGRESOS" EntityType="Model.Store.SG_INGRESOS" store:Type="Tables" Schema="CITYTRUCK" />
+          <EntitySet Name="SG_KARDEX_CLIENTE" EntityType="Model.Store.SG_KARDEX_CLIENTE" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_LISTAS" EntityType="Model.Store.SG_LISTAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_LISTAS_ITEMS" EntityType="Model.Store.SG_LISTAS_ITEMS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_MENU_OPCIONES" EntityType="Model.Store.SG_MENU_OPCIONES" store:Type="Tables" Schema="CITYTRUCK" />
@@ -20,7 +22,16 @@
           <EntitySet Name="SG_POS" EntityType="Model.Store.SG_POS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_POS_TURNOS" EntityType="Model.Store.SG_POS_TURNOS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_USUARIOS" EntityType="Model.Store.SG_USUARIOS" store:Type="Tables" Schema="CITYTRUCK" />
+          <EntitySet Name="SG_VENTAS_CREDITO" EntityType="Model.Store.SG_VENTAS_CREDITO" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_VENTAS_DIARIAS" EntityType="Model.Store.SG_VENTAS_DIARIAS" store:Type="Tables" Schema="CITYTRUCK" />
+          <AssociationSet Name="SG_AMORTIZACIONES_R01" Association="Model.Store.SG_AMORTIZACIONES_R01">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_AMORTIZACIONES" EntitySet="SG_AMORTIZACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="SG_AMORTIZACIONES_R02" Association="Model.Store.SG_AMORTIZACIONES_R02">
+            <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
+            <End Role="SG_AMORTIZACIONES" EntitySet="SG_AMORTIZACIONES" />
+          </AssociationSet>
           <AssociationSet Name="SG_COMPRAS_R01" Association="Model.Store.SG_COMPRAS_R01">
             <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
             <End Role="SG_COMPRAS" EntitySet="SG_COMPRAS" />
@@ -36,6 +47,10 @@
           <AssociationSet Name="SG_INGRESOS_R01" Association="Model.Store.SG_INGRESOS_R01">
             <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
             <End Role="SG_INGRESOS" EntitySet="SG_INGRESOS" />
+          </AssociationSet>
+          <AssociationSet Name="SG_KARDEX_CLIENTE_R01" Association="Model.Store.SG_KARDEX_CLIENTE_R01">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_KARDEX_CLIENTE" EntitySet="SG_KARDEX_CLIENTE" />
           </AssociationSet>
           <AssociationSet Name="SG_LISTAS_ITEMS_R01" Association="Model.Store.SG_LISTAS_ITEMS_R01">
             <End Role="SG_LISTAS" EntitySet="SG_LISTAS" />
@@ -65,7 +80,29 @@
             <End Role="SG_PERFILES" EntitySet="SG_PERFILES" />
             <End Role="SG_USUARIOS" EntitySet="SG_USUARIOS" />
           </AssociationSet>
+          <AssociationSet Name="SG_VENTAS_CREDITO_R01" Association="Model.Store.SG_VENTAS_CREDITO_R01">
+            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
+            <End Role="SG_VENTAS_CREDITO" EntitySet="SG_VENTAS_CREDITO" />
+          </AssociationSet>
+          <AssociationSet Name="SG_VENTAS_CREDITO_R02" Association="Model.Store.SG_VENTAS_CREDITO_R02">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_VENTAS_CREDITO" EntitySet="SG_VENTAS_CREDITO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SG_AMORTIZACIONES">
+          <Key>
+            <PropertyRef Name="ID_AMORTIZACION" />
+          </Key>
+          <Property Name="ID_AMORTIZACION" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_CAJA" Type="number" Nullable="false" Precision="7" />
+          <Property Name="NRO_COMP" Type="number" Nullable="false" Precision="7" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="CONCEPTO" Type="varchar2" Nullable="false" MaxLength="250" />
+          <Property Name="IMPORTE_BS" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FECHA_REG" Type="date" />
+        </EntityType>
         <EntityType Name="SG_CAJAS">
           <Key>
             <PropertyRef Name="ID_CAJA" />
@@ -153,6 +190,22 @@
           <Property Name="CONCEPTO" Type="varchar2" Nullable="false" MaxLength="140" />
           <Property Name="ID_CAJA" Type="number" Nullable="false" Precision="7" />
           <Property Name="IMPORTE" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FECHA_REG" Type="date" />
+        </EntityType>
+        <EntityType Name="SG_KARDEX_CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_KARDEX" />
+          </Key>
+          <Property Name="ID_KARDEX" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_OPERACION" Type="number" Nullable="false" Precision="7" />
+          <Property Name="OPERACION" Type="varchar2" Nullable="false" MaxLength="250" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="DETALLE" Type="varchar2" Nullable="false" MaxLength="250" />
+          <Property Name="CONSUMO" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="AMORTIZACION" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="SALDO" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
           <Property Name="FECHA_REG" Type="date" />
         </EntityType>
@@ -250,6 +303,23 @@
           <Property Name="ID_PERFIL" Type="number" Nullable="false" Precision="5" />
           <Property Name="ESTADO" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SG_VENTAS_CREDITO">
+          <Key>
+            <PropertyRef Name="ID_VENTA" />
+          </Key>
+          <Property Name="ID_VENTA" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ID_COMBUSTIBLE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="ID_CLIENTE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="NRO_COMP" Type="number" Nullable="false" Precision="7" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="TURNO" Type="varchar2" Nullable="false" MaxLength="40" />
+          <Property Name="PRECIO" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="IMPORTE_BS" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="IMPORTE_LTS" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="RESPONSABLE" Type="varchar2" MaxLength="250" />
+          <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FECHA_REG" Type="date" />
+        </EntityType>
         <EntityType Name="SG_VENTAS_DIARIAS">
           <Key>
             <PropertyRef Name="ID_VENTA" />
@@ -260,6 +330,30 @@
           <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="TOTAL" Type="number" Nullable="false" Precision="15" Scale="5" />
         </EntityType>
+        <Association Name="SG_AMORTIZACIONES_R01">
+          <End Role="SG_CLIENTES" Type="Model.Store.SG_CLIENTES" Multiplicity="1" />
+          <End Role="SG_AMORTIZACIONES" Type="Model.Store.SG_AMORTIZACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_AMORTIZACIONES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_AMORTIZACIONES_R02">
+          <End Role="SG_CAJAS" Type="Model.Store.SG_CAJAS" Multiplicity="1" />
+          <End Role="SG_AMORTIZACIONES" Type="Model.Store.SG_AMORTIZACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CAJAS">
+              <PropertyRef Name="ID_CAJA" />
+            </Principal>
+            <Dependent Role="SG_AMORTIZACIONES">
+              <PropertyRef Name="ID_CAJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SG_COMPRAS_R01">
           <End Role="SG_COMBUSTIBLES" Type="Model.Store.SG_COMBUSTIBLES" Multiplicity="1" />
           <End Role="SG_COMPRAS" Type="Model.Store.SG_COMPRAS" Multiplicity="*" />
@@ -305,6 +399,18 @@
             </Principal>
             <Dependent Role="SG_INGRESOS">
               <PropertyRef Name="ID_CAJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_KARDEX_CLIENTE_R01">
+          <End Role="SG_CLIENTES" Type="Model.Store.SG_CLIENTES" Multiplicity="1" />
+          <End Role="SG_KARDEX_CLIENTE" Type="Model.Store.SG_KARDEX_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_KARDEX_CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -389,6 +495,30 @@
             </Principal>
             <Dependent Role="SG_USUARIOS">
               <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_VENTAS_CREDITO_R01">
+          <End Role="SG_COMBUSTIBLES" Type="Model.Store.SG_COMBUSTIBLES" Multiplicity="1" />
+          <End Role="SG_VENTAS_CREDITO" Type="Model.Store.SG_VENTAS_CREDITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_COMBUSTIBLES">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Principal>
+            <Dependent Role="SG_VENTAS_CREDITO">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_VENTAS_CREDITO_R02">
+          <End Role="SG_CLIENTES" Type="Model.Store.SG_CLIENTES" Multiplicity="1" />
+          <End Role="SG_VENTAS_CREDITO" Type="Model.Store.SG_VENTAS_CREDITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_VENTAS_CREDITO">
+              <PropertyRef Name="ID_CLIENTE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -603,6 +733,29 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SG_AMORTIZACIONES" EntityType="Model.SG_AMORTIZACIONES" />
+          <EntitySet Name="SG_KARDEX_CLIENTE" EntityType="Model.SG_KARDEX_CLIENTE" />
+          <EntitySet Name="SG_VENTAS_CREDITO" EntityType="Model.SG_VENTAS_CREDITO" />
+          <AssociationSet Name="SG_AMORTIZACIONES_R01" Association="Model.SG_AMORTIZACIONES_R01">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_AMORTIZACIONES" EntitySet="SG_AMORTIZACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="SG_AMORTIZACIONES_R02" Association="Model.SG_AMORTIZACIONES_R02">
+            <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
+            <End Role="SG_AMORTIZACIONES" EntitySet="SG_AMORTIZACIONES" />
+          </AssociationSet>
+          <AssociationSet Name="SG_KARDEX_CLIENTE_R01" Association="Model.SG_KARDEX_CLIENTE_R01">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_KARDEX_CLIENTE" EntitySet="SG_KARDEX_CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="SG_VENTAS_CREDITO_R02" Association="Model.SG_VENTAS_CREDITO_R02">
+            <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
+            <End Role="SG_VENTAS_CREDITO" EntitySet="SG_VENTAS_CREDITO" />
+          </AssociationSet>
+          <AssociationSet Name="SG_VENTAS_CREDITO_R01" Association="Model.SG_VENTAS_CREDITO_R01">
+            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
+            <End Role="SG_VENTAS_CREDITO" EntitySet="SG_VENTAS_CREDITO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -754,6 +907,7 @@
           <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="SG_POS" Relationship="Model.SG_POS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_POS" />
           <NavigationProperty Name="SG_COMPRAS" Relationship="Model.SG_COMPRAS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_COMPRAS" />
+          <NavigationProperty Name="SG_VENTAS_CREDITO" Relationship="Model.SG_VENTAS_CREDITO_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_VENTAS_CREDITO" />
         </EntityType>
         <EntityType Name="SG_POS">
           <Key>
@@ -824,6 +978,7 @@
           <NavigationProperty Name="SG_INGRESOS" Relationship="Model.SG_INGRESOS_R01" FromRole="SG_CAJAS" ToRole="SG_INGRESOS" />
           <NavigationProperty Name="SG_COMPRAS" Relationship="Model.SG_COMPRAS_R02" FromRole="SG_CAJAS" ToRole="SG_COMPRAS" />
           <NavigationProperty Name="SG_EGRESOS" Relationship="Model.SG_EGRESOS_R01" FromRole="SG_CAJAS" ToRole="SG_EGRESOS" />
+          <NavigationProperty Name="SG_AMORTIZACIONES" Relationship="Model.SG_AMORTIZACIONES_R02" FromRole="SG_CAJAS" ToRole="SG_AMORTIZACIONES" />
         </EntityType>
         <EntityType Name="SG_INGRESOS">
           <Key>
@@ -914,6 +1069,9 @@
           <Property Type="Decimal" Name="SALDO" Precision="15" Scale="5" />
           <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
           <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_AMORTIZACIONES" Relationship="Model.SG_AMORTIZACIONES_R01" FromRole="SG_CLIENTES" ToRole="SG_AMORTIZACIONES" />
+          <NavigationProperty Name="SG_KARDEX_CLIENTE" Relationship="Model.SG_KARDEX_CLIENTE_R01" FromRole="SG_CLIENTES" ToRole="SG_KARDEX_CLIENTE" />
+          <NavigationProperty Name="SG_VENTAS_CREDITO" Relationship="Model.SG_VENTAS_CREDITO_R02" FromRole="SG_CLIENTES" ToRole="SG_VENTAS_CREDITO" />
         </EntityType>
         <EntityType Name="SG_EGRESOS">
           <Key>
@@ -952,6 +1110,118 @@
           <Property Type="DateTime" Name="FECHA" Nullable="false" />
           <Property Type="Decimal" Name="TOTAL" Nullable="false" Precision="15" Scale="5" />
         </EntityType>
+        <EntityType Name="SG_AMORTIZACIONES">
+          <Key>
+            <PropertyRef Name="ID_AMORTIZACION" />
+          </Key>
+          <Property Type="Int32" Name="ID_AMORTIZACION" Nullable="false" />
+          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="ID_CAJA" Nullable="false" />
+          <Property Type="Int32" Name="NRO_COMP" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="String" Name="CONCEPTO" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="IMPORTE_BS" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_CLIENTES" Relationship="Model.SG_AMORTIZACIONES_R01" FromRole="SG_AMORTIZACIONES" ToRole="SG_CLIENTES" />
+          <NavigationProperty Name="SG_CAJAS" Relationship="Model.SG_AMORTIZACIONES_R02" FromRole="SG_AMORTIZACIONES" ToRole="SG_CAJAS" />
+        </EntityType>
+        <EntityType Name="SG_KARDEX_CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_KARDEX" />
+          </Key>
+          <Property Type="Int32" Name="ID_KARDEX" Nullable="false" />
+          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="ID_OPERACION" Nullable="false" />
+          <Property Type="String" Name="OPERACION" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="String" Name="DETALLE" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CONSUMO" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="AMORTIZACION" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="SALDO" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_CLIENTES" Relationship="Model.SG_KARDEX_CLIENTE_R01" FromRole="SG_KARDEX_CLIENTE" ToRole="SG_CLIENTES" />
+        </EntityType>
+        <EntityType Name="SG_VENTAS_CREDITO">
+          <Key>
+            <PropertyRef Name="ID_VENTA" />
+          </Key>
+          <Property Type="Int32" Name="ID_VENTA" Nullable="false" />
+          <Property Type="Int16" Name="ID_COMBUSTIBLE" Nullable="false" />
+          <Property Type="Int16" Name="ID_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="NRO_COMP" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="String" Name="TURNO" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="PRECIO" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="IMPORTE_BS" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="IMPORTE_LTS" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="String" Name="RESPONSABLE" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_CLIENTES" Relationship="Model.SG_VENTAS_CREDITO_R02" FromRole="SG_VENTAS_CREDITO" ToRole="SG_CLIENTES" />
+          <NavigationProperty Name="SG_COMBUSTIBLES" Relationship="Model.SG_VENTAS_CREDITO_R01" FromRole="SG_VENTAS_CREDITO" ToRole="SG_COMBUSTIBLES" />
+        </EntityType>
+        <Association Name="SG_AMORTIZACIONES_R01">
+          <End Type="Model.SG_CLIENTES" Role="SG_CLIENTES" Multiplicity="1" />
+          <End Type="Model.SG_AMORTIZACIONES" Role="SG_AMORTIZACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_AMORTIZACIONES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_AMORTIZACIONES_R02">
+          <End Type="Model.SG_CAJAS" Role="SG_CAJAS" Multiplicity="1" />
+          <End Type="Model.SG_AMORTIZACIONES" Role="SG_AMORTIZACIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CAJAS">
+              <PropertyRef Name="ID_CAJA" />
+            </Principal>
+            <Dependent Role="SG_AMORTIZACIONES">
+              <PropertyRef Name="ID_CAJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_KARDEX_CLIENTE_R01">
+          <End Type="Model.SG_CLIENTES" Role="SG_CLIENTES" Multiplicity="1" />
+          <End Type="Model.SG_KARDEX_CLIENTE" Role="SG_KARDEX_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_KARDEX_CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_VENTAS_CREDITO_R02">
+          <End Type="Model.SG_CLIENTES" Role="SG_CLIENTES" Multiplicity="1" />
+          <End Type="Model.SG_VENTAS_CREDITO" Role="SG_VENTAS_CREDITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_CLIENTES">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="SG_VENTAS_CREDITO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_VENTAS_CREDITO_R01">
+          <End Type="Model.SG_COMBUSTIBLES" Role="SG_COMBUSTIBLES" Multiplicity="1" />
+          <End Type="Model.SG_VENTAS_CREDITO" Role="SG_VENTAS_CREDITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_COMBUSTIBLES">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Principal>
+            <Dependent Role="SG_VENTAS_CREDITO">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1150,6 +1420,56 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_COMPRAS" FunctionName="Model.Store.P_SG_GUARDAR_COMPRAS" />
+          <EntitySetMapping Name="SG_AMORTIZACIONES">
+            <EntityTypeMapping TypeName="Model.SG_AMORTIZACIONES">
+              <MappingFragment StoreEntitySet="SG_AMORTIZACIONES">
+                <ScalarProperty Name="FECHA_REG" ColumnName="FECHA_REG" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="IMPORTE_BS" ColumnName="IMPORTE_BS" />
+                <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="NRO_COMP" ColumnName="NRO_COMP" />
+                <ScalarProperty Name="ID_CAJA" ColumnName="ID_CAJA" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_AMORTIZACION" ColumnName="ID_AMORTIZACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SG_KARDEX_CLIENTE">
+            <EntityTypeMapping TypeName="Model.SG_KARDEX_CLIENTE">
+              <MappingFragment StoreEntitySet="SG_KARDEX_CLIENTE">
+                <ScalarProperty Name="FECHA_REG" ColumnName="FECHA_REG" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="SALDO" ColumnName="SALDO" />
+                <ScalarProperty Name="AMORTIZACION" ColumnName="AMORTIZACION" />
+                <ScalarProperty Name="CONSUMO" ColumnName="CONSUMO" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="OPERACION" ColumnName="OPERACION" />
+                <ScalarProperty Name="ID_OPERACION" ColumnName="ID_OPERACION" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_KARDEX" ColumnName="ID_KARDEX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SG_VENTAS_CREDITO">
+            <EntityTypeMapping TypeName="Model.SG_VENTAS_CREDITO">
+              <MappingFragment StoreEntitySet="SG_VENTAS_CREDITO">
+                <ScalarProperty Name="FECHA_REG" ColumnName="FECHA_REG" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+                <ScalarProperty Name="IMPORTE_LTS" ColumnName="IMPORTE_LTS" />
+                <ScalarProperty Name="IMPORTE_BS" ColumnName="IMPORTE_BS" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="TURNO" ColumnName="TURNO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="NRO_COMP" ColumnName="NRO_COMP" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_COMBUSTIBLE" ColumnName="ID_COMBUSTIBLE" />
+                <ScalarProperty Name="ID_VENTA" ColumnName="ID_VENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1206,16 +1526,20 @@
         <EntityTypeShape EntityType="Model.SG_COMBUSTIBLES" Width="1.5" PointX="5.625" PointY="3.25" Height="2.5571907552083326" />
         <EntityTypeShape EntityType="Model.SG_POS" Width="1.5" PointX="9.125" PointY="3.5" Height="2.7494921874999996" />
         <AssociationConnector Association="Model.SG_POS_R01" >
-          <ConnectorPoint PointX="7.125" PointY="4.6535953776041659" />
-          <ConnectorPoint PointX="9.125" PointY="4.6535953776041659" />
+          <ConnectorPoint PointX="7.125" PointY="4.74974609375" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="4.7497460937499989" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="4.74974609375" />
+          <ConnectorPoint PointX="9.125" PointY="4.74974609375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_POS_TURNOS" Width="1.5" PointX="5.875" PointY="6.125" Height="2.7494921875000031" />
         <AssociationConnector Association="Model.SG_POS_TURNOS_R01" >
           <ConnectorPoint PointX="10" PointY="6.2494921875" />
-          <ConnectorPoint PointX="10" PointY="7.1157943372395831" />
-          <ConnectorPoint PointX="8.5520833333333339" PointY="7.1157943372395822" />
-          <ConnectorPoint PointX="8.3854166666666661" PointY="7.1157943372395831" />
-          <ConnectorPoint PointX="7.375" PointY="7.1157943372395831" />
+          <ConnectorPoint PointX="10" PointY="7.068245384114582" />
+          <ConnectorPoint PointX="8.5520833333333339" PointY="7.0682453841145811" />
+          <ConnectorPoint PointX="8.3854166666666661" PointY="7.068245384114582" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="7.0682453841145811" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="7.068245384114582" />
+          <ConnectorPoint PointX="7.375" PointY="7.068245384114582" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CAJAS" Width="1.5" PointX="7.875" PointY="7.75" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="Model.SG_INGRESOS" Width="1.5" PointX="10.625" PointY="7.75" Height="2.9417936197916745" />
@@ -1238,11 +1562,41 @@
         <EntityTypeShape EntityType="Model.SG_CLIENTES" Width="1.5" PointX="3.375" PointY="11.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="Model.SG_EGRESOS" Width="1.5" PointX="10.125" PointY="12" Height="2.9417936197916674" />
         <AssociationConnector Association="Model.SG_EGRESOS_R01" >
-          <ConnectorPoint PointX="8.625" PointY="11.076396484375" />
-          <ConnectorPoint PointX="8.625" PointY="13.470896809895834" />
-          <ConnectorPoint PointX="10.125" PointY="13.470896809895834" />
+          <ConnectorPoint PointX="9.375" PointY="11.011495768229171" />
+          <ConnectorPoint PointX="10.34375" PointY="11.011495768229171" />
+          <ConnectorPoint PointX="10.34375" PointY="12" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_VENTAS_DIARIAS" Width="1.5" PointX="5" PointY="0.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Model.SG_AMORTIZACIONES" Width="1.5" PointX="13.125" PointY="10.25" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="Model.SG_KARDEX_CLIENTE" Width="1.5" PointX="5.625" PointY="12.125" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="Model.SG_VENTAS_CREDITO" Width="1.5" PointX="7.875" PointY="12.75" Height="3.7109993489583388" />
+        <AssociationConnector Association="Model.SG_AMORTIZACIONES_R01" >
+          <ConnectorPoint PointX="4.875" PointY="11.84375" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="11.84375" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="11.84375" />
+          <ConnectorPoint PointX="10.260416666666666" PointY="11.84375" />
+          <ConnectorPoint PointX="10.427083333333334" PointY="11.84375" />
+          <ConnectorPoint PointX="13.125" PointY="11.84375" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SG_AMORTIZACIONES_R02" >
+          <ConnectorPoint PointX="9.375" PointY="10.820394694010423" />
+          <ConnectorPoint PointX="13.125" PointY="10.820394694010423" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SG_KARDEX_CLIENTE_R01" >
+          <ConnectorPoint PointX="4.875" PointY="13.788198242187502" />
+          <ConnectorPoint PointX="5.625" PointY="13.788198242187502" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SG_VENTAS_CREDITO_R02" >
+          <ConnectorPoint PointX="4.875" PointY="15.679749348958335" />
+          <ConnectorPoint PointX="7.875" PointY="15.679749348958335" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SG_VENTAS_CREDITO_R01" >
+          <ConnectorPoint PointX="7.125" PointY="4.046748046875" />
+          <ConnectorPoint PointX="7.625" PointY="4.046748046875" />
+          <ConnectorPoint PointX="7.625" PointY="12.375" />
+          <ConnectorPoint PointX="8.625" PointY="12.375" />
+          <ConnectorPoint PointX="8.625" PointY="12.75" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>
