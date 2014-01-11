@@ -75,7 +75,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataMigration\version1\TodosSP.sql" />
     <Content Include="DataMigration\version1\P_SG_GENERAR_VENTAS_DIARIAS.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_KARDEX_EFECTIVO.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_CAJAS.sql" />
@@ -102,6 +101,7 @@
     <Content Include="DataMigration\version1\Q_SG_EGRESOS.sql" />
     <Content Include="DataMigration\version1\Q_SG_INGRESOS.sql" />
     <Content Include="DataMigration\version1\SG_EGRESOS_TABLE.sql" />
+    <Content Include="DataMigration\version1\TodosSP.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
