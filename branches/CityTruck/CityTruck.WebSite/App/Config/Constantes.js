@@ -25,6 +25,9 @@ Ext.define("App.Config.Constantes", {
     LiSTAS: null,
     URLLISTAS: 'Listas/ObtenerTodasLasListas',
     URLIMAGEN: "Imagenes/VerImagen?",
+    CONFIG_PRECIO_VENTA: 3.72,
+    CONFIG_PRECIO_COSTO: 3.54,
+    CONFIG_CUENTA_VENTA : 1,
     UnidadesRequeridas: function (unidad, requerido) {
         if (requerido) {
             return '<span style="color:red;font-weight:bold" data-qtip="Requerido">*</span><span style="color:blue" data-qtip="Requerido">[' + unidad + ']</span>';

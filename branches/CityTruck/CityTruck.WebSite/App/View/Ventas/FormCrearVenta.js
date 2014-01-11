@@ -15,9 +15,9 @@
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
                     opcion: 'GridVentasEditar',
                     colspan: 2,
-                    width: 500,
-                    height : 300,
-                    rowspan : 2,
+                    width: 400,
+                    height : 250,
+//                    rowspan : 2,
                 });
         me.toolbarVenta = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
@@ -33,16 +33,16 @@
             opcion: 'GridVentasCredito',
             colspan: 2,
             width: 400,
-            height : 200
+            height : 250
         });
-        me.formResumen = Ext.create("App.View.Ventas.Forms", {
-            opcion: 'formResumen',
-            botones: false,
-            columns: 3,
-            width: 350,
-            colspan: 2
-        });
-        Funciones.BloquearFormularioReadOnly(me.formResumen);
+//        me.formResumen = Ext.create("App.View.Ventas.Forms", {
+//            opcion: 'formResumen',
+//            botones: false,
+//            columns: 3,
+//            width: 350,
+//            colspan: 2
+//        });
+//        Funciones.BloquearFormularioReadOnly(me.formResumen);
         me.store_turno = Ext.create('App.Store.Listas.StoreLista');
         me.store_turno.setExtraParam('ID_LISTA', Lista.Buscar('TURNO'));
         me.cbx_turno = Ext.create("App.Config.Componente.ComboBase", {
@@ -67,7 +67,7 @@
             name: "FECHA",
         });
       
-            me.items=  [me.gridVenta, me.formSubTotales,  me.formResumen,me.gridVentaCredito];
+            me.items=  [me.gridVenta, me.formSubTotales, /* me.formResumen,*/me.gridVentaCredito];
             me.tbar= [me.date_fecha, me.cbx_turno, me.txt_nombres]
 
 
@@ -101,15 +101,24 @@
                 }
             }
         });
+        me.gridVenta.getStore().on('load',function(str,records,success){
+            if(!success){
+                str.removeAll();
+                Ext.Msg.alert("Error","No puede generar los pos ventas seguir el ciclo DIA TARDE y NOCHE por fecha");
+            }
+        });
     },
     CargarTotales : function(){
         var me = this;
         var totalGasolina = 0;
         var totalDiesel = 0;
+        var totalGasolinaBs = 0;
+        var totalDieselBs = 0;
         me.gridVenta.getStore().each(function(record){
 //            alert(record.get('TOTAL'));
             if(record.get('CODIGO')== 'GASOLINA'){
                 totalGasolina= totalGasolina +  record.get('TOTAL');
+                
             }
             else if(record.get('CODIGO')== 'DIESEL'){
                 totalDiesel= totalDiesel +  record.get('TOTAL');
@@ -122,7 +131,17 @@
 
         me.formSubTotales.txt_diesel.setValue(totalDiesel);
         me.formSubTotales.txt_gasolina.setValue(totalGasolina);
+
+        me.formSubTotales.txt_diesel_bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA);
+        me.formSubTotales.txt_gasolina_bs.setValue(totalGasolina* Constantes.CONFIG_PRECIO_VENTA);
+
+        me.formSubTotales.txt_diesel_bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO);
+        me.formSubTotales.txt_gasolina_bs_costo.setValue(totalGasolina* Constantes.CONFIG_PRECIO_COSTO);
+
         me.formSubTotales.txt_total.setValue(totalDiesel + totalGasolina);
+        me.formSubTotales.txt_total_Bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA + totalGasolina* Constantes.CONFIG_PRECIO_VENTA);
+        me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO + totalGasolina* Constantes.CONFIG_PRECIO_COSTO);
+        
 
     },
     EventosVenta : function(btn){
@@ -130,7 +149,7 @@
         if(btn.getItemId() == "btn_GuardarCambios"){
             if(me.isValid() == true){
 //                alert("sadsadadsadsadad");
-                 Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, null, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
+                 Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
             }
             else{
                 
