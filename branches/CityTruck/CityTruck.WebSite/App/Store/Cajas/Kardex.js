@@ -1,6 +1,7 @@
-﻿Ext.define('App.Store.Ventas.DetallesVenta', {
+﻿Ext.define('App.Store.Cajas.Kardex', {
     extend: 'App.Config.Abstract.Store',
-    model: 'App.Model.Ventas.DetallesVenta',
-    url: 'Ventas/ObtenerPosTurnos',
-    sortProperty: 'ID_POS'
+    model: 'App.Model.Cajas.Kardex',
+    url: 'CAJAS/ObtenerKardexEfectivoPaginado',
+    sortProperty: 'FECHA_REG',
+     sortDirection: 'ASC'
 });

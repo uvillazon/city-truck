@@ -85,21 +85,8 @@
             me.num_saldo.setValue(record[0].get('SALDO'));
         });
         me.num_importe.on('change',function(num,newvalue,oldvalue){
-            var sum = me.num_saldo.getValue() + newvalue;
+            var sum = me.num_saldo.getValue() - newvalue;
             me.txt_nuevo_saldo.setValue(sum);
         });
-//        me.cbx_turno.on('select',function(cmb,record){
-//            if(me.date_fecha.getValue() != null){
-//                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//                 me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-//                 me.gridVenta.getStore().load();
-////                me.gridVenta().getStore().setExtraParams({
-////                    FECHA :  me.date_fecha.getValue()
-////                });
-//            }
-//            else{
-//                Ext.Msg.alert("Seleccione Fecha primero");
-//            }
-//        });
     }
 });
