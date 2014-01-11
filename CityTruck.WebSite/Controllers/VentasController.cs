@@ -92,8 +92,20 @@ namespace CityTruck.WebSite.Controllers
                 try
                 {
                     var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
-                    result = _serPos.ObtenerPosTurnos(paginacion, filtros);
-                    nuevo = true;
+                    if (!spPos.success)
+                    {
+                        JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
+                        string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false , msg = spPos.msg }) + ");";
+                        //string callback1 = info.callback + "(" + json + ");";
+
+
+                        return JavaScript(callback2);
+                    }
+                    else
+                    {
+                        result = _serPos.ObtenerPosTurnos(paginacion, filtros);
+                        nuevo = true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -154,7 +166,13 @@ namespace CityTruck.WebSite.Controllers
                         return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
                     }
                 }
-                return Json(new { success = true, msg = "Todo OK" });
+                SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS{
+                    TURNO = TURNO,
+                    FECHA = FECHA,
+                    RESPONSABLE = nombres
+                };
+                respuestaRSP = _serVen.SP_GenerarVentasDiarias(vent, id_usr);
+                return Json(respuestaRSP);
             }
             catch (Exception)
             {

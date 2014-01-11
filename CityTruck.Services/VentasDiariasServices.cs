@@ -92,5 +92,29 @@ namespace CityTruck.Services
         {
             throw new NotImplementedException();
         }
+
+
+        public RespuestaSP SP_GenerarVentasDiarias(SG_VENTAS_DIARIAS ventas, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GENERAR_VENTAS_DIARIAS(ventas.FECHA, ventas.TURNO, ventas.RESPONSABLE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
     }
 }

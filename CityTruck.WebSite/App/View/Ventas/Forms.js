@@ -7,6 +7,7 @@
         var me = this;
         if (me.opcion == "formSubTotales") {
             me.title = "Subtotales";
+            me.columns = 3,
             me.CargarFormSubTotales();
 
         }
@@ -24,7 +25,11 @@
             
         });
         var label2 = Ext.create("Ext.form.Label", {
-            text: 'Sub. Total Bs',
+            text: 'Precio-Venta',
+            cls : 'resaltarAzul',
+        });
+        var label3 = Ext.create("Ext.form.Label", {
+            text: 'Precio-Costo',
             cls : 'resaltarAzul',
         });
         me.txt_diesel = Ext.create("App.Config.Componente.TextFieldBase", {
@@ -38,6 +43,13 @@
             fieldLabel: "",
             name: "SUB_DIESEL_BS",
 //            width: 70,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_diesel_bs_costo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "SUB_DIESEL_BS_COSTO",
+//            width: 150,
             colspan: 1,
             emptyText: ''
         });
@@ -55,22 +67,45 @@
             colspan: 1,
             emptyText: ''
         });
+        me.txt_gasolina_bs_costo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "SUB_GASOLINA_BS_COSTO",
+//            width: 150,
+            colspan: 1,
+            emptyText: ''
+        });
         me.txt_total = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Total",
+            fieldLabel: "Total Lts / Bs",
             name: "TOTAL",
-//            width: 200,
-            colspan: 2,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_total_Bs = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "TOTAL_BS",
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_total_Bs_costo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "TOTAL_BS_COSTO",
+            colspan: 1,
             emptyText: ''
         });
 
         me.items = [
         label1,
         label2,
+        label3,
         me.txt_diesel,
         me.txt_diesel_bs,
+        me.txt_diesel_bs_costo,
         me.txt_gasolina,
-         me.txt_gasolina_bs,
-        me.txt_total
+        me.txt_gasolina_bs,
+        me.txt_gasolina_bs_costo,
+        me.txt_total,
+        me.txt_total_Bs,
+        me.txt_total_Bs_costo
         ];
     },
     CargarFormResumen: function () {
