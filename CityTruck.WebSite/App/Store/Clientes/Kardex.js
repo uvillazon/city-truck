@@ -1,6 +1,6 @@
-﻿Ext.define('App.Store.Ventas.DetallesVenta', {
+﻿Ext.define('App.Store.Clientes.Kardex', {
     extend: 'App.Config.Abstract.Store',
-    model: 'App.Model.Ventas.DetallesVenta',
-    url: 'Ventas/ObtenerPosTurnos',
-    sortProperty: 'ID_POS'
+    model: 'App.Model.Clientes.Kardex',
+    url: 'Clientes/ObtenerKardexClientePaginado',
+    sortProperty: 'ID_KARDEX'
 });

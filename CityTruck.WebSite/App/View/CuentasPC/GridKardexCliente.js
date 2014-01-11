@@ -1,4 +1,4 @@
-﻿Ext.define("App.View.CuentasPC.GridKardexCuentaPC", {
+﻿Ext.define("App.View.CuentasPC.GridKardexCliente", {
     extend: "Ext.grid.Panel",
     title: 'Kardex Cuentas por Cobrar',
     criterios: true,
@@ -10,6 +10,7 @@
     win: null,
     formulario: null,
     imagenes: true,
+    id_cliente: '',
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridKardexCuentasPC") {
@@ -23,8 +24,8 @@
     CargarGridKardexCuentasPC: function () {
         var me = this;
         var fecha_actual = new Date();
-        me.store = Ext.create("App.Store.CuentasPC.CuentasPC");
-        me.store.setExtraParams({ID_CAJA : 9});
+        me.store = Ext.create("App.Store.Clientes.Kardex");
+        me.store.setExtraParams({ID_CLIENTE : me.id_cliente});
         me.store.load();
         //me.CargarComponentes();
 

@@ -10,6 +10,7 @@
     },
     CargarComponentes: function () {
         var me = this;
+        me.id_cliente = 0;
         me.grid = Ext.create('App.View.CuentasPC.GridCuentasPC', {
             region: 'center',
             height: 350,
@@ -26,7 +27,9 @@
         Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCuentaPC, me.toolbar, this);
         //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
         me.grid.addDocked(me.toolbar, 1);
-        //        me.grid.on('cellclick', me.CargarDatos, this);
+        me.grid.on('itemclick', function (view, record, item, index, e) {
+            me.id_cliente = record.get('ID_CLIENTE');
+        }, this);
 
     },
     EventosCuentaPC: function (btn) {
@@ -63,10 +66,10 @@
                 minHeight: 27,
                 minWidth: 80,
                 handler: function () {
-                    alert('Evento Amortizaci\u00F3n');
+                    me.CrearFormAmortizacionKardex(me.id_caja);
                 }
 
-            },{
+            }, {
                 xtype: 'button',
                 text: 'Imprimir',
                 iconCls: 'printer',
@@ -89,21 +92,46 @@
             }];
             if (me.winKardexCuentaPC == null) {
                 me.winKardexCuentaPC = Ext.create("App.Config.Abstract.Window", { botones: false, buttons: buttonGroup });
-                me.gridKardexCuentaPC = Ext.create("App.View.CuentasPC.GridKardexCuentaPC", {
+                me.gridKardexCuentaPC = Ext.create("App.View.CuentasPC.GridKardexCliente", {
                     region: 'center',
                     width: 700,
                     height: 350,
                     imagenes: false,
+                    id_cliente: me.id_cliente,
                     opcion: 'GridKardexCuentasPC'
                 });
                 me.winKardexCuentaPC.add(me.gridKardexCuentaPC);
                 me.winKardexCuentaPC.show();
             } else {
+                me.gridKardexCuentaPC.store.setExtraParams({ ID_CLIENTE: me.id_cliente });
+                me.gridKardexCuentaPC.store.load();
                 me.winKardexCuentaPC.show();
             }
         } else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
-    }
+    }, CrearFormAmortizacionKardex: function (id_caja) {
+        var me = this;
+        if (me.winNuevoMovimiento == null) {
+            me.winNuevoMovimiento = Ext.create("App.Config.Abstract.Window", { botones: true });
+            me.formNuevoMovimiento = Ext.create("App.View.Cajas.FormMovimiento", {
+                columns: 1,
+                title: 'Nuevo Movimiento',
+                botones: false
+            });
+            me.winNuevoMovimiento.add(me.formNuevoMovimiento);
+            me.winNuevoMovimiento.btn_guardar.on('click', me.GuardarMovimiento, this);
+            //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
+            me.winNuevoMovimiento.show();
+        } else {
+            //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
+            me.formNuevoMovimiento.reset();
+            me.winNuevoMovimiento.show();
+        }
 
+    }, GuardarMovimiento: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winNuevoMovimiento,
+             me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
+    }
 });
