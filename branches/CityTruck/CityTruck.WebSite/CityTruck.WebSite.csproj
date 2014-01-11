@@ -315,6 +315,7 @@
     <Content Include="App\View\Cajas\Grids.js" />
     <Content Include="App\View\Cajas\GridCajas.js" />
     <Content Include="App\View\Cajas\Principal.js" />
+    <Content Include="App\View\Clientes\FormMovimiento.js" />
     <Content Include="App\View\Compras\FormCompra.js" />
     <Content Include="App\View\Compras\Forms.js" />
     <Content Include="App\View\Compras\GridCompras.js" />

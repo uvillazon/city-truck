@@ -114,7 +114,7 @@
         var me = this;
         if (me.winNuevoMovimiento == null) {
             me.winNuevoMovimiento = Ext.create("App.Config.Abstract.Window", { botones: true });
-            me.formNuevoMovimiento = Ext.create("App.View.Cajas.FormMovimiento", {
+            me.formNuevoMovimiento = Ext.create("App.View.Clientes.FormMovimiento", {
                 columns: 1,
                 title: 'Nuevo Movimiento',
                 botones: false
@@ -131,7 +131,7 @@
 
     }, GuardarMovimiento: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winNuevoMovimiento,
+        Funciones.AjaxRequestWin('Clientes', 'GuardarAmortizacion', me.winNuevoMovimiento,
              me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
     }
 });
