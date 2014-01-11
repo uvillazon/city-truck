@@ -35,6 +35,9 @@
             width: 400,
             height : 250
         });
+        me.toolbarCredito = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearCredito', 'Crear Credito', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarCredito, this);
+        me.gridVentaCredito.addDocked(me.toolbarCredito, 1);
 //        me.formResumen = Ext.create("App.View.Ventas.Forms", {
 //            opcion: 'formResumen',
 //            botones: false,
@@ -156,9 +159,37 @@
                 Ext.Msg.alert("Error","Falta Completar el formulario");
             }
         }
+        else if(btn.getItemId() == 'btn_CrearCredito'){
+            me.CrearVentaCredito();
+        }
         else{
             Ext.Msg.alert("Error","No existe la opcion");
         }
 
+    },
+    CrearVentaCredito : function(){
+        var me = this;
+        if(me.isValid()){
+            if (me.winVentaCredito == null) {
+                    me.winVentaCredito = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Venta a Credito' });
+                    me.formVentaCredito = Ext.create("App.View.Ventas.Forms", {
+                        columns: 1,
+    //                    title: 'Formulario de Registro de Otros Egresos ',
+                        botones: false,
+                        opcion : 'formVentaCredito'
+                    });
+
+                    me.winVentaCredito.add(me.formVentaCredito);
+    //                me.winVentaCredito.btn_guardar.on('click', me.GuardarEgresos, this);
+                    me.winVentaCredito.show();
+            } 
+            else {
+                me.formVentaCredito.getForm().reset();
+                me.winVentaCredito.show();
+            }
+        }
+        else{
+            Ext.Msg.alert("Error","Seleccione la FECHA , TURNO y Escriba el Responsable");
+        }
     }
 });

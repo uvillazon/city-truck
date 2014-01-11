@@ -15,6 +15,12 @@
             me.title = "Resumen";
             me.CargarFormResumen();
         }
+        else if(me.opcion == "formVentaCredito"){
+//            me.columns = 1;
+             me.title = "Registro Ventas a Credito";
+            me.CargarFormVentaCredito();
+            me.EventosFormVentaCredito();
+        }
         this.callParent(arguments);
     },
     CargarFormSubTotales: function () {
@@ -177,5 +183,60 @@
         me.txt_gasolina_costo,
         me.txt_gasolina_venta
         ];
+    },
+    CargarFormVentaCredito : function(){
+        var me = this;
+        me.store_cliente = Ext.create('App.Store.Clientes.Clientes');
+        me.cbx_cliente = Ext.create("App.Config.Componente.ComboAutoBase", {
+            fieldLabel: "Cliente",
+            name: "ID_CLIENTE",
+            displayField: 'EMPRESA',
+            maxLength: 50,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+            textoTpl: function () { return "{CODIGO} - {EMPRESA} NIT : {NIT}" },
+            store: me.store_cliente,
+        });
+        me.store_combustible = Ext.create('App.Store.Combustibles.Combustibles').load();
+        me.cbx_combustible = Ext.create("App.Config.Componente.ComboBase", {
+            fieldLabel: "Combustible",
+            name: "ID_COMBUSTIBLE",
+            displayField: 'NOMBRE',
+            valueField : 'ID_COMBUSTIBLE',
+            store: me.store_combustible,
+            colspan : 2,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+        });
+         me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "Litros",
+            name: "CANTIDAD",
+            allowDecimals: true,
+            maxValue: 999999999,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+        });
+        me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "Importe Total",
+            name: "IMPORTE",
+            readOnly : true,
+            allowDecimals: true,
+            maxValue: 999999999,
+        });
+        me.items = [
+            me.cbx_cliente,
+            me.cbx_combustible,
+            me.num_litros,
+            me.num_importe
+
+        ];
+    },
+    EventosFormVentaCredito : function(){
+        var me = this;
+        me.num_litros.on('change',function(num,newvalue,oldvalue){
+            var sum =  Constantes.CONFIG_PRECIO_VENTA* newvalue;
+            me.num_importe.setValue(sum);
+        });
     }
 });
