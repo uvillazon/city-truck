@@ -15,6 +15,7 @@
  */
 IS
  v_cnt NUMBER:=0;
+ v_cnt2 NUMBER :=0;
  v_ent_litter_ini NUMBER:=0;
  v_res VARCHAR2(100):='0';
  --v_ent_litter_ini VARCHAR2(100):='0';
@@ -27,18 +28,19 @@ BEGIN
     v_res := 'Faltan parametros.';
   END IF;
   IF v_res='0' THEN
-        SELECT COUNT(*) INTO v_cnt FROM SG_POS_TURNOS ;
-        IF v_cnt = 0 THEN
-            SELECT ENT_LITTER_INI into v_ent_litter_ini   FROM  SG_POS WHERE ID_POS  = ID_POS ;
+        SELECT COUNT(*) INTO v_cnt2 FROM SG_POS;
+        SELECT COUNT(*) INTO v_cnt FROM SG_POS_TURNOS ;--WHERE FECHA <>p_FECHA AND TURNO <>p_TURNO  ;
+        IF v_cnt < v_cnt2 THEN
+            SELECT ENT_LITTER_INI into v_ent_litter_ini   FROM  SG_POS WHERE ID_POS  = p_id_pos ;
             p_ent_litter := v_ent_litter_ini;
             v_res := '0';
         ELSE
              IF p_turno = 'DIA' THEN
-                 SELECT COUNT(*) INTO v_cnt FROM SG_POS_TURNOS  WHERE TURNO  = 'NOCHE' AND FECHA = TO_DATE(p_fecha -1, 'DD/MM/YYYY') AND ID_POS = p_id_pos;
+                 SELECT COUNT(*) INTO v_cnt FROM SG_POS_TURNOS  WHERE TURNO  = 'NOCHE' AND FECHA =p_fecha -1 AND ID_POS = p_id_pos;
                     IF v_cnt = 0 THEN
                       v_res := 'No Existe Registros en el Turno NOCHE por favor Registre Primero Turno NOCHE fecha :'|| TO_DATE(p_fecha -1, 'DD/MM/YYYY') ;
                     ELSE
-                         SELECT SAL_LITTER  INTO v_ent_litter_ini FROM SG_POS_TURNOS  WHERE TURNO  = 'NOCHE' AND FECHA = TO_DATE(p_fecha -1, 'DD/MM/YYYY') AND ID_POS = p_id_pos;
+                         SELECT SAL_LITTER  INTO v_ent_litter_ini FROM SG_POS_TURNOS  WHERE TURNO  = 'NOCHE' AND FECHA = p_fecha -1 AND ID_POS = p_id_pos;
                          p_ent_litter := v_ent_litter_ini;
                          v_res := '0';
                     END IF;
