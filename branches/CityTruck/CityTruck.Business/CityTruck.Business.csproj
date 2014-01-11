@@ -75,6 +75,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\TodosSP.sql" />
     <Content Include="DataMigration\version1\P_SG_GENERAR_VENTAS_DIARIAS.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_KARDEX_EFECTIVO.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_CAJAS.sql" />

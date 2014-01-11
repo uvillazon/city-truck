@@ -139,7 +139,7 @@
             me.winNuevoMovimiento.show();
         } else {
             //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
-            me.formNuevoMovimiento.reset();
+            //me.formNuevoMovimiento.reset();
             me.winNuevoMovimiento.show();
         }
 
