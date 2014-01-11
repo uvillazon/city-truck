@@ -23,7 +23,7 @@
     CargarGridCuentasPC: function () {
         var me = this;
         var fecha_actual = new Date();
-        me.store = Ext.create("App.Store.CuentasPC.CuentasPC");
+        me.store = Ext.create("App.Store.Clientes.Clientes");
         me.store.load();
         //me.CargarComponentes();
 
@@ -90,7 +90,7 @@
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
             { header: "C\u00F3digo", width: 100, sortable: false, dataIndex: "CODIGO" },
-            { header: "Nombre", width: 250, sortable: false, dataIndex: "NOMBRE" },
+            { header: "Nombre", width: 250, sortable: false, dataIndex: "EMPRESA" },
             { header: "Saldo", width: 100, sortable: false, dataIndex: "SALDO" },
             { header: "Consumo", width: 100, sortable: false, dataIndex: "CONSUMO" }
         ];

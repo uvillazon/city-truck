@@ -206,7 +206,6 @@
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
     <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
-    <Content Include="App\Model\CuentasPC\CuentasPC.js" />
     <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
     <Content Include="App\Model\Ingresos\Ingresos.js" />
@@ -255,7 +254,6 @@
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
-    <Content Include="App\Store\CuentasPC\CuentasPC.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
@@ -335,7 +333,7 @@
     <Content Include="App\View\CuentasPC\Principal.js" />
     <Content Include="App\View\Egresos\FormEgreso.js" />
     <Content Include="App\View\Egresos\GridEgresos.js" />
-    <Content Include="App\View\CuentasPC\GridKardexCuentaPC.js" />
+    <Content Include="App\View\CuentasPC\GridKardexCliente.js" />
     <Content Include="App\View\Egresos\Principal.js" />
     <Content Include="App\View\Ingresos\FormIngreso.js" />
     <Content Include="App\View\Ingresos\Forms.js" />
