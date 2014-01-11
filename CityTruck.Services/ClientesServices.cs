@@ -10,6 +10,7 @@ using CityTruck.Business.Interfaces;
 using System.Linq.Dynamic;
 using LinqKit;
 using CityTruck.Business;
+using System.Data.Objects;
 
 namespace CityTruck.Services
 {
@@ -41,6 +42,30 @@ namespace CityTruck.Services
         public RespuestaSP SP_GrabarCliente(SG_CLIENTES cliente)
         {
             throw new NotImplementedException();
+        }
+
+
+        public RespuestaSP SP_GrabarAmortizacion(SG_AMORTIZACIONES a, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_AMORTIZACION(a.ID_AMORTIZACION, a.ID_CLIENTE, a.ID_CAJA, a.FECHA, a.CONCEPTO, a.IMPORTE_BS, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
         }
     }
 }

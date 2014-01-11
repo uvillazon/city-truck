@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
+using CityTruck.Model;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -58,6 +59,15 @@ namespace CityTruck.WebSite.Controllers
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
+        }
+
+        [HttpPost]
+        public JsonResult GuardarAmortizacion(SG_AMORTIZACIONES a)
+        {
+            int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+            RespuestaSP respuestaSP = new RespuestaSP();
+            respuestaSP = _serCli.SP_GrabarAmortizacion(a, id_usr);
+            return Json(respuestaSP);
         }
     }
 }

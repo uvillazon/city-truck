@@ -12,6 +12,7 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion);
         RespuestaSP SP_GrabarCliente(SG_CLIENTES cliente);
+        RespuestaSP SP_GrabarAmortizacion(SG_AMORTIZACIONES amortizacion, int ID_USR);
 
     }
 }

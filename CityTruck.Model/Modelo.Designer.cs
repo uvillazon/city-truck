@@ -1352,6 +1352,92 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GENERAR_VENTAS_DIARIAS", p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_A">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_AMORTIZACION(Nullable<global::System.Decimal> p_ID_A, Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_AParameter;
+            if (p_ID_A.HasValue)
+            {
+                p_ID_AParameter = new ObjectParameter("P_ID_A", p_ID_A);
+            }
+            else
+            {
+                p_ID_AParameter = new ObjectParameter("P_ID_A", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CLIENTEParameter;
+            if (p_ID_CLIENTE.HasValue)
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
+            }
+            else
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_CONCEPTOParameter;
+            if (p_CONCEPTO != null)
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
+            }
+            else
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_AMORTIZACION", p_ID_AParameter, p_ID_CLIENTEParameter, p_ID_CAJAParameter, p_FECHAParameter, p_CONCEPTOParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }
