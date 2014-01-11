@@ -1,5 +1,4 @@
-﻿var id_caja = 0;
-Ext.define("App.View.Cajas.Principal", {
+﻿Ext.define("App.View.Cajas.Principal", {
     extend: "App.Config.Abstract.PanelPrincipal",
     controlador: 'Ventas',
     accionGrabar: 'GrarbarCaja',
@@ -13,6 +12,7 @@ Ext.define("App.View.Cajas.Principal", {
     },
     CargarComponentes: function () {
         var me = this;
+        me.id_caja = 0;
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
             height: 350,
@@ -32,8 +32,7 @@ Ext.define("App.View.Cajas.Principal", {
         me.grid.addDocked(me.toolbar, 1);
 
         me.grid.on('itemclick', function (view, record, item, index, e) {
-            console.log(record.get('ID_CAJA'));
-            id_caja = record.get('ID_CAJA');
+            me.id_caja = record.get('ID_CAJA');
         }, this);
 
     },
@@ -73,7 +72,7 @@ Ext.define("App.View.Cajas.Principal", {
             minHeight: 27,
             minWidth: 80,
             handler: function () {
-                alert('Evento Nuevo');
+                me.CrearFormMovimientoKardex(me.id_caja);
             }
 
         }, {
@@ -116,14 +115,43 @@ Ext.define("App.View.Cajas.Principal", {
                 height: 350,
                 imagenes: false,
                 opcion: 'GridKardexCaja',
-                id_caja: id_caja
+                id_caja: me.id_caja
             });
             me.winKardexCaja.add(me.gridKardexCaja);
             me.winKardexCaja.show();
         } else {
-            me.gridKardexCaja.store.setExtraParams({ ID_CAJA: id_caja });
+            me.gridKardexCaja.store.setExtraParams({ ID_CAJA: me.id_caja });
             me.gridKardexCaja.store.load();
             me.winKardexCaja.show();
         }
+    }, CrearFormMovimientoKardex: function (id_caja) {
+        var me = this;
+        if (me.winNuevoMovimiento == null) {
+            me.winNuevoMovimiento = Ext.create("App.Config.Abstract.Window", { botones: true });
+            me.formNuevoMovimiento = Ext.create("App.View.Cajas.FormMovimiento", {
+                columns: 1,
+                title: 'Nuevo Movimiento',
+                botones: false
+            });
+            me.winNuevoMovimiento.add(me.formNuevoMovimiento);
+            me.winNuevoMovimiento.btn_guardar.on('click', me.GuardarMovimiento, this);
+            //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
+            me.winNuevoMovimiento.show();
+        } else {
+            //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
+            me.formNuevoMovimiento.reset();
+            me.winNuevoMovimiento.show();
+        }
+
+    }, GuardarMovimiento: function () {
+        var me = this;
+        if (me.formNuevoMovimiento.cbx_registrar.getValue() == 'OTROS INGRESOS') {
+            Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winNuevoMovimiento,
+             me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
+        } else if (me.formNuevoMovimiento.cbx_registrar.getValue() == 'OTROS EGRESOS') {
+            Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winNuevoMovimiento,
+             me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
+        }
+
     }
 });
