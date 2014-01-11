@@ -1299,6 +1299,59 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_CAJAS", p_ID_CAJAParameter, p_NOMBREParameter, p_NRO_CUENTAParameter, p_MONEDAParameter, p_DESCRIPCIONParameter, p_SALDOParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RESPONSABLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GENERAR_VENTAS_DIARIAS(Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, global::System.String p_RESPONSABLE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_TURNOParameter;
+            if (p_TURNO != null)
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
+            }
+            else
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_RESPONSABLEParameter;
+            if (p_RESPONSABLE != null)
+            {
+                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", p_RESPONSABLE);
+            }
+            else
+            {
+                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GENERAR_VENTAS_DIARIAS", p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }

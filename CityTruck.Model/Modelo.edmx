@@ -570,6 +570,13 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GENERAR_VENTAS_DIARIAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_RESPONSABLE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GRABAR_LISTAS_ITEMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_TABLA" Type="number" Mode="In" />
           <Parameter Name="P_ID_PADRE" Type="number" Mode="In" />
@@ -811,6 +818,13 @@
             <Parameter Name="P_MONEDA" Mode="In" Type="String" />
             <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
             <Parameter Name="P_SALDO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GENERAR_VENTAS_DIARIAS">
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TURNO" Mode="In" Type="String" />
+            <Parameter Name="P_RESPONSABLE" Mode="In" Type="String" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
@@ -1576,6 +1590,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CAJAS" FunctionName="Model.Store.P_SG_GUARDAR_CAJAS" />
+          <FunctionImportMapping FunctionImportName="P_SG_GENERAR_VENTAS_DIARIAS" FunctionName="Model.Store.P_SG_GENERAR_VENTAS_DIARIAS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
