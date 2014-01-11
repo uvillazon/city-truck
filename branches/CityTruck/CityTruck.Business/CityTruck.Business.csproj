@@ -43,13 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SG_KARDEX_CLIENTEManager.cs" />
+    <Compile Include="SG_KARDEX_EFECTIVOManager.cs" />
     <Compile Include="SG_EGRESOSManager.cs" />
     <Compile Include="SG_CLIENTESManager.cs" />
     <Compile Include="SG_COMBUSTIBLESManager.cs" />
     <Compile Include="SG_COMPRASManager.cs" />
     <Compile Include="SG_INGRESOSManager.cs" />
     <Compile Include="SG_CAJASManager.cs" />
-    <Compile Include="SG_KARDEX_EFECTIVOManager.cs" />
     <Compile Include="SG_POS_TURNOSManager.cs" />
     <Compile Include="SG_LISTAS_ITEMSManager.cs" />
     <Compile Include="SG_VENTAS_DIARIASManager.cs" />
