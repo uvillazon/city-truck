@@ -53,6 +53,18 @@
             allowDecimals: true,
             maxValue: 999999999
         });
+
+         me.store_cuenta = Ext.create('App.Store.Cajas.Cajas').load();
+        me.cbx_cuenta = Ext.create("App.Config.Componente.ComboBase", {
+            fieldLabel: "Destino Fondos",
+            name: "ID_CAJA",
+            displayField: 'NOMBRE',
+            valueField : 'ID_CAJA',
+            store: me.store_cuenta,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+        });
        
          
         me.items = [
@@ -61,8 +73,8 @@
             me.cbx_cliente,
             me.num_saldo,
             me.txt_concepto,
-            me.num_importe
-           // me.store_cuenta
+            me.num_importe,
+            me.cbx_cuenta
         ];
        
       
@@ -72,17 +84,6 @@
         var me = this;
         me.cbx_cliente.on('select',function(cmb,record){
             me.num_saldo.setValue(record[0].get('SALDO'));
-        });
-
-        me.num_importe.on('change',function(num,newvalue,oldvalue){
-             var sum 
-             if (me.cbx_registrar.getValue() == 'OTROS INGRESOS') {
-              sum = me.num_saldo.getValue() + newvalue;
-             } else {
-                sum = me.num_saldo.getValue() - newvalue;
-             }
-           
-            me.txt_nuevo_saldo.setValue(sum);
         });
     }
 });

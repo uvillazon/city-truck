@@ -1,7 +1,5 @@
 ﻿/*La actualizacion de la base de dtos debe hacerse en el siguiente orden*/
 
-MenuUpdate_otrosEgresos.sql
-MenuUpdate_cuentasPC.sql
-MenuUpdate_consumoPropio.sql
-MenuUpdate_Tanques.sql
+P_SG_GUARDAR_AMORTIZACIONES.sql -> 14/01/2014 12:27am
+P_SG_ACT_KARDEX_CLIENTE.sql ->  14/01/2014 12:27am
 

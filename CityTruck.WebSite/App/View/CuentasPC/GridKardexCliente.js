@@ -43,9 +43,9 @@
             { header: "Nro <br>Comprobante", width: 80, sortable: false, dataIndex: "NRO_COMP" },
             { header: "Fecha", width: 100, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
             { header: "Detalle", width: 245, sortable: false, dataIndex: "DETALLE" },
-            { header: "Consumo", width: 80, sortable: false, dataIndex: "CONSUMO" },
-            { header: "Amortizaci\u00F3n", width: 80, sortable: false, dataIndex: "AMORTIZACION" },
-            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO" }
+            { header: "Consumo", width: 80, sortable: false, dataIndex: "CONSUMO", align: 'right' },
+            { header: "Amortizaci\u00F3n", width: 80, sortable: false, dataIndex: "AMORTIZACION", align: 'right' },
+            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO", align: 'right'}
 
         ];
 

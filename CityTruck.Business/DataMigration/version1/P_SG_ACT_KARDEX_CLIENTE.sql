@@ -16,7 +16,7 @@ BEGIN
     --1paso Obtener ultimo saldo del kardex cliente
                     select count(1) into v_cnt from SG_KARDEX_CLIENTE 
                     where ID_CLIENTE  = p_id_cliente
-                    and FECHA  < TO_DATE(p_fecha, 'DD/MM/YYYY HH24:MI:SS');
+                    and FECHA  < p_fecha;
                      if v_cnt = 0 then
                         v_saldo :=0;
                      else
@@ -36,10 +36,11 @@ BEGIN
                         v_saldo := v_saldo + x.CONSUMO   - x.AMORTIZACION  ;
                         update SG_KARDEX_CLIENTE  set SALDO = v_saldo  where ID_KARDEX   = x.ID_KARDEX  ;
                     END LOOP;
-                    
+                    UPDATE SG_CLIENTES set SALDO = v_saldo WHERE ID_CLIENTE = p_ID_CLIENTE;
                     COMMIT;
     --hacer recorrer todo el el kardex apartir de la fecha ingresada 
     --update saldo = saldo anterior + Consumo - amortizacion
+    v_res:= '1';
     p_res := v_res;
 EXCEPTION
 WHEN OTHERS THEN

@@ -37,24 +37,23 @@ IF v_res='0' THEN
             v_nro:= 0;
         end if;
         INSERT INTO SG_AMORTIZACIONES  VALUES  (v_id_a, p_id_cliente, p_id_caja, v_nro + 1 , p_fecha, p_concepto,
-        p_importe ,p_id_usr, v_fecha);
+        p_importe ,p_id_usr, sysdate);
         
         v_res := '0';
          IF v_res = '0' THEN
              
             INSERT INTO SG_KARDEX_CLIENTE ( ID_KARDEX, ID_CLIENTE, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, CONSUMO , AMORTIZACION  ,SALDO, ID_USUARIO ,FECHA_REG )
              VALUES (Q_SG_KARDEX_CLIENTE.nextval , p_id_cliente , v_id_a , 'AMORTIZACION' ,v_fecha ,'AMORTIZACION',0, p_importe,0,p_id_usr,sysdate );
-          
+            P_SG_GUARDAR_INGRESOS(0, v_fecha, p_concepto, p_id_caja, p_importe, p_id_usr, v_res);
+ 
         END IF;
     --ELSE
         --editar
     END IF;
 END IF;
-    if v_res = 0 THEN
-        v_res := '1';
+    if v_res = '1' THEN
      COMMIT;
       P_SG_ACT_KARDEX_CLIENTE(p_id_cliente, v_fecha ,p_id_usr,v_res);
-
     ELSE
         ROLLBACK;
         
