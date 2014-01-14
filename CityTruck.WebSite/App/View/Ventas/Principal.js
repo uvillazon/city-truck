@@ -22,6 +22,7 @@
         ];
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
+//        Funciones.CrearMenu('btn_AjusteVenta', 'Ajuste Precio', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
         //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
         me.grid.addDocked(me.toolbar, 1);
         //        me.grid.on('cellclick', me.CargarDatos, this);

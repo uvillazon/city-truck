@@ -122,7 +122,7 @@ namespace CityTruck.WebSite.Controllers
                 ID_POS_TURNO = x.ID_POS_TURNO,
                 ENT_LITTER = x.ENT_LITTER,
                 SAL_LITTER = nuevo == true ? x.ENT_LITTER : x.SAL_LITTER,
-                TOTAL = x.ENT_LITTER - x.SAL_LITTER
+                TOTAL = x.SAL_LITTER - x.ENT_LITTER 
 
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
