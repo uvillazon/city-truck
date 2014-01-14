@@ -128,12 +128,12 @@
         me.num_precio.on('change',function(num,newvalue,oldvalue){
 //            var sum = me.num_saldo.getValue() + newvalue;
             var cant = me.num_cantidad.getValue() == null? 0 : me.num_cantidad.getValue() ;
-            me.num_importe.setValue(cant + newvalue);
+            me.num_importe.setValue(cant * newvalue);
         });
         me.num_cantidad.on('change',function(num,newvalue,oldvalue){
 //            var sum = me.num_saldo.getValue() + newvalue;
             var prec = me.num_precio.getValue() == null? 0 : me.num_precio.getValue() ;
-            me.num_importe.setValue(prec + newvalue);
+            me.num_importe.setValue(prec * newvalue);
         });
         me.num_formulario.on('change',function(num,newvalue,oldvalue){
 //            var sum = me.num_saldo.getValue() + newvalue;

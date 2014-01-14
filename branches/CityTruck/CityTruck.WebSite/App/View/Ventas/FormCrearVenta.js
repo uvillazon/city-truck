@@ -93,13 +93,13 @@
         me.gridVenta.on('edit', function(editor, e){
 //            alert(e.field);
             if (e.field == "SAL_LITTER"){
-//                alert(e.value);
-                if(e.value > e.record.get('ENT_LITTER')){
-                    Ext.Msg.alert("Error","El valor de salida no puede ser mayor al de la entrada");
-                    e.record.set('SAL_LITTER',0);
+//                alert(e.value);gf
+                if(e.value < e.record.get('ENT_LITTER')){
+                    Ext.Msg.alert("Error","El valor de salida no puede ser Menor al de la entrada");
+                    e.record.set('SAL_LITTER',e.record.get('ENT_LITTER'));
                 }
                 else{
-                    e.record.set('TOTAL',e.record.get('ENT_LITTER') - e.value);
+                    e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
                     me.CargarTotales();
                 }
             }
@@ -135,15 +135,15 @@
         me.formSubTotales.txt_diesel.setValue(totalDiesel);
         me.formSubTotales.txt_gasolina.setValue(totalGasolina);
 
-        me.formSubTotales.txt_diesel_bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA);
-        me.formSubTotales.txt_gasolina_bs.setValue(totalGasolina* Constantes.CONFIG_PRECIO_VENTA);
+        me.formSubTotales.txt_diesel_bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS);
+        me.formSubTotales.txt_gasolina_bs.setValue(totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
 
-        me.formSubTotales.txt_diesel_bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO);
-        me.formSubTotales.txt_gasolina_bs_costo.setValue(totalGasolina* Constantes.CONFIG_PRECIO_COSTO);
+        me.formSubTotales.txt_diesel_bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS);
+        me.formSubTotales.txt_gasolina_bs_costo.setValue(totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
 
         me.formSubTotales.txt_total.setValue(totalDiesel + totalGasolina);
-        me.formSubTotales.txt_total_Bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA + totalGasolina* Constantes.CONFIG_PRECIO_VENTA);
-        me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO + totalGasolina* Constantes.CONFIG_PRECIO_COSTO);
+        me.formSubTotales.txt_total_Bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
+        me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
         
 
     },
