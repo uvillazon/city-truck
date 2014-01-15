@@ -11,22 +11,25 @@
     CargarComponentes: function () {
         var me = this;
         me.id_cliente = 0;
+       
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearCuentaPC', 'Nuevo', Constantes.ICONO_CREAR, me.EventosCuentaPC, me.toolbar, this);
+        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCuentaPC, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCuentaPC, me.toolbar, this);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCuentaPC, me.toolbar, this);
+        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
+        //me.grid.addDocked(me.toolbar, 1);
         me.grid = Ext.create('App.View.CuentasPC.GridCuentasPC', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridCuentasPC'
+            opcion: 'GridCuentasPC',
+            toolbar: me.toolbar
         });
         me.items = [me.grid
         ];
-        me.toolbar = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_CrearCuentaPC', 'Nuevo', Constantes.ICONO_CREAR, me.EventosCuentaPC, me.toolbar, this);
-        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCuentaPC, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosCuentaPC, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCuentaPC, me.toolbar, this);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCuentaPC, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
+        
         me.grid.on('itemclick', function (view, record, item, index, e) {
             me.id_cliente = record.get('ID_CLIENTE');
         }, this);
@@ -35,18 +38,19 @@
     EventosCuentaPC: function (btn) {
         var me = this;
         if (btn.getItemId() == "btn_CrearCuentaPC") {
-            if (me.winCrearCuentaPC == null) {
-                me.winCrearCuentaPC = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
-                me.formCuentaPC = Ext.create("App.View.CuentasPC.FormCuentaPC", {
-                    title: 'Formulario de Registro de Cuentas por Cobrar ',
+            if (me.winCrearCliente == null) {
+                me.winCrearCliente = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
+                me.formCliente = Ext.create("App.View.CuentasPC.FormCuentaPC", {
+                    title: 'Registro de Cliente ',
                     botones: false
                 });
 
-                me.winCrearCuentaPC.add(me.formCuentaPC);
-                me.winCrearCuentaPC.show();
+                me.winCrearCliente.add(me.formCliente);
+                me.winCrearCliente.btn_guardar.on('click', me.GuardarCliente, this);
+                me.winCrearCliente.show();
             } else {
-                me.formCuentaPC.getForm().reset();
-                me.winCrearCuentaPC.show();
+                me.formCliente.getForm().reset();
+                me.winCrearCliente.show();
             }
         } else if (btn.getItemId() == 'btn_Kardex') {
             var buttonGroup = [{
@@ -133,5 +137,9 @@
         var me = this;
         Funciones.AjaxRequestWin('Clientes', 'GuardarAmortizacion', me.winNuevoMovimiento,
              me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
+    }, GuardarCliente: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Clientes', 'GuardarCliente', me.winCrearCliente,
+             me.formCliente, me.grid, 'Esta Seguro de Guardar el Cliente?', null, me.winCrearCliente);
     }
 });

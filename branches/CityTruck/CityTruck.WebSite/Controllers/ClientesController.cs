@@ -69,5 +69,14 @@ namespace CityTruck.WebSite.Controllers
             respuestaSP = _serCli.SP_GrabarAmortizacion(a, id_usr);
             return Json(respuestaSP);
         }
+
+        [HttpPost]
+        public JsonResult GuardarCliente(SG_CLIENTES cli)
+        {
+            int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+            RespuestaSP respuestaSP = new RespuestaSP();
+            respuestaSP = _serCli.SP_GrabarCliente(cli, id_usr);
+            return Json(respuestaSP);
+        }
     }
 }

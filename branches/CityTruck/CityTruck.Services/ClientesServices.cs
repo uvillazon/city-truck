@@ -39,9 +39,27 @@ namespace CityTruck.Services
             return result;
         }
 
-        public RespuestaSP SP_GrabarCliente(SG_CLIENTES cliente)
+        public RespuestaSP SP_GrabarCliente(SG_CLIENTES cli, int ID_USR)
         {
-            throw new NotImplementedException();
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_CLIENTES(cli.ID_CLIENTE, cli.EMPRESA, cli.NIT, cli.CONTACTO, cli.TELEFONO, cli.DIRECCION, cli.LIMITE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
         }
 
 
