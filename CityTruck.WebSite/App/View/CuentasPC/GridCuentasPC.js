@@ -1,6 +1,6 @@
 ﻿Ext.define("App.View.CuentasPC.GridCuentasPC", {
     extend: "Ext.grid.Panel",
-    title: 'Cuentas por Cobrar Registradas',
+    //title: 'Cuentas por Cobrar Registradas',
     criterios: true,
     textBusqueda: 'Buscar Cuenta por Cobrar',
     imprimir: false,
@@ -10,6 +10,7 @@
     win: null,
     formulario: null,
     imagenes: true,
+    toolbar: null,
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridCuentasPC") {
@@ -83,10 +84,10 @@
             store: me.store,
             displayInfo: true,
             displayMsg: 'Desplegando {0} - {1} of {2}',
-            emptyMsg: "No existen " + me.equipo + "."
-
+            emptyMsg: "No existen " + me.equipo + ".",
+            items: me.toolbar
         });
-
+        me.bar = this.bbar;
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
             { header: "C\u00F3digo", width: 100, sortable: false, dataIndex: "CODIGO" },
@@ -94,7 +95,7 @@
             { header: "Saldo", width: 100, sortable: false, dataIndex: "SALDO" },
             { header: "Consumo", width: 100, sortable: false, dataIndex: "CONSUMO" }
         ];
-        me.button_search.on('click', this.buscarBotonCodigo, this);
+        //me.button_search.on('click', this.buscarBotonCodigo, this);
         this.dockedItems = me.toolBar;
         me.dock = this.dockedItems;
 

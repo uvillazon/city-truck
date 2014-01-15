@@ -113,7 +113,7 @@
             displayInfo: true,
             displayMsg: 'Desplegando {0} - {1} of {2}',
             emptyMsg: "No existen " + me.equipo + ".",
-            items: me.toolbar,
+            items: me.toolbar
         });
         me.bar = this.bbar;
         me.columns = [
