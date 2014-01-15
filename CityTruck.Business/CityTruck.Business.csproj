@@ -75,6 +75,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\SG_POS_TURNOS.sql" />
+    <Content Include="DataMigration\version1\SG_AJUSTE_PRECIO.sql" />
+    <Content Include="DataMigration\version1\P_SG_OBTENER_PRECIO_ACT.sql" />
     <Content Include="DataMigration\version1\Q_SG_KARDEX_CLIENTE.sql" />
     <Content Include="DataMigration\version1\Q_SG_AMORTIZACIONES.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_AMORTIZACIONES.sql" />
