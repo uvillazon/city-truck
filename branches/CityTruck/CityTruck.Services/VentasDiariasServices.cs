@@ -11,6 +11,7 @@ using System.Linq.Dynamic;
 using LinqKit;
 using CityTruck.Business;
 using System.Data.Objects;
+using System.Linq.Expressions;
 
 namespace CityTruck.Services
 {
@@ -112,6 +113,19 @@ namespace CityTruck.Services
                     result.success = false;
                     result.msg = p_res.Value.ToString();
                 }
+
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_AJUSTE_PRECIO> ObtenerAjustesPrecios(Expression<Func<SG_AJUSTE_PRECIO, bool>> criterio)
+        {
+            IQueryable<SG_AJUSTE_PRECIO> result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_AJUSTE_PRECIOManager(uow);
+                result = managerVentas.BuscarTodos(criterio);
 
             });
             return result;
