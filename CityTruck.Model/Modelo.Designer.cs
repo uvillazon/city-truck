@@ -35,6 +35,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R02", "SG_CLIENTES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_EFECTIVO_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_KARDEX_EFECTIVO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_EFECTIVO), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_AJUSTE_PRECIO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AJUSTE_PRECIO), true)]
 
 #endregion
 
@@ -389,6 +390,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_KARDEX_EFECTIVO> _SG_KARDEX_EFECTIVO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_AJUSTE_PRECIO> SG_AJUSTE_PRECIO
+        {
+            get
+            {
+                if ((_SG_AJUSTE_PRECIO == null))
+                {
+                    _SG_AJUSTE_PRECIO = base.CreateObjectSet<SG_AJUSTE_PRECIO>("SG_AJUSTE_PRECIO");
+                }
+                return _SG_AJUSTE_PRECIO;
+            }
+        }
+        private ObjectSet<SG_AJUSTE_PRECIO> _SG_AJUSTE_PRECIO;
 
         #endregion
         #region Métodos AddTo
@@ -543,6 +560,14 @@ namespace CityTruck.Model
         public void AddToSG_KARDEX_EFECTIVO(SG_KARDEX_EFECTIVO sG_KARDEX_EFECTIVO)
         {
             base.AddObject("SG_KARDEX_EFECTIVO", sG_KARDEX_EFECTIVO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_AJUSTE_PRECIO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_AJUSTE_PRECIO(SG_AJUSTE_PRECIO sG_AJUSTE_PRECIO)
+        {
+            base.AddObject("SG_AJUSTE_PRECIO", sG_AJUSTE_PRECIO);
         }
 
         #endregion
@@ -1446,6 +1471,306 @@ namespace CityTruck.Model
     #endregion
     
     #region Entidades
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_AJUSTE_PRECIO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_AJUSTE_PRECIO : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_AJUSTE_PRECIO.
+        /// </summary>
+        /// <param name="iD_AJUSTE">Valor inicial de la propiedad ID_AJUSTE.</param>
+        /// <param name="iD_COMBUSTIBLE">Valor inicial de la propiedad ID_COMBUSTIBLE.</param>
+        /// <param name="fECHA_ALTA">Valor inicial de la propiedad FECHA_ALTA.</param>
+        /// <param name="tIPO">Valor inicial de la propiedad TIPO.</param>
+        /// <param name="pRECIO">Valor inicial de la propiedad PRECIO.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        /// <param name="eSTADO">Valor inicial de la propiedad ESTADO.</param>
+        public static SG_AJUSTE_PRECIO CreateSG_AJUSTE_PRECIO(global::System.Int32 iD_AJUSTE, global::System.Int16 iD_COMBUSTIBLE, global::System.DateTime fECHA_ALTA, global::System.String tIPO, global::System.Decimal pRECIO, global::System.Int16 iD_USUARIO, global::System.String eSTADO)
+        {
+            SG_AJUSTE_PRECIO sG_AJUSTE_PRECIO = new SG_AJUSTE_PRECIO();
+            sG_AJUSTE_PRECIO.ID_AJUSTE = iD_AJUSTE;
+            sG_AJUSTE_PRECIO.ID_COMBUSTIBLE = iD_COMBUSTIBLE;
+            sG_AJUSTE_PRECIO.FECHA_ALTA = fECHA_ALTA;
+            sG_AJUSTE_PRECIO.TIPO = tIPO;
+            sG_AJUSTE_PRECIO.PRECIO = pRECIO;
+            sG_AJUSTE_PRECIO.ID_USUARIO = iD_USUARIO;
+            sG_AJUSTE_PRECIO.ESTADO = eSTADO;
+            return sG_AJUSTE_PRECIO;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_AJUSTE
+        {
+            get
+            {
+                return _ID_AJUSTE;
+            }
+            set
+            {
+                if (_ID_AJUSTE != value)
+                {
+                    OnID_AJUSTEChanging(value);
+                    ReportPropertyChanging("ID_AJUSTE");
+                    _ID_AJUSTE = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_AJUSTE");
+                    OnID_AJUSTEChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_AJUSTE;
+        partial void OnID_AJUSTEChanging(global::System.Int32 value);
+        partial void OnID_AJUSTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_COMBUSTIBLE
+        {
+            get
+            {
+                return _ID_COMBUSTIBLE;
+            }
+            set
+            {
+                OnID_COMBUSTIBLEChanging(value);
+                ReportPropertyChanging("ID_COMBUSTIBLE");
+                _ID_COMBUSTIBLE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_COMBUSTIBLE");
+                OnID_COMBUSTIBLEChanged();
+            }
+        }
+        private global::System.Int16 _ID_COMBUSTIBLE;
+        partial void OnID_COMBUSTIBLEChanging(global::System.Int16 value);
+        partial void OnID_COMBUSTIBLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA_ALTA
+        {
+            get
+            {
+                return _FECHA_ALTA;
+            }
+            set
+            {
+                OnFECHA_ALTAChanging(value);
+                ReportPropertyChanging("FECHA_ALTA");
+                _FECHA_ALTA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_ALTA");
+                OnFECHA_ALTAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA_ALTA;
+        partial void OnFECHA_ALTAChanging(global::System.DateTime value);
+        partial void OnFECHA_ALTAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_BAJA
+        {
+            get
+            {
+                return _FECHA_BAJA;
+            }
+            set
+            {
+                OnFECHA_BAJAChanging(value);
+                ReportPropertyChanging("FECHA_BAJA");
+                _FECHA_BAJA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_BAJA");
+                OnFECHA_BAJAChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_BAJA;
+        partial void OnFECHA_BAJAChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_BAJAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TIPO
+        {
+            get
+            {
+                return _TIPO;
+            }
+            set
+            {
+                OnTIPOChanging(value);
+                ReportPropertyChanging("TIPO");
+                _TIPO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TIPO");
+                OnTIPOChanged();
+            }
+        }
+        private global::System.String _TIPO;
+        partial void OnTIPOChanging(global::System.String value);
+        partial void OnTIPOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal PRECIO
+        {
+            get
+            {
+                return _PRECIO;
+            }
+            set
+            {
+                OnPRECIOChanging(value);
+                ReportPropertyChanging("PRECIO");
+                _PRECIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRECIO");
+                OnPRECIOChanged();
+            }
+        }
+        private global::System.Decimal _PRECIO;
+        partial void OnPRECIOChanging(global::System.Decimal value);
+        partial void OnPRECIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ESTADO
+        {
+            get
+            {
+                return _ESTADO;
+            }
+            set
+            {
+                OnESTADOChanging(value);
+                ReportPropertyChanging("ESTADO");
+                _ESTADO = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ESTADO");
+                OnESTADOChanged();
+            }
+        }
+        private global::System.String _ESTADO;
+        partial void OnESTADOChanging(global::System.String value);
+        partial void OnESTADOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES")]
+        public SG_COMBUSTIBLES SG_COMBUSTIBLES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_COMBUSTIBLES> SG_COMBUSTIBLESReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMBUSTIBLES>("Model.SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
@@ -2830,6 +3155,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_VENTAS_CREDITO>("Model.SG_VENTAS_CREDITO_R01", "SG_VENTAS_CREDITO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_AJUSTE_PRECIO_R01", "SG_AJUSTE_PRECIO")]
+        public EntityCollection<SG_AJUSTE_PRECIO> SG_AJUSTE_PRECIO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_AJUSTE_PRECIO>("Model.SG_AJUSTE_PRECIO_R01", "SG_AJUSTE_PRECIO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_AJUSTE_PRECIO>("Model.SG_AJUSTE_PRECIO_R01", "SG_AJUSTE_PRECIO", value);
                 }
             }
         }
@@ -6333,6 +6680,54 @@ namespace CityTruck.Model
         private Nullable<global::System.DateTime> _FECHA_REG;
         partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
         partial void OnFECHA_REGChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TOTAL_VENTA
+        {
+            get
+            {
+                return _TOTAL_VENTA;
+            }
+            set
+            {
+                OnTOTAL_VENTAChanging(value);
+                ReportPropertyChanging("TOTAL_VENTA");
+                _TOTAL_VENTA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TOTAL_VENTA");
+                OnTOTAL_VENTAChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TOTAL_VENTA;
+        partial void OnTOTAL_VENTAChanging(Nullable<global::System.Decimal> value);
+        partial void OnTOTAL_VENTAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TOTAL_COSTO
+        {
+            get
+            {
+                return _TOTAL_COSTO;
+            }
+            set
+            {
+                OnTOTAL_COSTOChanging(value);
+                ReportPropertyChanging("TOTAL_COSTO");
+                _TOTAL_COSTO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TOTAL_COSTO");
+                OnTOTAL_COSTOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TOTAL_COSTO;
+        partial void OnTOTAL_COSTOChanging(Nullable<global::System.Decimal> value);
+        partial void OnTOTAL_COSTOChanged();
 
         #endregion
     
