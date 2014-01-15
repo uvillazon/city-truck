@@ -3,6 +3,7 @@ Ext.define("App.Config.Abstract.PanelPrincipal", {
     alias: "widget.PanelPrincipal",
     width: '100%',
     height: Constantes.ALTO,
+    requires: ['App.Config.ux.Printer'],
     frame: true,
     layout: 'border',
     fixed: true,
@@ -15,9 +16,17 @@ Ext.define("App.Config.Abstract.PanelPrincipal", {
     accionCambioEstado: '',
     idTabla: '',
     tabla: '',
+    tituloImpresion : 'Reporte',
     CargarDatos: function (grid, td, cellIndex, record, tr, owIndex, e, eOpts) {
         var me = this;
         me.formulario.CargarDatos(record);
+
+    },
+    ImprimirReporteGrid: function () {
+        var me = this;
+        // alert(me.tituloImpresion);
+        App.Config.ux.Printer.filtros = me.tituloImpresion;
+        App.Config.ux.Printer.print(me.grid);
 
     },
     CargarPanelImagen : function( verReporte){

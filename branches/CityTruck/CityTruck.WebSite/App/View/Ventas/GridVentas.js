@@ -1,6 +1,8 @@
 ﻿Ext.define("App.View.Ventas.GridVentas", {
     extend: "Ext.grid.Panel",
-    title: 'Ventas Registradas',
+//    title: 'Ventas Registradas',
+    iconCls : '',
+    
     criterios: true,
     textBusqueda: 'Cod Venta',
     imprimir: false,
@@ -10,6 +12,7 @@
     win: null,
     formulario: null,
     imagenes: true,
+    toolbar : null,
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridVentas") {
@@ -104,15 +107,15 @@
             //            me.button_new
             ]
         });
-
+//        var btn = Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, null, this);
         this.bbar = Ext.create('Ext.PagingToolbar', {
             store: me.store,
             displayInfo: true,
             displayMsg: 'Desplegando {0} - {1} of {2}',
-            emptyMsg: "No existen " + me.equipo + "."
-
+            emptyMsg: "No existen " + me.equipo + ".",
+            items: me.toolbar,
         });
-
+        me.bar = this.bbar;
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
             { header: "Fecha", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },

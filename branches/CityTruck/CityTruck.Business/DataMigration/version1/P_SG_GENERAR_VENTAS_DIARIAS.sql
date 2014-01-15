@@ -17,6 +17,8 @@ IS
  v_cnt NUMBER:=0;
  v_res VARCHAR2(100):='0';
   v_total NUMBER:=0;
+  v_total_venta NUMBER:=0;
+  v_id_kardex  NUMBER:=0;
   v_id_venta  SG_VENTAS_DIARIAS.ID_VENTA%type;
  v_errC SG_AUX_LOG_ERRORES.cod_error%type;
  v_errD SG_AUX_LOG_ERRORES.desc_error%type;
@@ -33,16 +35,18 @@ BEGIN
       v_res := 'No Existe Registros POS_TURNOS Revise por favor';
     ELSE
          SELECT SUM(TOTAL ) INTO v_total FROM SG_POS_TURNOS  WHERE TURNO  = p_turno AND FECHA = p_fecha;
+         SELECT SUM(TOTAL_VENTA) INTO v_total_venta FROM SG_POS_TURNOS  WHERE TURNO  = p_turno AND FECHA = p_fecha;
          SELECT COUNT(*) INTO v_cnt FROM SG_VENTAS_DIARIAS WHERE TURNO = p_TURNO AND FECHA = p_FECHA;
          IF v_cnt > 0 THEN
                     UPDATE SG_VENTAS_DIARIAS SET TOTAL = v_total WHERE TURNO = p_TURNO AND FECHA = p_FECHA;
+                    
                     v_res := '0';
          ELSE
                     SELECT Q_SG_VENTAS_DIARIAS.nextval INTO v_id_venta FROM DUAL;
                     INSERT INTO SG_VENTAS_DIARIAS  (ID_VENTA ,TURNO, RESPONSABLE ,FECHA ,TOTAL ) VALUES
                     (v_id_venta ,p_TURNO, p_RESPONSABLE ,p_FECHA ,v_TOTAL);
                      INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
-                     VALUES (Q_SG_KARDEX_EFECTIVO.nextval , 1 , v_id_venta , 'VENTA' ,p_fecha,'VENTA  FECHA : '||TO_CHAR(p_fecha , 'DD/MM/YYYY') ||  '- TURNO :'||p_turno,v_TOTAL,0,0,p_id_usr,sysdate );
+                     VALUES (Q_SG_KARDEX_EFECTIVO.nextval , 1 , v_id_venta , 'VENTA' ,p_fecha,'VENTA  FECHA : '||TO_CHAR(p_fecha , 'DD/MM/YYYY') ||  '- TURNO :'||p_turno,v_total_venta,0,0,p_id_usr,sysdate );
                      v_res := '0';
          END IF; 
             IF v_res = '0' THEN

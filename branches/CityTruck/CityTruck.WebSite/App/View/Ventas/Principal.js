@@ -12,21 +12,22 @@
     },
     CargarComponentes: function () {
         var me = this;
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_VER, me.EventosVenta, me.toolbar, this);
+       
+
         me.grid = Ext.create('App.View.Ventas.GridVentas', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridVentas'
+            opcion: 'GridVentas',
+            toolbar : me.toolbar
         });
         me.items = [me.grid
         ];
-        me.toolbar = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
-//        Funciones.CrearMenu('btn_AjusteVenta', 'Ajuste Precio', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
-        //        me.grid.on('cellclick', me.CargarDatos, this);
-
+      
     },
     EventosVenta: function (btn) {
         var me = this;
@@ -35,8 +36,8 @@
                 me.winCrearVenta = Ext.create("App.Config.Abstract.Window");
                 me.panelVentas = Ext.create("App.View.Ventas.FormCrearVenta", {
                     columns: 4,
-                    title : 'Formulario de Registro de Ventas ',
-                    botones : false
+                    title: 'Formulario de Registro de Ventas ',
+                    botones: false
                 })
 
                 me.winCrearVenta.add(me.panelVentas);

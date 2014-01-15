@@ -36,8 +36,8 @@ BEGIN
                     EXIT WHEN v_res <> '0';
                     P_SG_OBTENER_ULTIMO_LITTER(y.ID_POS,p_fecha,p_turno,v_ent_litter_ini,v_res);
                     if v_res = '0' THEN
-                        INSERT INTO SG_POS_TURNOS (ID_POS_TURNO  ,ID_POS   ,TURNO  ,FECHA  ,ENT_LITTER  ,SAL_LITTER  ,TOTAL ,ID_USUARIO ,FECHA_REG    ) 
-                            VALUES(Q_SG_POS_TURNOS.nextval, y.ID_POS , p_turno , p_fecha , v_ent_litter_ini  , v_ent_litter_ini , 0 ,p_id_usr , sysdate );
+                        INSERT INTO SG_POS_TURNOS (ID_POS_TURNO  ,ID_POS   ,TURNO  ,FECHA  ,ENT_LITTER  ,SAL_LITTER  ,TOTAL ,TOTAL_VENTA ,TOTAL_COSTO ,ID_USUARIO ,FECHA_REG    ) 
+                            VALUES(Q_SG_POS_TURNOS.nextval, y.ID_POS , p_turno , p_fecha , v_ent_litter_ini  , v_ent_litter_ini , 0 ,0,0,p_id_usr , sysdate );
                             
                     END IF;
             END LOOP;

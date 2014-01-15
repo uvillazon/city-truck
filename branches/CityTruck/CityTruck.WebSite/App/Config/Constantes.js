@@ -22,6 +22,7 @@ Ext.define("App.Config.Constantes", {
     ICONO_EDITAR: 'application_form_edit',
     ICONO_BAJA: 'application_form_delete',
     ICONO_VER: 'application_view_detail',
+    ICONO_IMPRIMIR: 'printer',
     LiSTAS: null,
     URLLISTAS: 'Listas/ObtenerTodasLasListas',
     URLIMAGEN: "Imagenes/VerImagen?",
