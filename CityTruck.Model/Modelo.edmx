@@ -620,6 +620,16 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_AMORTIZACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_A" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_CONCEPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_CAJAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
           <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
@@ -627,6 +637,17 @@
           <Parameter Name="P_MONEDA" Type="varchar2" Mode="In" />
           <Parameter Name="P_DESCRIPCION" Type="varchar2" Mode="In" />
           <Parameter Name="P_SALDO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="P_SG_GUARDAR_CLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
+          <Parameter Name="P_EMPRESA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_NIT" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CONTACTO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TELEFONO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DIR" Type="varchar2" Mode="In" />
+          <Parameter Name="P_LIMITE" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
@@ -861,6 +882,22 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SG_AJUSTE_PRECIO" EntityType="Model.SG_AJUSTE_PRECIO" />
+          <AssociationSet Name="SG_AJUSTE_PRECIO_R01" Association="Model.SG_AJUSTE_PRECIO_R01">
+            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
+            <End Role="SG_AJUSTE_PRECIO" EntitySet="SG_AJUSTE_PRECIO" />
+          </AssociationSet>
+          <FunctionImport Name="P_SG_GUARDAR_CLIENTES">
+            <Parameter Name="P_ID_CLIENTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_EMPRESA" Mode="In" Type="String" />
+            <Parameter Name="P_NIT" Mode="In" Type="String" />
+            <Parameter Name="P_CONTACTO" Mode="In" Type="String" />
+            <Parameter Name="P_TELEFONO" Mode="In" Type="String" />
+            <Parameter Name="P_DIR" Mode="In" Type="String" />
+            <Parameter Name="P_LIMITE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="P_SG_GUARDAR_AMORTIZACION">
             <Parameter Name="P_ID_A" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_CLIENTE" Mode="In" Type="Decimal" />
@@ -871,11 +908,6 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SG_AJUSTE_PRECIO" EntityType="Model.SG_AJUSTE_PRECIO" />
-          <AssociationSet Name="SG_AJUSTE_PRECIO_R01" Association="Model.SG_AJUSTE_PRECIO_R01">
-            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
-            <End Role="SG_AJUSTE_PRECIO" EntitySet="SG_AJUSTE_PRECIO" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1686,6 +1718,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CLIENTES" FunctionName="Model.Store.P_SG_GUARDAR_CLIENTES" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AMORTIZACION" FunctionName="Model.Store.P_SG_GUARDAR_AMORTIZACION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

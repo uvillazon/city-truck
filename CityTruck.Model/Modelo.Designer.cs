@@ -1381,6 +1381,103 @@ namespace CityTruck.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_EMPRESA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NIT">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONTACTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TELEFONO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_DIR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_LIMITE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_CLIENTES(Nullable<global::System.Decimal> p_ID_CLIENTE, global::System.String p_EMPRESA, global::System.String p_NIT, global::System.String p_CONTACTO, global::System.String p_TELEFONO, global::System.String p_DIR, Nullable<global::System.Decimal> p_LIMITE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_CLIENTEParameter;
+            if (p_ID_CLIENTE.HasValue)
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
+            }
+            else
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_EMPRESAParameter;
+            if (p_EMPRESA != null)
+            {
+                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", p_EMPRESA);
+            }
+            else
+            {
+                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NITParameter;
+            if (p_NIT != null)
+            {
+                p_NITParameter = new ObjectParameter("P_NIT", p_NIT);
+            }
+            else
+            {
+                p_NITParameter = new ObjectParameter("P_NIT", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_CONTACTOParameter;
+            if (p_CONTACTO != null)
+            {
+                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", p_CONTACTO);
+            }
+            else
+            {
+                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_TELEFONOParameter;
+            if (p_TELEFONO != null)
+            {
+                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", p_TELEFONO);
+            }
+            else
+            {
+                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_DIRParameter;
+            if (p_DIR != null)
+            {
+                p_DIRParameter = new ObjectParameter("P_DIR", p_DIR);
+            }
+            else
+            {
+                p_DIRParameter = new ObjectParameter("P_DIR", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_LIMITEParameter;
+            if (p_LIMITE.HasValue)
+            {
+                p_LIMITEParameter = new ObjectParameter("P_LIMITE", p_LIMITE);
+            }
+            else
+            {
+                p_LIMITEParameter = new ObjectParameter("P_LIMITE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_CLIENTES", p_ID_CLIENTEParameter, p_EMPRESAParameter, p_NITParameter, p_CONTACTOParameter, p_TELEFONOParameter, p_DIRParameter, p_LIMITEParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         /// <param name="p_ID_A">No hay documentación de metadatos disponible.</param>
         /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
         /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
