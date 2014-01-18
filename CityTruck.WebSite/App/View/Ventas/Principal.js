@@ -16,18 +16,18 @@
         Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_VER, me.EventosVenta, me.toolbar, this);
-       
+
 
         me.grid = Ext.create('App.View.Ventas.GridVentas', {
             region: 'center',
             height: 350,
             imagenes: false,
             opcion: 'GridVentas',
-            toolbar : me.toolbar
+            toolbar: me.toolbar
         });
         me.items = [me.grid
         ];
-      
+
     },
     EventosVenta: function (btn) {
         var me = this;
@@ -39,10 +39,13 @@
                     title: 'Formulario de Registro de Ventas ',
                     botones: false
                 })
-
+                me.panelVentas.CargarStoreFecha();
                 me.winCrearVenta.add(me.panelVentas);
                 me.winCrearVenta.show();
             } else {
+                me.panelVentas.getForm().reset();
+                me.panelVentas.CargarStoreFecha();
+                me.panelVentas.gridVenta.getStore().removeAll();
                 me.winCrearVenta.show();
             }
         }

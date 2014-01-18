@@ -9,7 +9,13 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+    CargarStoreFecha : function(fecha1){
+        var me = this;
+        var fecha = fecha1 == null? new Date() : fecha1;
+        me.store_precio = Ext.create("App.Store.Ventas.Precios");
+        me.store_precio.setExtraParams({FECHA : fecha});
+        me.store_precio.load();
+    },
     CargarComponentes: function () {
         var me = this;
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
@@ -89,6 +95,9 @@
             else{
                 Ext.Msg.alert("Seleccione Fecha primero");
             }
+        });
+        me.date_fecha.on('change',function(dat,newvalue,oldvalue){
+            me.CargarStoreFecha(newvalue);
         });
         me.gridVenta.on('edit', function(editor, e){
 //            alert(e.field);
