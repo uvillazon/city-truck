@@ -180,5 +180,21 @@ namespace CityTruck.WebSite.Controllers
                 throw;
             }
         }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerPreciosPorFecha(DateTime? FECHA,PagingInfo paginacion)
+        {
+            //var precios = 
+            var precios = _serVen.ObtenerAjustesPrecios(x=>x.FECHA_ALTA <= FECHA );
+
+            var formatData = precios.Select(x => new
+            {
+                PRECIO = x.PRECIO,
+                CONBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
+                TIPO = x.TIPO
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
     }
 }
