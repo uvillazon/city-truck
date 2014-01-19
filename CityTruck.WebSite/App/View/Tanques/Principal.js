@@ -10,24 +10,22 @@
     },
     CargarComponentes: function () {
         var me = this;
+        me.toolbar = Funciones.CrearMenuBar();
+
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosTanques, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimirsa', 'Imprimir S/A', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosTanques, me.toolbar, this);
+        Funciones.CrearMenu('btn_AjustarTanque', 'Ajustar', Constantes.ICONO_CREAR, me.EventosTanques, me.toolbar, this);
+        Funciones.CrearMenu('btn_RepAjustes', 'Rep. Ajustes', 'report', me.EventosTanques, me.toolbar, this);
+
         me.grid = Ext.create('App.View.Tanques.GridTanques', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridTanques'
+            opcion: 'GridTanques',
+            toolbar: me.toolbar
         });
-        me.items = [me.grid
-        ];
-        me.toolbar = Funciones.CrearMenuBar();
-
-        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimirsa', 'Imprimir S/A', 'printer', me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_AjustarTanque', 'Ajustar', Constantes.ICONO_CREAR, me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_RepAjustes', 'Rep. Ajustes', 'report', me.EventosTanques, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
-        //        me.grid.on('cellclick', me.CargarDatos, this);
+        me.items = [me.grid];
 
     },
     EventosTanques: function (btn) {

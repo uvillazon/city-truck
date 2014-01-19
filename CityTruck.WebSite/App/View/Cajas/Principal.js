@@ -13,27 +13,28 @@
     CargarComponentes: function () {
         var me = this;
         me.id_caja = 0;
+
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this);
+        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'report', me.EventosCaja, me.toolbar, this);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this);
+       
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridCajas'
+            opcion: 'GridCajas',
+            toolbar: me.toolbar
         });
 
-        me.items = [me.grid
-        ];
-        me.toolbar = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'report', me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
+        me.items = [me.grid];
 
         me.grid.on('itemclick', function (view, record, item, index, e) {
             me.id_caja = record.get('ID_CAJA');
         }, this);
+
 
     },
     EventosCaja: function (btn) {

@@ -1,6 +1,7 @@
 ﻿Ext.define("App.View.ConsumoPropio.GridConsumoPropio", {
     extend: "Ext.grid.Panel",
-    title: 'Consumo Propio',
+    //title: 'Consumo Propio',
+    iconCls:'',
     criterios: true,
     textBusqueda: 'Buscar Consumo Propio',
     imprimir: false,
@@ -10,6 +11,7 @@
     win: null,
     formulario: null,
     imagenes: true,
+    toolbar:'',
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridConsumoPropio") {
@@ -83,7 +85,8 @@
             store: me.store,
             displayInfo: true,
             displayMsg: 'Desplegando {0} - {1} of {2}',
-            emptyMsg: "No existen " + me.equipo + "."
+            emptyMsg: "No existen " + me.equipo + ".",
+            items:me.toolbar
 
         });
 
