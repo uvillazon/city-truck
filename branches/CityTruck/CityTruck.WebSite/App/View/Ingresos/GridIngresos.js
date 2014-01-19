@@ -1,6 +1,7 @@
 ﻿Ext.define("App.View.Ingresos.GridIngresos", {
     extend: "Ext.grid.Panel",
-    title: 'Ingresos Registradas',
+    //title: 'Ingresos Registradas',
+    iconCls: '',
     criterios: true,
     textBusqueda: 'Buscar Ingreso',
     imprimir: false,
@@ -10,6 +11,7 @@
     win: null,
     formulario: null,
     imagenes: true,
+    toolbar: '',
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridIngresos") {
@@ -83,8 +85,8 @@
             store: me.store,
             displayInfo: true,
             displayMsg: 'Desplegando {0} - {1} of {2}',
-            emptyMsg: "No existen " + me.equipo + "."
-
+            emptyMsg: "No existen " + me.equipo + ".",
+            items: me.toolbar
         });
 
         me.columns = [

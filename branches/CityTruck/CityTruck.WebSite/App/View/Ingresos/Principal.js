@@ -12,22 +12,22 @@
     },
     CargarComponentes: function () {
         var me = this;
+       
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearIngreso', 'Crear Ingreso', Constantes.ICONO_CREAR, me.EventosIngreso, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this);
+
         me.grid = Ext.create('App.View.Ingresos.GridIngresos', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridIngresos'
+            opcion: 'GridIngresos',
+            toolbar: me.toolbar
         });
         me.items = [me.grid
         ];
-        me.toolbar = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_CrearIngreso', 'Crear Ingreso', Constantes.ICONO_CREAR, me.EventosIngreso, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosIngreso, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
-        //        me.grid.on('cellclick', me.CargarDatos, this);
 
     },
     EventosIngreso: function (btn) {

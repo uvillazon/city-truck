@@ -1,6 +1,7 @@
 ﻿Ext.define("App.View.CuentasPC.GridCuentasPC", {
     extend: "Ext.grid.Panel",
     //title: 'Cuentas por Cobrar Registradas',
+    iconCls: '',
     criterios: true,
     textBusqueda: 'Buscar Cuenta por Cobrar',
     imprimir: false,

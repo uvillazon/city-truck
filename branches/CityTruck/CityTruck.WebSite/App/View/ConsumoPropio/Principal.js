@@ -10,22 +10,21 @@
     },
     CargarComponentes: function () {
         var me = this;
+
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearComsumoPropio', 'Nuevo', Constantes.ICONO_CREAR, me.EventosConsumoPropio, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosConsumoPropio, me.toolbar, this);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosConsumoPropio, me.toolbar, this);
+
         me.grid = Ext.create('App.View.ConsumoPropio.GridConsumoPropio', {
             region: 'center',
             height: 350,
             imagenes: false,
-            opcion: 'GridConsumoPropio'
+            opcion: 'GridConsumoPropio',
+            toolbar:me.toolbar
         });
-        me.items = [me.grid
-        ];
-        me.toolbar = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_CrearComsumoPropio', 'Nuevo', Constantes.ICONO_CREAR, me.EventosConsumoPropio, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosConsumoPropio, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosConsumoPropio, me.toolbar, this);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosConsumoPropio, me.toolbar, this);
-        //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
-        me.grid.addDocked(me.toolbar, 1);
-        //        me.grid.on('cellclick', me.CargarDatos, this);
+        me.items = [me.grid];
 
     },
     EventosConsumoPropio: function (btn) {
