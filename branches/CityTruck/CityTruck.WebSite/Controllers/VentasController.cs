@@ -220,5 +220,23 @@ namespace CityTruck.WebSite.Controllers
                 throw;
             }
         }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerVentasCreditoPaginado(PagingInfo paginacion,FiltrosModel<VentasCreditoModel>filtros , VentasCreditoModel Entidad)
+        {
+            filtros.Entidad = Entidad;
+            var cajas = _serVen.ObtenerVentasCreditoPaginado(paginacion,filtros);
+            var formatData = cajas.Select(x => new
+            {
+                ID_VENTA = x.ID_VENTA,
+                ID_CLIETEN = x.ID_CLIENTE,
+                CLIENTE = x.SG_CLIENTES.EMPRESA,
+                ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
+                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0 ,
+                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IComprasServices.cs" />
     <Compile Include="Interfaces\IIngresosServices.cs" />
     <Compile Include="Interfaces\ICajasServices.cs" />
+    <Compile Include="Model\VentasCreditoModel.cs" />
     <Compile Include="Model\KardexClienteModel.cs" />
     <Compile Include="Model\KardexEfectivoModel.cs" />
     <Compile Include="PosTurnosServices.cs" />

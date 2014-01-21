@@ -52,11 +52,11 @@
     },
     CargarGridVentasCredito : function(){
         var me = this;
-//        me.store = Ext.create("App.Store.SolicitudesMantenimiento.CodigosSolucion");
+        me.store = Ext.create("App.Store.Ventas.VentasCredito");
         me.columns = [
-           { header: "CLIENTE", width: 180, sortable: true, dataIndex: "COD_SOL" },
-           { header: "DIESEL", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" },
-           { header: "GASOLINA", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" }
+           { header: "CLIENTE", width: 180, sortable: true, dataIndex: "CLIENTE" },
+           { header: "DIESEL", width: 100, sortable: true, dataIndex: "DIESEL" },
+           { header: "GASOLINA", width: 100, sortable: true, dataIndex: "GASOLINA" }
         ];
 
     },
