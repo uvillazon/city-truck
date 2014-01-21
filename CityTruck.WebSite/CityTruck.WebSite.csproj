@@ -210,6 +210,8 @@
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
     <Content Include="App\Model\Ingresos\Ingresos.js" />
     <Content Include="App\Model\Tanques\Tanques.js" />
+    <Content Include="App\Model\Ventas\VentasCredito.js" />
+    <Content Include="App\Model\Ventas\Precios.js" />
     <Content Include="App\Model\Ventas\DetallesVenta.js" />
     <Content Include="App\Model\Ventas\Ventas.js" />
     <Content Include="App\Model\Imagenes\Imagenes.js" />
@@ -258,6 +260,8 @@
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
     <Content Include="App\Store\Tanques\Tanques.js" />
+    <Content Include="App\Store\Ventas\VentasCredito.js" />
+    <Content Include="App\Store\Ventas\Precios.js" />
     <Content Include="App\Store\Ventas\DetallesVenta.js" />
     <Content Include="App\Store\Ventas\Ventas.js" />
     <Content Include="App\Store\Imagenes\Imagenes.js" />

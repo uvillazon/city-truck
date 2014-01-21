@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SG_VENTAS_CREDITOManager.cs" />
     <Compile Include="SG_AJUSTE_PRECIOManager.cs" />
     <Compile Include="SG_KARDEX_CLIENTEManager.cs" />
     <Compile Include="SG_KARDEX_EFECTIVOManager.cs" />

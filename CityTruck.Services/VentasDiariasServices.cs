@@ -154,5 +154,21 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros)
+        {
+            IQueryable<SG_VENTAS_CREDITO> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_VENTAS_CREDITOManager(uow);
+                result = manager.BuscarTodos();
+                filtros.FiltrarDatos();
+                result = filtros.Diccionario.Count() > 0 ? result.Where(filtros.Predicado, filtros.Diccionario.Values.ToArray()) : result;
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+            });
+            return result;
+        }
     }
 }
