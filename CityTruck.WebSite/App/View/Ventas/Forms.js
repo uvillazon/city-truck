@@ -6,7 +6,7 @@
     initComponent: function () {
         var me = this;
         if (me.opcion == "formSubTotales") {
-            me.title = "Subtotales";
+            me.title = "SUBTOTALES";
             me.columns = 3,
             me.CargarFormSubTotales();
 
@@ -25,21 +25,97 @@
     },
     CargarFormSubTotales: function () {
         var me = this;
+        var label01 = Ext.create("Ext.form.Label", {
+            text: 'TOTAL VENTAS',
+            cls : 'resaltarAzulRight',
+            
+        });
+        var label02 = Ext.create("Ext.form.Label", {
+            text: 'EFECTIVO',
+            cls : 'resaltarAzul',
+        });
+        var label03 = Ext.create("Ext.form.Label", {
+            text: 'CREDITO',
+            cls : 'resaltarAzul',
+        });
+
+        me.txt_diesel01 = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "DIESEL",
+            name: "TOTAL_VENTAS_DIESEL",
+//            width: 200,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_diesel_efectivo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "DIESEL_EFECTIVO",
+//            width: 70,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_diesel_credito = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "DIESEL_CREDITO",
+//            width: 150,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_gasolina01 = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "GASOLINA",
+            name: "TOTAL_VENTAS_GASOLINA",
+//            width: 200,
+            emptyText: '',
+            colspan: 1
+        });
+        me.txt_gasolina_efectivo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "GASOLINA_EFECTIVO",
+//            width: 150,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_gasolina_credito = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "GASOLINA_CREDITO",
+//            width: 150,
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_total01 = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "TOTAL - Bs",
+            name: "TOTAL_VENTA",
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_total_efectivo = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "TOTAL_EFECTIVO",
+            colspan: 1,
+            emptyText: ''
+        });
+        me.txt_total_credito = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "",
+            name: "TOTAL_CREDITO",
+            colspan: 1,
+            emptyText: ''
+        });
+
+
         var label1 = Ext.create("Ext.form.Label", {
-            text: 'Sub. Total Litros',
+            text: 'TOTAL LITROS',
             cls : 'resaltarAzulRight',
             
         });
         var label2 = Ext.create("Ext.form.Label", {
-            text: 'Precio-Venta',
+            text: 'P. VENTA - BS',
             cls : 'resaltarAzul',
         });
         var label3 = Ext.create("Ext.form.Label", {
-            text: 'Precio-Costo',
+            text: 'P. COSTO - BS',
             cls : 'resaltarAzul',
         });
         me.txt_diesel = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Subtotal Diesel",
+            fieldLabel: "DIESEL",
             name: "SUB_DIESEL",
 //            width: 200,
             colspan: 1,
@@ -60,7 +136,7 @@
             emptyText: ''
         });
         me.txt_gasolina = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Subtotal Gasolina",
+            fieldLabel: "GASOLINA",
             name: "SUB_GASOLINA",
 //            width: 200,
             emptyText: '',
@@ -81,7 +157,7 @@
             emptyText: ''
         });
         me.txt_total = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Total Lts / Bs",
+            fieldLabel: "TOTAL",
             name: "TOTAL",
             colspan: 1,
             emptyText: ''
@@ -99,7 +175,29 @@
             emptyText: ''
         });
 
+        me.txt_utilidad = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "UTILIDAD BRUTA SOBRE VENTAS",
+            name: "TOTAL_BS_COSTO",
+            colspan: 3,
+            emptyText: '',
+            width : 510,
+            labelAlign: 'right',
+            labelWidth: 375,
+        });
+
         me.items = [
+        label01,
+        label02,
+        label03,
+        me.txt_diesel01,
+        me.txt_diesel_efectivo,
+        me.txt_diesel_credito,
+        me.txt_gasolina01,
+        me.txt_gasolina_efectivo,
+        me.txt_gasolina_credito,
+        me.txt_total01,
+        me.txt_total_efectivo,
+        me.txt_total_credito,
         label1,
         label2,
         label3,
@@ -111,7 +209,8 @@
         me.txt_gasolina_bs_costo,
         me.txt_total,
         me.txt_total_Bs,
-        me.txt_total_Bs_costo
+        me.txt_total_Bs_costo,
+        me.txt_utilidad
         ];
     },
     CargarFormResumen: function () {
