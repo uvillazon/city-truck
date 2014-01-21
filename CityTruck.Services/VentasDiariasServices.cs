@@ -130,5 +130,29 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public RespuestaSP SP_VerificarEdicion(SG_POS_TURNOS p, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_VERIFICAR_EDICION(p.FECHA, p.TURNO, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Ventas modificadas";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = "Ventas sin Modificacion";
+                }
+
+            });
+            return result;
+        }
     }
 }

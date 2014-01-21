@@ -620,16 +620,6 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
-        <Function Name="P_SG_GUARDAR_AMORTIZACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
-          <Parameter Name="P_ID_A" Type="number" Mode="In" />
-          <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
-          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
-          <Parameter Name="P_FECHA" Type="date" Mode="In" />
-          <Parameter Name="P_CONCEPTO" Type="varchar2" Mode="In" />
-          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
-          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
-          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
-        </Function>
         <Function Name="P_SG_GUARDAR_CAJAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
           <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
@@ -693,6 +683,11 @@
           <Parameter Name="P_SAL_LITTER" Type="number" Mode="In" />
           <Parameter Name="P_TOTAL" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="P_SG_VERIFICAR_EDICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
       </Schema></edmx:StorageModels>
@@ -906,6 +901,11 @@
             <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
             <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_VERIFICAR_EDICION">
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TURNO" Mode="In" Type="String" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -1719,7 +1719,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CLIENTES" FunctionName="Model.Store.P_SG_GUARDAR_CLIENTES" />
-          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AMORTIZACION" FunctionName="Model.Store.P_SG_GUARDAR_AMORTIZACION" />
+          <FunctionImportMapping FunctionImportName="P_SG_VERIFICAR_EDICION" FunctionName="Model.Store.P_SG_VERIFICAR_EDICION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -95,7 +95,7 @@ namespace CityTruck.WebSite.Controllers
                     if (!spPos.success)
                     {
                         JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
-                        string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false , msg = spPos.msg }) + ");";
+                        string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
                         //string callback1 = info.callback + "(" + json + ");";
 
 
@@ -122,7 +122,7 @@ namespace CityTruck.WebSite.Controllers
                 ID_POS_TURNO = x.ID_POS_TURNO,
                 ENT_LITTER = x.ENT_LITTER,
                 SAL_LITTER = nuevo == true ? x.ENT_LITTER : x.SAL_LITTER,
-                TOTAL = x.SAL_LITTER - x.ENT_LITTER 
+                TOTAL = x.SAL_LITTER - x.ENT_LITTER
 
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
@@ -134,7 +134,7 @@ namespace CityTruck.WebSite.Controllers
 
         }
         [HttpPost]
-        public JsonResult GuardarVentasDiarias(string ventas, string nombres,DateTime FECHA,string TURNO)
+        public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO)
         {
             try
             {
@@ -166,7 +166,8 @@ namespace CityTruck.WebSite.Controllers
                         return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
                     }
                 }
-                SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS{
+                SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS
+                {
                     TURNO = TURNO,
                     FECHA = FECHA,
                     RESPONSABLE = nombres
@@ -181,10 +182,10 @@ namespace CityTruck.WebSite.Controllers
             }
         }
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerPreciosPorFecha(DateTime? FECHA,PagingInfo paginacion)
+        public ActionResult ObtenerPreciosPorFecha(DateTime? FECHA, PagingInfo paginacion)
         {
             //var precios = 
-            var precios = _serVen.ObtenerAjustesPrecios(x=>x.FECHA_ALTA <= FECHA );
+            var precios = _serVen.ObtenerAjustesPrecios(x => x.FECHA_ALTA <= FECHA);
 
             var formatData = precios.Select(x => new
             {
@@ -195,6 +196,29 @@ namespace CityTruck.WebSite.Controllers
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
+        }
+        [HttpPost]
+        public JsonResult VerificarVentas(DateTime FECHA, string TURNO)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                SG_POS_TURNOS pos = new SG_POS_TURNOS()
+                {
+                    TURNO = TURNO,
+                    FECHA = FECHA
+                };
+                respuestaRSP = _serVen.SP_VerificarEdicion(pos, id_usr);
+
+
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace CityTruck.Services.Interfaces
 
         RespuestaSP SP_GrabarVentasDiarias(string Ventas, int ID_USR);
         RespuestaSP SP_GenerarVentasDiarias(SG_VENTAS_DIARIAS ventas, int ID_USR);
+        RespuestaSP SP_VerificarEdicion(SG_POS_TURNOS p, int ID_USR);
         //SG_USUARIOS
     }
 }
