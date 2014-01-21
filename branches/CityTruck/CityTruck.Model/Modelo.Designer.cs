@@ -1560,6 +1560,37 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_AMORTIZACION", p_ID_AParameter, p_ID_CLIENTEParameter, p_ID_CAJAParameter, p_FECHAParameter, p_CONCEPTOParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_VERIFICAR_EDICION(Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, ObjectParameter p_RES)
+        {
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_TURNOParameter;
+            if (p_TURNO != null)
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
+            }
+            else
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("P_SG_VERIFICAR_EDICION", p_FECHAParameter, p_TURNOParameter, p_RES);
+        }
 
         #endregion
     }

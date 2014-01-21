@@ -3,6 +3,7 @@
 //    title: "Datos de Orden de Trabajo",dsdsdsddsdsdsds
     cargarStores: true,
     columns: 2,
+    editar : false,
     initComponent: function () {
         var me = this;
         me.CargarComponentes();
@@ -85,9 +86,39 @@
         var me = this;
         me.cbx_turno.on('select',function(cmb,record){
             if(me.date_fecha.getValue() != null){
-                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-                 me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-                 me.gridVenta.getStore().load();
+                Ext.Ajax.request({
+                    url: Constantes.HOST + 'Ventas/VerificarVentas',
+                    params: {
+                        FECHA: me.date_fecha.getValue(),
+                        TURNO : cmb.getValue()
+                    },
+                    success: function(response){
+                        var str = Ext.JSON.decode(response.responseText);
+                        if (me.editar){
+                            if(str.success == true){
+                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+                                me.gridVenta.getStore().load();
+                            }
+                            else{
+                                Ext.Msg.alert("Error","Solo puede Editar los que ya tiene valores ");
+                            }
+                        }
+                        else{
+                            if(str.success == false){
+                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+                                me.gridVenta.getStore().load();
+                            }
+                            else{
+                                Ext.Msg.alert("Error","No puede Editar desde este Seccion");
+                            }
+                        }
+                        
+                        // process server response here
+                    }
+                });
+                
 //                me.gridVenta().getStore().setExtraParams({
 //                    FECHA :  me.date_fecha.getValue()
 //                });
