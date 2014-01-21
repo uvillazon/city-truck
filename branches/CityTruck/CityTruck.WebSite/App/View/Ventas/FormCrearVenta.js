@@ -21,6 +21,7 @@
         var me = this;
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
                     opcion: 'GridVentasEditar',
+                    title : 'MITTERS',
                     colspan: 2,
                     width: 400,
                     height : 250,
@@ -42,9 +43,21 @@
             width: 400,
             height : 250
         });
+        me.gridVentaConsumo = Ext.create("App.View.Ventas.Grids", {
+            opcion: 'GridVentasConsumo',
+            colspan: 2,
+            width: 450,
+            height : 250
+        });
+
+        
         me.toolbarCredito = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearCredito', 'Crear Credito', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarCredito, this);
         me.gridVentaCredito.addDocked(me.toolbarCredito, 1);
+
+        me.toolbarConsumo = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearConsumo', 'Crear Consumo', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarConsumo, this);
+        me.gridVentaConsumo.addDocked(me.toolbarConsumo, 1);
 //        me.formResumen = Ext.create("App.View.Ventas.Forms", {
 //            opcion: 'formResumen',
 //            botones: false,
@@ -77,7 +90,7 @@
             name: "FECHA",
         });
       
-            me.items=  [me.gridVenta, me.formSubTotales, /* me.formResumen,*/me.gridVentaCredito];
+            me.items=  [me.gridVenta, me.formSubTotales, /* me.formResumen,*/me.gridVentaCredito,me.gridVentaConsumo];
             me.tbar= [me.date_fecha, me.cbx_turno, me.txt_nombres]
 
 
@@ -102,6 +115,7 @@
                             }
                             else{
                                 Ext.Msg.alert("Error","Solo puede Editar los que ya tiene valores ");
+                                me.gridVenta.getStore().removeAll();
                             }
                         }
                         else{
@@ -112,6 +126,7 @@
                             }
                             else{
                                 Ext.Msg.alert("Error","No puede Editar desde este Seccion");
+                                me.gridVenta.getStore().removeAll();
                             }
                         }
                         

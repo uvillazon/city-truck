@@ -4,12 +4,13 @@
     loadMask: true,
     opcion: "",
     pieTitulo: '',
+    title : '',
     btnEliminarRecord: false,
     initComponent: function () {
         var me = this;
         //me.store = Ext.create("App.Store.Listas.Listas");
         if (me.opcion == "GridVentasEditar") {
-            me.title = "Ventas";
+            me.title = me.title == '' ? "Ventas" : me.title;
             me.pieTitulo = "Ventas";
             me.CargarGridVentasEditar();
         }
@@ -17,6 +18,11 @@
             me.title = "Ventas a Credito";
             me.pieTitulo = "Ventas a Credito";
             me.CargarGridVentasCredito();
+        }
+        else if (me.opcion == "GridVentasConsumo") {
+            me.title = "CONSUMO PROPIO - BS";
+            me.pieTitulo = "Consumo";
+            me.CargarGridVentasConsumo();
         }
         else {
             alert("Defina el tipo primero");
@@ -48,11 +54,20 @@
         var me = this;
 //        me.store = Ext.create("App.Store.SolicitudesMantenimiento.CodigosSolucion");
         me.columns = [
-           { header: "Empresa", width: 120, sortable: true, dataIndex: "COD_SOL" },
-           { header: "Diesel", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" },
-           { header: "Gasolina", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" }
+           { header: "CLIENTE", width: 180, sortable: true, dataIndex: "COD_SOL" },
+           { header: "DIESEL", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" },
+           { header: "GASOLINA", width: 100, sortable: true, dataIndex: "DESCRIP_SOL" }
         ];
 
+    },
+    CargarGridVentasConsumo : function(){
+        var me = this;
+        //        me.store = Ext.create("App.Store.SolicitudesMantenimiento.CodigosSolucion");
+        me.columns = [
+            { header: "USUARIO", width: 180, sortable: true, dataIndex: "COD_SOL" },
+            { header: "DIESEL", width: 120, sortable: true, dataIndex: "DESCRIP_SOL" },
+            { header: "GASOLINA", width: 120, sortable: true, dataIndex: "DESCRIP_SOL" }
+        ];
     },
     CargarGridMaterialSolucionesEditar: function () {
         var me = this;
