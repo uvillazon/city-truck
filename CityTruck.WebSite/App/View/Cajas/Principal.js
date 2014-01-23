@@ -17,9 +17,10 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'report', me.EventosCaja, me.toolbar, this);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this);
+        Funciones.CrearMenu('btn_Kardex', 'Kardex', 'report', me.EventosCaja, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
        
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
@@ -31,11 +32,21 @@
 
         me.items = [me.grid];
 
-        me.grid.on('itemclick', function (view, record, item, index, e) {
-            me.id_caja = record.get('ID_CAJA');
-        }, this);
+        me.grid.on('itemclick', me.onItemClick, this);
+        me.grid.getSelectionModel().on('selectionchange', me.onSelectChange, this);
 
-
+    },
+    onItemClick: function (view, record, item, index, e) {
+        var me = this;
+        me.id_caja = record.get('ID_CAJA');
+    },
+    onSelectChange: function (selModel, selections) {
+        var me = this;
+        var disabled = selections.length === 0;
+        Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Kardex', me.toolbar, disabled);
     },
     EventosCaja: function (btn) {
         var me = this;

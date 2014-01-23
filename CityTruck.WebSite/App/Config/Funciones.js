@@ -136,11 +136,13 @@ Ext.define("App.Config.Funciones", {
         });
         return menuBar;
     },
-    CrearMenu: function (id, nombre, icono, handler, menu, scope, controlador/*para agregar diamicamente un controlador al controller principal*/) {
+    CrearMenu: function (id, nombre, icono, handler, menu, scope, controlador, disabled) {
+        disabled = (disabled === undefined || disabled == null || disabled.length <= 0) ? false : disabled;
         var boton = Ext.create('Ext.Button', {
             text: nombre,
             iconCls: icono,
             itemId: id,
+            disabled: disabled,
             cls: 'botones',
             scope: scope,
             handler: handler,
@@ -154,6 +156,15 @@ Ext.define("App.Config.Funciones", {
         }
         catch (e) {
             return boton;
+        }
+    },
+
+    DisabledButton: function (id, component, disabled) {        
+        try{
+            component.down('#'+id).setDisabled(disabled);
+        }
+        catch (e) {
+
         }
     },
 
