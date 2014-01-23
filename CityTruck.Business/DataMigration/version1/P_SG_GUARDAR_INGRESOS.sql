@@ -38,8 +38,20 @@ IF v_res='0' THEN
             INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
              VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_ingreso , 'INGRESO' ,p_fecha,'INGRESO  NRO: '||v_nro ||  '- '||p_concepto,p_importe,0,0,p_id_usr,sysdate );
         END IF;
-    --ELSE
+    ELSE
         --editar
+        UPDATE SG_INGRESOS SET FECHA=p_fecha, 
+                               CONCEPTO = p_concepto, 
+                               ID_CAJA = p_id_caja, 
+                               IMPORTE = p_importe
+        WHERE ID_INGRESO = p_id_ingreso;
+        
+        UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
+                                      FECHA = p_fecha,
+                                      DETALLE = 'INGRESO  NRO: '||v_nro ||  '- '||p_concepto,
+                                      INGRESO = p_importe
+       WHERE ID_OPERACION = p_id_ingreso AND OPERACION = 'INGRESO';
+                                      
     END IF;
 END IF;
     if v_res = 0 THEN
