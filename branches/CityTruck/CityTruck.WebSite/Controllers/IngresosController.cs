@@ -35,6 +35,8 @@ namespace CityTruck.WebSite.Controllers
                 FECHA = x.FECHA,
                 CONCEPTO = x.CONCEPTO,
                 CAJA = x.SG_CAJAS.NOMBRE,
+                REGISTRAR = x.REGISTRAR,
+                SALDO = x.SG_CAJAS.SALDO,
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";

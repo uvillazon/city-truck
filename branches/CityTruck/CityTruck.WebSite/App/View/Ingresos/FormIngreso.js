@@ -1,32 +1,40 @@
 ﻿Ext.define("App.View.Ingresos.FormIngreso", {
     extend: "App.Config.Abstract.Form",
     columns: 1,
+    record: '',
     initComponent: function () {
         var me = this;
         me.CargarComponentes();
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+
     CargarComponentes: function () {
         var me = this;
-        me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Nro Comprobante",
-            readOnly : true,
-            name: "NRO_COMP",
+        me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {
+            hidden: true,
+            fieldLabel: "Id",
+            readOnly: true,
+            name: "ID_INGRESO"
 
         });
-         me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
+        me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Nro Comprobante",
+            readOnly: true,
+            name: "NRO_COMP"
+
+        });
+        me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
             fieldLabel: "Fecha",
             name: "FECHA",
             afterLabelTextTpl: Constantes.REQUERIDO,
-            allowBlank: false,
+            allowBlank: false
         });
         me.txt_registrar = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Registrar",
             name: "REGISTRAR",
-            value : 'OTROS INGRESOS',
-            readOnly : true
+            value: 'OTROS INGRESOS',
+            readOnly: true
 
         });
         me.store_cuenta = Ext.create('App.Store.Cajas.Cajas').load();
@@ -34,38 +42,39 @@
             fieldLabel: "Cuenta",
             name: "ID_CAJA",
             displayField: 'NOMBRE',
-            valueField : 'ID_CAJA',
+            valueField: 'ID_CAJA',
             store: me.store_cuenta,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl: function () { return "{NOMBRE} - {DESCRIPCION}" }
         });
         me.num_saldo = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Saldo",
             name: "SALDO",
-            readOnly : true,
+            readOnly: true,
             allowDecimals: true,
-            maxValue: 999999999,
+            maxValue: 999999999
         });
 
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe",
             name: "IMPORTE",
             allowDecimals: true,
-            maxValue: 999999999,
+            maxValue: 999999999
         });
         me.txt_nuevo_saldo = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Nuevo Saldo",
             name: "NUEVO_SALDO",
-            readOnly : true
+            readOnly: true
         });
-         me.txt_concepto = Ext.create("App.Config.Componente.TextFieldBase", {
+        me.txt_concepto = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Concepto",
             name: "CONCEPTO",
             afterLabelTextTpl: Constantes.REQUERIDO,
-            allowBlank: false,
+            allowBlank: false
         });
         me.items = [
+            me.txt_id,
             me.txt_nro_cmp,
             me.date_fecha,
             me.txt_registrar,
@@ -75,31 +84,23 @@
             me.txt_nuevo_saldo,
             me.txt_concepto
         ];
-       
-      
+
+
 
     },
-    cargarEventos : function(){
+    cargarEventos: function () {
         var me = this;
-        me.cbx_cuenta.on('select',function(cmb,record){
+        me.cbx_cuenta.on('select', function (cmb, record) {
             me.num_saldo.setValue(record[0].get('SALDO'));
         });
-        me.num_importe.on('change',function(num,newvalue,oldvalue){
-            var sum = me.num_saldo.getValue() + newvalue;
-            me.txt_nuevo_saldo.setValue(sum);
+        me.num_importe.on('change', function (num, newvalue, oldvalue) {
+            me.actualizarNuevoSaldo();
         });
-//        me.cbx_turno.on('select',function(cmb,record){
-//            if(me.date_fecha.getValue() != null){
-//                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//                 me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-//                 me.gridVenta.getStore().load();
-////                me.gridVenta().getStore().setExtraParams({
-////                    FECHA :  me.date_fecha.getValue()
-////                });
-//            }
-//            else{
-//                Ext.Msg.alert("Seleccione Fecha primero");
-//            }
-//        });
+    },
+
+    actualizarNuevoSaldo: function () {
+        var me = this;
+        var sum = me.num_saldo.getValue() + me.num_importe.getValue();
+        me.txt_nuevo_saldo.setValue(sum);
     }
 });

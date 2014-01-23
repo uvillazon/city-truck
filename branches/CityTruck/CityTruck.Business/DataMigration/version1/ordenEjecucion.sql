@@ -11,3 +11,5 @@ SG_POS_TURNOS.sql
 -------
 
 P_SG_GUARDAR_CLIENTES -> 14/01/2010 23:00
+-----------------------------------------
+P_SG_GUARDAR_INGRESOS ->22/01/2014 23:50

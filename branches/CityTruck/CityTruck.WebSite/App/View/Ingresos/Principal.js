@@ -26,8 +26,7 @@
             toolbar: me.toolbar
 
         });
-        me.items = [me.grid
-        ];
+        me.items = [me.grid];
 
         me.grid.on('itemclick', me.onItemClick, this);
         me.grid.getSelectionModel().on('selectionchange', me.onSelectChange, this);
@@ -35,6 +34,7 @@
     },
     onItemClick: function (view, record, item, index, e) {
         var me = this;
+        me.recordSelected = record;
         me.id_ingreso = record.get('ID_INGRESO');
     },
     onSelectChange: function (selModel, selections) {
@@ -46,30 +46,41 @@
     },
     EventosIngreso: function (btn) {
         var me = this;
-        if (btn.getItemId() == "btn_CrearIngreso") {
-            if (me.winCrearIngreso == null) {
-                me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Ingreso' });
-                me.formIngreso = Ext.create("App.View.Ingresos.FormIngreso", {
-                    columns: 1,
-                    title: 'Formulario de Registro de Otros Ingresos ',
-                    botones: false
-                })
+        switch (btn.getItemId()) {
+            case "btn_CrearIngreso":
+                me.MostrarFormIngreso(true);
+                break;
+            case "btn_Editar":
+                me.MostrarFormIngreso(false);
+                break;
+            default:
+                Ext.Msg.alert("Aviso", "No Existe el botton");
+        }
+    },
+    MostrarFormIngreso: function (isNew) {
+        var me = this;
+        if (me.winCrearIngreso == null) {
+            me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Ingreso' });
+            me.formIngreso = Ext.create("App.View.Ingresos.FormIngreso", {
+                columns: 1,
+                title: 'Registro de Otros Ingresos ',
+                botones: false
+            });
 
-                me.winCrearIngreso.add(me.formIngreso);
-                me.winCrearIngreso.btn_guardar.on('click', me.GuardarIngresos, this);
-                me.winCrearIngreso.show();
-            } else {
-                me.formIngreso.getForm().reset();
-                me.winCrearIngreso.show();
-            }
+            me.winCrearIngreso.add(me.formIngreso);
+            me.winCrearIngreso.btn_guardar.on('click', me.GuardarIngresos, this);
+        } else {
+            me.formIngreso.getForm().reset();
         }
-        else {
-            Ext.Msg.alert("Aviso", "No Existe el botton");
+        if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
+            Funciones.populateForm(me.formIngreso, me.recordSelected);
+            me.formIngreso.actualizarNuevoSaldo();
         }
+        me.winCrearIngreso.show();
     },
     GuardarIngresos: function () {
         var me = this;
         Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
     }
-    
+
 });
