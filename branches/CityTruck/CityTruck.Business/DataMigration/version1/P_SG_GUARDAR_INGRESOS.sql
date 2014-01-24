@@ -46,9 +46,11 @@ IF v_res='0' THEN
                                IMPORTE = p_importe
         WHERE ID_INGRESO = p_id_ingreso;
         
+        SELECT NRO_COMP INTO v_nro FROM SG_INGRESOS WHERE ID_INGRESO = p_id_ingreso;
+         
         UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
                                       FECHA = p_fecha,
-                                      DETALLE = 'INGRESO  NRO: '||v_nro ||  '- '||p_concepto,
+                                      DETALLE = 'INGRESO  NRO: '|| v_nro ||  '- '||p_concepto,
                                       INGRESO = p_importe
        WHERE ID_OPERACION = p_id_ingreso AND OPERACION = 'INGRESO';
                                       

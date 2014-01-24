@@ -66,7 +66,7 @@
     MostrarFormIngreso: function (isNew, block) {
         var me = this;
         if (me.winCrearIngreso == null) {
-            me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Ingreso' });
+            me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
             me.formIngreso = Ext.create("App.View.Ingresos.FormIngreso", {
                 columns: 1,
                 title: 'Registro de Otros Ingresos ',

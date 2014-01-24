@@ -16,9 +16,9 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearEgreso', 'Crear Egreso', Constantes.ICONO_CREAR, me.EventosEgreso, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosEgreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosEgreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosEgreso, me.toolbar, this, null, true);
 
         me.grid = Ext.create('App.View.Egresos.GridEgresos', {
             region: 'center',
@@ -35,6 +35,7 @@
     },
     onItemClick: function (view, record, item, index, e) {
         var me = this;
+        me.recordSelected = record;
         me.id_egreso = record.get('ID_EGRESO');
     },
     onSelectChange: function (selModel, selections) {
@@ -66,7 +67,7 @@
     }, MostrarFormEgreso: function (isNew, block) {
         var me = this;
         if (me.winCrearEgreso == null) {
-            me.winCrearEgreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Egreso' });
+            me.winCrearEgreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
             me.formEgreso = Ext.create("App.View.Egresos.FormEgreso", {
                 columns: 1,
                 title: ' Registro de Otros Egresos ',
@@ -91,7 +92,7 @@
 
     EliminarRegistro: function () {
         var me = this;
-        alert("Eñiminar: " + me.id_ingreso);
+        alert("Eliminar: " + me.id_egreso);
 
         //Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
     }

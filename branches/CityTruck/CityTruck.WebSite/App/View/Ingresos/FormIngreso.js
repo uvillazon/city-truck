@@ -94,13 +94,14 @@
             me.num_saldo.setValue(record[0].get('SALDO'));
         });
         me.num_importe.on('change', function (num, newvalue, oldvalue) {
-            me.actualizarNuevoSaldo();
+            me.actualizarNuevoSaldo(true);
         });
     },
 
-    actualizarNuevoSaldo: function () {
+    actualizarNuevoSaldo: function (isNew) {
         var me = this;
-        var sum = me.num_saldo.getValue() + me.num_importe.getValue();
-        me.txt_nuevo_saldo.setValue(sum);
+        var res = me.num_saldo.getValue() + me.num_importe.getValue();
+       
+        me.txt_nuevo_saldo.setValue(res);
     }
 });
