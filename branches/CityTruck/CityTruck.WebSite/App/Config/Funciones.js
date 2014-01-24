@@ -702,11 +702,5 @@ Ext.define("App.Config.Funciones", {
 
     isEmpty: function (val){
         return (val === undefined || val == null || val.length <= 0) ? true : false;
-    },
-    populateForm: function (form, record) {
-       Ext.each(form.items.items, function (item, index) {
-          item.setValue(record.get(item.name));
-       });
-
     }
 });
