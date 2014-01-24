@@ -42,8 +42,22 @@ IF v_res='0' THEN
              VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_egreso , 'EGRESO' ,p_fecha,'EGRESO  NRO: '||v_nro ||  '- '||p_concepto,0,p_importe,0,p_id_usr,sysdate );
           
         END IF;
-    --ELSE
+    ELSE
         --editar
+        UPDATE SG_EGRESOS SET FECHA=p_fecha, 
+                               CONCEPTO = p_concepto, 
+                               ID_CAJA = p_id_caja, 
+                               IMPORTE = p_importe
+        WHERE ID_EGRESO = p_id_egreso;
+        
+        SELECT NRO_COMP INTO v_nro FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso;
+        
+        UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
+                                      FECHA = p_fecha,
+                                      DETALLE = 'EGRESO  NRO: '|| v_nro  ||  '- '||p_concepto,
+                                      EGRESO = p_importe
+       WHERE ID_OPERACION = p_id_egreso AND OPERACION = 'EGRESO';
+                                      
     END IF;
 END IF;
     if v_res = 0 THEN

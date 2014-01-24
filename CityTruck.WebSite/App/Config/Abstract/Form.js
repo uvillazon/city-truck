@@ -94,9 +94,10 @@ Ext.define("App.Config.Abstract.Form", {
         var me = this;
         me.record = record;
         me.getForm().reset();
-        if(bloquear) {
+        if(bloquear) 
            me.BloquearFormulario();
-        }
+        else
+           me.DesbloquearFormulario(); 
         me.getForm().loadRecord(record);
     },
     loadFormulario: function (controlador, accion, params) {

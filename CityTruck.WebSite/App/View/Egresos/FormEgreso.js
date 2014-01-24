@@ -10,6 +10,13 @@
     
     CargarComponentes: function () {
         var me = this;
+        me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {
+            hidden: true,
+            fieldLabel: "Id",
+            readOnly: true,
+            name: "ID_EGRESO"
+
+        });
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Nro Comprobante",
             readOnly : true,
@@ -66,6 +73,7 @@
             allowBlank: false,
         });
         me.items = [
+            me.txt_id,
             me.txt_nro_cmp,
             me.date_fecha,
             me.txt_registrar,
@@ -85,8 +93,12 @@
             me.num_saldo.setValue(record[0].get('SALDO'));
         });
         me.num_importe.on('change',function(num,newvalue,oldvalue){
-            var sum = me.num_saldo.getValue() - newvalue;
-            me.txt_nuevo_saldo.setValue(sum);
+           me.actualizarNuevoSaldo();
         });
+    },
+    actualizarNuevoSaldo: function (isNew) {
+        var me = this;
+        var res = me.num_saldo.getValue() - me.num_importe.getValue();
+        me.txt_nuevo_saldo.setValue(res);
     }
 });

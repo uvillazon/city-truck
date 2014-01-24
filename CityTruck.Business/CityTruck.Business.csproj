@@ -77,12 +77,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataMigration\version1\SG_COMBUSTIBLES.sql" />
-    <Content Include="DataMigration\version1\P_SG_VERIFICAR_EDICION.sql" />
-    <Content Include="DataMigration\version1\P_SG_GUARDAR_VENTA_CREDITO.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_VENTA_CREDITO.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_CLIENTES.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_VENTA_CREDITO.sql" />
     <Content Include="DataMigration\version1\P_SG_OBTENER_PRECIO_ACT.sql" />
+    <Content Include="DataMigration\version1\P_SG_VERIFICAR_EDICION.sql" />
     <Content Include="DataMigration\version1\Q_SG_KARDEX_CLIENTE.sql" />
     <Content Include="DataMigration\version1\Q_SG_AMORTIZACIONES.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_AMORTIZACIONES.sql" />
@@ -91,6 +90,7 @@
     <Content Include="DataMigration\version1\P_SG_GUARDAR_CAJAS.sql" />
     <Content Include="DataMigration\version1\Q_SG_CAJAS.sql" />
     <Content Include="DataMigration\version1\SG_AJUSTE_PRECIO.sql" />
+    <Content Include="DataMigration\version1\SG_COMBUSTIBLES.sql" />
     <Content Include="DataMigration\version1\SG_KARDEX_EFECTIVO_TABLE.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_KARDEX_CLIENTE.sql" />
     <Content Include="DataMigration\version1\SG_AMORTIZACIONES.sql" />
