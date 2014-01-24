@@ -18,10 +18,13 @@ namespace CityTruck.WebSite.Controllers
     {
         private IVentasDiariasServices _serVen;
         private IPosTurnosServices _serPos;
-        public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos)
+        private ICombustiblesServices _serCom;
+
+        public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos, ICombustiblesServices serCom)
         {
             _serVen = serVen;
             _serPos = serPos;
+            _serCom = serCom;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -210,6 +213,48 @@ namespace CityTruck.WebSite.Controllers
                     FECHA = FECHA
                 };
                 respuestaRSP = _serVen.SP_VerificarEdicion(pos, id_usr);
+                //retornamos el precio de venta de los combustibles
+                var Gas = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 1);
+               
+                var Die = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 2);
+
+
+                return Json(new { success = respuestaRSP.success, msg = respuestaRSP.msg, DIESEL = Die, GASOLINA = Gas });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros, VentasCreditoModel Entidad)
+        {
+            filtros.Entidad = Entidad;
+            var cajas = _serVen.ObtenerVentasCreditoPaginado(paginacion, filtros);
+            var formatData = cajas.Select(x => new
+            {
+                ID_VENTA = x.ID_VENTA,
+                ID_CLIETEN = x.ID_CLIENTE,
+                CLIENTE = x.SG_CLIENTES.EMPRESA,
+                ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
+                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
+                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
+
+        [HttpPost]
+        public JsonResult GuardarVentaCredito(SG_VENTAS_CREDITO p)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                
+                respuestaRSP = _serVen.SP_GrabarVentasCredito(p,id_usr);
 
 
                 return Json(respuestaRSP);
@@ -219,24 +264,6 @@ namespace CityTruck.WebSite.Controllers
 
                 throw;
             }
-        }
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerVentasCreditoPaginado(PagingInfo paginacion,FiltrosModel<VentasCreditoModel>filtros , VentasCreditoModel Entidad)
-        {
-            filtros.Entidad = Entidad;
-            var cajas = _serVen.ObtenerVentasCreditoPaginado(paginacion,filtros);
-            var formatData = cajas.Select(x => new
-            {
-                ID_VENTA = x.ID_VENTA,
-                ID_CLIETEN = x.ID_CLIENTE,
-                CLIENTE = x.SG_CLIENTES.EMPRESA,
-                ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
-                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0 ,
-                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
-            });
-            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
-            return JavaScript(callback1);
         }
     }
 }

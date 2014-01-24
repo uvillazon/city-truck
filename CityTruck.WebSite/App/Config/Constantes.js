@@ -30,7 +30,7 @@ Ext.define("App.Config.Constantes", {
     CONFIG_PRECIO_VENTA_DIS: 3.72,
     CONFIG_PRECIO_COSTO_GAS: 3.52,
     CONFIG_PRECIO_COSTO_DIS: 3.54,
-    CONFIG_CUENTA_VENTA : 1,
+    CONFIG_CUENTA_VENTA: 1,
     UnidadesRequeridas: function (unidad, requerido) {
         if (requerido) {
             return '<span style="color:red;font-weight:bold" data-qtip="Requerido">*</span><span style="color:blue" data-qtip="Requerido">[' + unidad + ']</span>';
@@ -85,7 +85,13 @@ Ext.define("App.Config.Constantes", {
         this.ALTO = document.documentElement.clientHeight - 100;
         this.MAXALTO = document.documentElement.clientHeight - 40;
         this.MAXANCHO = document.documentElement.clientWidth - 50;
-        this.BTNANCHO = (document.documentElement.clientWidth - 100 )/ 5;
-        this.BTNALTO = (document.documentElement.clientHeight - 100 )/ 5;
+        this.BTNANCHO = (document.documentElement.clientWidth - 100) / 5;
+        this.BTNALTO = (document.documentElement.clientHeight - 100) / 5;
+    },
+    CargarPrecios: function (GAS, DIE) { 
+        this.CONFIG_PRECIO_VENTA_GAS = GAS.PRECIO_VENTA;
+        this.CONFIG_PRECIO_VENTA_DIS = DIE.PRECIO_VENTA;
+        this.CONFIG_PRECIO_COSTO_GAS = GAS.PRECIO_COMPRA;
+        this.CONFIG_PRECIO_COSTO_DIS = DIE.PRECIO_COMPRA;
     }
 });

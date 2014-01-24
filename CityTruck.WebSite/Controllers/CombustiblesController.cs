@@ -29,7 +29,9 @@ namespace CityTruck.WebSite.Controllers
                 ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
                 NOMBRE = x.NOMBRE,
                 DESCRIPCION = x.DESCRIPCION,
-                CANT_DISPONIBLE = x.CANT_DISPONIBLE
+                CANT_DISPONIBLE = x.CANT_DISPONIBLE,
+                PRECIO_VENTA = x.PRECIO_VENTA,
+                PRECIO_COMPRA = x.PRECIO_COMPRA
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formattData, Total = paginacion.total }) + ");";
