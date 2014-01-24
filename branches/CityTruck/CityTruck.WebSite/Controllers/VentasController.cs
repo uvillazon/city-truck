@@ -235,9 +235,13 @@ namespace CityTruck.WebSite.Controllers
             var formatData = cajas.Select(x => new
             {
                 ID_VENTA = x.ID_VENTA,
-                ID_CLIETEN = x.ID_CLIENTE,
+                ID_CLIENTE = x.ID_CLIENTE,
                 CLIENTE = x.SG_CLIENTES.EMPRESA,
                 ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
+                COMBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
+                PRECIO = x.PRECIO,
+                IMPORTE_BS = x.IMPORTE_BS,
+                IMPORTE_LTS = x.IMPORTE_LTS,
                 DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
                 GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
             });
@@ -257,6 +261,22 @@ namespace CityTruck.WebSite.Controllers
                 respuestaRSP = _serVen.SP_GrabarVentasCredito(p,id_usr);
 
 
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult EliminarVentaCredito(int ID_VENTA)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serVen.SP_EliminarVentaCredito(ID_VENTA,id_usr);
                 return Json(respuestaRSP);
             }
             catch (Exception)
