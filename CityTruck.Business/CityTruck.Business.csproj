@@ -77,6 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_VERIFICAR_EDICION.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_VENTA_CREDITO.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_VENTA_CREDITO.sql" />
     <Content Include="DataMigration\version1\P_SG_GUARDAR_CLIENTES.sql" />
     <Content Include="DataMigration\version1\P_SG_OBTENER_PRECIO_ACT.sql" />
     <Content Include="DataMigration\version1\Q_SG_KARDEX_CLIENTE.sql" />
