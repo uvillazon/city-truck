@@ -51,13 +51,19 @@
                 me.MostrarFormIngreso(true);
                 break;
             case "btn_Editar":
-                me.MostrarFormIngreso(false);
+                me.MostrarFormIngreso(false, false);
+                break;
+            case "btn_Detalle":
+                me.MostrarFormIngreso(false, true);
+                break;
+            case "btn_Eliminar":
+                me.EliminarRegistro();
                 break;
             default:
                 Ext.Msg.alert("Aviso", "No Existe el botton");
         }
     },
-    MostrarFormIngreso: function (isNew) {
+    MostrarFormIngreso: function (isNew, block) {
         var me = this;
         if (me.winCrearIngreso == null) {
             me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Ingreso' });
@@ -73,7 +79,7 @@
             me.formIngreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            Funciones.populateForm(me.formIngreso, me.recordSelected);
+            me.formIngreso.CargarDatos(me.recordSelected, block);
             me.formIngreso.actualizarNuevoSaldo();
         }
         me.winCrearIngreso.show();
@@ -81,6 +87,13 @@
     GuardarIngresos: function () {
         var me = this;
         Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
+    },
+
+    EliminarRegistro: function () {
+        var me = this;
+        alert("Eñiminar: "+ me.id_ingreso);
+
+        //Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
     }
 
 });

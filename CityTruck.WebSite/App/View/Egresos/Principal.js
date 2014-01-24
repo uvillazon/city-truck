@@ -46,28 +46,54 @@
     },
     EventosEgreso: function (btn) {
         var me = this;
-        if (btn.getItemId() == "btn_CrearEgreso") {
-            if (me.winCrearEgreso == null) {
-                me.winCrearEgreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Egreso' });
-                me.formEgreso = Ext.create("App.View.Egresos.FormEgreso", {
-                    columns: 1,
-                    title: 'Formulario de Registro de Otros Egresos ',
-                    botones: false
-                });
-
-                me.winCrearEgreso.add(me.formEgreso);
-                me.winCrearEgreso.btn_guardar.on('click', me.GuardarEgresos, this);
-                me.winCrearEgreso.show();
-            } else {
-                me.formEgreso.getForm().reset();
-                me.winCrearEgreso.show();
-            }
-        } else {
-            Ext.Msg.alert("Aviso", "No Existe el botton");
+        switch (btn.getItemId()) {
+            case "btn_CrearEgreso":
+                me.MostrarFormEgreso(true);
+                break;
+            case "btn_Editar":
+                me.MostrarFormEgreso(false, false);
+                break;
+            case "btn_Detalle":
+                me.MostrarFormEgreso(false, true);
+                break;
+            case "btn_Eliminar":
+                me.EliminarRegistro();
+                break;
+            default:
+                Ext.Msg.alert("Aviso", "No Existe el botton");
         }
-    }, GuardarEgresos: function () {
+       
+    }, MostrarFormEgreso: function (isNew, block) {
+        var me = this;
+        if (me.winCrearEgreso == null) {
+            me.winCrearEgreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Egreso' });
+            me.formEgreso = Ext.create("App.View.Egresos.FormEgreso", {
+                columns: 1,
+                title: ' Registro de Otros Egresos ',
+                botones: false
+            });
+
+            me.winCrearEgreso.add(me.formEgreso);
+            me.winCrearEgreso.btn_guardar.on('click', me.GuardarEgresos, this);
+        } else {
+            me.formEgreso.getForm().reset();
+        }
+        if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
+            me.formEgreso.CargarDatos(me.recordSelected, block);
+            me.formEgreso.actualizarNuevoSaldo();
+        }
+        me.winCrearEgreso.show();
+    },
+    GuardarEgresos: function () {
         var me = this;
         Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Guardar el Egreso?', null, me.winCrearEgreso);
+    }, 
+
+    EliminarRegistro: function () {
+        var me = this;
+        alert("Eñiminar: " + me.id_ingreso);
+
+        //Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
     }
 
 });

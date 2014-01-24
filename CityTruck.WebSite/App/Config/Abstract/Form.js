@@ -90,11 +90,13 @@ Ext.define("App.Config.Abstract.Form", {
         me.getForm().reset();
 
     },
-    CargarDatos: function (record) {
+    CargarDatos: function (record, bloquear) {
         var me = this;
         me.record = record;
         me.getForm().reset();
-        me.BloquearFormulario();
+        if(bloquear) {
+           me.BloquearFormulario();
+        }
         me.getForm().loadRecord(record);
     },
     loadFormulario: function (controlador, accion, params) {
