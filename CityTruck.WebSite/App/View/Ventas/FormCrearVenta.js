@@ -54,6 +54,8 @@
         
         me.toolbarCredito = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearCredito', 'Crear Credito', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarCredito, this);
+        Funciones.CrearMenu('btn_EditarCredito', 'Editar', Constantes.ICONO_EDITAR, me.EventosVenta, me.toolbarCredito, this);
+        Funciones.CrearMenu('btn_BajaCredito', 'Eliminar', Constantes.ICONO_BAJA, me.EventosVenta, me.toolbarCredito, this);
         me.gridVentaCredito.addDocked(me.toolbarCredito, 1);
 
         me.toolbarConsumo = Funciones.CrearMenuBar();
@@ -234,6 +236,25 @@
         else if(btn.getItemId() == 'btn_CrearCredito'){
             me.CrearVentaCredito();
         }
+        else if (btn.getItemId() == "btn_EditarCredito"){
+            var datos =  me.gridVentaCredito.getSelectionModel().getSelection()[0];
+            if (datos != null){
+                me.EditarVentaCredito(datos);
+            }
+            else{
+                Ext.Msg.alert("Error","Seleccione una venta para Editar");
+            }
+        }
+        else if (btn.getItemId() == "btn_BajaCredito"){
+            var datos =  me.gridVentaCredito.getSelectionModel().getSelection()[0];
+            if (datos != null){
+                 Funciones.AjaxRequestGrid("Ventas", "EliminarVentaCredito", me, "Esta Seguro de Eliminar la Venta de Credito", {ID_VENTA : datos.get('ID_VENTA') }, me.gridVentaCredito,null)
+            }
+            else{
+                Ext.Msg.alert("Error","Seleccione una venta para Editar");
+            }
+            
+        }
         else{
             Ext.Msg.alert("Error","No existe la opcion");
         }
@@ -263,6 +284,22 @@
         else{
             Ext.Msg.alert("Error","Seleccione la FECHA , TURNO y Escriba el Responsable");
         }
+    },
+    EditarVentaCredito : function(datos){
+        var me = this;
+        var win =Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Editar Venta a Credito' });
+        var formVentaCredito = Ext.create("App.View.Ventas.Forms", {
+            columns: 1,
+            botones: false,
+            opcion : 'formEditarVentaCredito'
+        });
+        formVentaCredito.CargarDatos(datos);
+        formVentaCredito.EventosFormEditarVentaCredito();
+        win.add(formVentaCredito);
+        win.btn_guardar.on('click', function(){
+            Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", win, formVentaCredito, me.gridVentaCredito, "Esta Seguro de Editar la venta de Credito", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
+        });
+        win.show();
     },
     GuardarVentaCredito : function(){
         var me = this;

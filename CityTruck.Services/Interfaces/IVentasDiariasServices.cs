@@ -21,6 +21,7 @@ namespace CityTruck.Services.Interfaces
         RespuestaSP SP_GenerarVentasDiarias(SG_VENTAS_DIARIAS ventas, int ID_USR);
         RespuestaSP SP_VerificarEdicion(SG_POS_TURNOS p, int ID_USR);
         RespuestaSP SP_GrabarVentasCredito(SG_VENTAS_CREDITO p, int ID_USR);
+        RespuestaSP SP_EliminarVentaCredito(int ID_VENTA, int ID_USR);
 
         IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros);
 

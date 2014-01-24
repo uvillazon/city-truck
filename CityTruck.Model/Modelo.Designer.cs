@@ -1710,6 +1710,37 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_VENTA_CREDITO", p_ID_VENTAParameter, p_ID_CLIENTEParameter, p_ID_COMBUSTIBLEParameter, p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_PRECIOParameter, p_IMPORTE_BSParameter, p_IMPORTE_LTSParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_VENTA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_VENTA_CREDITO(Nullable<global::System.Decimal> p_ID_VENTA, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_VENTAParameter;
+            if (p_ID_VENTA.HasValue)
+            {
+                p_ID_VENTAParameter = new ObjectParameter("P_ID_VENTA", p_ID_VENTA);
+            }
+            else
+            {
+                p_ID_VENTAParameter = new ObjectParameter("P_ID_VENTA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_VENTA_CREDITO", p_ID_VENTAParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }
