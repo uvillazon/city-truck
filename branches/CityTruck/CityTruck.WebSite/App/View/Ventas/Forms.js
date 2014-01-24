@@ -289,6 +289,7 @@
         me.cbx_cliente = Ext.create("App.Config.Componente.ComboAutoBase", {
             fieldLabel: "Cliente",
             name: "ID_CLIENTE",
+            valueField : 'ID_CLIENTE',
             displayField: 'EMPRESA',
             maxLength: 50,
             afterLabelTextTpl: Constantes.REQUERIDO,
@@ -310,7 +311,7 @@
         });
          me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Litros",
-            name: "CANTIDAD",
+            name: "IMPORTE_LTS",
             allowDecimals: true,
             maxValue: 999999999,
             afterLabelTextTpl: Constantes.REQUERIDO,
@@ -318,7 +319,14 @@
         });
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe Total",
-            name: "IMPORTE",
+            name: "IMPORTE_BS",
+            readOnly : true,
+            allowDecimals: true,
+            maxValue: 999999999,
+        });
+        me.num_precio = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Precio Litro ",
+            name: "PRECIO",
             readOnly : true,
             allowDecimals: true,
             maxValue: 999999999,
@@ -326,6 +334,7 @@
         me.items = [
             me.cbx_cliente,
             me.cbx_combustible,
+            me.num_precio,
             me.num_litros,
             me.num_importe
 
@@ -333,9 +342,22 @@
     },
     EventosFormVentaCredito : function(){
         var me = this;
+        me.cbx_combustible.on('select',function(cmd,record){
+            me.combustible = record[0];
+            me.num_precio.setValue(me.combustible.get('PRECIO_VENTA'));
+        });
+
         me.num_litros.on('change',function(num,newvalue,oldvalue){
-            var sum =  Constantes.CONFIG_PRECIO_VENTA* newvalue;
-            me.num_importe.setValue(sum);
+//            alert(newvalue);
+            if(newvalue != null){
+                if(me.cbx_combustible.getValue() == null){
+                    Ext.Msg.alert("Error","Seleccione Primero un Tipo de Combustible");
+                }
+                else{
+                    var sum = me.combustible.get('PRECIO_VENTA') * newvalue;
+                    me.num_importe.setValue(sum);
+                }
+            }
         });
     }
 });

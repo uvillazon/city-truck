@@ -36,5 +36,22 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public CombustiblesModel ObtenerCombustible(System.Linq.Expressions.Expression<Func<SG_COMBUSTIBLES, bool>> criterio = null)
+        {
+            CombustiblesModel result = new CombustiblesModel();
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_COMBUSTIBLESManager(uow);
+                var result1 = manager.BuscarTodos(criterio).FirstOrDefault();
+                result.ID_COMBUSTIBLE = result1.ID_COMBUSTIBLE;
+                result.COMBUSTIBLE = result1.NOMBRE;
+                result.PRECIO_COMPRA = result1.PRECIO_COMPRA;
+                result.PRECIO_VENTA = result1.PRECIO_VENTA;
+            });
+            return result;
+        }
+
     }
 }

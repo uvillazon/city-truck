@@ -4,6 +4,7 @@
     cargarStores: true,
     columns: 2,
     editar : false,
+    permiso : false,
     initComponent: function () {
         var me = this;
         me.CargarComponentes();
@@ -107,26 +108,38 @@
                     },
                     success: function(response){
                         var str = Ext.JSON.decode(response.responseText);
+                        Constantes.CargarPrecios(str.GASOLINA , str.DIESEL );
+                        me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                        me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+                        me.gridVenta.getStore().load();
+
+                        me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                        me.gridVentaCredito.getStore().setExtraParam('TURNO',cmb.getValue());
+                        me.gridVentaCredito.getStore().load();
                         if (me.editar){
                             if(str.success == true){
-                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-                                me.gridVenta.getStore().load();
+//                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+//                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+//                                me.gridVenta.getStore().load();
+                                me.permiso = true;
                             }
                             else{
-                                Ext.Msg.alert("Error","Solo puede Editar los que ya tiene valores ");
-                                me.gridVenta.getStore().removeAll();
+//                                Ext.Msg.alert("Error","Solo puede Editar los que ya tiene valores ");
+//                                me.gridVenta.getStore().removeAll();
+                                me.permiso = false;
                             }
                         }
                         else{
                             if(str.success == false){
-                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-                                me.gridVenta.getStore().load();
+//                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+//                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+//                                me.gridVenta.getStore().load();
+                                me.permiso = true;
                             }
                             else{
-                                Ext.Msg.alert("Error","No puede Editar desde este Seccion");
-                                me.gridVenta.getStore().removeAll();
+//                                Ext.Msg.alert("Error","No puede Editar desde este Seccion");
+//                                me.gridVenta.getStore().removeAll();
+                                me.permiso = false;
                             }
                         }
                         
@@ -146,9 +159,8 @@
             me.CargarStoreFecha(newvalue);
         });
         me.gridVenta.on('edit', function(editor, e){
-//            alert(e.field);
+            
             if (e.field == "SAL_LITTER"){
-//                alert(e.value);gf
                 if(e.value < e.record.get('ENT_LITTER')){
                     Ext.Msg.alert("Error","El valor de salida no puede ser Menor al de la entrada");
                     e.record.set('SAL_LITTER',e.record.get('ENT_LITTER'));
@@ -158,6 +170,11 @@
                     me.CargarTotales();
                 }
             }
+        });
+        me.gridVenta.on('beforeedit', function(editor, e){
+           if (!me.permiso){
+                return false;
+           }
         });
         me.gridVenta.getStore().on('load',function(str,records,success){
             if(!success){
@@ -203,11 +220,11 @@
 
     },
     EventosVenta : function(btn){
-    var me = this;
+        var me = this;
         if(btn.getItemId() == "btn_GuardarCambios"){
             if(me.isValid() == true){
 //                alert("sadsadadsadsadad");
-                 Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
+                    Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
             }
             else{
                 
@@ -235,7 +252,7 @@
                     });
 
                     me.winVentaCredito.add(me.formVentaCredito);
-    //                me.winVentaCredito.btn_guardar.on('click', me.GuardarEgresos, this);
+                    me.winVentaCredito.btn_guardar.on('click', me.GuardarVentaCredito, this);
                     me.winVentaCredito.show();
             } 
             else {
@@ -246,5 +263,9 @@
         else{
             Ext.Msg.alert("Error","Seleccione la FECHA , TURNO y Escriba el Responsable");
         }
+    },
+    GuardarVentaCredito : function(){
+        var me = this;
+        Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", me.winVentaCredito, me.formVentaCredito, me.gridVentaCredito, "Esta Seguro de Guardar la venta de Credito", { FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}, me.winVentaCredito)
     }
 });

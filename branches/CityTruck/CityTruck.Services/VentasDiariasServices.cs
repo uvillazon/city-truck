@@ -170,5 +170,29 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public RespuestaSP SP_GrabarVentasCredito(SG_VENTAS_CREDITO p, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_VENTA_CREDITO(p.ID_VENTA, p.ID_CLIENTE, p.ID_COMBUSTIBLE, p.FECHA, p.TURNO, p.RESPONSABLE, p.PRECIO, p.IMPORTE_BS, p.IMPORTE_LTS, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
     }
 }
