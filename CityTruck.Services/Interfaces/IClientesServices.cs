@@ -13,6 +13,7 @@ namespace CityTruck.Services.Interfaces
         IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion);
         RespuestaSP SP_GrabarCliente(SG_CLIENTES cliente, int ID_USR);
         RespuestaSP SP_GrabarAmortizacion(SG_AMORTIZACIONES amortizacion, int ID_USR);
+        RespuestaSP SP_EliminarCliente(int ID_CLIENTE, int ID_USR);
 
     }
 }

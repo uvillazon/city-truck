@@ -85,5 +85,27 @@ namespace CityTruck.Services
             });
             return result;
         }
+        public RespuestaSP SP_EliminarCliente(int ID_CLIENTE, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_ELIMINAR_CLIENTE(ID_CLIENTE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
     }
 }
