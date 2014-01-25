@@ -10,7 +10,7 @@
     minValue: 0,
     margin: '1',
     allowNegative: false,
-    allowDecimals: false,
+    allowDecimals: true,
     disabledCls: 'DisabledClase',
     readOnlyCls: 'DisabledClaseReadOnly',
     width: 240,
@@ -20,6 +20,7 @@
     titulo: '',
     initComponent: function () {
         var me = this;
+        me.width = me.fieldLabel == '' ? me.width - me.labelWidth : me.width;
         if (me.titulo != '') {
             me.on('render', function (obj) {
                 obj.tip = Ext.create('Ext.tip.ToolTip', {

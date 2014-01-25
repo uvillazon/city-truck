@@ -285,5 +285,65 @@ namespace CityTruck.WebSite.Controllers
                 throw;
             }
         }
+        #region consumos
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumosModel> filtros, ConsumosModel Entidad)
+        {
+            filtros.Entidad = Entidad;
+            var cajas = _serVen.ObtenerConsumosPaginado(paginacion, filtros);
+            var formatData = cajas.Select(x => new
+            {
+                ID_CONSUMO = x.ID_CONSUMO,
+                ID_CLIENTE = x.ID_CLIENTE,
+                CLIENTE = x.SG_CLIENTES_CONSUMO.NOMBRE,
+                ID_COMBUSTIBLE = x.ID_COMBUSTIBLE,
+                COMBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
+                PRECIO = x.PRECIO,
+                IMPORTE_BS = x.IMPORTE_BS,
+                IMPORTE_LTS = x.IMPORTE_LTS,
+                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
+                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
+
+        [HttpPost]
+        public JsonResult GuardarConsumo(SG_CONSUMOS p)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+
+                respuestaRSP = _serVen.SP_GrabarConsumo(p, id_usr);
+
+
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult EliminarConsumo(int ID_CONSUMO)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serVen.SP_EliminarConsumo(ID_CONSUMO, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
     }
 }

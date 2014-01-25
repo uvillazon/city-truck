@@ -25,6 +25,10 @@ namespace CityTruck.Services.Interfaces
 
         IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros);
 
+        IEnumerable<SG_CONSUMOS> ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumosModel> filtros);
+        RespuestaSP SP_GrabarConsumo(SG_CONSUMOS p, int ID_USR);
+        RespuestaSP SP_EliminarConsumo(int ID_CONSUMO, int ID_USR);
+
         //SG_USUARIOS
     }
 }
