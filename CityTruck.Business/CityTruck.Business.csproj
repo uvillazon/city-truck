@@ -80,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\BDDDL25012014Ronald.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_EGRESO.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_CLIENTE.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_INGRESO.sql" />

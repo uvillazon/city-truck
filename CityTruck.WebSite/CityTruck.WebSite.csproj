@@ -72,10 +72,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppCityTruckController.cs" />
     <Compile Include="Controllers\CajasController.cs" />
+    <Compile Include="Controllers\ClientesConsumoController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CombustiblesController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
-    <Compile Include="Controllers\ClientesConsumoController.cs" />
     <Compile Include="Controllers\EgresosController.cs" />
     <Compile Include="Controllers\IngresosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -206,7 +206,6 @@
     <Content Include="App\Model\Combustibles\DetallesVenta.js" />
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
-    <Content Include="App\Model\ConsumoPropio\Clientes.js" />
     <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
     <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
@@ -257,9 +256,7 @@
     <Content Include="App\Store\Combustibles\DetallesVenta.js" />
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
-    <Content Include="App\Store\ConsumoPropio\Clientes.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
-    <Content Include="App\Store\ConsumoPropio\ClientesConsumo.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
@@ -335,7 +332,6 @@
     <Content Include="App\View\Clientes\Grids.js" />
     <Content Include="App\View\Clientes\Principal.js" />
     <Content Include="App\View\ConsumoPropio\FormConsumoPropio.js" />
-    <Content Include="App\View\ConsumoPropio\Forms.js" />
     <Content Include="App\View\ConsumoPropio\GridConsumoPropio.js" />
     <Content Include="App\View\ConsumoPropio\Principal.js" />
     <Content Include="App\View\CuentasPC\FormCuentaPC.js" />
