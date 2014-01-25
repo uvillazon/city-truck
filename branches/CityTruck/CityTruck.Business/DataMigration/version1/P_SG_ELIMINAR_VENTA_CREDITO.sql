@@ -11,6 +11,9 @@ IS
  v_errC SG_AUX_LOG_ERRORES.cod_error%type;
  v_errD SG_AUX_LOG_ERRORES.desc_error%type;
  v_id_log SG_AUX_LOG_ERRORES.id_log%type;
+ 
+ v_id_cliente  SG_VENTAS_CREDITO.ID_CLIENTE%type;
+ v_fecha SG_VENTAS_CREDITO.FECHA%type;
 BEGIN
 
   -- Validamos nulos
@@ -20,16 +23,23 @@ BEGIN
   -- Verificamos que el Código de NIVEL DE TENSION DE SUBESTACION no exista 
   
   IF v_res='0' THEN
-      
+      SELECT  ID_CLIENTE , FECHA INTO v_id_cliente , v_fecha FROM SG_VENTAS_CREDITO WHERE ID_VENTA  = p_ID_VENTA ;
       DELETE FROM  SG_VENTAS_CREDITO   where ID_VENTA  = p_ID_VENTA ;
-    
+      DELETE FROM SG_KARDEX_CLIENTE WHERE ID_OPERACION = p_ID_VENTA AND OPERACION  = 'VENTA CREDITO';
       -- Creamos el nodo en el arbol
       
-      COMMIT;
       
-      v_res := '1';
+      v_res := '0';
   END IF;
-    
+     if v_res = '0' THEN
+        v_res := '1';
+         P_SG_ACT_KARDEX_CLIENTE(v_id_cliente,v_fecha -1,p_id_usr,v_res);
+     COMMIT;
+
+    ELSE
+        ROLLBACK;
+        
+    END IF;
   p_res := v_res;
 EXCEPTION
   WHEN OTHERS THEN
