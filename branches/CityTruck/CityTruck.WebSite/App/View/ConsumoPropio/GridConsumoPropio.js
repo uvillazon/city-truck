@@ -92,8 +92,8 @@
 
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
-            { header: "C\u00F3digo", width: 100, sortable: false, dataIndex: "CODIGO" },
-            { header: "Nombre", width: 250, sortable: false, dataIndex: "NOMBRE" },
+            { header: "C\u00F3digo", width: 100, sortable: true, dataIndex: "CODIGO" },
+            { header: "Nombre", width: 250, sortable: false, dataIndex: "DESCRIPCION" },
             { header: "Consumo<br>(Litros)", width: 100, sortable: false, dataIndex: "CONSUMO" },
             { header: "Consumo<br>(Importe)", width: 100, sortable: false, dataIndex: "CONSUMO_BS" }
         ];

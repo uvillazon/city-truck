@@ -21,9 +21,8 @@ namespace CityTruck.WebSite.Controllers
         {
             _serCli = serCli;
         }
-
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerClientesPaginado(PagingInfo paginacion)
+        public ActionResult ObtenerClientesConsumoPaginado(PagingInfo paginacion)
         {
             var clientes = _serCli.ObtenerClientesPaginado(paginacion);
             var formatData = clientes.Select(x => new
@@ -32,6 +31,25 @@ namespace CityTruck.WebSite.Controllers
                 CODIGO = x.CODIGO,
                 NOMBRE = x.NOMBRE,
                 RESPONSABLE = x.RESPONSABLE,
+                CONSUMO_BS = x.CONSUMO_BS,
+                CONSUMO = x.CONSUMO,
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerClientesPaginado(PagingInfo paginacion)
+        {
+            _serCli.SP_ActualizarConsumos();
+            var clientes = _serCli.ObtenerClientesConsumoPaginado(paginacion);
+            var formatData = clientes.Select(x => new
+            {
+                ID_CLIENTE = x.ID_CLIENTE,
+                CODIGO = _serCli.ObtenerCliente(y => y.ID_CLIENTE == x.ID_CLIENTE).CODIGO,
+                NOMBRE = _serCli.ObtenerCliente(y => y.ID_CLIENTE == x.ID_CLIENTE).NOMBRE,
+                DESCRIPCION = x.CLIENTE + " - " + x.COMBUSTIBLE,
+                RESPONSABLE = _serCli.ObtenerCliente(y => y.ID_CLIENTE == x.ID_CLIENTE).RESPONSABLE,
                 CONSUMO_BS = x.CONSUMO_BS,
                 CONSUMO = x.CONSUMO,
             });

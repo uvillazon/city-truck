@@ -32,6 +32,10 @@
             me.CargarFormConsumo();
             me.EventosFormVentaCredito();
         }
+        else if (me.opcion == "formEditarVentaConsumo"){
+             me.title = "Registro Consumo";
+            me.CargarFormEditarVentaConsumo();
+        }
         else {
             Ext.Msg.alert("Error","No existe la funcion");
         }
@@ -440,7 +444,7 @@
     },
     CargarFormConsumo : function(){
         var me = this;
-        me.store_cliente = Ext.create('App.Store.ConsumoPropio.Clientes');
+        me.store_cliente = Ext.create('App.Store.ConsumoPropio.ClientesConsumo');
         me.cbx_cliente = Ext.create("App.Config.Componente.ComboAutoBase", {
             fieldLabel: "Cliente",
             name: "ID_CLIENTE",
@@ -493,6 +497,60 @@
             me.num_litros,
             me.num_importe
 
+        ];
+    },
+    CargarFormEditarVentaConsumo : function(){
+        var me = this;
+         me.txt_id_consumo = Ext.create("App.Config.Componente.TextFieldBase", {
+            name: "ID_CONSUMO",
+            hidden: true,
+        });
+         me.txt_id_combustible = Ext.create("App.Config.Componente.TextFieldBase", {
+            name: "ID_COMBUSIBLE",
+            hidden: true,
+        });
+        me.txt_cliente = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Cliente",
+            name: "CLIENTE",
+            readOnly : true,
+            maxValue: 999999999,
+        });
+        me.txt_combustible = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Combustible",
+            name: "COMBUSTIBLE",
+            readOnly : true,
+            maxValue: 999999999,
+        });
+        me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "Litros",
+            name: "IMPORTE_LTS",
+            allowDecimals: true,
+            maxValue: 999999999,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+        });
+        me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "Importe Total",
+            name: "IMPORTE_BS",
+            readOnly : true,
+            allowDecimals: true,
+            maxValue: 999999999,
+        });
+        me.num_precio = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Precio Litro ",
+            name: "PRECIO",
+            readOnly : true,
+            allowDecimals: true,
+            maxValue: 999999999,
+        });
+        me.items = [
+            me.txt_id_combustible,
+            me.txt_id_consumo,
+            me.txt_cliente,
+            me.txt_combustible,
+            me.num_precio,
+            me.num_litros,
+            me.num_importe
         ];
     }
 });
