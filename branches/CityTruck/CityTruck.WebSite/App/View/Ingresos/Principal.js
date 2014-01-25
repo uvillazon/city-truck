@@ -79,6 +79,7 @@
             me.formIngreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
+            me.formIngreso.ocualtarSaldos();
             me.formIngreso.CargarDatos(me.recordSelected);
             me.formIngreso.actualizarNuevoSaldo();
         }
@@ -91,7 +92,7 @@
 
     EliminarRegistro: function () {
         var me = this;
-        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar este Registro",{ID_INGRESO: me.id_ingreso}, me.grid, null);
+        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar este Registro", { ID_INGRESO: me.id_ingreso }, me.grid, null);
     }
 
 });
