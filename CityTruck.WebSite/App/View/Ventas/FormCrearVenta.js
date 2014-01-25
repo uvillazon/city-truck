@@ -113,6 +113,8 @@
                     success: function(response){
                         var str = Ext.JSON.decode(response.responseText);
                         Constantes.CargarPrecios(str.GASOLINA , str.DIESEL );
+                        me.txt_nombres.reset();
+                        me.txt_nombres.setValue(str.Responsable);
                         me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
                         me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
                         me.gridVenta.getStore().load();

@@ -212,6 +212,7 @@ namespace CityTruck.WebSite.Controllers
                     TURNO = TURNO,
                     FECHA = FECHA
                 };
+                string Responsable = _serVen.ObtenerVentaDiaria(x => x.FECHA == FECHA && x.TURNO == TURNO) == null ? "" : _serVen.ObtenerVentaDiaria(x => x.FECHA == FECHA && x.TURNO == TURNO).RESPONSABLE;
                 respuestaRSP = _serVen.SP_VerificarEdicion(pos, id_usr);
                 //retornamos el precio de venta de los combustibles
                 var Gas = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 1);
@@ -219,7 +220,7 @@ namespace CityTruck.WebSite.Controllers
                 var Die = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 2);
 
 
-                return Json(new { success = respuestaRSP.success, msg = respuestaRSP.msg, DIESEL = Die, GASOLINA = Gas });
+                return Json(new { success = respuestaRSP.success, msg = respuestaRSP.msg, DIESEL = Die, GASOLINA = Gas , Responsable = Responsable });
             }
             catch (Exception)
             {
