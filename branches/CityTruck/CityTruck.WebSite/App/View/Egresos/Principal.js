@@ -12,7 +12,7 @@
     },
     CargarComponentes: function () {
         var me = this;
-      
+
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearEgreso', 'Crear Egreso', Constantes.ICONO_CREAR, me.EventosEgreso, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
@@ -63,7 +63,7 @@
             default:
                 Ext.Msg.alert("Aviso", "No Existe el botton");
         }
-       
+
     }, MostrarFormEgreso: function (isNew, block) {
         var me = this;
         if (me.winCrearEgreso == null) {
@@ -80,7 +80,7 @@
             me.formEgreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formEgreso.CargarDatos(me.recordSelected, block);
+            me.formEgreso.CargarDatos(me.recordSelected);
             me.formEgreso.actualizarNuevoSaldo();
         }
         me.winCrearEgreso.show();
@@ -88,11 +88,11 @@
     GuardarEgresos: function () {
         var me = this;
         Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Guardar el Egreso?', null, me.winCrearEgreso);
-    }, 
+    },
 
     EliminarRegistro: function () {
         var me = this;
-        Funciones.AjaxRequestGrid("Egresos", "EliminarEgreso", me, "Esta Seguro de Eliminar este Registro",{ID_EGRESO: me.id_egreso }, me.grid, null);
+        Funciones.AjaxRequestGrid("Egresos", "EliminarEgreso", me, "Esta Seguro de Eliminar este Registro", { ID_EGRESO: me.id_egreso }, me.grid, null);
     }
 
 });

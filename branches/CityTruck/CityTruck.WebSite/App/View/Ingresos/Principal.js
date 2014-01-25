@@ -79,7 +79,7 @@
             me.formIngreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formIngreso.CargarDatos(me.recordSelected, block);
+            me.formIngreso.CargarDatos(me.recordSelected);
             me.formIngreso.actualizarNuevoSaldo();
         }
         me.winCrearIngreso.show();

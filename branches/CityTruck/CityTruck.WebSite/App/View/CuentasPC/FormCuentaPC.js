@@ -10,6 +10,13 @@
     
     CargarComponentes: function () {
         var me = this;
+        me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {
+            hidden: true,
+            fieldLabel: "Id",
+            readOnly: true,
+            name: "ID_CLIENTE"
+
+        });
         me.txt_codigo = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "C\u00F3digo",
             readOnly : true,
@@ -56,6 +63,7 @@
         });
 
         me.items = [
+            me.txt_id,
             me.txt_codigo,
             me.txt_empresa,
             me.num_nit,
