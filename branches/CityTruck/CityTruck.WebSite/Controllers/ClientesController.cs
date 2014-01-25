@@ -83,5 +83,22 @@ namespace CityTruck.WebSite.Controllers
             respuestaSP = _serCli.SP_GrabarCliente(cli, id_usr);
             return Json(respuestaSP);
         }
+
+        [HttpPost]
+        public JsonResult EliminarCliente(int ID_CLIENTE)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serCli.SP_EliminarCliente(ID_CLIENTE, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

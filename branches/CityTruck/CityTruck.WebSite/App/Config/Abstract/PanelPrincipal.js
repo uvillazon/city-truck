@@ -28,6 +28,12 @@ Ext.define("App.Config.Abstract.PanelPrincipal", {
         App.Config.ux.Printer.filtros = me.tituloImpresion;
         App.Config.ux.Printer.print(me.grid);
 
+    }, ImprimirReporteCustomGrid: function (grid) {
+        var me = this;
+        // alert(me.tituloImpresion);
+        App.Config.ux.Printer.filtros = me.tituloImpresion;
+        App.Config.ux.Printer.print(grid);
+
     },
     CargarPanelImagen : function( verReporte){
         var me = this;
