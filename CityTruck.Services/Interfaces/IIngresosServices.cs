@@ -15,6 +15,8 @@ namespace CityTruck.Services.Interfaces
 
         IEnumerable<SG_EGRESOS> ObtenerEgresosPaginado(PagingInfo paginacion);
         RespuestaSP SP_GrabarEgreso(SG_EGRESOS egr, int ID_USR);
+        RespuestaSP SP_EliminarIngreso(int ID_INGRESO, int ID_USR);
+        RespuestaSP SP_EliminarEgreso(int ID_EGRESO, int ID_USR);
 
 
     }

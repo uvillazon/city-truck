@@ -91,9 +91,7 @@
 
     EliminarRegistro: function () {
         var me = this;
-        alert("Eñiminar: "+ me.id_ingreso);
-
-        //Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
+        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar este Registro",{ID_INGRESO: me.id_ingreso}, me.grid, null);
     }
 
 });

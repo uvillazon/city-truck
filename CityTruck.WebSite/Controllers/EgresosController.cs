@@ -49,5 +49,22 @@ namespace CityTruck.WebSite.Controllers
             respuestaSP = _serIng.SP_GrabarEgreso(egr,id_usr);
             return Json(respuestaSP);
         }
+
+        [HttpPost]
+        public JsonResult EliminarEgreso(int ID_EGRESO)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serIng.SP_EliminarIngreso(ID_EGRESO, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
