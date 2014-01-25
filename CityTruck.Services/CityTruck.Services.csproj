@@ -49,10 +49,10 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="CajasServices.cs" />
+    <Compile Include="ClientesConsumoServices.cs" />
     <Compile Include="ComprasServices.cs" />
     <Compile Include="CombustiblesServices.cs" />
     <Compile Include="ClientesServices.cs" />
-    <Compile Include="ClientesConsumoServices.cs" />
     <Compile Include="Interfaces\IClientesConsumoServices.cs" />
     <Compile Include="Interfaces\IKardexClienteServices.cs" />
     <Compile Include="KardexClienteServices.cs" />
