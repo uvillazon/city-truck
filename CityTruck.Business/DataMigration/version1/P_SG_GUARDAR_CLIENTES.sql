@@ -45,8 +45,14 @@ IF v_res='0' THEN
         
         v_res := '0';
         
-    --ELSE
+    ELSE
         --editar
+        UPDATE SG_CLIENTES SET EMPRESA = p_empresa,
+                               NIT = p_nit,
+                               CONTACTO = p_contacto,
+                               TELEFONO = p_telefono,
+                               DIRECCION = p_dir,
+                               LIMITE  = p_limite WHERE ID_CLIENTE = p_id_cliente;
     END IF;
 END IF;
     if v_res = 0 THEN

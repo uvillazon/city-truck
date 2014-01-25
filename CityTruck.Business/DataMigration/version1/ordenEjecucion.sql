@@ -32,4 +32,8 @@ SG_CLIENTES_CONSUMO
 SG_CLIENTE_CONSUMO_COMBUSTIBLE
 P_SG_ACT_CONSUMO
 
+--------------------------------------------------
+25/01/2014 2:39am
+P_SG_GUARDAR_CLIENTES 
+
 

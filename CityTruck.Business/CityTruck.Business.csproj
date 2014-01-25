@@ -80,6 +80,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_EGRESO.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_CLIENTE.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_INGRESO.sql" />
     <Content Include="DataMigration\version1\SG_CLIENTE_CONSUMO_COMBUSTIBLE.sql" />
     <Content Include="DataMigration\version1\P_SG_ACT_CONSUMO.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_CLIENTE_CONSUMO.sql" />

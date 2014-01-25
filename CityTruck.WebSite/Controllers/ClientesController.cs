@@ -35,6 +35,11 @@ namespace CityTruck.WebSite.Controllers
                 EMPRESA = x.EMPRESA,
                 SALDO = x.SALDO,
                 CONSUMO = x.CONSUMO,
+                NIT = x.NIT,
+                CONTACTO = x.CONTACTO,
+                TELEFONO = x.TELEFONO,
+                DIRECCION = x.DIRECCION,
+                LIMITE = x.LIMITE,
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
