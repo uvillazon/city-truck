@@ -46,6 +46,8 @@
                 me.panelVentas.getForm().reset();
                 me.panelVentas.CargarStoreFecha();
                 me.panelVentas.gridVenta.getStore().removeAll();
+                me.panelVentas.gridVentaCredito.getStore().removeAll();
+                me.panelVentas.gridVentaConsumo.getStore().removeAll();
                 me.winCrearVenta.show();
             }
         }

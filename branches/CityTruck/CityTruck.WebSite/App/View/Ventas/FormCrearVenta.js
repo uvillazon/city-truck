@@ -403,7 +403,7 @@
         formVentaCredito.EventosFormEditarVentaCredito();
         win.add(formVentaCredito);
         win.btn_guardar.on('click', function(){
-            Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", win, formVentaCredito, me.gridVentaConsumo, "Esta Seguro de Editar el CONSUMO.", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
+            Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", win, formVentaCredito, me.gridVentaCredito, "Esta Seguro de Editar el CONSUMO.", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
         });
         win.show();
     },

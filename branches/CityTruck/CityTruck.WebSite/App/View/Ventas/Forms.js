@@ -365,7 +365,11 @@
             hidden: true,
         });
          me.txt_id_combustible = Ext.create("App.Config.Componente.TextFieldBase", {
-            name: "ID_COMBUSIBLE",
+            name: "ID_COMBUSTIBLE",
+            hidden: true,
+        });
+         me.txt_id_cliente = Ext.create("App.Config.Componente.TextFieldBase", {
+            name: "ID_CLIENTE",
             hidden: true,
         });
         me.txt_cliente = Ext.create("App.Config.Componente.TextFieldBase", {
@@ -404,6 +408,7 @@
         });
         me.items = [
             me.txt_id_combustible,
+            me.txt_id_cliente,
             me.txt_id_venta,
             me.txt_cliente,
             me.txt_combustible,
