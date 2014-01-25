@@ -2036,6 +2036,68 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_ELIMINAR_CLIENTE_CONSUMO", p_ID_CLIENTEParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_INGRESO(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_IDParameter;
+            if (p_ID.HasValue)
+            {
+                p_IDParameter = new ObjectParameter("P_ID", p_ID);
+            }
+            else
+            {
+                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_INGRESO", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_EGRESO(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_IDParameter;
+            if (p_ID.HasValue)
+            {
+                p_IDParameter = new ObjectParameter("P_ID", p_ID);
+            }
+            else
+            {
+                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_EGRESO", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }
