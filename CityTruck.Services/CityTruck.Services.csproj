@@ -52,6 +52,8 @@
     <Compile Include="ComprasServices.cs" />
     <Compile Include="CombustiblesServices.cs" />
     <Compile Include="ClientesServices.cs" />
+    <Compile Include="ClientesConsumoServices.cs" />
+    <Compile Include="Interfaces\IClientesConsumoServices.cs" />
     <Compile Include="Interfaces\IKardexClienteServices.cs" />
     <Compile Include="KardexClienteServices.cs" />
     <Compile Include="KardexEfectivoServices.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Interfaces\IIngresosServices.cs" />
     <Compile Include="Interfaces\ICajasServices.cs" />
     <Compile Include="Model\CombustiblesModel.cs" />
+    <Compile Include="Model\ConsumosModel.cs" />
     <Compile Include="Model\VentasCreditoModel.cs" />
     <Compile Include="Model\KardexClienteModel.cs" />
     <Compile Include="Model\KardexEfectivoModel.cs" />

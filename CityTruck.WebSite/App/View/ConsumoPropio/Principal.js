@@ -14,16 +14,16 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearComsumoPropio', 'Nuevo', Constantes.ICONO_CREAR, me.EventosConsumoPropio, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
+        //        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosConsumoPropio, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosConsumoPropio, me.toolbar, this, null, true);
 
         me.grid = Ext.create('App.View.ConsumoPropio.GridConsumoPropio', {
             region: 'center',
             height: 350,
             imagenes: false,
             opcion: 'GridConsumoPropio',
-            toolbar:me.toolbar
+            toolbar: me.toolbar
         });
         me.items = [me.grid];
 
@@ -33,35 +33,43 @@
     },
     onItemClick: function (view, record, item, index, e) {
         var me = this;
+        me.record = record;
         me.id = record.get('ID_CONSUMO_PROPIO');
     },
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
         Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        //        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
     },
     EventosConsumoPropio: function (btn) {
         var me = this;
-        if (btn.getItemId() == "btn_CrearComsumoPropio") {
-            if (me.winCrearCuentaPC == null) {
-                me.winCrearCuentaPC = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
-                me.formCuentaPC = Ext.create("App.View.ConsumoPropio.FormConsumoPropio", {
-                    columns: 1,
-                    title: 'Formulario de Registro de Consumo Propio ',
-                    botones: false
-                })
-
-                me.winCrearCuentaPC.add(me.formCuentaPC);
-                me.winCrearCuentaPC.show();
-            } else {
-                me.formCuentaPC.getForm().reset();
-                me.winCrearCuentaPC.show();
+        if (btn.getItemId() == "btn_CrearComsumoPropio" || btn.getItemId() == "btn_Editar") {
+            var me = this;
+            var win = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Cliente' });
+            var formcliente = Ext.create("App.View.ConsumoPropio.Forms", {
+                columns: 1,
+                botones: false,
+                title: 'Formulario de Registro de Cliente Consumo',
+                opcion: 'FormCliente'
+            });
+            //            formcliente.EventosFormEditarVentaCredito();
+            if (btn.getItemId() == "btn_Editar") {
+                formcliente.CargarDatos(me.record);
+                win.btn_guardar.setText("Editar Cliente Consumo");
             }
-        } else {
+            win.add(formcliente);
+            win.btn_guardar.on('click', function () {
+                Funciones.AjaxRequestWin("ClientesConsumo", "GuardarCliente", win, formcliente, me.grid, "Esta Seguro de Guardar el Cliente", null, win);
+            });
+            win.show();
+        }
+        else if (btn.getItemId() == "btn_Eliminar") {
+            Funciones.AjaxRequestGrid("ClientesConsumo", "EliminarCliente", me, "Esta Seguro de Eliminar el Cliente", { ID_CLIENTE: me.record.get('ID_CLIENTE') }, me.grid, null);
+        }
+        else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
     }
-
 });
