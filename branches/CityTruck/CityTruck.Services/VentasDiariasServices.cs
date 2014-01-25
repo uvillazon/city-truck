@@ -283,5 +283,18 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public SG_VENTAS_DIARIAS ObtenerVentaDiaria(Expression<Func<SG_VENTAS_DIARIAS, bool>> criterio)
+        {
+            SG_VENTAS_DIARIAS result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_VENTAS_DIARIASManager(uow);
+                result = managerVentas.BuscarTodos(criterio).FirstOrDefault(); ;
+                
+            });
+            return result;
+        }
     }
 }

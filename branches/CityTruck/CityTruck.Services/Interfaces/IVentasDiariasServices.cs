@@ -15,6 +15,8 @@ namespace CityTruck.Services.Interfaces
         IEnumerable<SG_VENTAS_DIARIAS> ObtenerVentasDiariasPorCriterio(Expression<Func<SG_VENTAS_DIARIAS, bool>> criterio);
         IEnumerable<SG_AJUSTE_PRECIO> ObtenerAjustesPrecios(Expression<Func<SG_AJUSTE_PRECIO, bool>> criterio);
 
+        SG_VENTAS_DIARIAS ObtenerVentaDiaria(Expression<Func<SG_VENTAS_DIARIAS, bool>> criterio);
+
         RespuestaSP SP_GrabarVentasDiarias(SG_POS_TURNOS p, int ID_USR);
 
         RespuestaSP SP_GrabarVentasDiarias(string Ventas, int ID_USR);

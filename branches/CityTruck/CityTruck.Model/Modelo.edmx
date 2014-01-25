@@ -2093,7 +2093,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Modelo" ZoomLevel="45">
+      <Diagram Name="Modelo" ZoomLevel="86">
         <EntityTypeShape EntityType="Model.SG_LISTAS" Width="1.5" PointX="0.5" PointY="1" Height="2.5571907552083326" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_LISTAS_ITEMS" Width="1.5" PointX="2.75" PointY="0.5" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_MENU_OPCIONES" Width="1.5" PointX="0.75" PointY="10.5" Height="2.9417936197916639" IsExpanded="true" />
