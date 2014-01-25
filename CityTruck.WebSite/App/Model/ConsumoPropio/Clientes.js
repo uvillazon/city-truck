@@ -7,6 +7,7 @@
             { type: "float", name: "CONSUMO" },
             { type: "float", name: "CONSUMO_BS" },
             { type: "string", name: "NOMBRE" },
+            { type: "string", name: "DESCRIPCION" },
             { type: "string", name: "RESPONSABLE" }
         ]
 });

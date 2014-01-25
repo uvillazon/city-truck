@@ -440,6 +440,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_CONSUMOS> _SG_CONSUMOS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_CLIENTE_CONSUMO_COMBUSTIBLE> SG_CLIENTE_CONSUMO_COMBUSTIBLE
+        {
+            get
+            {
+                if ((_SG_CLIENTE_CONSUMO_COMBUSTIBLE == null))
+                {
+                    _SG_CLIENTE_CONSUMO_COMBUSTIBLE = base.CreateObjectSet<SG_CLIENTE_CONSUMO_COMBUSTIBLE>("SG_CLIENTE_CONSUMO_COMBUSTIBLE");
+                }
+                return _SG_CLIENTE_CONSUMO_COMBUSTIBLE;
+            }
+        }
+        private ObjectSet<SG_CLIENTE_CONSUMO_COMBUSTIBLE> _SG_CLIENTE_CONSUMO_COMBUSTIBLE;
 
         #endregion
         #region Métodos AddTo
@@ -618,6 +634,14 @@ namespace CityTruck.Model
         public void AddToSG_CONSUMOS(SG_CONSUMOS sG_CONSUMOS)
         {
             base.AddObject("SG_CONSUMOS", sG_CONSUMOS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_CLIENTE_CONSUMO_COMBUSTIBLE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_CLIENTE_CONSUMO_COMBUSTIBLE(SG_CLIENTE_CONSUMO_COMBUSTIBLE sG_CLIENTE_CONSUMO_COMBUSTIBLE)
+        {
+            base.AddObject("SG_CLIENTE_CONSUMO_COMBUSTIBLE", sG_CLIENTE_CONSUMO_COMBUSTIBLE);
         }
 
         #endregion
@@ -2098,6 +2122,15 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_ELIMINAR_EGRESO", p_IDParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ACT_CONSUMO(ObjectParameter p_RES)
+        {
+            return base.ExecuteFunction("P_SG_ACT_CONSUMO", p_RES);
+        }
 
         #endregion
     }
@@ -3117,6 +3150,205 @@ namespace CityTruck.Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_CLIENTE_CONSUMO_COMBUSTIBLE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_CLIENTE_CONSUMO_COMBUSTIBLE : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_CLIENTE_CONSUMO_COMBUSTIBLE.
+        /// </summary>
+        /// <param name="iD_TABLA">Valor inicial de la propiedad ID_TABLA.</param>
+        public static SG_CLIENTE_CONSUMO_COMBUSTIBLE CreateSG_CLIENTE_CONSUMO_COMBUSTIBLE(global::System.Int32 iD_TABLA)
+        {
+            SG_CLIENTE_CONSUMO_COMBUSTIBLE sG_CLIENTE_CONSUMO_COMBUSTIBLE = new SG_CLIENTE_CONSUMO_COMBUSTIBLE();
+            sG_CLIENTE_CONSUMO_COMBUSTIBLE.ID_TABLA = iD_TABLA;
+            return sG_CLIENTE_CONSUMO_COMBUSTIBLE;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_TABLA
+        {
+            get
+            {
+                return _ID_TABLA;
+            }
+            set
+            {
+                if (_ID_TABLA != value)
+                {
+                    OnID_TABLAChanging(value);
+                    ReportPropertyChanging("ID_TABLA");
+                    _ID_TABLA = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_TABLA");
+                    OnID_TABLAChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_TABLA;
+        partial void OnID_TABLAChanging(global::System.Int32 value);
+        partial void OnID_TABLAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID_CLIENTE
+        {
+            get
+            {
+                return _ID_CLIENTE;
+            }
+            set
+            {
+                OnID_CLIENTEChanging(value);
+                ReportPropertyChanging("ID_CLIENTE");
+                _ID_CLIENTE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_CLIENTE");
+                OnID_CLIENTEChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID_CLIENTE;
+        partial void OnID_CLIENTEChanging(Nullable<global::System.Int32> value);
+        partial void OnID_CLIENTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> ID_COMBUSTIBLE
+        {
+            get
+            {
+                return _ID_COMBUSTIBLE;
+            }
+            set
+            {
+                OnID_COMBUSTIBLEChanging(value);
+                ReportPropertyChanging("ID_COMBUSTIBLE");
+                _ID_COMBUSTIBLE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_COMBUSTIBLE");
+                OnID_COMBUSTIBLEChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _ID_COMBUSTIBLE;
+        partial void OnID_COMBUSTIBLEChanging(Nullable<global::System.Int16> value);
+        partial void OnID_COMBUSTIBLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CLIENTE
+        {
+            get
+            {
+                return _CLIENTE;
+            }
+            set
+            {
+                OnCLIENTEChanging(value);
+                ReportPropertyChanging("CLIENTE");
+                _CLIENTE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CLIENTE");
+                OnCLIENTEChanged();
+            }
+        }
+        private global::System.String _CLIENTE;
+        partial void OnCLIENTEChanging(global::System.String value);
+        partial void OnCLIENTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String COMBUSTIBLE
+        {
+            get
+            {
+                return _COMBUSTIBLE;
+            }
+            set
+            {
+                OnCOMBUSTIBLEChanging(value);
+                ReportPropertyChanging("COMBUSTIBLE");
+                _COMBUSTIBLE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("COMBUSTIBLE");
+                OnCOMBUSTIBLEChanged();
+            }
+        }
+        private global::System.String _COMBUSTIBLE;
+        partial void OnCOMBUSTIBLEChanging(global::System.String value);
+        partial void OnCOMBUSTIBLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> CONSUMO
+        {
+            get
+            {
+                return _CONSUMO;
+            }
+            set
+            {
+                OnCONSUMOChanging(value);
+                ReportPropertyChanging("CONSUMO");
+                _CONSUMO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CONSUMO");
+                OnCONSUMOChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _CONSUMO;
+        partial void OnCONSUMOChanging(Nullable<global::System.Decimal> value);
+        partial void OnCONSUMOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> CONSUMO_BS
+        {
+            get
+            {
+                return _CONSUMO_BS;
+            }
+            set
+            {
+                OnCONSUMO_BSChanging(value);
+                ReportPropertyChanging("CONSUMO_BS");
+                _CONSUMO_BS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CONSUMO_BS");
+                OnCONSUMO_BSChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _CONSUMO_BS;
+        partial void OnCONSUMO_BSChanging(Nullable<global::System.Decimal> value);
+        partial void OnCONSUMO_BSChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

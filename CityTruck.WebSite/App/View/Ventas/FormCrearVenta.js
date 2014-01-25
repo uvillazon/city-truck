@@ -60,6 +60,8 @@
 
         me.toolbarConsumo = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearConsumo', 'Crear Consumo', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarConsumo, this);
+        Funciones.CrearMenu('btn_EditarConsumo', 'Editar', Constantes.ICONO_EDITAR, me.EventosVenta, me.toolbarConsumo, this);
+        Funciones.CrearMenu('btn_BajaConsumo', 'Eliminar', Constantes.ICONO_BAJA, me.EventosVenta, me.toolbarConsumo, this);
         me.gridVentaConsumo.addDocked(me.toolbarConsumo, 1);
 //        me.formResumen = Ext.create("App.View.Ventas.Forms", {
 //            opcion: 'formResumen',
@@ -114,10 +116,15 @@
                         me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
                         me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
                         me.gridVenta.getStore().load();
-
+//                        alert('entro');
                         me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
                         me.gridVentaCredito.getStore().setExtraParam('TURNO',cmb.getValue());
                         me.gridVentaCredito.getStore().load();
+
+                        me.gridVentaConsumo.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                        me.gridVentaConsumo.getStore().setExtraParam('TURNO',cmb.getValue());
+                        me.gridVentaConsumo.getStore().load();
+                        
                         if (me.editar){
                             if(str.success == true){
 //                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
@@ -182,8 +189,64 @@
             if(!success){
                 str.removeAll();
                 Ext.Msg.alert("Error","No puede generar los pos ventas seguir el ciclo DIA TARDE y NOCHE por fecha");
+            }else{
+                me.CargarTotales();
             }
         });
+        me.gridVentaCredito.getStore().on('load',function(str,records,success){
+            if(!success){
+                str.removeAll();
+                Ext.Msg.alert("Error","Ocurrio algun Error Informar a TI.");
+            }
+            else{
+                me.CargarTotalesCredito();
+            }
+        });
+    },
+    CargarTotalesCredito : function(){
+        var me = this;
+        var totalGasolina = 0;
+        var totalDiesel = 0;
+        me.gridVenta.getStore().each(function(record){
+            if(record.get('CODIGO')== 'GASOLINA'){
+                totalGasolina= totalGasolina +  record.get('TOTAL');
+            }
+            else if(record.get('CODIGO')== 'DIESEL'){
+                totalDiesel= totalDiesel +  record.get('TOTAL');
+            }
+            else{
+                alert('No existe Codigo falta Implementar');
+            }
+
+        });
+        var totalGasolinaBs = totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS;
+        var totalDieselBs = totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS;
+        var totalGasolinaCreditoBs = 0;
+        var totalDieselCreditoBs = 0;
+        me.gridVentaCredito.getStore().each(function(record){
+            if(record.get('COMBUSTIBLE')== 'GASOLINA'){
+                totalGasolinaCreditoBs= totalGasolinaCreditoBs +  record.get('GASOLINA');
+            }
+            else if(record.get('COMBUSTIBLE')== 'DIESEL'){
+                totalDieselCreditoBs= totalDieselCreditoBs +  record.get('DIESEL');
+            }
+            else{
+                alert('No existe Codigo falta Implementar');
+            }
+
+        });
+        me.formSubTotales.txt_gasolina_efectivo.setValue(totalGasolinaBs);
+        me.formSubTotales.txt_diesel_efectivo.setValue(totalDieselBs);
+        
+        me.formSubTotales.txt_gasolina_credito.setValue(totalGasolinaCreditoBs);
+        me.formSubTotales.txt_diesel_credito.setValue(totalDieselCreditoBs);
+        me.formSubTotales.txt_gasolina01.setValue(totalGasolinaBs + totalGasolinaCreditoBs);
+        me.formSubTotales.txt_diesel01.setValue(totalDieselBs + totalDieselCreditoBs);
+        me.formSubTotales.txt_total01.setValue(totalDieselBs + totalDieselCreditoBs + totalGasolinaBs + totalGasolinaCreditoBs);
+        me.formSubTotales.txt_total_efectivo.setValue(totalGasolinaBs + totalDieselBs);
+        me.formSubTotales.txt_total_credito.setValue(totalDieselCreditoBs + totalGasolinaCreditoBs);
+
+
     },
     CargarTotales : function(){
         var me = this;
@@ -218,6 +281,8 @@
         me.formSubTotales.txt_total.setValue(totalDiesel + totalGasolina);
         me.formSubTotales.txt_total_Bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
         me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
+
+         me.formSubTotales.txt_utilidad.setValue((totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS) - (totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS) );
         
 
     },
@@ -255,6 +320,28 @@
             }
             
         }
+        else if(btn.getItemId() == 'btn_CrearConsumo'){
+            me.CrearConsumo();
+        }
+        else if (btn.getItemId() == "btn_EditarConsumo"){
+            var datos =  me.gridVentaConsumo.getSelectionModel().getSelection()[0];
+            if (datos != null){
+                me.EditarVentaConsumo(datos);
+            }
+            else{
+                Ext.Msg.alert("Error","Seleccione una venta para Editar");
+            }
+        }
+        else if (btn.getItemId() == "btn_BajaConsumo"){
+            var datos =  me.gridVentaConsumo.getSelectionModel().getSelection()[0];
+            if (datos != null){
+                 Funciones.AjaxRequestGrid("Ventas", "EliminarConsumo", me, "Esta Seguro de Eliminar el Consumo", {ID_CONSUMO : datos.get('ID_CONSUMO') }, me.gridVentaConsumo,null);
+            }
+            else{
+                Ext.Msg.alert("Error","Seleccione una venta para Editar");
+            }
+            
+        }
         else{
             Ext.Msg.alert("Error","No existe la opcion");
         }
@@ -285,6 +372,25 @@
             Ext.Msg.alert("Error","Seleccione la FECHA , TURNO y Escriba el Responsable");
         }
     },
+    CrearConsumo : function(){
+        var me = this;
+        if(me.isValid()){
+            var win =Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Consumo' });
+            var formConsumo = Ext.create("App.View.Ventas.Forms", {
+                columns: 1,
+                botones: false,
+                opcion : 'formConsumo'
+            });
+            win.add(formConsumo);
+            win.btn_guardar.on('click', function(){
+                Funciones.AjaxRequestWin("Ventas", "GuardarConsumo", win, formConsumo, me.gridVentaConsumo, "Esta Seguro de Editar la venta de Credito", { FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}, win);
+            });
+            win.show();
+            }
+        else{
+            Ext.Msg.alert("Error","Seleccione la FECHA , TURNO y Escriba el RESPONSABLE");
+        }
+    },
     EditarVentaCredito : function(datos){
         var me = this;
         var win =Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Editar Venta a Credito' });
@@ -297,7 +403,23 @@
         formVentaCredito.EventosFormEditarVentaCredito();
         win.add(formVentaCredito);
         win.btn_guardar.on('click', function(){
-            Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", win, formVentaCredito, me.gridVentaCredito, "Esta Seguro de Editar la venta de Credito", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
+            Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", win, formVentaCredito, me.gridVentaConsumo, "Esta Seguro de Editar el CONSUMO.", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
+        });
+        win.show();
+    },
+    EditarVentaConsumo : function(datos){
+        var me = this;
+        var win =Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Editar Consumo' });
+        var formVentaConsumo = Ext.create("App.View.Ventas.Forms", {
+            columns: 1,
+            botones: false,
+            opcion : 'formEditarVentaConsumo'
+        });
+        formVentaConsumo.CargarDatos(datos);
+        formVentaConsumo.EventosFormEditarVentaCredito();
+        win.add(formVentaConsumo);
+        win.btn_guardar.on('click', function(){
+            Funciones.AjaxRequestWin("Ventas", "GuardarConsumo", win, formVentaConsumo, me.gridVentaConsumo, "Esta Seguro de Editar el Consumo", /*{ FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}*/null, win);
         });
         win.show();
     },

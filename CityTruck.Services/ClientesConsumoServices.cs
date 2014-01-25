@@ -83,5 +83,58 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public RespuestaSP SP_ActualizarConsumos()
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_ACT_CONSUMO( p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_CLIENTE_CONSUMO_COMBUSTIBLE> ObtenerClientesConsumoPaginado(PagingInfo paginacion)
+        {
+            IQueryable<SG_CLIENTE_CONSUMO_COMBUSTIBLE> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_CLIENTE_CONSUMO_COMBUSTIBLEManager(uow);
+                result = manager.BuscarTodos();
+
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+
+            });
+            return result;
+        }
+
+
+        public SG_CLIENTES_CONSUMO ObtenerCliente(System.Linq.Expressions.Expression<Func<SG_CLIENTES_CONSUMO, bool>> criterio = null)
+        {
+            SG_CLIENTES_CONSUMO result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_CLIENTES_CONSUMOManager(uow);
+                result = manager.BuscarTodos(criterio).FirstOrDefault();
+
+            });
+            return result;
+        }
     }
 }

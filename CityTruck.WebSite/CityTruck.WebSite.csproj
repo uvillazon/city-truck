@@ -259,6 +259,7 @@
     <Content Include="App\Store\Clientes\Kardex.js" />
     <Content Include="App\Store\ConsumoPropio\Clientes.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
+    <Content Include="App\Store\ConsumoPropio\ClientesConsumo.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
