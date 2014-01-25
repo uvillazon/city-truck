@@ -722,6 +722,16 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_AMORTIZACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_A" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_CONCEPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_CAJAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_CAJA" Type="number" Mode="In" />
           <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
@@ -1012,16 +1022,6 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="P_SG_GUARDAR_AMORTIZACION">
-            <Parameter Name="P_ID_A" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_CLIENTE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
-            <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
-            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="P_SG_VERIFICAR_EDICION">
             <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
             <Parameter Name="P_TURNO" Mode="In" Type="String" />
@@ -1119,6 +1119,16 @@
           </FunctionImport>
           <FunctionImport Name="P_SG_ELIMINAR_CLIENTE">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_AMORTIZACION">
+            <Parameter Name="P_ID_A" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CLIENTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
+            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
@@ -2061,6 +2071,7 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_ACT_CONSUMO" FunctionName="Model.Store.P_SG_ACT_CONSUMO" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_CLIENTE" FunctionName="Model.Store.P_SG_ELIMINAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AMORTIZACION" FunctionName="Model.Store.P_SG_GUARDAR_AMORTIZACION" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
