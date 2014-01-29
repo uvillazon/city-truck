@@ -59,7 +59,7 @@ namespace CityTruck.WebSite.Infraestructura
             //var uow = new IUnitOfWork<CityTruckContext>();
             //Bind<ISG_LISTASManager>().To<SG_LISTASManager>().WithConstructorArgument("UnitOfWork", uow);
             //Bind<IRepositorioMN_LISTAS>().To<RepositorioMN_LISTAS>().WithConstructorArgument("connectionString", ConnectionString);
-            Bind<IListasServices>().To<ListasServices>();
+            Bind<IListasServices>().To<ListasServices>().WithConstructorArgument("conexion", "Conexxion q12312");
             Bind<IMenuOpcionesServices>().To<MenuOpcionesServices>();
             Bind<IUsuariosServices>().To<UsuariosServices>();
             Bind<IVentasDiariasServices>().To<VentasDiariasServices>();

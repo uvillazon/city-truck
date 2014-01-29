@@ -694,6 +694,16 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_ELIMINAR_EGRESO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="P_SG_ELIMINAR_INGRESO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_ELIMINAR_VENTA_CREDITO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_VENTA" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
@@ -1103,16 +1113,6 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="P_SG_ELIMINAR_INGRESO">
-            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="P_SG_ELIMINAR_EGRESO">
-            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
           <EntitySet Name="SG_CLIENTE_CONSUMO_COMBUSTIBLE" EntityType="Model.SG_CLIENTE_CONSUMO_COMBUSTIBLE" />
           <FunctionImport Name="P_SG_ACT_CONSUMO">
           <Parameter Name="P_RES" Mode="Out" Type="String" />
@@ -1129,6 +1129,16 @@
             <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
             <Parameter Name="P_CONCEPTO" Mode="In" Type="String" />
             <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_ELIMINAR_EGRESO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_ELIMINAR_INGRESO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
@@ -2072,6 +2082,8 @@
           <FunctionImportMapping FunctionImportName="P_SG_ACT_CONSUMO" FunctionName="Model.Store.P_SG_ACT_CONSUMO" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_CLIENTE" FunctionName="Model.Store.P_SG_ELIMINAR_CLIENTE" />
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AMORTIZACION" FunctionName="Model.Store.P_SG_GUARDAR_AMORTIZACION" />
+          <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_EGRESO" FunctionName="Model.Store.P_SG_ELIMINAR_EGRESO" />
+          <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_INGRESO" FunctionName="Model.Store.P_SG_ELIMINAR_INGRESO" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

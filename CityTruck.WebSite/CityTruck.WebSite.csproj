@@ -332,6 +332,7 @@
     <Content Include="App\View\Clientes\Grids.js" />
     <Content Include="App\View\Clientes\Principal.js" />
     <Content Include="App\View\ConsumoPropio\FormConsumoPropio.js" />
+    <Content Include="App\View\ConsumoPropio\Forms.js" />
     <Content Include="App\View\ConsumoPropio\GridConsumoPropio.js" />
     <Content Include="App\View\ConsumoPropio\Principal.js" />
     <Content Include="App\View\CuentasPC\FormCuentaPC.js" />

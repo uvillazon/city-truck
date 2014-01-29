@@ -9,6 +9,7 @@ namespace CityTruck.Services
 {
     public class BaseService
     {
+        public string conexion;
         public void ExecuteManager(Action<IUnitOfWork> coreMethod, Action postCommit = null)
         {
             var uow = new UnitOfWork<CityTruckContext>();

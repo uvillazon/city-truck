@@ -22,6 +22,9 @@ namespace CityTruck.Services
         {
             //_manListas = manListas;
         }
+        public ListasServices(string conexion) {
+            this.conexion = conexion;
+        }
         public DataPaged<SG_LISTAS> ObtenerListas(PagingInfo paginacion, FiltrosModel<SG_LISTAS> filtros)
         {
             DataPaged<SG_LISTAS> resultado = new DataPaged<SG_LISTAS>();
