@@ -18,6 +18,12 @@
         me.store_precio.setExtraParams({FECHA : fecha});
         me.store_precio.load();
     },
+    CargarEditarVenta : function(venta){
+        var me = this;
+        me.venta = venta;
+        me.date_fecha.setValue(me.venta.get('FECHA'));
+//        me.date_fecha.setReadOnly(true);
+    },
     CargarComponentes: function () {
         var me = this;
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {

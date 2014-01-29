@@ -27,7 +27,19 @@
         });
         me.items = [me.grid
         ];
+        me.grid.on('itemclick', me.onItemClick, this);
+        me.grid.getSelectionModel().on('selectionchange', me.onSelectChange, this);
 
+    },
+    onItemClick: function (view, record, item, index, e) {
+        var me = this;
+        me.record = record;
+        me.id = record.get('ID_VENTA');
+    },
+    onSelectChange: function (selModel, selections) {
+        var me = this;
+        var disabled = selections.length === 0;
+        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
     },
     EventosVenta: function (btn) {
         var me = this;
@@ -38,8 +50,7 @@
                     columns: 4,
                     title: 'Formulario de Registro de Ventas ',
                     botones: false
-                })
-                me.panelVentas.CargarStoreFecha();
+                });
                 me.winCrearVenta.add(me.panelVentas);
                 me.winCrearVenta.show();
             } else {
@@ -49,6 +60,27 @@
                 me.panelVentas.gridVentaCredito.getStore().removeAll();
                 me.panelVentas.gridVentaConsumo.getStore().removeAll();
                 me.winCrearVenta.show();
+            }
+        }
+        else if (btn.getItemId() == "btn_Detalle") {
+            if (me.winEditarVenta == null) {
+                me.winEditarVenta = Ext.create("App.Config.Abstract.Window");
+                me.panelVentasEditar = Ext.create("App.View.Ventas.FormCrearVenta", {
+                    columns: 4,
+                    title: 'Formulario de Registro de Ventas ',
+                    botones: false,
+                    editar: true
+                });
+                me.panelVentasEditar.CargarEditarVenta(me.record);
+                me.winEditarVenta.add(me.panelVentasEditar);
+                me.winEditarVenta.show();
+            } else {
+                me.panelVentasEditar.getForm().reset();
+                me.panelVentasEditar.CargarEditarVenta(me.record);
+                me.panelVentasEditar.gridVenta.getStore().removeAll();
+                me.panelVentasEditar.gridVentaCredito.getStore().removeAll();
+                me.panelVentasEditar.gridVentaConsumo.getStore().removeAll();
+                me.winEditarVenta.show();
             }
         }
         else {
