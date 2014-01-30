@@ -104,8 +104,9 @@
 
         me.txt_nuevo_saldo.setValue(res);
     },
-    ocualtarSaldos: function () {
-       // me.num_saldo.setVisible(false);
-        //me.txt_nuevo_saldo.setVisible(false);
+    ocultarSaldos: function () {
+        var me = this;
+       me.num_saldo.setVisible(false);
+       me.txt_nuevo_saldo.setVisible(false);
     }
 });
