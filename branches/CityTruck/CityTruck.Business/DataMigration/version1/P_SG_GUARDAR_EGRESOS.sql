@@ -12,6 +12,7 @@ IS
  v_cnt NUMBER:=0;
  v_res VARCHAR2(1000):='0';
  v_id_egreso  SG_EGRESOS.ID_EGRESO%type;
+ v_id_caja SG_EGRESOS.ID_CAJA%type;
  v_nro  SG_EGRESOS.NRO_COMP%type;
  v_errC SG_AUX_LOG_ERRORES.cod_error%type;
  v_errD SG_AUX_LOG_ERRORES.desc_error%type;
@@ -44,13 +45,15 @@ IF v_res='0' THEN
         END IF;
     ELSE
         --editar
+        
+        SELECT NRO_COMP, ID_CAJA INTO v_nro, v_id_caja FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso;
+        
         UPDATE SG_EGRESOS SET FECHA=p_fecha, 
                                CONCEPTO = p_concepto, 
                                ID_CAJA = p_id_caja, 
                                IMPORTE = p_importe
         WHERE ID_EGRESO = p_id_egreso;
         
-        SELECT NRO_COMP INTO v_nro FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso;
         
         UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
                                       FECHA = p_fecha,
@@ -64,6 +67,9 @@ END IF;
         v_res := '1';
      COMMIT;
       P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
+      IF p_id_caja <> v_id_caja THEN
+        P_SG_ACT_KARDEX_EFECTIVO(v_id_caja,p_fecha,p_id_usr,v_res);
+      END IF;
 
     ELSE
         ROLLBACK;
