@@ -78,15 +78,19 @@ namespace CityTruck.WebSite.Controllers
             bool esNumero = int.TryParse(respuestaSP.msg, out id_compra);
             if (esNumero)
             {
-                dynamic det = JsonConvert.DeserializeObject(detalles);
-                foreach (var item in det)
+                if (detalles != "false")
                 {
-                    SG_DETALLES_COMPRAS detalleCompra = new SG_DETALLES_COMPRAS() { 
-                        DETALLE = item.DETALLE,
-                        ID_COMPRA = id_compra,
-                        IMPORTE = item.IMPORTE,
-                    };
-                    respuestaSP = _serCmp.SP_GrabarDetalleCompra(detalleCompra, id_usr);
+                    dynamic det = JsonConvert.DeserializeObject(detalles);
+                    foreach (var item in det)
+                    {
+                        SG_DETALLES_COMPRAS detalleCompra = new SG_DETALLES_COMPRAS()
+                        {
+                            DETALLE = item.DETALLE,
+                            ID_COMPRA = id_compra,
+                            IMPORTE = item.IMPORTE,
+                        };
+                        respuestaSP = _serCmp.SP_GrabarDetalleCompra(detalleCompra, id_usr);
+                    }
                 }
             }
             else
@@ -95,6 +99,38 @@ namespace CityTruck.WebSite.Controllers
             }
 
             return Json(respuestaSP);
+        }
+        [HttpPost]
+        public JsonResult EliminarDetalleCompra(int ID_DETALLE)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serCmp.SP_EliminarDetalleCompra(ID_DETALLE, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult EliminarCompra(int ID_COMPRA)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serCmp.SP_EliminarCompra(ID_COMPRA, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
