@@ -26,7 +26,7 @@
         var me = this;
         var fecha_actual = new Date();
         me.store = Ext.create("App.Store.Compras.Compras");
-        me.store.load();
+//        me.store.load();
         //me.CargarComponentes();
 
         me.store_mes = Ext.create('App.Store.Listas.StoreLista');

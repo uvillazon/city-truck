@@ -42,7 +42,7 @@ namespace CityTruck.WebSite.Controllers
                 TIPO = x.TIPO,
                 USUARIO = x.ID_USUARIO,
                 CUENTA = x.SG_CAJAS.DESCRIPCION,
-                COMBUSTIBLE = x.SG_COMBUSTIBLES.DESCRIPCION,
+                COMBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
             });
 
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
