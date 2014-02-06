@@ -84,7 +84,7 @@
       
 
     },
-    cargarEventos : function(){
+    cargarEventos : function() {
         var me = this;
         me.cbx_cuenta.on('select',function(cmb,record){
             me.num_saldo.setValue(record[0].get('SALDO'));
@@ -100,5 +100,15 @@
            
             me.txt_nuevo_saldo.setValue(sum);
         });
+    },
+     cargarCaja: function(id_caja) {
+      var me = this;  
+      me.cbx_cuenta.setValue(id_caja);
+      var found = me.cbx_cuenta.store.find('ID_CAJA', id_caja,0,true,false);
+      if (found >= 0) {
+        var record =  me.cbx_cuenta.store.getAt(found);   
+        me.num_saldo.setValue(record.get('SALDO'));
+      }
+ 
     }
 });

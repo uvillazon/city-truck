@@ -10,6 +10,13 @@
     
     CargarComponentes: function () {
         var me = this;
+        me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {
+            hidden: true,
+            fieldLabel: "Id",
+            readOnly: true,
+            name: "ID_CAJA"
+
+        });
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "C\u00F3digo",
             readOnly : true,
@@ -56,6 +63,7 @@
 
         });
         me.items = [
+            me.txt_id,
             me.txt_nro_cmp,
             me.txt_nombre,
             me.num_nro_cuenta,
@@ -66,6 +74,9 @@
        
       
 
+    }, ocultarSaldos: function(value) {
+        var me = this;
+        me.num_saldo.setVisible(value);
     },
     cargarEventos : function(){
         var me = this;
