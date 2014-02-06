@@ -10,6 +10,7 @@ using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
 using CityTruck.Model;
+using Newtonsoft.Json;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -24,11 +25,11 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerComprasPaginado(PagingInfo paginacion)
         {
-            var compras = _serCmp.ObtenerComprasPaginado(paginacion,null,null);
+            var compras = _serCmp.ObtenerComprasPaginado(paginacion, null, null);
 
             var formatData = compras.Select(x => new
             {
-               FECHA = x.FECHA,
+                FECHA = x.FECHA,
                 CANTIDAD = x.CANTIDAD,
                 IMPORTE = x.IMPORTE,
                 FORMULARIO = x.FORMULARIO,
@@ -48,13 +49,50 @@ namespace CityTruck.WebSite.Controllers
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
         }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerDetallesPaginado(PagingInfo paginacion,int ID_COMPRA = 0)
+        {
+            var compras = _serCmp.ObtenerDetallesPorCriterio(x=>x.ID_COMPRA == ID_COMPRA);
+
+            var formatData = compras.Select(x => new
+            {
+                ID_COMPRA = x.ID_COMPRA,
+                ID_DETALLE = x.ID_DETALLE,
+                DETALLE = x.DETALLE,
+                IMPORTE = x.IMPORTE
+            });
+
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = compras.Count() }) + ");";
+            return JavaScript(callback1);
+        }
 
         [HttpPost]
-        public JsonResult GuardarCompra(SG_COMPRAS comp)
+        public JsonResult GuardarCompra(SG_COMPRAS comp, string detalles)
         {
             int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
             RespuestaSP respuestaSP = new RespuestaSP();
             respuestaSP = _serCmp.SP_GrabarCompra(comp, id_usr);
+            int id_compra;
+            bool esNumero = int.TryParse(respuestaSP.msg, out id_compra);
+            if (esNumero)
+            {
+                dynamic det = JsonConvert.DeserializeObject(detalles);
+                foreach (var item in det)
+                {
+                    SG_DETALLES_COMPRAS detalleCompra = new SG_DETALLES_COMPRAS() { 
+                        DETALLE = item.DETALLE,
+                        ID_COMPRA = id_compra,
+                        IMPORTE = item.IMPORTE,
+                    };
+                    respuestaSP = _serCmp.SP_GrabarDetalleCompra(detalleCompra, id_usr);
+                }
+            }
+            else
+            {
+                respuestaSP.success = false;
+            }
+
             return Json(respuestaSP);
         }
     }

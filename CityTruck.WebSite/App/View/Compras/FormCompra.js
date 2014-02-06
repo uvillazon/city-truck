@@ -70,7 +70,7 @@
             fieldLabel: "Tipo",
             name: "TIPO",
             displayField: 'VALOR',
-            valueField: 'CODIGO',
+            valueField: 'VALOR',
             store: me.store_tipo,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
@@ -105,6 +105,17 @@
             maxValue: 999999999,
             readOnly : true
         });
+        me.gridDetalle = Ext.create("App.View.Compras.Grids",{
+            opcion : 'GridDetallesCompra',
+            colspan : 2,
+            width : 480,
+            height : 200,
+            handler : me.EliminarDetalle,
+            scope : me
+        });
+         me.toolbarDetalle = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_Crear', 'Crear', Constantes.ICONO_CREAR, me.EventosDetalle, me.toolbarDetalle, this);
+        me.gridDetalle.addDocked(me.toolbarDetalle, 1);
         me.items = [
             me.txt_nro_cmp,
             me.cbx_tipo,
@@ -112,15 +123,41 @@
             me.num_precio,
             me.cbx_combustible,
             me.cbx_cuenta,
-            me.num_importe,
-            me.num_cantidad,
-            me.num_formulario,
             me.num_nro_factura,
+            me.num_cantidad,
+//            me.num_formulario,
+            me.num_importe,
+            me.gridDetalle,
             me.num_total
         ];
        
       
 
+    },
+    EventosDetalle : function(btn){
+        var me = this;
+        if(btn.getItemId() == "btn_Crear"){
+            var rec = Ext.create('App.Model.Compras.DetallesCompra',{
+                DETALLE : 'DETALLE',
+                IMPORTE : 1,
+            });
+            me.gridDetalle.getStore().add(rec);  
+        }
+        else{
+            Ext.Msg.alert("Error","No existe opcion"+btn.getItemId() );
+        }
+    },
+    EliminarDetalle : function(grid, rowIndex, colIndex){
+        var me = this;
+        var rec = grid.getStore().getAt(rowIndex);
+        if(rec.get('ID_DETALLE')== 0){
+             grid.getStore().removeAt(rowIndex);
+             me.CargarTotales();
+        }
+        else{
+            alert("Eliminar BASE DATOS");
+        }
+        
     },
     cargarEventos : function(){
         var me = this;
@@ -129,29 +166,32 @@
 //            var sum = me.num_saldo.getValue() + newvalue;
             var cant = me.num_cantidad.getValue() == null? 0 : me.num_cantidad.getValue() ;
             me.num_importe.setValue(cant * newvalue);
+            me.CargarTotales();
         });
         me.num_cantidad.on('change',function(num,newvalue,oldvalue){
 //            var sum = me.num_saldo.getValue() + newvalue;
             var prec = me.num_precio.getValue() == null? 0 : me.num_precio.getValue() ;
             me.num_importe.setValue(prec * newvalue);
+            me.CargarTotales();
         });
-        me.num_formulario.on('change',function(num,newvalue,oldvalue){
-//            var sum = me.num_saldo.getValue() + newvalue;
-            var prec = me.num_importe.getValue() == null? 0 : me.num_importe.getValue() ;
-            me.num_total.setValue(prec + newvalue);
+         me.gridDetalle.on('edit', function(editor, e){
+            
+            if (e.field == "IMPORTE"){
+                    e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
+                    me.CargarTotales();
+            }
         });
-//        me.cbx_turno.on('select',function(cmb,record){
-//            if(me.date_fecha.getValue() != null){
-//                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//                 me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-//                 me.gridVenta.getStore().load();
-////                me.gridVenta().getStore().setExtraParams({
-////                    FECHA :  me.date_fecha.getValue()
-////                });
-//            }
-//            else{
-//                Ext.Msg.alert("Seleccione Fecha primero");
-//            }
-//        });
-    }
+    },
+    CargarTotales : function(){
+        var me = this;
+        
+        var total = 0;
+        me.gridDetalle.getStore().each(function(record){
+//            alert(record.get('TOTAL'));
+            total= total +  record.get('IMPORTE');
+
+        });
+        me.num_total.setValue(total + me.num_importe.getValue() );
+
+    },
 });

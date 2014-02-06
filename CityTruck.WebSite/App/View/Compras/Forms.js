@@ -1,13 +1,13 @@
-﻿Ext.define("App.View.Ventas.Forms", {
+﻿Ext.define("App.View.Compras.Forms", {
     extend: "App.Config.Abstract.Form",
     title: "",
     botones: false,
     columns: 2,
     initComponent: function () {
         var me = this;
-        if (me.opcion == "formSubTotales") {
-            me.title = "Subtotales";
-            me.CargarFormSubTotales();
+        if (me.opcion == "formDetalle") {
+            me.title = "Formulario Detalle de Compras";
+            me.CargarFormDetalle();
 
         }
         else if (me.opcion == 'formResumen') {
@@ -16,121 +16,117 @@
         }
         this.callParent(arguments);
     },
-    CargarFormSubTotales: function () {
+    CargarFormDetalle : function(){
         var me = this;
-
-        me.txt_diesel = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Subtotal Diesel",
-            name: "COD_POSTE",
-            width: 200,
-            colspan: 1,
-            emptyText: ''
+        me.txt_detalle = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Detalle",
+            name: "DETALLE",
+            width: 480,
+            colspan : 2,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
         });
-        me.txt_diesel_bs = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "",
-            name: "COD_POSTE",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
+         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "Importe",
+            name: "IMPORTE",
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
         });
-        me.txt_gasolina = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Subtotal Gasolina",
-            name: "AREA_UBIC",
-            width: 200,
-            emptyText: '',
-            colspan: 1
-        });
-        me.txt_gasolina_bs = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "",
-            name: "AREA_UBIC",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
-        });
-        me.txt_total = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Total",
-            name: "UBICACION",
-            width: 200,
-            colspan: 2,
-            emptyText: ''
-        });
-
         me.items = [
-        me.txt_diesel,
-        me.txt_diesel_bs,
-        me.txt_gasolina,
-         me.txt_gasolina_bs,
-        me.txt_total
+            me.txt_detalle,
+            me.num_importe
         ];
     },
     CargarFormResumen: function () {
         var me = this;
         var label1 = Ext.create("Ext.form.Label", {
-            text: 'LITROS',
-            cls : 'resaltarAzulRight',
+            text: 'TOTAL CONSUMO',
+            cls : 'resaltarAzul',
+            colspan : 3
 
         });
         var label2 = Ext.create("Ext.form.Label", {
-            text: 'P-COSTO',
-            cls : 'resaltarAzul',
+            text: 'DIESEL',
+            cls : 'resaltarAzulRight',
         });
         var label3 = Ext.create("Ext.form.Label", {
-            text: 'P-VENTA',
+            text: 'GASOLINA',
             cls : 'resaltarAzul',
         });
-        me.txt_diesel = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Diesel",
-            name: "COD_POSTE",
-            width: 180,
-            colspan: 1,
-            emptyText: ''
+        me.txt_cantidad = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "CANTIDAD",
+            name: "CANTIDAD_DIESEL",
         });
-        me.txt_diesel_costo = Ext.create("App.Config.Componente.TextFieldBase", {
+        me.txt_cant_diesel = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "",
-            name: "COD_POSTE",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
+            name: "CANTIDAD_GASOLINA",
         });
-        me.txt_diesel_venta = Ext.create("App.Config.Componente.TextFieldBase", {
+        me.txt_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "IMPORTE",
+            name: "IMPORTE_DIESEL"
+        });
+        me.txt_imp_diesel = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "",
-            name: "COD_POSTE",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
+            name: "IMPORTE_GASOLINA"
         });
-        me.txt_gasolina = Ext.create("App.Config.Componente.TextFieldBase", {
-            fieldLabel: "Gasolina",
-            name: "AREA_UBIC",
-            width: 180,
-            emptyText: '',
-            colspan: 1
+        
+        var label01 = Ext.create("Ext.form.Label", {
+            text: 'CONSUMO LITROS',
+            cls : 'resaltarAzul',
+            colspan : 3
+
         });
-        me.txt_gasolina_costo = Ext.create("App.Config.Componente.TextFieldBase", {
+        var label02 = Ext.create("Ext.form.Label", {
+            text: 'DIESEL',
+            cls : 'resaltarAzulRight',
+        });
+        var label03 = Ext.create("Ext.form.Label", {
+            text: 'GASOLINA',
+            cls : 'resaltarAzul',
+        });
+        
+        me.txt_asignacion = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "ASIGNACION",
+            name: "CANTIDAD_DIESEL",
+        });
+        me.txt_asignacion_gas = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "",
-            name: "AREA_UBIC",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
+            name: "CANTIDAD_GASOLINA",
         });
-        me.txt_gasolina_venta = Ext.create("App.Config.Componente.TextFieldBase", {
+        me.txt_adicional = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "ADICIONAL",
+            name: "IMPORTE_DIESEL"
+        });
+        me.txt_adicional_diesel = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "",
-            name: "AREA_UBIC",
-            width: 70,
-            colspan: 1,
-            emptyText: ''
+            name: "IMPORTE_GASOLINA"
+        });
+         me.txt_total = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "TOTAL",
+            name: "TOTAL_DIESEL"
+        });
+        me.txt_total_diesel = Ext.create("App.Config.Componente.NumberFieldBase", {
+            fieldLabel: "",
+            name: "TOTAL_GASOLINA"
         });
 
         me.items = [
         label1,
         label2,
         label3,
-        me.txt_diesel,
-        me.txt_diesel_costo,
-        me.txt_diesel_venta,
-        me.txt_gasolina,
-        me.txt_gasolina_costo,
-        me.txt_gasolina_venta
+        me.txt_cantidad,
+        me.txt_cant_diesel,
+        me.txt_importe,
+        me.txt_imp_diesel,
+        label01,
+        label02,
+        label03,
+        me.txt_asignacion,
+        me.txt_asignacion_gas,
+        me.txt_adicional,
+        me.txt_adicional_diesel,
+        me.txt_total,
+        me.txt_total_diesel
         ];
     }
 });
