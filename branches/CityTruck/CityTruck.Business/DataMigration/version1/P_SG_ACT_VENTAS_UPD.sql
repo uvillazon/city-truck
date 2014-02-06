@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE PROCEDURE CITYTRUCK.P_SG_GENERAR_VENTAS_DIARIAS(
+﻿CREATE OR REPLACE PROCEDURE CITYTRUCK.P_SG_ACT_VENTAS_UPD(
  p_fecha       IN SG_VENTAS_DIARIAS.FECHA%TYPE,
  p_turno IN SG_VENTAS_DIARIAS.TURNO%TYPE,
  p_responsable IN SG_VENTAS_DIARIAS.RESPONSABLE%TYPE,
@@ -44,7 +44,6 @@ BEGIN
                                       FECHA = p_fecha,
                                       INGRESO = v_total_venta
                     WHERE ID_OPERACION = v_id_venta AND OPERACION = 'VENTA';
-                    P_SG_ACTUALIZAR_VENTAS_DIARIAS(p_fecha,p_turno,p_responsable,p_id_usr,v_res);
                     v_res := '0';
          ELSE
                     SELECT Q_SG_VENTAS_DIARIAS.nextval INTO v_id_venta FROM DUAL;

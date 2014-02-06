@@ -82,6 +82,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataMigration\version1\BDDDL25012014Ronald.sql" />
+    <Content Include="DataMigration\version1\P_SG_ACTUALIZAR_VENTAS_DIARIAS.sql" />
+    <Content Include="DataMigration\version1\SG_DETALLES_COMPRAS.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_COMPRA.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_DETALLE_COMPRA.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_DETALLE_COMPRA.sql" />
+    <Content Include="DataMigration\version1\P_SG_GUARDAR_COMPRAS.sql" />
+    <Content Include="DataMigration\version1\P_SG_ACT_VENTAS_UPD.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_EGRESO.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_CLIENTE.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_INGRESO.sql" />
