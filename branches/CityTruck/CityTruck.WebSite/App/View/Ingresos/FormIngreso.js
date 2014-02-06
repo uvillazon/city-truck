@@ -104,9 +104,9 @@
 
         me.txt_nuevo_saldo.setValue(res);
     },
-    ocultarSaldos: function () {
+    ocultarSaldos: function (value) {
         var me = this;
-       me.num_saldo.setVisible(false);
-       me.txt_nuevo_saldo.setVisible(false);
+        me.num_saldo.setVisible(value);
+        me.txt_nuevo_saldo.setVisible(value);
     }
 });

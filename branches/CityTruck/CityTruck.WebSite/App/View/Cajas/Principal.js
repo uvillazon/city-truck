@@ -18,10 +18,10 @@
         Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Kardex', 'Kardex', 'report', me.EventosCaja, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
-       
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCaja, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this, null, true);
+
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
             height: 350,
@@ -39,6 +39,7 @@
     onItemClick: function (view, record, item, index, e) {
         var me = this;
         me.id_caja = record.get('ID_CAJA');
+        me.recordSelected = record;
     },
     onSelectChange: function (selModel, selections) {
         var me = this;
@@ -49,28 +50,50 @@
         Funciones.DisabledButton('btn_Kardex', me.toolbar, disabled);
     },
     EventosCaja: function (btn) {
+
         var me = this;
-        if (btn.getItemId() == "btn_CrearCaja") {
-            if (me.winCrearCaja == null) {
-                me.winCrearCaja = Ext.create("App.Config.Abstract.Window", { botones: true });
-                me.formCrearCaja = Ext.create("App.View.Cajas.FormCaja", {
-                    columns: 1,
-                    title: 'Registro de Cajas ',
-                    botones: false
-                });
-                me.winCrearCaja.add(me.formCrearCaja);
-                me.winCrearCaja.btn_guardar.on('click', me.GuardarCajas, this);
-                me.winCrearCaja.show();
-            } else {
-                me.winCrearCaja.show();
-            }
-        } else if (btn.getItemId() == 'btn_Kardex') {
-            me.CrearVentanaKardex();
-        }
-        else {
-            Ext.Msg.alert("Aviso", "No Existe el botton");
+        switch (btn.getItemId()) {
+            case "btn_CrearCaja":
+                me.MostrarForm(true);
+                break;
+            case "btn_Editar":
+                me.MostrarForm(false, false);
+                break;
+            case "btn_Detalle":
+                me.MostrarForm(false, true);
+                break;
+            case "btn_Eliminar":
+                me.EliminarRegistro();
+                break;
+            case "btn_Kardex":
+                me.CrearVentanaKardex();
+                break;
+            default:
+                Ext.Msg.alert("Aviso", "No Existe el botton");
         }
 
+    }, MostrarForm: function (isNew, block) {
+        var me = this;
+
+        if (me.winCrearCaja == null) {
+            me.winCrearCaja = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
+            me.formCrearCaja = Ext.create("App.View.Cajas.FormCaja", {
+                title: 'Registro de Cajas ',
+                botones: false
+            });
+            me.winCrearCaja.add(me.formCrearCaja);
+            me.winCrearCaja.btn_guardar.on('click', me.GuardarCajas, this);
+
+        } else {
+            me.formCrearCaja.getForm().reset();
+        }
+
+        if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
+            me.formCrearCaja.ocultarSaldos(false);
+            me.formCrearCaja.CargarDatos(me.recordSelected);
+        } else
+            me.formCrearCaja.ocultarSaldos(true);
+        me.winCrearCaja.show();
     },
     GuardarCajas: function () {
         var me = this;
@@ -89,22 +112,12 @@
 
         }, {
             xtype: 'button',
-            text: 'Detalle',
-            iconCls: 'report',
-            minHeight: 27,
-            minWidth: 80,
-            handler: function () {
-                alert('Evento Detalle');
-            }
-
-        }, {
-            xtype: 'button',
             text: 'Imprimir',
             iconCls: 'printer',
             minHeight: 27,
             minWidth: 80,
             handler: function () {
-                alert('Evento Imprimir');
+                me.ImprimirReporteCustomGrid(me.gridKardexCaja);
             }
 
         }, {
@@ -155,6 +168,9 @@
             me.winNuevoMovimiento.show();
         }
 
+        if (me.id_caja >= 0)
+            me.formNuevoMovimiento.cargarCaja(me.id_caja);
+
     }, GuardarMovimiento: function () {
         var me = this;
         if (me.formNuevoMovimiento.cbx_registrar.getValue() == 'OTROS INGRESOS') {
@@ -164,6 +180,10 @@
             Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winNuevoMovimiento,
              me.formNuevoMovimiento, me.gridKardexCaja, 'Esta Seguro de Guardar el Movimiento?', null, me.winNuevoMovimiento);
         }
+
+    }, EliminarRegistro: function () {
+        var me = this;
+        Funciones.AjaxRequestGrid("Cajas", "EliminarCaja", me, "Esta Seguro de Eliminar este Registro", { ID_CAJA: me.id_caja }, me.grid, null);
 
     }
 });
