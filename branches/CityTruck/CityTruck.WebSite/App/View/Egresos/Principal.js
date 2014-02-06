@@ -80,9 +80,11 @@
             me.formEgreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formEgreso.ocultarSaldos();
+            me.formEgreso.ocultarSaldos(false);
             me.formEgreso.CargarDatos(me.recordSelected);
-        }
+        } else
+            me.formEgreso.ocultarSaldos(true);
+          
         me.winCrearEgreso.show();
     },
     GuardarEgresos: function () {
