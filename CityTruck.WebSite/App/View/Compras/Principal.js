@@ -101,6 +101,27 @@
             form.gridDetalle.getStore().load();
             win.show();
         }
+        else if(btn.getItemId()== "btn_Editar"){
+            var win = Ext.create("App.Config.Abstract.Window",{botones : true , textGuardar : 'Editar Compra'});
+            var form = Ext.create("App.View.Compras.FormCompra",{
+                    columns: 2,
+                    title: 'Formulario de Edicion de Compras ',
+                    botones: false
+            });
+//            Funciones.BloquearFormularioReadOnly(form);
+            win.add(form);
+            form.ModoEdicion();
+            form.loadRecord(me.record);
+            form.gridDetalle.getStore().setExtraParams({ID_COMPRA : me.record.get('ID_COMPRA')});
+            form.gridDetalle.getStore().load();
+            win.show();
+            win.btn_guardar.on('click', function(){
+                Funciones.AjaxRequestWin('Compras', 'GuardarCompra', win, form, me.grid, 'Esta Seguro de Editar la Compra?', { ID_COMPRA: me.id_compra,detalles: Funciones.convertirJson(form.gridDetalle) }, win);
+            });
+        }
+        else if (btn.getItemId() == 'btn_Eliminar'){
+            Funciones.AjaxRequestGrid("Compras", "EliminarCompra", me, "Esta Seguro de Eliminar este Registro", { ID_COMPRA: me.id_compra }, me.grid, null);
+        }
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
@@ -159,21 +180,5 @@
 
         me.form.txt_total.setValue(cantidadDiesel + cantidadAdicionalDiesel);
         me.form.txt_total_diesel.setValue(cantidadGasolina +cantidadAdicionalGasolina );
-//        me.formSubTotales.txt_diesel.setValue(totalDiesel);
-//        me.formSubTotales.txt_gasolina.setValue(totalGasolina);
-
-//        me.formSubTotales.txt_diesel_bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS);
-//        me.formSubTotales.txt_gasolina_bs.setValue(totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
-
-//        me.formSubTotales.txt_diesel_bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS);
-//        me.formSubTotales.txt_gasolina_bs_costo.setValue(totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
-
-//        me.formSubTotales.txt_total.setValue(totalDiesel + totalGasolina);
-//        me.formSubTotales.txt_total_Bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
-//        me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
-
-//         me.formSubTotales.txt_utilidad.setValue((totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS) - (totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS) );
-//        
-
     }
 });

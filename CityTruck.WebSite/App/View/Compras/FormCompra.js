@@ -134,6 +134,12 @@
       
 
     },
+    ModoEdicion : function(){
+        var me = this;
+        me.cbx_combustible.setReadOnly(true);
+        me.cbx_cuenta.setReadOnly(true);
+        me.date_fecha.setReadOnly(true);
+    },
     EventosDetalle : function(btn){
         var me = this;
         if(btn.getItemId() == "btn_Crear"){
@@ -155,7 +161,9 @@
              me.CargarTotales();
         }
         else{
-            alert("Eliminar BASE DATOS");
+            
+            Funciones.AjaxRequestGrid("Compras", "EliminarDetalleCompra", me, "Esta Seguro de Eliminar este Registro", { ID_DETALLE : rec.get('ID_DETALLE') }, grid, null);
+//            alert("Eliminar BASE DATOS");
         }
         
     },
