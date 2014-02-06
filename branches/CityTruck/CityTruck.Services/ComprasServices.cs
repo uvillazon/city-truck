@@ -33,7 +33,7 @@ namespace CityTruck.Services
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
 
-             
+
 
             });
             return result;
@@ -61,17 +61,103 @@ namespace CityTruck.Services
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
                 context.P_SG_GUARDAR_COMPRAS(comp.ID_COMPRA, comp.FECHA, comp.ID_COMBUSTIBLE, comp.ID_CAJA, comp.CANTIDAD,
-                    comp.NRO_FACTURA, comp.TIPO, comp.PRECIO, comp.IMPORTE, comp.FORMULARIO, comp.TOTAL, ID_USR, p_res);
+                    comp.NRO_FACTURA, comp.TIPO, comp.PRECIO, comp.IMPORTE, comp.TOTAL, ID_USR, p_res);
+                //if (p_res.Value.ToString() == "1")
+                //{
+                result.success = true;
+                result.msg = p_res.Value.ToString();
+                //}
+                //else
+                //{
+                //    result.success = false;
+                //    result.msg = p_res.Value.ToString();
+                //}
+
+            });
+            return result;
+        }
+
+
+        public RespuestaSP SP_GrabarDetalleCompra(SG_DETALLES_COMPRAS det, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_DETALLE_COMPRA(det.ID_DETALLE, det.ID_COMPRA, det.DETALLE, det.IMPORTE, ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;
-                    result.msg = "Proceso Ejecutado Correctamente";
+                    result.msg = "Proceso Ejectuado Correctamente";
                 }
                 else
                 {
                     result.success = false;
                     result.msg = p_res.Value.ToString();
                 }
+
+            });
+            return result;
+        }
+
+        public RespuestaSP SP_EliminarCompra(int ID_COMPRA, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_ELIMINAR_COMPRA(ID_COMPRA, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejectuado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
+
+        public RespuestaSP SP_EliminarDetalleCompra(int ID_DETALLE, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_ELIMINAR_DETALLE_COMPRA(ID_DETALLE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejectuado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_DETALLES_COMPRAS> ObtenerDetallesPorCriterio(System.Linq.Expressions.Expression<Func<SG_DETALLES_COMPRAS, bool>> criterio)
+        {
+            IQueryable<SG_DETALLES_COMPRAS> result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_DETALLES_COMPRASManager(uow);
+                result = managerVentas.BuscarTodos(criterio);
 
             });
             return result;

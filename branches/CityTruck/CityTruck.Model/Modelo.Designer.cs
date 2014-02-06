@@ -38,6 +38,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R02", "SG_CLIENTES_CONSUMO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES_CONSUMO), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_DETALLES_COMPRAS_R01", "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMPRAS), "SG_DETALLES_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_DETALLES_COMPRAS), true)]
 
 #endregion
 
@@ -456,6 +457,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_CLIENTE_CONSUMO_COMBUSTIBLE> _SG_CLIENTE_CONSUMO_COMBUSTIBLE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_DETALLES_COMPRAS> SG_DETALLES_COMPRAS
+        {
+            get
+            {
+                if ((_SG_DETALLES_COMPRAS == null))
+                {
+                    _SG_DETALLES_COMPRAS = base.CreateObjectSet<SG_DETALLES_COMPRAS>("SG_DETALLES_COMPRAS");
+                }
+                return _SG_DETALLES_COMPRAS;
+            }
+        }
+        private ObjectSet<SG_DETALLES_COMPRAS> _SG_DETALLES_COMPRAS;
 
         #endregion
         #region Métodos AddTo
@@ -642,6 +659,14 @@ namespace CityTruck.Model
         public void AddToSG_CLIENTE_CONSUMO_COMBUSTIBLE(SG_CLIENTE_CONSUMO_COMBUSTIBLE sG_CLIENTE_CONSUMO_COMBUSTIBLE)
         {
             base.AddObject("SG_CLIENTE_CONSUMO_COMBUSTIBLE", sG_CLIENTE_CONSUMO_COMBUSTIBLE);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_DETALLES_COMPRAS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_DETALLES_COMPRAS(SG_DETALLES_COMPRAS sG_DETALLES_COMPRAS)
+        {
+            base.AddObject("SG_DETALLES_COMPRAS", sG_DETALLES_COMPRAS);
         }
 
         #endregion
@@ -1170,147 +1195,6 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_VENTAS_DIARIAS", p_ID_POS_TURNOParameter, p_ID_POSParameter, p_FECHAParameter, p_TURNOParameter, p_SAL_LITTERParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID_COMPRA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_CANTIDAD">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_NRO_FACTURA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_TIPO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_PRECIO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_FORMULARIO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_TOTAL">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_COMPRAS(Nullable<global::System.Decimal> p_ID_COMPRA, Nullable<global::System.DateTime> p_FECHA, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_CANTIDAD, Nullable<global::System.Decimal> p_NRO_FACTURA, global::System.String p_TIPO, Nullable<global::System.Decimal> p_PRECIO, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_FORMULARIO, Nullable<global::System.Decimal> p_TOTAL, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_COMPRAParameter;
-            if (p_ID_COMPRA.HasValue)
-            {
-                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", p_ID_COMPRA);
-            }
-            else
-            {
-                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_FECHAParameter;
-            if (p_FECHA.HasValue)
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
-            }
-            else
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter p_ID_COMBUSTIBLEParameter;
-            if (p_ID_COMBUSTIBLE.HasValue)
-            {
-                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
-            }
-            else
-            {
-                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_CAJAParameter;
-            if (p_ID_CAJA.HasValue)
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
-            }
-            else
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_CANTIDADParameter;
-            if (p_CANTIDAD.HasValue)
-            {
-                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", p_CANTIDAD);
-            }
-            else
-            {
-                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_NRO_FACTURAParameter;
-            if (p_NRO_FACTURA.HasValue)
-            {
-                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", p_NRO_FACTURA);
-            }
-            else
-            {
-                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_TIPOParameter;
-            if (p_TIPO != null)
-            {
-                p_TIPOParameter = new ObjectParameter("P_TIPO", p_TIPO);
-            }
-            else
-            {
-                p_TIPOParameter = new ObjectParameter("P_TIPO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_PRECIOParameter;
-            if (p_PRECIO.HasValue)
-            {
-                p_PRECIOParameter = new ObjectParameter("P_PRECIO", p_PRECIO);
-            }
-            else
-            {
-                p_PRECIOParameter = new ObjectParameter("P_PRECIO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_IMPORTEParameter;
-            if (p_IMPORTE.HasValue)
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
-            }
-            else
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_FORMULARIOParameter;
-            if (p_FORMULARIO.HasValue)
-            {
-                p_FORMULARIOParameter = new ObjectParameter("P_FORMULARIO", p_FORMULARIO);
-            }
-            else
-            {
-                p_FORMULARIOParameter = new ObjectParameter("P_FORMULARIO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_TOTALParameter;
-            if (p_TOTAL.HasValue)
-            {
-                p_TOTALParameter = new ObjectParameter("P_TOTAL", p_TOTAL);
-            }
-            else
-            {
-                p_TOTALParameter = new ObjectParameter("P_TOTAL", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_COMPRAS", p_ID_COMPRAParameter, p_FECHAParameter, p_ID_COMBUSTIBLEParameter, p_ID_CAJAParameter, p_CANTIDADParameter, p_NRO_FACTURAParameter, p_TIPOParameter, p_PRECIOParameter, p_IMPORTEParameter, p_FORMULARIOParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
         }
     
         /// <summary>
@@ -2161,6 +2045,262 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_ELIMINAR_INGRESO", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_DETALLE_COMPRA(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_IDParameter;
+            if (p_ID.HasValue)
+            {
+                p_IDParameter = new ObjectParameter("P_ID", p_ID);
+            }
+            else
+            {
+                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_DETALLE_COMPRA", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_COMPRA(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_IDParameter;
+            if (p_ID.HasValue)
+            {
+                p_IDParameter = new ObjectParameter("P_ID", p_ID);
+            }
+            else
+            {
+                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_COMPRA", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_COMPRA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CANTIDAD">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NRO_FACTURA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TIPO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_PRECIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TOTAL">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_COMPRAS(Nullable<global::System.Decimal> p_ID_COMPRA, Nullable<global::System.DateTime> p_FECHA, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_CANTIDAD, Nullable<global::System.Decimal> p_NRO_FACTURA, global::System.String p_TIPO, Nullable<global::System.Decimal> p_PRECIO, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_TOTAL, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_COMPRAParameter;
+            if (p_ID_COMPRA.HasValue)
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", p_ID_COMPRA);
+            }
+            else
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_ID_COMBUSTIBLEParameter;
+            if (p_ID_COMBUSTIBLE.HasValue)
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
+            }
+            else
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_CANTIDADParameter;
+            if (p_CANTIDAD.HasValue)
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", p_CANTIDAD);
+            }
+            else
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_NRO_FACTURAParameter;
+            if (p_NRO_FACTURA.HasValue)
+            {
+                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", p_NRO_FACTURA);
+            }
+            else
+            {
+                p_NRO_FACTURAParameter = new ObjectParameter("P_NRO_FACTURA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_TIPOParameter;
+            if (p_TIPO != null)
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", p_TIPO);
+            }
+            else
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_PRECIOParameter;
+            if (p_PRECIO.HasValue)
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", p_PRECIO);
+            }
+            else
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_TOTALParameter;
+            if (p_TOTAL.HasValue)
+            {
+                p_TOTALParameter = new ObjectParameter("P_TOTAL", p_TOTAL);
+            }
+            else
+            {
+                p_TOTALParameter = new ObjectParameter("P_TOTAL", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_COMPRAS", p_ID_COMPRAParameter, p_FECHAParameter, p_ID_COMBUSTIBLEParameter, p_ID_CAJAParameter, p_CANTIDADParameter, p_NRO_FACTURAParameter, p_TIPOParameter, p_PRECIOParameter, p_IMPORTEParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_DETALLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_COMPRA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_DETALLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_DETALLE_COMPRA(Nullable<global::System.Decimal> p_ID_DETALLE, Nullable<global::System.Decimal> p_ID_COMPRA, global::System.String p_DETALLE, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_DETALLEParameter;
+            if (p_ID_DETALLE.HasValue)
+            {
+                p_ID_DETALLEParameter = new ObjectParameter("P_ID_DETALLE", p_ID_DETALLE);
+            }
+            else
+            {
+                p_ID_DETALLEParameter = new ObjectParameter("P_ID_DETALLE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_COMPRAParameter;
+            if (p_ID_COMPRA.HasValue)
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", p_ID_COMPRA);
+            }
+            else
+            {
+                p_ID_COMPRAParameter = new ObjectParameter("P_ID_COMPRA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_DETALLEParameter;
+            if (p_DETALLE != null)
+            {
+                p_DETALLEParameter = new ObjectParameter("P_DETALLE", p_DETALLE);
+            }
+            else
+            {
+                p_DETALLEParameter = new ObjectParameter("P_DETALLE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_DETALLE_COMPRA", p_ID_DETALLEParameter, p_ID_COMPRAParameter, p_DETALLEParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
         }
 
         #endregion
@@ -4872,6 +5012,28 @@ namespace CityTruck.Model
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_DETALLES_COMPRAS_R01", "SG_DETALLES_COMPRAS")]
+        public EntityCollection<SG_DETALLES_COMPRAS> SG_DETALLES_COMPRAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_DETALLES_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_DETALLES_COMPRAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_DETALLES_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_DETALLES_COMPRAS", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -5285,6 +5447,256 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMBUSTIBLES>("Model.SG_CONSUMOS_R01", "SG_COMBUSTIBLES", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_DETALLES_COMPRAS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_DETALLES_COMPRAS : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_DETALLES_COMPRAS.
+        /// </summary>
+        /// <param name="iD_DETALLE">Valor inicial de la propiedad ID_DETALLE.</param>
+        /// <param name="iD_COMPRA">Valor inicial de la propiedad ID_COMPRA.</param>
+        /// <param name="dETALLE">Valor inicial de la propiedad DETALLE.</param>
+        /// <param name="pRECIO">Valor inicial de la propiedad PRECIO.</param>
+        /// <param name="iMPORTE">Valor inicial de la propiedad IMPORTE.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        public static SG_DETALLES_COMPRAS CreateSG_DETALLES_COMPRAS(global::System.Int32 iD_DETALLE, global::System.Int32 iD_COMPRA, global::System.String dETALLE, global::System.Decimal pRECIO, global::System.Decimal iMPORTE, global::System.Int16 iD_USUARIO)
+        {
+            SG_DETALLES_COMPRAS sG_DETALLES_COMPRAS = new SG_DETALLES_COMPRAS();
+            sG_DETALLES_COMPRAS.ID_DETALLE = iD_DETALLE;
+            sG_DETALLES_COMPRAS.ID_COMPRA = iD_COMPRA;
+            sG_DETALLES_COMPRAS.DETALLE = dETALLE;
+            sG_DETALLES_COMPRAS.PRECIO = pRECIO;
+            sG_DETALLES_COMPRAS.IMPORTE = iMPORTE;
+            sG_DETALLES_COMPRAS.ID_USUARIO = iD_USUARIO;
+            return sG_DETALLES_COMPRAS;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_DETALLE
+        {
+            get
+            {
+                return _ID_DETALLE;
+            }
+            set
+            {
+                if (_ID_DETALLE != value)
+                {
+                    OnID_DETALLEChanging(value);
+                    ReportPropertyChanging("ID_DETALLE");
+                    _ID_DETALLE = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_DETALLE");
+                    OnID_DETALLEChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_DETALLE;
+        partial void OnID_DETALLEChanging(global::System.Int32 value);
+        partial void OnID_DETALLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_COMPRA
+        {
+            get
+            {
+                return _ID_COMPRA;
+            }
+            set
+            {
+                OnID_COMPRAChanging(value);
+                ReportPropertyChanging("ID_COMPRA");
+                _ID_COMPRA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_COMPRA");
+                OnID_COMPRAChanged();
+            }
+        }
+        private global::System.Int32 _ID_COMPRA;
+        partial void OnID_COMPRAChanging(global::System.Int32 value);
+        partial void OnID_COMPRAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DETALLE
+        {
+            get
+            {
+                return _DETALLE;
+            }
+            set
+            {
+                OnDETALLEChanging(value);
+                ReportPropertyChanging("DETALLE");
+                _DETALLE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DETALLE");
+                OnDETALLEChanged();
+            }
+        }
+        private global::System.String _DETALLE;
+        partial void OnDETALLEChanging(global::System.String value);
+        partial void OnDETALLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal PRECIO
+        {
+            get
+            {
+                return _PRECIO;
+            }
+            set
+            {
+                OnPRECIOChanging(value);
+                ReportPropertyChanging("PRECIO");
+                _PRECIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRECIO");
+                OnPRECIOChanged();
+            }
+        }
+        private global::System.Decimal _PRECIO;
+        partial void OnPRECIOChanging(global::System.Decimal value);
+        partial void OnPRECIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal IMPORTE
+        {
+            get
+            {
+                return _IMPORTE;
+            }
+            set
+            {
+                OnIMPORTEChanging(value);
+                ReportPropertyChanging("IMPORTE");
+                _IMPORTE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IMPORTE");
+                OnIMPORTEChanged();
+            }
+        }
+        private global::System.Decimal _IMPORTE;
+        partial void OnIMPORTEChanging(global::System.Decimal value);
+        partial void OnIMPORTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_DETALLES_COMPRAS_R01", "SG_COMPRAS")]
+        public SG_COMPRAS SG_COMPRAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_COMPRAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_COMPRAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_COMPRAS> SG_COMPRASReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_COMPRAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMPRAS>("Model.SG_DETALLES_COMPRAS_R01", "SG_COMPRAS", value);
                 }
             }
         }

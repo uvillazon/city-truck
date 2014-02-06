@@ -71,51 +71,47 @@ namespace CityTruck.WebSite.Controllers
                 listas.Add(venDia);
 
             }
-            //var formattData = result.Select(x => new
-            //{
-            //    VENTA_TOTAL = x.TOTAL,
-            //    VENTA_DIA = x.TOTAL - 100,
-            //    VENTA_TARDE = x.TOTAL - 200,
-            //    VENTA_NOCHE = x.TOTAL - 300,
-            //    FECHA = x.FECHA
-            //});
+           
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
 
         }
         [HttpGet]
-        public ActionResult ObtenerPosTurnos(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros, PosTurnosModel posTurnos)
+        public ActionResult ObtenerPosTurnos(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros, PosTurnosModel posTurnos, bool EDITAR = false)
         {
             filtros.Entidad = posTurnos;
             var result = _serPos.ObtenerPosTurnos(paginacion, filtros);
             bool nuevo = false;
-            if (paginacion.total == 0)
+            if (!EDITAR)
             {
-                try
+                if (paginacion.total == 0)
                 {
-                    var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
-                    if (!spPos.success)
+                    try
                     {
-                        JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
-                        string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
-                        //string callback1 = info.callback + "(" + json + ");";
+                        var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
+                        if (!spPos.success)
+                        {
+                            JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
+                            string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
+                            //string callback1 = info.callback + "(" + json + ");";
 
 
-                        return JavaScript(callback2);
+                            return JavaScript(callback2);
+                        }
+                        else
+                        {
+                            result = _serPos.ObtenerPosTurnos(paginacion, filtros);
+                            nuevo = true;
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
-                        result = _serPos.ObtenerPosTurnos(paginacion, filtros);
-                        nuevo = true;
+
+                        throw;
                     }
-                }
-                catch (Exception)
-                {
 
-                    throw;
                 }
-
             }
             var formattData = result.Select(x => new
             {
@@ -137,16 +133,13 @@ namespace CityTruck.WebSite.Controllers
 
         }
         [HttpPost]
-        public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO)
+        public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO,bool EDITAR)
         {
             try
             {
-
-
                 int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
                 dynamic pos_ventas = JsonConvert.DeserializeObject(ventas);
                 RespuestaSP respuestaRSP = new RespuestaSP();
-
                 foreach (var o in pos_ventas)
                 {
                     //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res

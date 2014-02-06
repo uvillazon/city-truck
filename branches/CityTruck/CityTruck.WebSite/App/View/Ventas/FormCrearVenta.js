@@ -123,6 +123,7 @@
                         me.txt_nombres.setValue(str.Responsable);
                         me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
                         me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
+                        me.gridVenta.getStore().setExtraParam('EDITAR',me.editar);
                         me.gridVenta.getStore().load();
 //                        alert('entro');
                         me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
@@ -135,38 +136,23 @@
                         
                         if (me.editar){
                             if(str.success == true){
-//                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-//                                me.gridVenta.getStore().load();
                                 me.permiso = true;
                             }
                             else{
-//                                Ext.Msg.alert("Error","Solo puede Editar los que ya tiene valores ");
-//                                me.gridVenta.getStore().removeAll();
                                 me.permiso = false;
                             }
                         }
                         else{
                             if(str.success == false){
-//                                me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//                                me.gridVenta.getStore().setExtraParam('TURNO',cmb.getValue());
-//                                me.gridVenta.getStore().load();
                                 me.permiso = true;
                             }
                             else{
-//                                Ext.Msg.alert("Error","No puede Editar desde este Seccion");
-//                                me.gridVenta.getStore().removeAll();
                                 me.permiso = false;
                             }
                         }
-                        
-                        // process server response here
                     }
                 });
                 
-//                me.gridVenta().getStore().setExtraParams({
-//                    FECHA :  me.date_fecha.getValue()
-//                });
             }
             else{
                 Ext.Msg.alert("Seleccione Fecha primero");
@@ -299,7 +285,7 @@
         if(btn.getItemId() == "btn_GuardarCambios"){
             if(me.isValid() == true){
 //                alert("sadsadadsadsadad");
-                    Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta)}, null);
+                    Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta), EDITAR : me.editar}, null);
             }
             else{
                 

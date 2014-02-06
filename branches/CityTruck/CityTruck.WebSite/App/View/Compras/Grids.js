@@ -1,17 +1,17 @@
-﻿Ext.define("App.View.Ventas.Grids", {
+﻿Ext.define("App.View.Compras.Grids", {
     extend: "Ext.grid.Panel",
     margins: '0 2 0 0',
     loadMask: true,
     opcion: "",
     pieTitulo: '',
-    btnEliminarRecord: false,
+    handler : null,
     initComponent: function () {
         var me = this;
         //me.store = Ext.create("App.Store.Listas.Listas");
-        if (me.opcion == "GridVentas") {
-            me.title = "Ventas";
-            me.pieTitulo = "Ventas";
-            me.CargarGridVentas();
+        if (me.opcion == "GridDetallesCompra") {
+            me.title = "Detalles Compra";
+            me.pieTitulo = "Detalles";
+            me.CargarGridDetalleCompra();
         }
         else if (me.opcion == "GridVentasCredito") {
             me.title = "Ventas a Credito";
@@ -24,14 +24,36 @@
         
         this.callParent(arguments);
     },
-    CargarGridVentas : function(){
+    CargarGridDetalleCompra : function(){
         var me = this;
-      me.store = Ext.create("App.Store.Ventas.DetallesVenta");
+        me.store = Ext.create("App.Store.Compras.DetallesCompra");
+        me.plugins = [
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        ];
+        me.columnAction = Ext.create("Ext.grid.column.Action", {
+                width: 27,
+                align: 'center',
+                items: [
+                    {
+                        iconCls: 'delete',
+                        tooltip: 'Eliminar',
+                        scope : me.scope,
+                        handler: me.handler
+                    }]
+        });
         me.columns = [
-           { header: "Producto", width: 120, sortable: true, dataIndex: "PRODUCTO" },
-           { header: "Entrada Lts.", width: 80, sortable: false, dataIndex: "ENT_LITTER" },
-           { header: "Salida Lts.", width: 80, sortable: false, dataIndex: "SAL_LITTER" },
-           { header: "Total", width: 80, sortable: false, dataIndex: "TOTAL" }
+           { header: "Detalle", width: 200, sortable: true, dataIndex: "DETALLE" , editor: {
+                    xtype: 'textfield'
+                }
+            },
+           { header: "Total", width: 100, sortable: false, dataIndex: "IMPORTE" , editor: {
+                    xtype: 'numberfield',
+                    allowNegative: false
+                } 
+           }, 
+           me.columnAction
         ];
 
     },

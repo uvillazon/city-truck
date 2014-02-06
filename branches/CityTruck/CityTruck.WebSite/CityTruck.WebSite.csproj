@@ -200,7 +200,7 @@
     <Content Include="App\extensible\locale\extensible-lang-zh_TW.js" />
     <Content Include="App\Model\Cajas\Kardex.js" />
     <Content Include="App\Model\Cajas\Cajas.js" />
-    <Content Include="App\Model\Compras\DetallesVenta.js" />
+    <Content Include="App\Model\Compras\DetallesCompra.js" />
     <Content Include="App\Model\Compras\Compras.js" />
     <Content Include="App\Model\Combustibles\Combustibles.js" />
     <Content Include="App\Model\Combustibles\DetallesVenta.js" />
@@ -250,7 +250,7 @@
     <Content Include="App\Model\SolicitudesMantenimiento\SolicitudesMantenimiento.js" />
     <Content Include="App\Store\Cajas\Kardex.js" />
     <Content Include="App\Store\Cajas\Cajas.js" />
-    <Content Include="App\Store\Compras\DetallesVenta.js" />
+    <Content Include="App\Store\Compras\DetallesCompra.js" />
     <Content Include="App\Store\Compras\Compras.js" />
     <Content Include="App\Store\Combustibles\Combustibles.js" />
     <Content Include="App\Store\Combustibles\DetallesVenta.js" />

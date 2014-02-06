@@ -15,6 +15,7 @@
           <EntitySet Name="SG_COMBUSTIBLES" EntityType="Model.Store.SG_COMBUSTIBLES" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_COMPRAS" EntityType="Model.Store.SG_COMPRAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_CONSUMOS" EntityType="Model.Store.SG_CONSUMOS" store:Type="Tables" Schema="CITYTRUCK" />
+          <EntitySet Name="SG_DETALLES_COMPRAS" EntityType="Model.Store.SG_DETALLES_COMPRAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_EGRESOS" EntityType="Model.Store.SG_EGRESOS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_INGRESOS" EntityType="Model.Store.SG_INGRESOS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_KARDEX_CLIENTE" EntityType="Model.Store.SG_KARDEX_CLIENTE" store:Type="Tables" Schema="CITYTRUCK" />
@@ -56,6 +57,10 @@
           <AssociationSet Name="SG_CONSUMOS_R02" Association="Model.Store.SG_CONSUMOS_R02">
             <End Role="SG_CLIENTES_CONSUMO" EntitySet="SG_CLIENTES_CONSUMO" />
             <End Role="SG_CONSUMOS" EntitySet="SG_CONSUMOS" />
+          </AssociationSet>
+          <AssociationSet Name="SG_DETALLES_COMPRAS_R01" Association="Model.Store.SG_DETALLES_COMPRAS_R01">
+            <End Role="SG_COMPRAS" EntitySet="SG_COMPRAS" />
+            <End Role="SG_DETALLES_COMPRAS" EntitySet="SG_DETALLES_COMPRAS" />
           </AssociationSet>
           <AssociationSet Name="SG_EGRESOS_R01" Association="Model.Store.SG_EGRESOS_R01">
             <End Role="SG_CAJAS" EntitySet="SG_CAJAS" />
@@ -241,6 +246,18 @@
           <Property Name="IMPORTE_BS" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="IMPORTE_LTS" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="RESPONSABLE" Type="varchar2" MaxLength="250" />
+          <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
+          <Property Name="FECHA_REG" Type="date" />
+        </EntityType>
+        <EntityType Name="SG_DETALLES_COMPRAS">
+          <Key>
+            <PropertyRef Name="ID_DETALLE" />
+          </Key>
+          <Property Name="ID_DETALLE" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ID_COMPRA" Type="number" Nullable="false" Precision="7" />
+          <Property Name="DETALLE" Type="varchar2" Nullable="false" MaxLength="250" />
+          <Property Name="PRECIO" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="IMPORTE" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
           <Property Name="FECHA_REG" Type="date" />
         </EntityType>
@@ -511,6 +528,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="SG_DETALLES_COMPRAS_R01">
+          <End Role="SG_COMPRAS" Type="Model.Store.SG_COMPRAS" Multiplicity="1" />
+          <End Role="SG_DETALLES_COMPRAS" Type="Model.Store.SG_DETALLES_COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_COMPRAS">
+              <PropertyRef Name="ID_COMPRA" />
+            </Principal>
+            <Dependent Role="SG_DETALLES_COMPRAS">
+              <PropertyRef Name="ID_COMPRA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SG_EGRESOS_R01">
           <End Role="SG_CAJAS" Type="Model.Store.SG_CAJAS" Multiplicity="1" />
           <End Role="SG_EGRESOS" Type="Model.Store.SG_EGRESOS" Multiplicity="*" />
@@ -689,8 +718,18 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_ELIMINAR_COMPRA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_ELIMINAR_CONSUMO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_CONSUMO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="P_SG_ELIMINAR_DETALLE_COMPRA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
@@ -781,7 +820,6 @@
           <Parameter Name="P_TIPO" Type="varchar2" Mode="In" />
           <Parameter Name="P_PRECIO" Type="number" Mode="In" />
           <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
-          <Parameter Name="P_FORMULARIO" Type="number" Mode="In" />
           <Parameter Name="P_TOTAL" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
@@ -796,6 +834,14 @@
           <Parameter Name="P_PRECIO" Type="number" Mode="In" />
           <Parameter Name="P_IMPORTE_BS" Type="number" Mode="In" />
           <Parameter Name="P_IMPORTE_LTS" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="P_SG_GUARDAR_DETALLE_COMPRA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_DETALLE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_COMPRA" Type="number" Mode="In" />
+          <Parameter Name="P_DETALLE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_IMPORTE" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
@@ -964,21 +1010,6 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="P_SG_GUARDAR_COMPRAS">
-            <Parameter Name="P_ID_COMPRA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
-            <Parameter Name="P_ID_COMBUSTIBLE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
-            <Parameter Name="P_NRO_FACTURA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_TIPO" Mode="In" Type="String" />
-            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FORMULARIO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
           <EntitySet Name="SG_AMORTIZACIONES" EntityType="Model.SG_AMORTIZACIONES" />
           <EntitySet Name="SG_KARDEX_CLIENTE" EntityType="Model.SG_KARDEX_CLIENTE" />
           <EntitySet Name="SG_VENTAS_CREDITO" EntityType="Model.SG_VENTAS_CREDITO" />
@@ -1142,6 +1173,43 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="P_SG_ELIMINAR_DETALLE_COMPRA">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_ELIMINAR_COMPRA">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_COMPRAS">
+            <Parameter Name="P_ID_COMPRA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ID_COMBUSTIBLE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NRO_FACTURA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TIPO" Mode="In" Type="String" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_DETALLE_COMPRA">
+            <Parameter Name="P_ID_DETALLE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_COMPRA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DETALLE" Mode="In" Type="String" />
+            <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SG_DETALLES_COMPRAS" EntityType="Model.SG_DETALLES_COMPRAS" />
+          <AssociationSet Name="SG_DETALLES_COMPRAS_R01" Association="Model.SG_DETALLES_COMPRAS_R01">
+            <End Role="SG_COMPRAS" EntitySet="SG_COMPRAS" />
+            <End Role="SG_DETALLES_COMPRAS" EntitySet="SG_DETALLES_COMPRAS" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1390,6 +1458,7 @@
           <Property Type="DateTime" Name="FECHA_REG" />
           <NavigationProperty Name="SG_CAJAS" Relationship="Model.SG_COMPRAS_R02" FromRole="SG_COMPRAS" ToRole="SG_CAJAS" />
           <NavigationProperty Name="SG_COMBUSTIBLES" Relationship="Model.SG_COMPRAS_R01" FromRole="SG_COMPRAS" ToRole="SG_COMBUSTIBLES" />
+          <NavigationProperty Name="SG_DETALLES_COMPRAS" Relationship="Model.SG_DETALLES_COMPRAS_R01" FromRole="SG_COMPRAS" ToRole="SG_DETALLES_COMPRAS" />
         </EntityType>
         <Association Name="SG_COMPRAS_R02">
           <End Type="Model.SG_CAJAS" Role="SG_CAJAS" Multiplicity="1" />
@@ -1740,6 +1809,31 @@
           <Property Type="Decimal" Name="CONSUMO" Precision="15" Scale="5" />
           <Property Type="Decimal" Name="CONSUMO_BS" Precision="15" Scale="5" />
         </EntityType>
+        <EntityType Name="SG_DETALLES_COMPRAS">
+          <Key>
+            <PropertyRef Name="ID_DETALLE" />
+          </Key>
+          <Property Type="Int32" Name="ID_DETALLE" Nullable="false" />
+          <Property Type="Int32" Name="ID_COMPRA" Nullable="false" />
+          <Property Type="String" Name="DETALLE" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="PRECIO" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="IMPORTE" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_COMPRAS" Relationship="Model.SG_DETALLES_COMPRAS_R01" FromRole="SG_DETALLES_COMPRAS" ToRole="SG_COMPRAS" />
+        </EntityType>
+        <Association Name="SG_DETALLES_COMPRAS_R01">
+          <End Type="Model.SG_COMPRAS" Role="SG_COMPRAS" Multiplicity="1" />
+          <End Type="Model.SG_DETALLES_COMPRAS" Role="SG_DETALLES_COMPRAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_COMPRAS">
+              <PropertyRef Name="ID_COMPRA" />
+            </Principal>
+            <Dependent Role="SG_DETALLES_COMPRAS">
+              <PropertyRef Name="ID_COMPRA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1927,7 +2021,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_COMPRAS" FunctionName="Model.Store.P_SG_GUARDAR_COMPRAS" />
           <EntitySetMapping Name="SG_AMORTIZACIONES">
             <EntityTypeMapping TypeName="Model.SG_AMORTIZACIONES">
               <MappingFragment StoreEntitySet="SG_AMORTIZACIONES">
@@ -2084,6 +2177,23 @@
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AMORTIZACION" FunctionName="Model.Store.P_SG_GUARDAR_AMORTIZACION" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_EGRESO" FunctionName="Model.Store.P_SG_ELIMINAR_EGRESO" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_INGRESO" FunctionName="Model.Store.P_SG_ELIMINAR_INGRESO" />
+          <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_DETALLE_COMPRA" FunctionName="Model.Store.P_SG_ELIMINAR_DETALLE_COMPRA" />
+          <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_COMPRA" FunctionName="Model.Store.P_SG_ELIMINAR_COMPRA" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_COMPRAS" FunctionName="Model.Store.P_SG_GUARDAR_COMPRAS" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_DETALLE_COMPRA" FunctionName="Model.Store.P_SG_GUARDAR_DETALLE_COMPRA" />
+          <EntitySetMapping Name="SG_DETALLES_COMPRAS">
+            <EntityTypeMapping TypeName="Model.SG_DETALLES_COMPRAS">
+              <MappingFragment StoreEntitySet="SG_DETALLES_COMPRAS">
+                <ScalarProperty Name="FECHA_REG" ColumnName="FECHA_REG" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="DETALLE" ColumnName="DETALLE" />
+                <ScalarProperty Name="ID_COMPRA" ColumnName="ID_COMPRA" />
+                <ScalarProperty Name="ID_DETALLE" ColumnName="ID_DETALLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2158,8 +2268,8 @@
         <EntityTypeShape EntityType="Model.SG_COMPRAS" Width="1.5" PointX="12.875" PointY="5.25" Height="4.0956022135416656" />
         <AssociationConnector Association="Model.SG_COMPRAS_R02" >
           <ConnectorPoint PointX="8.625" PointY="7.75" />
-          <ConnectorPoint PointX="8.625" PointY="7.1559955937499993" />
-          <ConnectorPoint PointX="12.875" PointY="7.1559955937499993" />
+          <ConnectorPoint PointX="8.625" PointY="7.2888701953125032" />
+          <ConnectorPoint PointX="12.875" PointY="7.2888701953125032" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CLIENTES" Width="1.5" PointX="3.375" PointY="11.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="Model.SG_EGRESOS" Width="1.5" PointX="10.125" PointY="12" Height="2.9417936197916674" />
@@ -2213,12 +2323,12 @@
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_COMPRAS_R01" >
           <ConnectorPoint PointX="5.75" PointY="2.375" />
-          <ConnectorPoint PointX="5.75" PointY="2.125" />
-          <ConnectorPoint PointX="6.75" PointY="2.125" />
+          <ConnectorPoint PointX="5.75" PointY="2.1249999999999991" />
+          <ConnectorPoint PointX="6.75" PointY="2.1249999999999991" />
           <ConnectorPoint PointX="6.75" PointY="5.875" />
           <ConnectorPoint PointX="7.625" PointY="5.875" />
-          <ConnectorPoint PointX="7.625" PointY="6.8277413906250057" />
-          <ConnectorPoint PointX="12.875" PointY="6.8277413906250057" />
+          <ConnectorPoint PointX="7.625" PointY="6.8941786914062577" />
+          <ConnectorPoint PointX="12.875" PointY="6.8941786914062577" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_POS_R01" >
           <ConnectorPoint PointX="6.5" PointY="4.75" />
@@ -2244,6 +2354,11 @@
           <ConnectorPoint PointX="12" PointY="3.5958968098958337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CLIENTE_CONSUMO_COMBUSTIBLE" Width="1.5" PointX="0.75" PointY="4.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Model.SG_DETALLES_COMPRAS" Width="1.5" PointX="15.125" PointY="6.125" Height="2.5571907552083237" />
+        <AssociationConnector Association="Model.SG_DETALLES_COMPRAS_R01" >
+          <ConnectorPoint PointX="14.375" PointY="7.4035953776041623" />
+          <ConnectorPoint PointX="15.125" PointY="7.4035953776041623" />
+        </AssociationConnector>
         </Diagram>
     </Diagrams>
   </Designer>
