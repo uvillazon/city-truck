@@ -79,9 +79,10 @@
             me.formIngreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formIngreso.ocultarSaldos();
+            me.formIngreso.ocultarSaldos(false);
             me.formIngreso.CargarDatos(me.recordSelected);
-        }
+        } else
+            me.formIngreso.ocultarSaldos(true);
         me.winCrearIngreso.show();
     },
     GuardarIngresos: function () {
