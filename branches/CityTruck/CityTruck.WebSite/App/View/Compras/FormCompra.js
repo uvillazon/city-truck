@@ -177,9 +177,12 @@
          me.gridDetalle.on('edit', function(editor, e){
             
             if (e.field == "IMPORTE"){
-                    e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
+//                    e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
                     me.CargarTotales();
             }
+        });
+        me.gridDetalle.getStore().on('load',function(){
+            me.CargarTotales();
         });
     },
     CargarTotales : function(){

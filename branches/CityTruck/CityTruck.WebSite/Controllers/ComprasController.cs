@@ -29,6 +29,7 @@ namespace CityTruck.WebSite.Controllers
 
             var formatData = compras.Select(x => new
             {
+                ID_COMPRA = x.ID_COMPRA,
                 FECHA = x.FECHA,
                 CANTIDAD = x.CANTIDAD,
                 IMPORTE = x.IMPORTE,

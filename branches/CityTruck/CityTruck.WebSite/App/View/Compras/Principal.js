@@ -47,6 +47,7 @@
     onItemClick: function (view, record, item, index, e) {
         var me = this;
         me.id_compra = record.get('ID_COMPRA');
+        me.record = record;
     },
     onSelectChange: function (selModel, selections) {
         var me = this;
@@ -85,6 +86,20 @@
                 me.formCompra.gridDetalle.getStore().removeAll();
                 me.winCrearCompra.show();
             }
+        }
+        else if(btn.getItemId() == "btn_Detalle"){
+            var win = Ext.create("App.Config.Abstract.Window");
+            var form = Ext.create("App.View.Compras.FormCompra",{
+                    columns: 2,
+                    title: 'Formulario de Registro de Compras ',
+                    botones: false
+            });
+            Funciones.BloquearFormularioReadOnly(form);
+            win.add(form);
+            form.loadRecord(me.record);
+            form.gridDetalle.getStore().setExtraParams({ID_COMPRA : me.record.get('ID_COMPRA')});
+            form.gridDetalle.getStore().load();
+            win.show();
         }
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
