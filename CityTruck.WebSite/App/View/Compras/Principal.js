@@ -99,13 +99,14 @@
         var totalDiesel = 0;
         var totalGasolinaBs = 0;
         var totalDieselBs = 0;
-        me.gridVenta.getStore().each(function(record){
+        me.grid.getStore().each(function(record){
 //            alert(record.get('TOTAL'));
+            
             if(record.get('COMBUSTIBLE')== 'GASOLINA'){
                 totalGasolina= totalGasolina +  record.get('TOTAL');
                 
             }
-            else if(record.get('CODIGO')== 'DIESEL'){
+            else if(record.get('COMBUSTIBLE')== 'DIESEL'){
                 totalDiesel= totalDiesel +  record.get('TOTAL');
             }
             else{
