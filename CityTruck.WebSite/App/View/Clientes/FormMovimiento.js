@@ -85,5 +85,15 @@
         me.cbx_cliente.on('select',function(cmb,record){
             me.num_saldo.setValue(record[0].get('SALDO'));
         });
+    },
+    cargarCliente: function(id_cliente) {
+      var me = this;  
+      me.cbx_cliente.setValue(id_cliente);
+      var found = me.cbx_cliente.store.find('ID_CLIENTE', id_cliente,0,true,false);
+      if (found >= 0) {
+        var record =  me.cbx_cliente.store.getAt(found);   
+        me.num_saldo.setValue(record.get('SALDO'));
+      }
+ 
     }
 });

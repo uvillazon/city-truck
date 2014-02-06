@@ -107,6 +107,8 @@
             me.formNuevoMovimiento.getForm().reset();
             me.winNuevoMovimiento.show();
         }
+        if(me.id_cliente >= 0) 
+            me.formNuevoMovimiento.cargarCliente(me.id_cliente);
 
     }, GuardarMovimiento: function () {
         var me = this;
@@ -124,16 +126,6 @@
     }, MostrarKardex: function () {
         var me = this;
         var buttonGroup = [{
-            xtype: 'button',
-            text: 'Detalle',
-            iconCls: 'report',
-            minHeight: 27,
-            minWidth: 80,
-            handler: function () {
-                alert('Evento Detalle');
-            }
-
-        }, {
             xtype: 'button',
             text: 'Amortizaci\u00F3n',
             iconCls: 'add',
