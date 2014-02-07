@@ -16,7 +16,16 @@ namespace CityTruck.Business
 
         public SG_POS_TURNOSManager(IUnitOfWork uow) : base(uow) { }
 
+        public IQueryable<SG_POS_TURNOS> ObtenerVentasPorMesyAnio(string ANIO, string MES)
+        {
+            var context = (CityTruckContext)Context;
+            int anio = Convert.ToInt32(ANIO);
+            int mes = Convert.ToInt32(MES);
 
+            var query = context.SG_POS_TURNOS.Where(x => x.FECHA.Month == mes && x.FECHA.Year == anio);
+         
+            return query;
+        }
         
     }
 }

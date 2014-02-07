@@ -15,9 +15,16 @@ namespace CityTruck.WebSite.Controllers
     public class CombustiblesController : Controller
     {
         private ICombustiblesServices _serCom;
-        public CombustiblesController(ICombustiblesServices serCom)
+        private IVentasDiariasServices _serVen;
+        private IComprasServices _serComp;
+        private IPosTurnosServices _serPos;
+
+        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos)
         {
             _serCom = serCom;
+            _serVen = serVen;
+            _serComp = serComp;
+            _serPos = serPos;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -36,6 +43,71 @@ namespace CityTruck.WebSite.Controllers
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formattData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
+        }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerKardexCombustible(PagingInfo paginacion, string ANIO = null, string MES = null)
+        {
+            //string mes, anio;
+            if (ANIO == null && MES == null)
+            {
+                //DateTime fecha = DateTime.Now;
+                MES = DateTime.Now.ToString("MM");
+                ANIO = DateTime.Now.ToString("yyyy");
+            }
+            var resultVenta = _serPos.ObtenerPosTurnosPorFecha(ANIO, MES).GroupBy(y => new { y.FECHA, y.SG_POS.SG_COMBUSTIBLES.NOMBRE }).Select(z => new
+            {
+                FECHA = z.Key.FECHA,
+                COMBUSTIBLE = z.Key.NOMBRE,
+                TOTAL = z.Sum(x => x.TOTAL)
+            });
+            var resultCompra = _serComp.ObtenerComprasPaginado(null, ANIO, MES).GroupBy(y => new { y.FECHA, y.SG_COMBUSTIBLES.NOMBRE }).Select(z => new
+            {
+                FECHA = z.Key.FECHA,
+                COMBUSTIBLE = z.Key.NOMBRE,
+                TOTAL = z.Sum(x => x.CANTIDAD)
+            });
+            var fechas = resultVenta.Union(resultCompra);
+            decimal SaldoDiesel = 0;
+            decimal SaldoGasolina = 0;
+            decimal Venta = 0;
+            decimal Compras = 0;
+            decimal Ajsute = 0;
+            var ventas = fechas.GroupBy(y => new { y.FECHA }).Select(z => new { FECHA = z.Key.FECHA, TOTAL = z.Sum(x => x.TOTAL) });
+            List<KardexCombustibleModel> listas = new List<KardexCombustibleModel>();
+            foreach (var item in ventas)
+            {
+                KardexCombustibleModel venDia = new KardexCombustibleModel
+                {
+                    FECHA = item.FECHA,
+                };
+                venDia.SALDO_INICIAL_DIE = SaldoDiesel;
+                venDia.SALDO_INICIAL_GAS = SaldoGasolina;
+                Venta = resultVenta.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "GASOLINA").Count() > 0 ? resultVenta.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "GASOLINA").FirstOrDefault().TOTAL : 0;
+                Compras = venDia.COMPRAS_GAS = resultCompra.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "GASOLINA").Count() > 0 ? resultCompra.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "GASOLINA").FirstOrDefault().TOTAL : 0;
+                SaldoGasolina = venDia.SALDO_INICIAL_GAS + Compras - Venta + Ajsute;
+                venDia.VENTAS_GAS = Venta;
+                venDia.COMPRAS_GAS = Compras;
+                venDia.AJUSTES_GAS = Ajsute;
+                venDia.ACUMULADO_GAS = SaldoGasolina;
+
+                Venta = resultVenta.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "DIESEL").Count() > 0 ? resultVenta.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "DIESEL").FirstOrDefault().TOTAL : 0;
+                Compras = resultCompra.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "DIESEL").Count() > 0 ? resultCompra.Where(x => x.FECHA == item.FECHA && x.COMBUSTIBLE == "DIESEL").FirstOrDefault().TOTAL : 0;
+                venDia.VENTAS_DIE = Venta;
+                venDia.COMPRAS_DIE = Compras;
+                venDia.AJUSTES_DIE = Ajsute;
+                SaldoDiesel = venDia.SALDO_INICIAL_DIE + Compras - Venta + Ajsute;
+                venDia.ACUMULADO_DIE = SaldoDiesel;
+                
+                //venDia.
+
+                listas.Add(venDia);
+
+            }
+
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+
         }
     }
 }
