@@ -10,7 +10,7 @@ namespace CityTruck.Services.Interfaces
 {
     public interface IClientesServices
     {
-        IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion);
+        IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion, string ANIO, string MES);
         RespuestaSP SP_GrabarCliente(SG_CLIENTES cliente, int ID_USR);
         RespuestaSP SP_GrabarAmortizacion(SG_AMORTIZACIONES amortizacion, int ID_USR);
         RespuestaSP SP_EliminarCliente(int ID_CLIENTE, int ID_USR);

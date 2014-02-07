@@ -16,6 +16,16 @@ namespace CityTruck.Business
 
         public SG_CLIENTESManager(IUnitOfWork uow) : base(uow) { }
 
+        public IQueryable<SG_CLIENTES> ObtenerClientesPorMesyAnio(string ANIO, string MES)
+        {
+            var context = (CityTruckContext)Context;
+            int anio = Convert.ToInt32(ANIO);
+            int mes = Convert.ToInt32(MES);
+
+            var query = context.SG_CLIENTES.Where(x => x.FECHA.Month == mes && x.FECHA.Year == anio);
+            return query;
+        }
+
 
         
     }

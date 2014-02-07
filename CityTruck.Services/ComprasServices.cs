@@ -30,6 +30,7 @@ namespace CityTruck.Services
             {
                 var manager = new SG_COMPRASManager(uow);
                 result = manager.BuscarTodos();
+                result = manager.ObtenerComprasPorMesyAnio(ANIO, MES);
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
 
