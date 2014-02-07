@@ -22,15 +22,17 @@ namespace CityTruck.Services
         {
             //_manListas = manListas;
         }
-       
 
-        public IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion)
+
+        public IEnumerable<SG_CLIENTES> ObtenerClientesPaginado(PagingInfo paginacion, string ANIO, string MES)
         {
             IQueryable<SG_CLIENTES> result = null;
             ExecuteManager(uow =>
             {
                 var manager = new SG_CLIENTESManager(uow);
                 result = manager.BuscarTodos();
+
+                result = manager.ObtenerClientesPorMesyAnio(ANIO, MES);
 
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);

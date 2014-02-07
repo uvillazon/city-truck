@@ -25,9 +25,9 @@ namespace CityTruck.WebSite.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerClientesPaginado(PagingInfo paginacion)
+        public ActionResult ObtenerClientesPaginado(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
-            var clientes = _serCli.ObtenerClientesPaginado(paginacion);
+            var clientes = _serCli.ObtenerClientesPaginado(paginacion, ANIO, MES);
             var formatData = clientes.Select(x => new
             {
                 ID_CLIENTE = x.ID_CLIENTE,

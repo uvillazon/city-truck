@@ -22,9 +22,9 @@ namespace CityTruck.WebSite.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerEgresosPaginado(PagingInfo paginacion)
+        public ActionResult ObtenerEgresosPaginado(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
-            var cajas = _serIng.ObtenerEgresosPaginado(paginacion);
+            var cajas = _serIng.ObtenerEgresosPaginado(paginacion, ANIO, MES);
             var formatData = cajas.Select(x => new
             {
                 ID_CAJA = x.ID_CAJA,

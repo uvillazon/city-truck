@@ -16,11 +16,26 @@
         var me = this;
         if (me.opcion == "GridCajas") {
             me.CargaGridCajas();
+            me.eventosGrid();
         }
         else {
             alert("No selecciono ninguna opcion");
         }
         this.callParent(arguments);
+    },
+    eventosGrid: function () {
+        var me = this;
+        me.cbx_mes.on('select', function (cmb, record) {
+            me.store.setExtraParam('MES', record[0].get('CODIGO'));
+            me.store.setExtraParam('ANIO', me.cbx_anio.getValue());
+            me.store.load();
+        });
+        me.cbx_anio.on('select', function (cmb, record) {
+            me.store.setExtraParam('ANIO', record[0].get('CODIGO'));
+            me.store.setExtraParam('MES', me.cbx_mes.getValue());
+            me.store.load();
+        });
+
     },
     CargaGridCajas: function () {
         var me = this;

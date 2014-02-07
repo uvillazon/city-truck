@@ -23,13 +23,15 @@ namespace CityTruck.Services
             //_manListas = manListas;
         }
        
-        public IEnumerable<SG_INGRESOS> ObtenerIngresosPaginado(PagingInfo paginacion)
+        public IEnumerable<SG_INGRESOS> ObtenerIngresosPaginado(PagingInfo paginacion, string ANIO, string MES)
         {
             IQueryable<SG_INGRESOS> result = null;
             ExecuteManager(uow =>
             {
                 var manager = new SG_INGRESOSManager(uow);
                 result = manager.BuscarTodos();
+
+                result = manager.ObtenerIngresosPorMesyAnio(ANIO, MES);
 
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
@@ -63,14 +65,14 @@ namespace CityTruck.Services
         }
 
 
-        public IEnumerable<SG_EGRESOS> ObtenerEgresosPaginado(PagingInfo paginacion)
+        public IEnumerable<SG_EGRESOS> ObtenerEgresosPaginado(PagingInfo paginacion, string ANIO, string MES)
         {
             IQueryable<SG_EGRESOS> result = null;
             ExecuteManager(uow =>
             {
                 var manager = new SG_EGRESOSManager(uow);
                 result = manager.BuscarTodos();
-
+                result = manager.ObtenerEgresosPorMesyAnio(ANIO, MES);
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
 
