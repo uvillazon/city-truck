@@ -82,8 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataMigration\version1\BDDDL25012014Ronald.sql" />
-    <Content Include="DataMigration\version1\P_SG_ELIMINAR_CAJA.sql" />
     <Content Include="DataMigration\version1\P_SG_ACTUALIZAR_VENTAS_DIARIAS.sql" />
+    <Content Include="DataMigration\version1\P_SG_ELIMINAR_CAJA.sql" />
     <Content Include="DataMigration\version1\SG_DETALLES_COMPRAS.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_COMPRA.sql" />
     <Content Include="DataMigration\version1\P_SG_ELIMINAR_DETALLE_COMPRA.sql" />
