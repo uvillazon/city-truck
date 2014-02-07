@@ -25,7 +25,7 @@
     CargarGridTanques: function () {
         var me = this;
         var fecha_actual = new Date();
-        me.store = Ext.create("App.Store.Tanques.Tanques");
+        me.store = Ext.create("App.Store.Combustibles.Kardex");
         me.store.load();
         //me.CargarComponentes();
 
@@ -89,20 +89,20 @@
             { xtype: "rownumberer", width: 30, sortable: false },
             { text: 'DIESEL OIL',
               columns: [
-                { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA_DIESEL", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
-                { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SINICIAL_DIESEL" },
-                { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_DIESEL" },
-                { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_DIESEL" },
-                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_DIESEL" },
-                { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUM_DIESEL"}]
-          }, { text: 'GASILINA ESPECIAL',
+                { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
+                { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SALDO_INICIAL_DIE" },
+                { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_DIE" },
+                { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_DIE" },
+                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_DIE" },
+                { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUMULADO_DIE"}]
+          }, { text: 'GASOLINA ESPECIAL',
               columns: [
-                { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA_GASOLINA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
-                { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SINICIAL_GASOLINA" },
-                { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_GASOLINA" },
-                { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_GASOLINA" },
-                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_GASOLINA" },
-                { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUM_GASOLINA"}]
+                { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
+                { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SALDO_INICIAL_GAS" },
+                { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_GAS" },
+                { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_GAS" },
+                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_GAS" },
+                { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUMULADO_GAS"}]
           }
         ];
         me.button_search.on('click', this.buscarBotonCodigo, this);

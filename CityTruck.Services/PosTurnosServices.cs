@@ -38,6 +38,17 @@ namespace CityTruck.Services
             });
             return result;
         }
+        public IEnumerable<SG_POS_TURNOS> ObtenerPosTurnosPorFecha(string ANIO, string MES)
+        {
+            IQueryable<SG_POS_TURNOS> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_POS_TURNOSManager(uow);
+                result = manager.ObtenerVentasPorMesyAnio(ANIO, MES);
+
+            });
+            return result;
+        }
 
         public RespuestaSP SP_GenerarPosTurnos(DateTime? FECHA, string TURNO, int ID_USR)
         {

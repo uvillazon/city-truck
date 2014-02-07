@@ -29,13 +29,13 @@ namespace CityTruck.Services
             ExecuteManager(uow =>
             {
                 var managerVentas = new SG_VENTAS_DIARIASManager(uow);
-                result = managerVentas.BuscarTodos();
+                //result = managerVentas.BuscarTodos();
                 //result = result.Where(x => x.FECHA.ToString("MM-yyyy") == ANIO_MES);
 
                 result = managerVentas.ObtenerVentasPorMesyAnio(ANIO,MES);
 
                 paginacion.total = result.Count();
-                result = managerVentas.QueryPaged(result,paginacion.limit,paginacion.start,paginacion.sort,paginacion.dir);
+                //result = managerVentas.QueryPaged(result,paginacion.limit,paginacion.start,paginacion.sort,paginacion.dir);
                 
                 //var manager = new SG_LISTASManager(uow);
                 //result = manager.QueryPaged(manager.Query(), paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);

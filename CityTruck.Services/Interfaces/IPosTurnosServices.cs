@@ -11,6 +11,7 @@ namespace CityTruck.Services.Interfaces
     public interface IPosTurnosServices
     {
         IEnumerable<SG_POS_TURNOS> ObtenerPosTurnos(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros);
+        IEnumerable<SG_POS_TURNOS> ObtenerPosTurnosPorFecha(string ANIO, string MES);
         RespuestaSP SP_GenerarPosTurnos(DateTime? FECHA,string TURNO,int ID_USR);
         RespuestaSP SP_GrabarPosTurnos(SG_POS_TURNOS posTurnos,int ID_USR);
     }

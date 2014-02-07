@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Infraestructura\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\KardexCombustibleModel.cs" />
     <Compile Include="Models\VentasDiariasModel.cs" />
     <Compile Include="Models\MenuOpcionesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,7 +204,7 @@
     <Content Include="App\Model\Compras\DetallesCompra.js" />
     <Content Include="App\Model\Compras\Compras.js" />
     <Content Include="App\Model\Combustibles\Combustibles.js" />
-    <Content Include="App\Model\Combustibles\DetallesVenta.js" />
+    <Content Include="App\Model\Combustibles\Kardex.js" />
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
     <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
@@ -253,7 +254,7 @@
     <Content Include="App\Store\Compras\DetallesCompra.js" />
     <Content Include="App\Store\Compras\Compras.js" />
     <Content Include="App\Store\Combustibles\Combustibles.js" />
-    <Content Include="App\Store\Combustibles\DetallesVenta.js" />
+    <Content Include="App\Store\Combustibles\Kardex.js" />
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />

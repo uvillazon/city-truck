@@ -25,6 +25,12 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerComprasPaginado(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
+            if (ANIO == null && MES == null)
+            {
+                //DateTime fecha = DateTime.Now;
+                MES = DateTime.Now.ToString("MM");
+                ANIO = DateTime.Now.ToString("yyyy");
+            }
             var compras = _serCmp.ObtenerComprasPaginado(paginacion, ANIO, MES);
 
             var formatData = compras.Select(x => new

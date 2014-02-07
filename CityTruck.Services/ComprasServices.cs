@@ -29,11 +29,14 @@ namespace CityTruck.Services
             ExecuteManager(uow =>
             {
                 var manager = new SG_COMPRASManager(uow);
-                result = manager.BuscarTodos();
+                //result = manager.BuscarTodos();
                 result = manager.ObtenerComprasPorMesyAnio(ANIO, MES);
-                paginacion.total = result.Count();
-                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
-
+                
+                if (paginacion != null)
+                {
+                    paginacion.total = result.Count();
+                    result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+                }
 
 
             });
