@@ -70,5 +70,22 @@ namespace CityTruck.WebSite.Controllers
             respuestaSP = _serCaj.SP_GrabarCaja(caj, id_usr);
             return Json(respuestaSP);
         }
+
+        [HttpPost]
+        public JsonResult EliminarCaja(int ID_CAJA)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serCaj.SP_EliminarCaja(ID_CAJA, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

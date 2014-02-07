@@ -16,7 +16,7 @@
         Funciones.CrearMenu('btn_CrearCuentaPC', 'Nuevo', Constantes.ICONO_CREAR, me.EventosCuentaPC, me.toolbar, this);
         Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCuentaPC, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCuentaPC, me.toolbar, this, null, true);
+        //Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCuentaPC, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCuentaPC, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCuentaPC, me.toolbar, this, null, true);
         //        Funciones.CrearMenu('btn_PlanillaRelevamiento', 'Planilla para Relevamiento', Constantes.ICONO_VER, me.EventosPlanilla, me.toolbar, this);
@@ -43,7 +43,7 @@
         var me = this;
         var disabled = selections.length === 0;
         Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        //Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Kardex', me.toolbar, disabled);
     },
