@@ -7,7 +7,12 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+    CargarStore : function(){
+        var me = this;
+        me.store_combustible.load();
+        me.store_cuenta.load();
+        me.store_tipo.load();
+    },
     CargarComponentes: function () {
         var me = this;
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
@@ -43,7 +48,7 @@
             store: me.store_cuenta,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl : function () { return "{NOMBRE} - SALDO : {SALDO}" }
         });
        
         me.num_cantidad = Ext.create("App.Config.Componente.NumberFieldBase", {

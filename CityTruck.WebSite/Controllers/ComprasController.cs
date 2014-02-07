@@ -85,12 +85,16 @@ namespace CityTruck.WebSite.Controllers
                     {
                         SG_DETALLES_COMPRAS detalleCompra = new SG_DETALLES_COMPRAS()
                         {
+                            ID_DETALLE = item.ID_DETALLE,
                             DETALLE = item.DETALLE,
                             ID_COMPRA = id_compra,
                             IMPORTE = item.IMPORTE,
                         };
                         respuestaSP = _serCmp.SP_GrabarDetalleCompra(detalleCompra, id_usr);
                     }
+                }
+                else {
+                    respuestaSP.msg = "Proceso Ejecutado Correctamente...";
                 }
             }
             else

@@ -84,6 +84,7 @@
             } else {
                 me.formCompra.getForm().reset();
                 me.formCompra.gridDetalle.getStore().removeAll();
+                me.formCompra.CargarStore();
                 me.winCrearCompra.show();
             }
         }
