@@ -14,7 +14,7 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearIngreso', 'Crear Ingreso', Constantes.ICONO_CREAR, me.EventosIngreso, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
+       // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
 
@@ -41,7 +41,7 @@
         var me = this;
         var disabled = selections.length === 0;
         Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        //Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
     },
     EventosIngreso: function (btn) {

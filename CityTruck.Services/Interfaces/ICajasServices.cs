@@ -12,6 +12,7 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_CAJAS> ObtenerCajasPaginado(PagingInfo paginacion);
         RespuestaSP SP_GrabarCaja(SG_CAJAS caja, int ID_USR);
+        RespuestaSP SP_EliminarCaja(int ID_CAJA, int ID_USR);
 
     }
 }

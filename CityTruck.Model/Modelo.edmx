@@ -708,6 +708,11 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_ELIMINAR_CAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_ELIMINAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
@@ -1210,6 +1215,11 @@
             <End Role="SG_COMPRAS" EntitySet="SG_COMPRAS" />
             <End Role="SG_DETALLES_COMPRAS" EntitySet="SG_DETALLES_COMPRAS" />
           </AssociationSet>
+          <FunctionImport Name="P_SG_ELIMINAR_CAJA">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -2194,6 +2204,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_CAJA" FunctionName="Model.Store.P_SG_ELIMINAR_CAJA" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
