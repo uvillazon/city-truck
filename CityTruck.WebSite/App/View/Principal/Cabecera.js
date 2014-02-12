@@ -94,7 +94,7 @@ Ext.define("App.View.Principal.Cabecera", {
         var NombreUsuario = '<span  style="font-size:11px;height:11px;font-weight: bold;"> ' + data.Perfil + ' : ' + data.Nombre + '  </span>';
         tb.add("->");
         tb.add(NombreUsuario ,{
-            text:"Salir",
+            text:"Salir (Esc)",
             iconCls: "exclamation",
             tooltip: "Cerrar Session",
             scope: me,

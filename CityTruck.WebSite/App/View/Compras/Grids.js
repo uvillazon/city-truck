@@ -50,7 +50,11 @@
             },
            { header: "Total", width: 100, sortable: false, dataIndex: "IMPORTE" , editor: {
                     xtype: 'numberfield',
-                    allowNegative: false
+                    allowNegative: false,
+                    allowDecimals : true,
+                    decimalPrecision: 2,
+                    decimalSeparator : '.',
+
                 } 
            }, 
            me.columnAction

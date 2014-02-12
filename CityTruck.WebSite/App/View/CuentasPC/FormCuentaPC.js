@@ -19,8 +19,10 @@
         });
         me.txt_codigo = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "C\u00F3digo",
-            readOnly : true,
-            name: "CODIGO"
+//            readOnly : true,
+            name: "CODIGO",
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
 
         });
 

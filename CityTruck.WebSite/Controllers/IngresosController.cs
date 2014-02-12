@@ -24,6 +24,11 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerIngresosPaginado(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
+            if (ANIO == null && MES == null)
+            {
+                MES = DateTime.Now.ToString("MM");
+                ANIO = DateTime.Now.ToString("yyyy");
+            }
             var cajas = _serIng.ObtenerIngresosPaginado(paginacion, ANIO, MES);
             var formatData = cajas.Select(x => new
             {

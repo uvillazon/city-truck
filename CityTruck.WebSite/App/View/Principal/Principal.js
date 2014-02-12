@@ -80,7 +80,18 @@
         me.items = [me.panel_cabecera, me.panel_centro, me.panel_pie];
         me.InicializarRunner();
         //me.CargarListas();
+       var nav = Ext.create('Ext.util.KeyNav', Ext.getDoc(), {
+        scope: me,
+        esc: me.SalirSession,
+    });
         this.callParent();
+    },
+     SalirSession: function () {
+        Ext.Msg.confirm("Confirmar", "Esta seguro salir de la aplicación?", function (btn) {
+            if (btn === "yes") {
+                document.location = Constantes.HOST + 'Account/LogOff';
+            }
+        });
     },
     CalendarioEspanol: function () {
         var me = this;

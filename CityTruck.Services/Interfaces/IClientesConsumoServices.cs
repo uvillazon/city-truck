@@ -12,6 +12,7 @@ namespace CityTruck.Services.Interfaces
     public interface IClientesConsumoServices
     {
         IEnumerable<SG_CLIENTES_CONSUMO> ObtenerClientesPaginado(PagingInfo paginacion);
+        IEnumerable<SG_CONSUMOS> ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumoDetalleModel> filtros);
         SG_CLIENTES_CONSUMO ObtenerCliente(Expression<Func<SG_CLIENTES_CONSUMO, bool>> criterio = null);
         RespuestaSP SP_GrabarCliente(SG_CLIENTES_CONSUMO cli, int ID_USR);
         RespuestaSP SP_EliminarCliente(int ID_CLIENTE, int ID_USR);

@@ -207,7 +207,9 @@
     <Content Include="App\Model\Combustibles\Kardex.js" />
     <Content Include="App\Model\Clientes\Clientes.js" />
     <Content Include="App\Model\Clientes\Kardex.js" />
+    <Content Include="App\Model\ConsumoPropio\Clientes.js" />
     <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
+    <Content Include="App\Model\ConsumoPropio\Consumos.js" />
     <Content Include="App\Model\Egresos\Egresos.js" />
     <Content Include="App\Model\Ingresos\DetallesVenta.js" />
     <Content Include="App\Model\Ingresos\Ingresos.js" />
@@ -257,7 +259,10 @@
     <Content Include="App\Store\Combustibles\Kardex.js" />
     <Content Include="App\Store\Clientes\Clientes.js" />
     <Content Include="App\Store\Clientes\Kardex.js" />
+    <Content Include="App\Store\ConsumoPropio\Clientes.js" />
+    <Content Include="App\Store\ConsumoPropio\ClientesConsumo.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
+    <Content Include="App\Store\ConsumoPropio\Consumos.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />

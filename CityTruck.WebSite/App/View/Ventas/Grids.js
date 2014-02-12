@@ -44,6 +44,7 @@
            { header: "Entrada Lts.", width: 80, sortable: false, dataIndex: "ENT_LITTER" },
            { header: "Salida Lts.", width: 80, sortable: false, dataIndex: "SAL_LITTER" ,editor: {
                     xtype: 'numberfield',
+                    
                 } 
            },
            { header: "Total", width: 80, sortable: false, dataIndex: "TOTAL" }

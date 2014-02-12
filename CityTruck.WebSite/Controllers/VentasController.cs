@@ -71,7 +71,7 @@ namespace CityTruck.WebSite.Controllers
                 listas.Add(venDia);
 
             }
-           
+            listas = listas.OrderByDescending(x => x.FECHA).ToList();
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
             return JavaScript(callback1);

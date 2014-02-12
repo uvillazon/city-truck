@@ -61,6 +61,7 @@ namespace CityTruck.WebSite.Controllers
                 SALDO = x.SALDO,
                 DETALLE = x.DETALLE,
             });
+            formatData = formatData.OrderByDescending(x => x.FECHA).ThenByDescending(x => x.ID_KARDEX);
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);

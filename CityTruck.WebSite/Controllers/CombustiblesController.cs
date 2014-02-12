@@ -18,13 +18,15 @@ namespace CityTruck.WebSite.Controllers
         private IVentasDiariasServices _serVen;
         private IComprasServices _serComp;
         private IPosTurnosServices _serPos;
+        private ITanquesServices _serTan;
 
-        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos)
+        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos,ITanquesServices serTan)
         {
             _serCom = serCom;
             _serVen = serVen;
             _serComp = serComp;
             _serPos = serPos;
+            _serTan = serTan;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -67,12 +69,12 @@ namespace CityTruck.WebSite.Controllers
                 TOTAL = z.Sum(x => x.CANTIDAD)
             });
             var fechas = resultVenta.Union(resultCompra);
-            decimal SaldoDiesel = 0;
-            decimal SaldoGasolina = 0;
+            decimal SaldoDiesel = (decimal)_serTan.SaldoTanque(2,DateTime.Now,1);
+            decimal SaldoGasolina = (decimal)_serTan.SaldoTanque(1, DateTime.Now, 1); ;
             decimal Venta = 0;
             decimal Compras = 0;
             decimal Ajsute = 0;
-            var ventas = fechas.GroupBy(y => new { y.FECHA }).Select(z => new { FECHA = z.Key.FECHA, TOTAL = z.Sum(x => x.TOTAL) });
+            var ventas = fechas.GroupBy(y => new { y.FECHA }).Select(z => new { FECHA = z.Key.FECHA, TOTAL = z.Sum(x => x.TOTAL) }).OrderBy(x=>x.FECHA);
             List<KardexCombustibleModel> listas = new List<KardexCombustibleModel>();
             foreach (var item in ventas)
             {

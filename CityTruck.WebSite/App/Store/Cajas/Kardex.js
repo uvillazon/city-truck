@@ -1,7 +1,7 @@
 ﻿Ext.define('App.Store.Cajas.Kardex', {
     extend: 'App.Config.Abstract.Store',
     model: 'App.Model.Cajas.Kardex',
-    url: 'CAJAS/ObtenerKardexEfectivoPaginado',
-    sortProperty: 'FECHA_REG',
-     sortDirection: 'ASC'
+    url: 'Cajas/ObtenerKardexEfectivoPaginado',
+    sortProperty: 'FECHA',
+     sortDirection: 'DESC'
 });

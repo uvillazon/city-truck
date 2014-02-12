@@ -30,7 +30,7 @@
             displayField: 'EMPRESA',
             valueField : 'ID_CLIENTE',
             store: me.store_cliente,
-            //readOnly: true,
+            readOnly: true,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
@@ -65,6 +65,15 @@
             allowBlank: false,
             textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
         });
+        me.txt_observacion = Ext.create("App.Config.Componente.TextAreaBase", {
+            fieldLabel: "Observaciones",
+            name: "OBSERVACION",
+            maxLength: 400,
+            width: 240,
+//            afterLabelTextTpl: Constantes.REQUERIDO,
+//            allowBlank: false,
+
+        });
        
          
         me.items = [
@@ -74,7 +83,8 @@
             me.num_saldo,
             me.txt_concepto,
             me.num_importe,
-            me.cbx_cuenta
+            me.cbx_cuenta,
+            me.txt_observacion
         ];
        
       

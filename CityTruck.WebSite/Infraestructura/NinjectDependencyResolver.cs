@@ -72,6 +72,7 @@ namespace CityTruck.WebSite.Infraestructura
             Bind<IKardexEfectivoServices>().To<KardexEfectivoServices>();
             Bind<IKardexClienteServices>().To<KardexClienteServices>();
             Bind<IClientesConsumoServices>().To<ClientesConsumoServices>();
+            Bind<ITanquesServices>().To<TanquesServices>();
             
             //Bind<IMaterialesManagementService>().To<MaterialesManagementService>();
         }

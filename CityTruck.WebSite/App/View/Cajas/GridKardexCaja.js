@@ -41,7 +41,7 @@
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
             { header: "Nro <br>Comprobante", width: 80, sortable: false, dataIndex: "NRO_COMP", hidden: true },
-            { header: "Fecha", width: 100, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
+            { header: "Fecha", width: 100, sortable: false, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
             { header: "Detalle", width: 245, sortable: false, dataIndex: "DETALLE" },
             { header: "Ingreso", width: 80, sortable: false, dataIndex: "INGRESO", align: "right" },
             { header: "Egreso", width: 80, sortable: false, dataIndex: "EGRESO", align: "right" },

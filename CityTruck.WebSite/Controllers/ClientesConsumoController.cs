@@ -57,6 +57,26 @@ namespace CityTruck.WebSite.Controllers
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
         }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerConsumosPaginado(PagingInfo paginacion,FiltrosModel<ConsumoDetalleModel>filtros , ConsumoDetalleModel Entidad)
+        {
+            filtros.Entidad = Entidad;
+            var clientes = _serCli.ObtenerConsumosPaginado(paginacion,filtros);
+            var formatData = clientes.Select(x => new
+            {
+                ID_CLIENTE = x.ID_CLIENTE,
+                CLIENTE = x.SG_CLIENTES_CONSUMO.NOMBRE,
+                FECHA = x.FECHA,
+                NRO_COMP = x.NRO_COMP,
+                TURNO = x.TURNO,
+                RESPONSABLE = x.RESPONSABLE,
+                CONSUMO = x.IMPORTE_LTS,
+                CONSUMO_BS = x.IMPORTE_BS
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
 
         [HttpPost]
         public JsonResult GuardarCliente(SG_CLIENTES_CONSUMO cli)

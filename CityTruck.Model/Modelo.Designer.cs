@@ -39,6 +39,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R02", "SG_CLIENTES_CONSUMO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES_CONSUMO), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_DETALLES_COMPRAS_R01", "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMPRAS), "SG_DETALLES_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_DETALLES_COMPRAS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_TANQUES_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_TANQUES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_TANQUES), true)]
 
 #endregion
 
@@ -473,6 +474,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_DETALLES_COMPRAS> _SG_DETALLES_COMPRAS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_TANQUES> SG_TANQUES
+        {
+            get
+            {
+                if ((_SG_TANQUES == null))
+                {
+                    _SG_TANQUES = base.CreateObjectSet<SG_TANQUES>("SG_TANQUES");
+                }
+                return _SG_TANQUES;
+            }
+        }
+        private ObjectSet<SG_TANQUES> _SG_TANQUES;
 
         #endregion
         #region Métodos AddTo
@@ -667,6 +684,14 @@ namespace CityTruck.Model
         public void AddToSG_DETALLES_COMPRAS(SG_DETALLES_COMPRAS sG_DETALLES_COMPRAS)
         {
             base.AddObject("SG_DETALLES_COMPRAS", sG_DETALLES_COMPRAS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_TANQUES. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_TANQUES(SG_TANQUES sG_TANQUES)
+        {
+            base.AddObject("SG_TANQUES", sG_TANQUES);
         }
 
         #endregion
@@ -1200,92 +1225,6 @@ namespace CityTruck.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_NOMBRE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_NRO_CUENTA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_MONEDA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_DESCRIPCION">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_SALDO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_CAJAS(Nullable<global::System.Decimal> p_ID_CAJA, global::System.String p_NOMBRE, global::System.String p_NRO_CUENTA, global::System.String p_MONEDA, global::System.String p_DESCRIPCION, Nullable<global::System.Decimal> p_SALDO, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_CAJAParameter;
-            if (p_ID_CAJA.HasValue)
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
-            }
-            else
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_NOMBREParameter;
-            if (p_NOMBRE != null)
-            {
-                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", p_NOMBRE);
-            }
-            else
-            {
-                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_NRO_CUENTAParameter;
-            if (p_NRO_CUENTA != null)
-            {
-                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", p_NRO_CUENTA);
-            }
-            else
-            {
-                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_MONEDAParameter;
-            if (p_MONEDA != null)
-            {
-                p_MONEDAParameter = new ObjectParameter("P_MONEDA", p_MONEDA);
-            }
-            else
-            {
-                p_MONEDAParameter = new ObjectParameter("P_MONEDA", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_DESCRIPCIONParameter;
-            if (p_DESCRIPCION != null)
-            {
-                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", p_DESCRIPCION);
-            }
-            else
-            {
-                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_SALDOParameter;
-            if (p_SALDO.HasValue)
-            {
-                p_SALDOParameter = new ObjectParameter("P_SALDO", p_SALDO);
-            }
-            else
-            {
-                p_SALDOParameter = new ObjectParameter("P_SALDO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_CAJAS", p_ID_CAJAParameter, p_NOMBREParameter, p_NRO_CUENTAParameter, p_MONEDAParameter, p_DESCRIPCIONParameter, p_SALDOParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
         /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
         /// <param name="p_RESPONSABLE">No hay documentación de metadatos disponible.</param>
@@ -1334,103 +1273,6 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GENERAR_VENTAS_DIARIAS", p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_EMPRESA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_NIT">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_CONTACTO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_TELEFONO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_DIR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_LIMITE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_CLIENTES(Nullable<global::System.Decimal> p_ID_CLIENTE, global::System.String p_EMPRESA, global::System.String p_NIT, global::System.String p_CONTACTO, global::System.String p_TELEFONO, global::System.String p_DIR, Nullable<global::System.Decimal> p_LIMITE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_CLIENTEParameter;
-            if (p_ID_CLIENTE.HasValue)
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
-            }
-            else
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_EMPRESAParameter;
-            if (p_EMPRESA != null)
-            {
-                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", p_EMPRESA);
-            }
-            else
-            {
-                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_NITParameter;
-            if (p_NIT != null)
-            {
-                p_NITParameter = new ObjectParameter("P_NIT", p_NIT);
-            }
-            else
-            {
-                p_NITParameter = new ObjectParameter("P_NIT", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_CONTACTOParameter;
-            if (p_CONTACTO != null)
-            {
-                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", p_CONTACTO);
-            }
-            else
-            {
-                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_TELEFONOParameter;
-            if (p_TELEFONO != null)
-            {
-                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", p_TELEFONO);
-            }
-            else
-            {
-                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_DIRParameter;
-            if (p_DIR != null)
-            {
-                p_DIRParameter = new ObjectParameter("P_DIR", p_DIR);
-            }
-            else
-            {
-                p_DIRParameter = new ObjectParameter("P_DIR", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_LIMITEParameter;
-            if (p_LIMITE.HasValue)
-            {
-                p_LIMITEParameter = new ObjectParameter("P_LIMITE", p_LIMITE);
-            }
-            else
-            {
-                p_LIMITEParameter = new ObjectParameter("P_LIMITE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_CLIENTES", p_ID_CLIENTEParameter, p_EMPRESAParameter, p_NITParameter, p_CONTACTOParameter, p_TELEFONOParameter, p_DIRParameter, p_LIMITEParameter, p_ID_USRParameter, p_RES);
         }
     
         /// <summary>
@@ -1874,123 +1716,6 @@ namespace CityTruck.Model
         /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
         /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
         /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_ELIMINAR_CLIENTE(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_IDParameter;
-            if (p_ID.HasValue)
-            {
-                p_IDParameter = new ObjectParameter("P_ID", p_ID);
-            }
-            else
-            {
-                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_ELIMINAR_CLIENTE", p_IDParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID_A">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_AMORTIZACION(Nullable<global::System.Decimal> p_ID_A, Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_AParameter;
-            if (p_ID_A.HasValue)
-            {
-                p_ID_AParameter = new ObjectParameter("P_ID_A", p_ID_A);
-            }
-            else
-            {
-                p_ID_AParameter = new ObjectParameter("P_ID_A", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_CLIENTEParameter;
-            if (p_ID_CLIENTE.HasValue)
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
-            }
-            else
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_CAJAParameter;
-            if (p_ID_CAJA.HasValue)
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
-            }
-            else
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_FECHAParameter;
-            if (p_FECHA.HasValue)
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
-            }
-            else
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter p_CONCEPTOParameter;
-            if (p_CONCEPTO != null)
-            {
-                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
-            }
-            else
-            {
-                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_IMPORTEParameter;
-            if (p_IMPORTE.HasValue)
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
-            }
-            else
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_AMORTIZACION", p_ID_AParameter, p_ID_CLIENTEParameter, p_ID_CAJAParameter, p_FECHAParameter, p_CONCEPTOParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
         public int P_SG_ELIMINAR_EGRESO(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
         {
             ObjectParameter p_IDParameter;
@@ -2332,6 +2057,339 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_ELIMINAR_CAJA", p_IDParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_A">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_OBSERVACION">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_AMORTIZACION(Nullable<global::System.Decimal> p_ID_A, Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_IMPORTE, global::System.String p_OBSERVACION, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_AParameter;
+            if (p_ID_A.HasValue)
+            {
+                p_ID_AParameter = new ObjectParameter("P_ID_A", p_ID_A);
+            }
+            else
+            {
+                p_ID_AParameter = new ObjectParameter("P_ID_A", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CLIENTEParameter;
+            if (p_ID_CLIENTE.HasValue)
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
+            }
+            else
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_CONCEPTOParameter;
+            if (p_CONCEPTO != null)
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
+            }
+            else
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_OBSERVACIONParameter;
+            if (p_OBSERVACION != null)
+            {
+                p_OBSERVACIONParameter = new ObjectParameter("P_OBSERVACION", p_OBSERVACION);
+            }
+            else
+            {
+                p_OBSERVACIONParameter = new ObjectParameter("P_OBSERVACION", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_AMORTIZACION", p_ID_AParameter, p_ID_CLIENTEParameter, p_ID_CAJAParameter, p_FECHAParameter, p_CONCEPTOParameter, p_IMPORTEParameter, p_OBSERVACIONParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CODIGO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NOMBRE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NRO_CUENTA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_MONEDA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_DESCRIPCION">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_SALDO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_CAJAS(Nullable<global::System.Decimal> p_ID_CAJA, global::System.String p_CODIGO, global::System.String p_NOMBRE, global::System.String p_NRO_CUENTA, global::System.String p_MONEDA, global::System.String p_DESCRIPCION, Nullable<global::System.Decimal> p_SALDO, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_CODIGOParameter;
+            if (p_CODIGO != null)
+            {
+                p_CODIGOParameter = new ObjectParameter("P_CODIGO", p_CODIGO);
+            }
+            else
+            {
+                p_CODIGOParameter = new ObjectParameter("P_CODIGO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NOMBREParameter;
+            if (p_NOMBRE != null)
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", p_NOMBRE);
+            }
+            else
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NRO_CUENTAParameter;
+            if (p_NRO_CUENTA != null)
+            {
+                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", p_NRO_CUENTA);
+            }
+            else
+            {
+                p_NRO_CUENTAParameter = new ObjectParameter("P_NRO_CUENTA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_MONEDAParameter;
+            if (p_MONEDA != null)
+            {
+                p_MONEDAParameter = new ObjectParameter("P_MONEDA", p_MONEDA);
+            }
+            else
+            {
+                p_MONEDAParameter = new ObjectParameter("P_MONEDA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_DESCRIPCIONParameter;
+            if (p_DESCRIPCION != null)
+            {
+                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", p_DESCRIPCION);
+            }
+            else
+            {
+                p_DESCRIPCIONParameter = new ObjectParameter("P_DESCRIPCION", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_SALDOParameter;
+            if (p_SALDO.HasValue)
+            {
+                p_SALDOParameter = new ObjectParameter("P_SALDO", p_SALDO);
+            }
+            else
+            {
+                p_SALDOParameter = new ObjectParameter("P_SALDO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_CAJAS", p_ID_CAJAParameter, p_CODIGOParameter, p_NOMBREParameter, p_NRO_CUENTAParameter, p_MONEDAParameter, p_DESCRIPCIONParameter, p_SALDOParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CODIGO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_EMPRESA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NIT">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONTACTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TELEFONO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_DIR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_LIMITE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_CLIENTES(Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_CODIGO, global::System.String p_EMPRESA, global::System.String p_NIT, global::System.String p_CONTACTO, global::System.String p_TELEFONO, global::System.String p_DIR, Nullable<global::System.Decimal> p_LIMITE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_CLIENTEParameter;
+            if (p_ID_CLIENTE.HasValue)
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
+            }
+            else
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_CODIGOParameter;
+            if (p_CODIGO.HasValue)
+            {
+                p_CODIGOParameter = new ObjectParameter("P_CODIGO", p_CODIGO);
+            }
+            else
+            {
+                p_CODIGOParameter = new ObjectParameter("P_CODIGO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_EMPRESAParameter;
+            if (p_EMPRESA != null)
+            {
+                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", p_EMPRESA);
+            }
+            else
+            {
+                p_EMPRESAParameter = new ObjectParameter("P_EMPRESA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NITParameter;
+            if (p_NIT != null)
+            {
+                p_NITParameter = new ObjectParameter("P_NIT", p_NIT);
+            }
+            else
+            {
+                p_NITParameter = new ObjectParameter("P_NIT", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_CONTACTOParameter;
+            if (p_CONTACTO != null)
+            {
+                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", p_CONTACTO);
+            }
+            else
+            {
+                p_CONTACTOParameter = new ObjectParameter("P_CONTACTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_TELEFONOParameter;
+            if (p_TELEFONO != null)
+            {
+                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", p_TELEFONO);
+            }
+            else
+            {
+                p_TELEFONOParameter = new ObjectParameter("P_TELEFONO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_DIRParameter;
+            if (p_DIR != null)
+            {
+                p_DIRParameter = new ObjectParameter("P_DIR", p_DIR);
+            }
+            else
+            {
+                p_DIRParameter = new ObjectParameter("P_DIR", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_LIMITEParameter;
+            if (p_LIMITE.HasValue)
+            {
+                p_LIMITEParameter = new ObjectParameter("P_LIMITE", p_LIMITE);
+            }
+            else
+            {
+                p_LIMITEParameter = new ObjectParameter("P_LIMITE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_CLIENTES", p_ID_CLIENTEParameter, p_CODIGOParameter, p_EMPRESAParameter, p_NITParameter, p_CONTACTOParameter, p_TELEFONOParameter, p_DIRParameter, p_LIMITEParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_ELIMINAR_CLIENTE(Nullable<global::System.Decimal> p_ID, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_IDParameter;
+            if (p_ID.HasValue)
+            {
+                p_IDParameter = new ObjectParameter("P_ID", p_ID);
+            }
+            else
+            {
+                p_IDParameter = new ObjectParameter("P_ID", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_ELIMINAR_CLIENTE", p_IDParameter, p_ID_USRParameter, p_RES);
         }
 
         #endregion
@@ -2898,6 +2956,30 @@ namespace CityTruck.Model
         private Nullable<global::System.DateTime> _FECHA_REG;
         partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
         partial void OnFECHA_REGChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OBSERVACION
+        {
+            get
+            {
+                return _OBSERVACION;
+            }
+            set
+            {
+                OnOBSERVACIONChanging(value);
+                ReportPropertyChanging("OBSERVACION");
+                _OBSERVACION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OBSERVACION");
+                OnOBSERVACIONChanged();
+            }
+        }
+        private global::System.String _OBSERVACION;
+        partial void OnOBSERVACIONChanging(global::System.String value);
+        partial void OnOBSERVACIONChanged();
 
         #endregion
     
@@ -4459,6 +4541,30 @@ namespace CityTruck.Model
         private global::System.String _ESTADO;
         partial void OnESTADOChanging(global::System.String value);
         partial void OnESTADOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALDO_INICIAL
+        {
+            get
+            {
+                return _SALDO_INICIAL;
+            }
+            set
+            {
+                OnSALDO_INICIALChanging(value);
+                ReportPropertyChanging("SALDO_INICIAL");
+                _SALDO_INICIAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALDO_INICIAL");
+                OnSALDO_INICIALChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALDO_INICIAL;
+        partial void OnSALDO_INICIALChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALDO_INICIALChanged();
 
         #endregion
     
@@ -4570,6 +4676,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R01", "SG_CONSUMOS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TANQUES_R01", "SG_TANQUES")]
+        public EntityCollection<SG_TANQUES> SG_TANQUES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_TANQUES>("Model.SG_TANQUES_R01", "SG_TANQUES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_TANQUES>("Model.SG_TANQUES_R01", "SG_TANQUES", value);
                 }
             }
         }
@@ -8848,6 +8976,252 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_POS>("Model.SG_POS_TURNOS_R01", "SG_POS", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_TANQUES")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_TANQUES : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_TANQUES.
+        /// </summary>
+        /// <param name="iD_TANQUE">Valor inicial de la propiedad ID_TANQUE.</param>
+        /// <param name="iD_COMBUSTIBLE">Valor inicial de la propiedad ID_COMBUSTIBLE.</param>
+        /// <param name="nOMBRE">Valor inicial de la propiedad NOMBRE.</param>
+        /// <param name="cANT_DISPONIBLE">Valor inicial de la propiedad CANT_DISPONIBLE.</param>
+        public static SG_TANQUES CreateSG_TANQUES(global::System.Int16 iD_TANQUE, global::System.Int16 iD_COMBUSTIBLE, global::System.String nOMBRE, global::System.Decimal cANT_DISPONIBLE)
+        {
+            SG_TANQUES sG_TANQUES = new SG_TANQUES();
+            sG_TANQUES.ID_TANQUE = iD_TANQUE;
+            sG_TANQUES.ID_COMBUSTIBLE = iD_COMBUSTIBLE;
+            sG_TANQUES.NOMBRE = nOMBRE;
+            sG_TANQUES.CANT_DISPONIBLE = cANT_DISPONIBLE;
+            return sG_TANQUES;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_TANQUE
+        {
+            get
+            {
+                return _ID_TANQUE;
+            }
+            set
+            {
+                if (_ID_TANQUE != value)
+                {
+                    OnID_TANQUEChanging(value);
+                    ReportPropertyChanging("ID_TANQUE");
+                    _ID_TANQUE = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_TANQUE");
+                    OnID_TANQUEChanged();
+                }
+            }
+        }
+        private global::System.Int16 _ID_TANQUE;
+        partial void OnID_TANQUEChanging(global::System.Int16 value);
+        partial void OnID_TANQUEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_COMBUSTIBLE
+        {
+            get
+            {
+                return _ID_COMBUSTIBLE;
+            }
+            set
+            {
+                OnID_COMBUSTIBLEChanging(value);
+                ReportPropertyChanging("ID_COMBUSTIBLE");
+                _ID_COMBUSTIBLE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_COMBUSTIBLE");
+                OnID_COMBUSTIBLEChanged();
+            }
+        }
+        private global::System.Int16 _ID_COMBUSTIBLE;
+        partial void OnID_COMBUSTIBLEChanging(global::System.Int16 value);
+        partial void OnID_COMBUSTIBLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NOMBRE
+        {
+            get
+            {
+                return _NOMBRE;
+            }
+            set
+            {
+                OnNOMBREChanging(value);
+                ReportPropertyChanging("NOMBRE");
+                _NOMBRE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NOMBRE");
+                OnNOMBREChanged();
+            }
+        }
+        private global::System.String _NOMBRE;
+        partial void OnNOMBREChanging(global::System.String value);
+        partial void OnNOMBREChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal CANT_DISPONIBLE
+        {
+            get
+            {
+                return _CANT_DISPONIBLE;
+            }
+            set
+            {
+                OnCANT_DISPONIBLEChanging(value);
+                ReportPropertyChanging("CANT_DISPONIBLE");
+                _CANT_DISPONIBLE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CANT_DISPONIBLE");
+                OnCANT_DISPONIBLEChanged();
+            }
+        }
+        private global::System.Decimal _CANT_DISPONIBLE;
+        partial void OnCANT_DISPONIBLEChanging(global::System.Decimal value);
+        partial void OnCANT_DISPONIBLEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALDO_INICIAL
+        {
+            get
+            {
+                return _SALDO_INICIAL;
+            }
+            set
+            {
+                OnSALDO_INICIALChanging(value);
+                ReportPropertyChanging("SALDO_INICIAL");
+                _SALDO_INICIAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALDO_INICIAL");
+                OnSALDO_INICIALChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALDO_INICIAL;
+        partial void OnSALDO_INICIALChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALDO_INICIALChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> LIMITE
+        {
+            get
+            {
+                return _LIMITE;
+            }
+            set
+            {
+                OnLIMITEChanging(value);
+                ReportPropertyChanging("LIMITE");
+                _LIMITE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LIMITE");
+                OnLIMITEChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _LIMITE;
+        partial void OnLIMITEChanging(Nullable<global::System.Decimal> value);
+        partial void OnLIMITEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ULT_AJUSTE
+        {
+            get
+            {
+                return _ULT_AJUSTE;
+            }
+            set
+            {
+                OnULT_AJUSTEChanging(value);
+                ReportPropertyChanging("ULT_AJUSTE");
+                _ULT_AJUSTE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ULT_AJUSTE");
+                OnULT_AJUSTEChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ULT_AJUSTE;
+        partial void OnULT_AJUSTEChanging(Nullable<global::System.Decimal> value);
+        partial void OnULT_AJUSTEChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TANQUES_R01", "SG_COMBUSTIBLES")]
+        public SG_COMBUSTIBLES SG_COMBUSTIBLES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_TANQUES_R01", "SG_COMBUSTIBLES").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_TANQUES_R01", "SG_COMBUSTIBLES").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_COMBUSTIBLES> SG_COMBUSTIBLESReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_COMBUSTIBLES>("Model.SG_TANQUES_R01", "SG_COMBUSTIBLES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMBUSTIBLES>("Model.SG_TANQUES_R01", "SG_COMBUSTIBLES", value);
                 }
             }
         }

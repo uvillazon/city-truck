@@ -44,7 +44,7 @@ namespace CityTruck.Services
             {
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GUARDAR_CAJAS(caja.ID_CAJA, caja.NOMBRE, caja.NRO_CUENTA, caja.MONEDA, caja.DESCRIPCION, caja.SALDO, ID_USR, p_res);
+                context.P_SG_GUARDAR_CAJAS(caja.ID_CAJA,caja.CODIGO, caja.NOMBRE, caja.NRO_CUENTA, caja.MONEDA, caja.DESCRIPCION, caja.SALDO, ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;

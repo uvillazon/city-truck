@@ -18,7 +18,7 @@
         Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCaja, me.toolbar, this, null, true);
-       // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
+        // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCaja, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this, null, true);
 
@@ -34,7 +34,7 @@
 
         me.grid.on('itemclick', me.onItemClick, this);
         me.grid.getSelectionModel().on('selectionchange', me.onSelectChange, this);
-
+        me.grid.on('itemdblclick', me.CrearVentanaKardex, this);
     },
     onItemClick: function (view, record, item, index, e) {
         var me = this;
@@ -86,12 +86,15 @@
 
         } else {
             me.formCrearCaja.getForm().reset();
+            me.formCrearCaja.CargarStore();
         }
 
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
             me.formCrearCaja.ocultarSaldos(false);
+            me.formCrearCaja.CargarStore();
             me.formCrearCaja.CargarDatos(me.recordSelected);
         } else
+            me.formCrearCaja.CargarStore();
             me.formCrearCaja.ocultarSaldos(true);
         me.winCrearCaja.show();
     },
@@ -163,6 +166,8 @@
             //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
             me.winNuevoMovimiento.show();
         } else {
+            me.formNuevoMovimiento.getForm().reset();
+            me.formNuevoMovimiento.CargarStore();
             //me.formNuevoMovimiento.cbx_cuenta.setValue(id_caja);
             //me.formNuevoMovimiento.reset();
             me.winNuevoMovimiento.show();

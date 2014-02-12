@@ -7,7 +7,11 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+    CargarStore : function(){
+        var me = this;
+        me.store_registrar.load();
+        me.store_cuenta.load();
+    },
     CargarComponentes: function () {
         var me = this;
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
@@ -40,7 +44,7 @@
             displayField: 'NOMBRE',
             valueField : 'ID_CAJA',
             store: me.store_cuenta,
-            //readOnly: true,
+            readOnly: true,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
             textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
@@ -49,6 +53,7 @@
             fieldLabel: "Saldo",
             name: "SALDO",
             readOnly : true,
+            hidden : true,
             allowDecimals: true,
             maxValue: 999999999,
         });

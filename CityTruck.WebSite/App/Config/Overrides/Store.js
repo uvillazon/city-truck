@@ -90,6 +90,9 @@ Ext.override(Ext.grid.Panel, {
     iconCls: 'application_view_list',
 
 });
+Ext.override(Ext.form.field.Number , {
+    selectOnFocus: true
+});
 Ext.override(Ext.window.MessageBox, {
     alert: function (cfg, msg, fn, scope) {
         var icono = null;

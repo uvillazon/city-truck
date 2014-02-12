@@ -174,7 +174,10 @@
     },
     cargarEventos : function(){
         var me = this;
-      
+        me.cbx_combustible.on('select',function(cmb,record){
+            me.num_precio.reset();
+            me.num_precio.setValue(record[0].get('PRECIO_COMPRA'));
+        });
         me.num_precio.on('change',function(num,newvalue,oldvalue){
 //            var sum = me.num_saldo.getValue() + newvalue;
             var cant = me.num_cantidad.getValue() == null? 0 : me.num_cantidad.getValue() ;
