@@ -110,7 +110,7 @@
             { header: "Fecha", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
             { header: "Combustible", width: 150, sortable: false, dataIndex: "COMBUSTIBLE" },
             { header: "Cantidad", width: 100, sortable: false, dataIndex: "CANTIDAD" },
-            { header: "Importe", width: 100, sortable: false, dataIndex: "IMPORTE" },
+            { header: "Importe", width: 100, sortable: false, dataIndex: "TOTAL" },
             { header: "Nro Factura", width: 100, sortable: false, dataIndex: "NRO_FACTURA" }
         ];
         me.button_search.on('click', this.buscarBotonCodigo, this);

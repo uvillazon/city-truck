@@ -24,17 +24,6 @@
         }
         this.callParent(arguments);
     },
-    buscarBotonCodigo: function () {
-        var me = this;
-        //        alert('buscar');
-        //me.store.setExtraParam('codigo', 'CODIGO');
-        //if (me.borrarParametros) { 
-        // me.store.limpiarParametros();
-        //}
-        //me.store.setExtraParam('Contiene', me.txt_busqueda.getValue());
-        //me.bar.moveFirst();
-
-    },
     eventosGrid: function () {
         var me = this;
         me.cbx_mes.on('select', function (cmb, record) {
@@ -118,7 +107,7 @@
         me.bar = this.bbar;
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
-            { header: "Fecha", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
+            { header: "Fecha", width: 150, sortable: false, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
             { header: "Ventas", width: 100, sortable: false, dataIndex: "VENTA_TOTAL" },
             { header: "Turno<br>Dia", width: 100, sortable: false, dataIndex: "VENTA_DIA" },
             { header: "Turno<br>Tarde", width: 100, sortable: false, dataIndex: "VENTA_TARDE" },

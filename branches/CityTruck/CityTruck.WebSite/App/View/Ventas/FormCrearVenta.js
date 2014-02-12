@@ -377,7 +377,7 @@
             });
             win.add(formConsumo);
             win.btn_guardar.on('click', function(){
-                Funciones.AjaxRequestWin("Ventas", "GuardarConsumo", win, formConsumo, me.gridVentaConsumo, "Esta Seguro de Editar la venta de Credito", { FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}, win);
+                Funciones.AjaxRequestWin("Ventas", "GuardarConsumo", win, formConsumo, me.gridVentaConsumo, "Esta Seguro de Guardar el CONSUMO...", { FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}, win);
             });
             win.show();
             }

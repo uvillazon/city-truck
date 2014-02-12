@@ -8,7 +8,10 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-
+    CargarStore: function () {
+        var me = this;
+        me.store_cuenta.load();
+    },
     CargarComponentes: function () {
         var me = this;
         me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {

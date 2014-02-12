@@ -7,7 +7,10 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+    CargarStore : function(){
+        var me = this;
+        me.store_moneda.load();
+    },
     CargarComponentes: function () {
         var me = this;
         me.txt_id = Ext.create("App.Config.Componente.TextFieldBase", {
@@ -19,8 +22,10 @@
         });
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "C\u00F3digo",
-            readOnly : true,
+//            readOnly : true,
             name: "CODIGO",
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
 
         });
          me.txt_nombre = Ext.create("App.Config.Componente.TextFieldBase", {

@@ -69,14 +69,14 @@
              me.cbx_anio.setValue(fecha_actual.getFullYear().toString());
          });
          ///////////
-         me.toolBar = Ext.create('Ext.toolbar.Toolbar', {
-             items: [
-            me.cbx_mes,
-            me.cbx_anio,
-            me.button_search,
-            me.button_new
-            ]
-         });
+//         me.toolBar = Ext.create('Ext.toolbar.Toolbar', {
+//             items: [
+//            me.cbx_mes,
+//            me.cbx_anio,
+//            me.button_search,
+//            me.button_new
+//            ]
+//         });
 
          this.bbar = Ext.create('Ext.PagingToolbar', {
              store: me.store,

@@ -37,6 +37,22 @@ namespace CityTruck.Services
             return result;
         }
 
+        IEnumerable<SG_CONSUMOS> IClientesConsumoServices.ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumoDetalleModel> filtros)
+        {
+            IQueryable<SG_CONSUMOS> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_CONSUMOSManager(uow);
+                result = manager.BuscarTodos();
+                filtros.FiltrarDatos();
+                result = filtros.Diccionario.Count() > 0 ? result.Where(filtros.Predicado, filtros.Diccionario.Values.ToArray()) : result;
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+
+            });
+            return result;
+        }
+
         public RespuestaSP SP_GrabarCliente(SG_CLIENTES_CONSUMO cli, int ID_USR)
         {
             RespuestaSP result = new RespuestaSP();

@@ -24,6 +24,11 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerEgresosPaginado(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
+            if (ANIO == null && MES == null)
+            {
+                MES = DateTime.Now.ToString("MM");
+                ANIO = DateTime.Now.ToString("yyyy");
+            }
             var cajas = _serIng.ObtenerEgresosPaginado(paginacion, ANIO, MES);
             var formatData = cajas.Select(x => new
             {
@@ -57,7 +62,7 @@ namespace CityTruck.WebSite.Controllers
             {
                 int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
                 RespuestaSP respuestaRSP = new RespuestaSP();
-                respuestaRSP = _serIng.SP_EliminarIngreso(ID_EGRESO, id_usr);
+                respuestaRSP = _serIng.SP_EliminarEgreso(ID_EGRESO, id_usr);
                 return Json(respuestaRSP);
             }
             catch (Exception)

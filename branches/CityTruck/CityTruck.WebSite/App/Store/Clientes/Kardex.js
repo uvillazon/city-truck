@@ -2,6 +2,6 @@
     extend: 'App.Config.Abstract.Store',
     model: 'App.Model.Clientes.Kardex',
     url: 'Clientes/ObtenerKardexClientePaginado',
-    sortProperty: 'FECHA_REG',
-    sortDirection: 'ASC',
+    sortProperty: 'FECHA',
+    sortDirection: 'DESC',
 });

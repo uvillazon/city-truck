@@ -32,7 +32,7 @@ namespace CityTruck.Services
                 var manager = new SG_CLIENTESManager(uow);
                 result = manager.BuscarTodos();
 
-                result = manager.ObtenerClientesPorMesyAnio(ANIO, MES);
+                //result = manager.ObtenerClientesPorMesyAnio(ANIO, MES);
 
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
@@ -48,7 +48,7 @@ namespace CityTruck.Services
             {
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GUARDAR_CLIENTES(cli.ID_CLIENTE, cli.EMPRESA, cli.NIT, cli.CONTACTO, cli.TELEFONO, cli.DIRECCION, cli.LIMITE, ID_USR, p_res);
+                context.P_SG_GUARDAR_CLIENTES(cli.ID_CLIENTE,cli.CODIGO, cli.EMPRESA, cli.NIT, cli.CONTACTO, cli.TELEFONO, cli.DIRECCION, cli.LIMITE, ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;
@@ -72,7 +72,7 @@ namespace CityTruck.Services
             {
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GUARDAR_AMORTIZACION(a.ID_AMORTIZACION, a.ID_CLIENTE, a.ID_CAJA, a.FECHA, a.CONCEPTO, a.IMPORTE_BS, ID_USR, p_res);
+                context.P_SG_GUARDAR_AMORTIZACION(a.ID_AMORTIZACION, a.ID_CLIENTE, a.ID_CAJA, a.FECHA, a.CONCEPTO, a.IMPORTE_BS, a.OBSERVACION,ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;

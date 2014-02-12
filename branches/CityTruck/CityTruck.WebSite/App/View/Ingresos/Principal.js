@@ -14,7 +14,7 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearIngreso', 'Crear Ingreso', Constantes.ICONO_CREAR, me.EventosIngreso, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
-       // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
+        // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
 
@@ -77,9 +77,11 @@
             me.winCrearIngreso.btn_guardar.on('click', me.GuardarIngresos, this);
         } else {
             me.formIngreso.getForm().reset();
+            me.formIngreso.CargarStore();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
             me.formIngreso.ocultarSaldos(false);
+            me.formIngreso.CargarStore();
             me.formIngreso.CargarDatos(me.recordSelected);
         } else
             me.formIngreso.ocultarSaldos(true);

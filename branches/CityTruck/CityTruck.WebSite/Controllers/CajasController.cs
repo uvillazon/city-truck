@@ -46,7 +46,8 @@ namespace CityTruck.WebSite.Controllers
         public ActionResult ObtenerKardexEfectivoPaginado(PagingInfo paginacion,FiltrosModel<KardexEfectivoModel> filtros ,KardexEfectivoModel Kardex )
         {
             filtros.Entidad = Kardex;
-            var kardexd = _serKar.ObtenerKardexEfectivo(paginacion,filtros);
+            var kardexd = _serKar.ObtenerKardexEfectivo(paginacion, filtros);
+            //kardexd = kardexd.OrderByDescending(x => new { x.FECHA , x.ID_KARDEX});
             var formatData = kardexd.Select(x => new
             {
                 ID_CAJA = x.ID_CAJA,
@@ -57,6 +58,7 @@ namespace CityTruck.WebSite.Controllers
                 SALDO = x.SALDO,
                 DETALLE = x.DETALLE,
             });
+            formatData = formatData.OrderByDescending(x => x.FECHA).ThenByDescending(x => x.ID_KARDEX);
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);

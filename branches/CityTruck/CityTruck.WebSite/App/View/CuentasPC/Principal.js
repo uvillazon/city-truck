@@ -33,6 +33,7 @@
 
         me.grid.on('itemclick', me.onItemClick, this);
         me.grid.getSelectionModel().on('selectionchange', me.onSelectChange, this);
+        me.grid.on('itemdblclick', me.MostrarKardex, this);
     },
     onItemClick: function (view, record, item, index, e) {
         var me = this;
@@ -107,7 +108,7 @@
             me.formNuevoMovimiento.getForm().reset();
             me.winNuevoMovimiento.show();
         }
-        if(me.id_cliente >= 0) 
+        if (me.id_cliente >= 0)
             me.formNuevoMovimiento.cargarCliente(me.id_cliente);
 
     }, GuardarMovimiento: function () {
