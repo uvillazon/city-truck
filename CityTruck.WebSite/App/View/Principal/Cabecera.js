@@ -75,7 +75,10 @@ Ext.define("App.View.Principal.Cabecera", {
     },
     onError: function (data) {
         
-        Ext.Msg.alert("Error", "Error al Recuperar los Datos de las Opciones del Menu.");
+//        Ext.Msg.alert("Error", "Error al Recuperar los Datos de las Opciones del Menu.");
+//        document.location = Constantes.HOST + 'Account/LogOff';
+                document.location = Constantes.HOST + 'Account/LogOn';
+
     },
     buildDesktop: function (data) {
         var me = this;

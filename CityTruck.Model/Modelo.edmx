@@ -926,6 +926,11 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_OBTENER_ULTIMO_REG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_TURNO" Type="varchar2" Mode="Out" />
+          <Parameter Name="P_FECHA" Type="varchar2" Mode="Out" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_VERIFICAR_EDICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
           <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
@@ -1260,6 +1265,11 @@
           <FunctionImport Name="P_SG_ELIMINAR_CLIENTE">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_OBTENER_ULTIMO_REG">
+            <Parameter Name="P_TURNO" Mode="Out" Type="String" />
+            <Parameter Name="P_FECHA" Mode="Out" Type="String" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -2290,6 +2300,7 @@
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CAJAS" FunctionName="Model.Store.P_SG_GUARDAR_CAJAS" />
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CLIENTES" FunctionName="Model.Store.P_SG_GUARDAR_CLIENTES" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_CLIENTE" FunctionName="Model.Store.P_SG_ELIMINAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="P_SG_OBTENER_ULTIMO_REG" FunctionName="Model.Store.P_SG_OBTENER_ULTIMO_REG" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

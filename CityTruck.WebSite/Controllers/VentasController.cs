@@ -133,43 +133,58 @@ namespace CityTruck.WebSite.Controllers
 
         }
         [HttpPost]
-        public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO,bool EDITAR)
+        public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO, bool EDITAR)
         {
             try
             {
-                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
-                dynamic pos_ventas = JsonConvert.DeserializeObject(ventas);
                 RespuestaSP respuestaRSP = new RespuestaSP();
-                foreach (var o in pos_ventas)
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                if (ventas == "false")
                 {
-                    //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res
-                    SG_POS_TURNOS pos = new SG_POS_TURNOS
+                    SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS
                     {
-                        ID_POS_TURNO = o.ID_POS_TURNO,
-                        ID_POS = o.ID_POS,
-                        FECHA = FECHA,
-                        ENT_LITTER = o.ENT_LITTER,
-                        SAL_LITTER = o.SAL_LITTER,
-                        TOTAL = o.TOTAL,
                         TURNO = TURNO,
-                        ID_USUARIO = (short)id_usr
+                        FECHA = FECHA,
+                        RESPONSABLE = nombres
                     };
-
-                    respuestaRSP = _serVen.SP_GrabarVentasDiarias(pos, id_usr);
-
-                    if (!respuestaRSP.success)
-                    {
-                        return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
-                    }
+                    respuestaRSP = _serVen.SP_GenerarVentasDiarias(vent, id_usr);
+                    return Json(respuestaRSP);
                 }
-                SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS
+                else
                 {
-                    TURNO = TURNO,
-                    FECHA = FECHA,
-                    RESPONSABLE = nombres
-                };
-                respuestaRSP = _serVen.SP_GenerarVentasDiarias(vent, id_usr);
-                return Json(respuestaRSP);
+                    dynamic pos_ventas = JsonConvert.DeserializeObject(ventas);
+                    //RespuestaSP respuestaRSP = new RespuestaSP();
+                    foreach (var o in pos_ventas)
+                    {
+                        //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res
+                        SG_POS_TURNOS pos = new SG_POS_TURNOS
+                        {
+                            ID_POS_TURNO = o.ID_POS_TURNO,
+                            ID_POS = o.ID_POS,
+                            FECHA = FECHA,
+                            ENT_LITTER = o.ENT_LITTER,
+                            SAL_LITTER = o.SAL_LITTER,
+                            TOTAL = o.TOTAL,
+                            TURNO = TURNO,
+                            ID_USUARIO = (short)id_usr
+                        };
+
+                        respuestaRSP = _serVen.SP_GrabarVentasDiarias(pos, id_usr);
+
+                        if (!respuestaRSP.success)
+                        {
+                            return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
+                        }
+                    }
+                    SG_VENTAS_DIARIAS vent = new SG_VENTAS_DIARIAS
+                    {
+                        TURNO = TURNO,
+                        FECHA = FECHA,
+                        RESPONSABLE = nombres
+                    };
+                    respuestaRSP = _serVen.SP_GenerarVentasDiarias(vent, id_usr);
+                    return Json(respuestaRSP);
+                }
             }
             catch (Exception)
             {
@@ -209,11 +224,11 @@ namespace CityTruck.WebSite.Controllers
                 respuestaRSP = _serVen.SP_VerificarEdicion(pos, id_usr);
                 //retornamos el precio de venta de los combustibles
                 var Gas = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 1);
-               
+
                 var Die = _serCom.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 2);
 
 
-                return Json(new { success = respuestaRSP.success, msg = respuestaRSP.msg, DIESEL = Die, GASOLINA = Gas , Responsable = Responsable });
+                return Json(new { success = respuestaRSP.success, msg = respuestaRSP.msg, DIESEL = Die, GASOLINA = Gas, Responsable = Responsable });
             }
             catch (Exception)
             {
@@ -251,8 +266,8 @@ namespace CityTruck.WebSite.Controllers
             {
                 int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
                 RespuestaSP respuestaRSP = new RespuestaSP();
-                
-                respuestaRSP = _serVen.SP_GrabarVentasCredito(p,id_usr);
+
+                respuestaRSP = _serVen.SP_GrabarVentasCredito(p, id_usr);
 
 
                 return Json(respuestaRSP);
@@ -270,8 +285,23 @@ namespace CityTruck.WebSite.Controllers
             {
                 int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
                 RespuestaSP respuestaRSP = new RespuestaSP();
-                respuestaRSP = _serVen.SP_EliminarVentaCredito(ID_VENTA,id_usr);
+                respuestaRSP = _serVen.SP_EliminarVentaCredito(ID_VENTA, id_usr);
                 return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult VerificarUltimoRegistro()
+        {
+            try
+            {
+                var result = _serVen.SP_UltimoReg();
+                //return result;
+                return Json(new { success = result.resp, FECHA = result.FECHA, TURNO = result.TURNO });
             }
             catch (Exception)
             {

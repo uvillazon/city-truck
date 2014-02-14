@@ -25,6 +25,8 @@ namespace CityTruck.Services.Interfaces
         RespuestaSP SP_GrabarVentasCredito(SG_VENTAS_CREDITO p, int ID_USR);
         RespuestaSP SP_EliminarVentaCredito(int ID_VENTA, int ID_USR);
 
+        VentasRegistroModel SP_UltimoReg();
+
         IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros);
 
         IEnumerable<SG_CONSUMOS> ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumosModel> filtros);

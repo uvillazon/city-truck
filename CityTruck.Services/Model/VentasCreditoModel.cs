@@ -13,4 +13,10 @@ namespace CityTruck.Services.Model
         public string TURNO { get; set; }
         public DateTime? FECHA { get; set; }
     }
+
+    public class VentasRegistroModel {
+        public string FECHA { get; set; }
+        public string TURNO { get; set; }
+        public string resp { get; set; }
+    }
 }

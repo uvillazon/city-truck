@@ -2391,6 +2391,17 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_ELIMINAR_CLIENTE", p_IDParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_OBTENER_ULTIMO_REG(ObjectParameter p_TURNO, ObjectParameter p_FECHA, ObjectParameter p_RES)
+        {
+            return base.ExecuteFunction("P_SG_OBTENER_ULTIMO_REG", p_TURNO, p_FECHA, p_RES);
+        }
 
         #endregion
     }
