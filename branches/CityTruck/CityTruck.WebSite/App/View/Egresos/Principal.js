@@ -42,7 +42,7 @@
         var me = this;
         var disabled = selections.length === 0;
         Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-       // Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        // Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
     },
     EventosEgreso: function (btn) {
@@ -77,14 +77,18 @@
             me.winCrearEgreso.add(me.formEgreso);
             me.winCrearEgreso.btn_guardar.on('click', me.GuardarEgresos, this);
         } else {
+            me.formEgreso.CargarStore();
+            me.formEgreso.ocultarSaldos(true);
             me.formEgreso.getForm().reset();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
             me.formEgreso.ocultarSaldos(false);
+            me.formEgreso.CargarStore();
             me.formEgreso.CargarDatos(me.recordSelected);
         } else
+            me.formEgreso.CargarStore();
             me.formEgreso.ocultarSaldos(true);
-          
+
         me.winCrearEgreso.show();
     },
     GuardarEgresos: function () {

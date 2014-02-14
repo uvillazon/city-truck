@@ -296,5 +296,28 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public VentasRegistroModel SP_UltimoReg()
+        {
+            VentasRegistroModel result = new VentasRegistroModel();
+            ExecuteManager(uow =>
+            {
+                //var manager = new SG_INGRESOSManager(uow);
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                ObjectParameter p_fecha = new ObjectParameter("p_fecha", typeof(String));
+                ObjectParameter p_turno = new ObjectParameter("p_turno", typeof(String));
+                context.P_SG_OBTENER_ULTIMO_REG(p_turno, p_fecha, p_res);
+                string turno = p_turno.Value.ToString();
+                var fecha = p_fecha.Value;
+                result.FECHA = p_fecha.Value.ToString();
+                result.TURNO = p_turno.Value.ToString();
+                result.resp = p_res.Value.ToString();
+              
+
+            });
+            return result;
+        }
     }
 }

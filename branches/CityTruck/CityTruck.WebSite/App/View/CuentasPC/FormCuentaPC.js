@@ -29,25 +29,30 @@
         me.txt_empresa = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Empresa",
             name: "EMPRESA",
+            afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
 
         me.num_nit = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "NIT",
             name: "NIT",
-            maxValue: 999999999,
+            maxValue: 999999999999999,
+            maxLength: 15,
+            afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
 
         me.txt_contacto = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Contacto",
             name: "CONTACTO",
+            afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
 
         me.txt_telf = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Tel\u00E9fono",
             name: "TELEFONO",
+            afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
 

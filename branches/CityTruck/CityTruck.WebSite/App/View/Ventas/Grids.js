@@ -55,9 +55,9 @@
         var me = this;
         me.store = Ext.create("App.Store.Ventas.VentasCredito");
         me.columns = [
-           { header: "CLIENTE", width: 180, sortable: true, dataIndex: "CLIENTE" },
-           { header: "DIESEL", width: 100, sortable: true, dataIndex: "DIESEL" },
-           { header: "GASOLINA", width: 100, sortable: true, dataIndex: "GASOLINA" }
+           { header: "CLIENTE", width: 180, sortable: false, dataIndex: "CLIENTE" },
+           { header: "DIESEL", width: 100, sortable: false, dataIndex: "DIESEL" },
+           { header: "GASOLINA", width: 100, sortable: false, dataIndex: "GASOLINA" }
         ];
 
     },
@@ -66,9 +66,9 @@
         me.store = Ext.create("App.Store.ConsumoPropio.ConsumoPropio");
         //        me.store = Ext.create("App.Store.SolicitudesMantenimiento.CodigosSolucion");
         me.columns = [
-            { header: "USUARIO", width: 180, sortable: true, dataIndex: "CLIENTE" },
-            { header: "DIESEL", width: 120, sortable: true, dataIndex: "DIESEL" },
-            { header: "GASOLINA", width: 120, sortable: true, dataIndex: "GASOLINA" }
+            { header: "USUARIO", width: 180, sortable: false, dataIndex: "CLIENTE" },
+            { header: "DIESEL", width: 120, sortable: false, dataIndex: "DIESEL" },
+            { header: "GASOLINA", width: 120, sortable: false, dataIndex: "GASOLINA" }
         ];
     },
 });

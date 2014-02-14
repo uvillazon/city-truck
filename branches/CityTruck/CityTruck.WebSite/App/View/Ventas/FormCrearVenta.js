@@ -18,10 +18,33 @@
         me.store_precio.setExtraParams({FECHA : fecha});
         me.store_precio.load();
     },
+    CargarFecha : function(store){
+        var me = this;
+//        alert("sadasd2");
+        Ext.Ajax.request({
+                    method : 'POST',
+                    url: Constantes.HOST + 'Ventas/VerificarUltimoRegistro',
+                    success: function(response){
+                        var str = Ext.JSON.decode(response.responseText);
+                        //                        alert(str.success + "FECHA : "+str.FECHA + "TURNO : "+str.TURNO);
+                        me.cbx_turno.setValue(str.TURNO);
+                        me.cbx_turno.setReadOnly(true);
+                        me.date_fecha.setValue(str.FECHA);
+                        me.date_fecha.setReadOnly(true);
+                        me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                        me.gridVenta.getStore().setExtraParam('TURNO',str.TURNO);
+                        me.gridVenta.getStore().setExtraParam('EDITAR',false);
+                        me.gridVenta.getStore().load();
+                        me.permiso = true;
+                    }
+                });
+//        alert(store.getId());
+    },
     CargarEditarVenta : function(venta){
         var me = this;
         me.venta = venta;
         me.date_fecha.setValue(me.venta.get('FECHA'));
+        me.date_fecha.setReadOnly(true);
 //        me.date_fecha.setReadOnly(true);
     },
     CargarComponentes: function () {
@@ -196,6 +219,15 @@
                 me.CargarTotalesCredito();
             }
         });
+        me.gridVentaConsumo.getStore().on('load',function(str,records,success){
+            if(!success){
+                str.removeAll();
+                Ext.Msg.alert("Error","Ocurrio algun Error Informar a TI.");
+            }
+            else{
+                me.CargarTotalesCredito();
+            }
+        });
     },
     CargarTotalesCredito : function(){
         var me = this;
@@ -229,18 +261,59 @@
             }
 
         });
-        me.formSubTotales.txt_gasolina_efectivo.setValue(totalGasolinaBs);
-        me.formSubTotales.txt_diesel_efectivo.setValue(totalDieselBs);
+        var totalGasolinaConsumoBs = 0;
+        var totalDieselConsumoBs = 0;
+        me.gridVentaConsumo.getStore().each(function(record){
+            if(record.get('COMBUSTIBLE')== 'GASOLINA'){
+                totalGasolinaConsumoBs= totalGasolinaConsumoBs +  record.get('IMPORTE_BS');
+            }
+            else if(record.get('COMBUSTIBLE')== 'DIESEL'){
+                totalDieselConsumoBs= totalDieselConsumoBs +  record.get('IMPORTE_BS');
+            }
+            else{
+                alert('No existe Codigo falta Implementar');
+            }
+
+        });
+        me.formSubTotales.txt_gasolina_consumo.setValue(totalGasolinaConsumoBs);
+        me.formSubTotales.txt_diesel_consumo.setValue(totalDieselConsumoBs);
+        me.formSubTotales.txt_total_consumo.setValue(totalGasolinaConsumoBs +totalDieselConsumoBs);
+
+        me.formSubTotales.txt_gasolina01.setValue(totalGasolinaBs);
+        me.formSubTotales.txt_diesel01.setValue(totalDieselBs);
         
         me.formSubTotales.txt_gasolina_credito.setValue(totalGasolinaCreditoBs);
         me.formSubTotales.txt_diesel_credito.setValue(totalDieselCreditoBs);
-        me.formSubTotales.txt_gasolina01.setValue(totalGasolinaBs + totalGasolinaCreditoBs);
-        me.formSubTotales.txt_diesel01.setValue(totalDieselBs + totalDieselCreditoBs);
-        me.formSubTotales.txt_total01.setValue(totalDieselBs + totalDieselCreditoBs + totalGasolinaBs + totalGasolinaCreditoBs);
-        me.formSubTotales.txt_total_efectivo.setValue(totalGasolinaBs + totalDieselBs);
+        me.formSubTotales.txt_gasolina_efectivo.setValue(totalGasolinaBs - (totalGasolinaCreditoBs + totalGasolinaConsumoBs ));
+        me.formSubTotales.txt_diesel_efectivo.setValue(totalDieselBs - (totalDieselCreditoBs + totalDieselConsumoBs ));
+        me.formSubTotales.txt_total_efectivo.setValue((totalDieselBs - (totalDieselCreditoBs + totalDieselConsumoBs )) + (totalGasolinaBs - (totalGasolinaCreditoBs + totalGasolinaConsumoBs )));
+        me.formSubTotales.txt_total01.setValue(totalGasolinaBs + totalDieselBs);
         me.formSubTotales.txt_total_credito.setValue(totalDieselCreditoBs + totalGasolinaCreditoBs);
 
+//        txt_total_efectivo
 
+    },
+    CargarTotalesConsumo : function(){
+        var me = this;
+      
+        var totalGasolinaConsumoBs = 0;
+        var totalDieselConsumoBs = 0;
+        me.gridVentaConsumo.getStore().each(function(record){
+            if(record.get('COMBUSTIBLE')== 'GASOLINA'){
+                totalGasolinaConsumoBs= totalGasolinaConsumoBs +  record.get('IMPORTE_BS');
+            }
+            else if(record.get('COMBUSTIBLE')== 'DIESEL'){
+                totalDieselConsumoBs= totalDieselConsumoBs +  record.get('IMPORTE_BS');
+            }
+            else{
+                alert('No existe Codigo falta Implementar');
+            }
+
+        });
+        me.formSubTotales.txt_gasolina_consumo.setValue(totalGasolinaConsumoBs);
+        me.formSubTotales.txt_diesel_consumo.setValue(totalDieselConsumoBs);
+        me.formSubTotales.txt_total_consumo.setValue(totalGasolinaConsumoBs +totalDieselConsumoBs);
+        me.formSubTotales.txt_gasolina01.setValue(me.formSubTotales.txt_gasolina01.getValue() - totalGasolinaConsumoBs);
     },
     CargarTotales : function(){
         var me = this;
