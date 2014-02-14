@@ -359,6 +359,7 @@
             fieldLabel: "Litros",
             name: "IMPORTE_LTS",
             allowDecimals: true,
+            readOnly : true,
             maxValue: 999999999,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
@@ -366,9 +367,12 @@
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe Total",
             name: "IMPORTE_BS",
-            readOnly : true,
+//            readOnly : true,
             allowDecimals: true,
             maxValue: 999999999,
+            maxValue: 999999999,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
         });
         me.num_precio = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Precio Litro ",
@@ -416,6 +420,7 @@
             fieldLabel: "Litros",
             name: "IMPORTE_LTS",
             allowDecimals: true,
+            readOnly : true,
             maxValue: 999999999,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
@@ -423,9 +428,12 @@
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe Total",
             name: "IMPORTE_BS",
-            readOnly : true,
+            allowDecimals: true,
+//            readOnly : true,
             allowDecimals: true,
             maxValue: 999999999,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
         });
         me.num_precio = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Precio Litro ",
@@ -453,25 +461,42 @@
             me.num_precio.setValue(me.combustible.get('PRECIO_VENTA'));
         });
 
-        me.num_litros.on('change',function(num,newvalue,oldvalue){
-//            alert(newvalue);
+//        me.num_litros.on('change',function(num,newvalue,oldvalue){
+////            alert(newvalue);
+//            if(newvalue != null){
+//                if(me.cbx_combustible.getValue() == null){
+//                    Ext.Msg.alert("Error","Seleccione Primero un Tipo de Combustible");
+//                }
+//                else{
+//                    var sum = me.combustible.get('PRECIO_VENTA') * newvalue;
+//                    me.num_importe.setValue(sum);
+//                }
+//            }
+//        });
+        me.num_importe.on('change',function(num,newvalue,oldvalue){
             if(newvalue != null){
                 if(me.cbx_combustible.getValue() == null){
                     Ext.Msg.alert("Error","Seleccione Primero un Tipo de Combustible");
                 }
                 else{
-                    var sum = me.combustible.get('PRECIO_VENTA') * newvalue;
-                    me.num_importe.setValue(sum);
+                    var sum = newvalue / me.combustible.get('PRECIO_VENTA') ;
+                    me.num_litros.setValue(sum);
                 }
             }
         });
     },
     EventosFormEditarVentaCredito : function(){
         var me = this;
-        me.num_litros.on('change',function(num,newvalue,oldvalue){
+//        me.num_litros.on('change',function(num,newvalue,oldvalue){
+//            if(newvalue != null){
+//                    var sum = me.num_precio.getValue() * newvalue;
+//                    me.num_importe.setValue(sum);
+//            }
+//        });
+        me.num_importe.on('change',function(num,newvalue,oldvalue){
             if(newvalue != null){
-                    var sum = me.num_precio.getValue() * newvalue;
-                    me.num_importe.setValue(sum);
+                    var sum = newvalue / me.num_precio.getValue() ;
+                    me.num_litros.setValue(sum);
             }
         });
     },

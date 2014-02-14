@@ -27,15 +27,32 @@
                     success: function(response){
                         var str = Ext.JSON.decode(response.responseText);
                         //                        alert(str.success + "FECHA : "+str.FECHA + "TURNO : "+str.TURNO);
-                        me.cbx_turno.setValue(str.TURNO);
-                        me.cbx_turno.setReadOnly(true);
-                        me.date_fecha.setValue(str.FECHA);
-                        me.date_fecha.setReadOnly(true);
-                        me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-                        me.gridVenta.getStore().setExtraParam('TURNO',str.TURNO);
-                        me.gridVenta.getStore().setExtraParam('EDITAR',false);
-                        me.gridVenta.getStore().load();
-                        me.permiso = true;
+                        if (str.success == 0){
+                             var fecha = new Date();
+                             me.cbx_turno.setReadOnly(false);
+                             me.date_fecha.setReadOnly(false);
+                             me.date_fecha.setValue(fecha);
+                             me.permiso = true;
+                        }
+                        else{
+                            me.cbx_turno.setValue(str.TURNO);
+                            me.cbx_turno.setReadOnly(true);
+                            me.date_fecha.setValue(str.FECHA);
+                            me.date_fecha.setReadOnly(true);
+                            me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                            me.gridVenta.getStore().setExtraParam('TURNO',str.TURNO);
+                            me.gridVenta.getStore().setExtraParam('EDITAR',false);
+                            me.gridVenta.getStore().load();
+
+                            me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                            me.gridVentaCredito.getStore().setExtraParam('TURNO',str.TURNO);
+
+                            me.gridVentaConsumo.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+                            me.gridVentaConsumo.getStore().setExtraParam('TURNO',str.TURNO);
+                            me.permiso = true;
+                            
+                            
+                        }
                     }
                 });
 //        alert(store.getId());
