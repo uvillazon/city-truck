@@ -45,7 +45,7 @@
             { header: "Detalle", width: 245, sortable: false, dataIndex: "DETALLE" },
             { header: "Ingreso", width: 80, sortable: false, dataIndex: "INGRESO", align: "right" },
             { header: "Egreso", width: 80, sortable: false, dataIndex: "EGRESO", align: "right" },
-            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO", align: "right" }
+            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO", align: "right"}
 
         ];
 
