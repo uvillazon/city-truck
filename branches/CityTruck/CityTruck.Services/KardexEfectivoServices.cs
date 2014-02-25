@@ -22,7 +22,7 @@ namespace CityTruck.Services
         {
             //_manListas = manListas;
         }
-        
+
         public IEnumerable<SG_KARDEX_EFECTIVO> ObtenerKardexEfectivo(PagingInfo paginacion, FiltrosModel<KardexEfectivoModel> filtros)
         {
             IQueryable<SG_KARDEX_EFECTIVO> result = null;
@@ -40,6 +40,21 @@ namespace CityTruck.Services
                 result = filtros.Diccionario.Count() > 0 ? result.Where(filtros.Predicado, filtros.Diccionario.Values.ToArray()) : result;
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+
+            });
+            return result;
+        }
+
+
+
+        public IEnumerable<SG_KARDEX_EFECTIVO> ObtenerKardexEfectivo(System.Linq.Expressions.Expression<Func<SG_KARDEX_EFECTIVO, bool>> criterio)
+        {
+            IQueryable<SG_KARDEX_EFECTIVO> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_KARDEX_EFECTIVOManager(uow);
+                result = manager.BuscarTodos(criterio);
+
 
             });
             return result;

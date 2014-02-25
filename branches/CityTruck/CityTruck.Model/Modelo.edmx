@@ -7,6 +7,7 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="SG_AJUSTE_PRECIO" EntityType="Model.Store.SG_AJUSTE_PRECIO" store:Type="Tables" Schema="CITYTRUCK" />
+          <EntitySet Name="SG_AJUSTES_TANQUE" EntityType="Model.Store.SG_AJUSTES_TANQUE" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_AMORTIZACIONES" EntityType="Model.Store.SG_AMORTIZACIONES" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_CAJAS" EntityType="Model.Store.SG_CAJAS" store:Type="Tables" Schema="CITYTRUCK" />
           <EntitySet Name="SG_CLIENTE_CONSUMO_COMBUSTIBLE" EntityType="Model.Store.SG_CLIENTE_CONSUMO_COMBUSTIBLE" store:Type="Tables" Schema="CITYTRUCK" />
@@ -34,6 +35,10 @@
           <AssociationSet Name="SG_AJUSTE_PRECIO_R01" Association="Model.Store.SG_AJUSTE_PRECIO_R01">
             <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
             <End Role="SG_AJUSTE_PRECIO" EntitySet="SG_AJUSTE_PRECIO" />
+          </AssociationSet>
+          <AssociationSet Name="SG_AJUSTES_TANQUE_R01" Association="Model.Store.SG_AJUSTES_TANQUE_R01">
+            <End Role="SG_TANQUES" EntitySet="SG_TANQUES" />
+            <End Role="SG_AJUSTES_TANQUE" EntitySet="SG_AJUSTES_TANQUE" />
           </AssociationSet>
           <AssociationSet Name="SG_AMORTIZACIONES_R01" Association="Model.Store.SG_AMORTIZACIONES_R01">
             <End Role="SG_CLIENTES" EntitySet="SG_CLIENTES" />
@@ -132,6 +137,19 @@
           <Property Name="PRECIO" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
           <Property Name="ESTADO" Type="varchar2" Nullable="false" MaxLength="1" />
+          <Property Name="FECHA_REG" Type="date" />
+        </EntityType>
+        <EntityType Name="SG_AJUSTES_TANQUE">
+          <Key>
+            <PropertyRef Name="ID_AJUSTE" />
+          </Key>
+          <Property Name="ID_AJUSTE" Type="number" Nullable="false" Precision="7" />
+          <Property Name="ID_TANQUE" Type="number" Nullable="false" Precision="5" />
+          <Property Name="NRO_COMP" Type="number" Nullable="false" Precision="7" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="OBSERVACION" Type="varchar2" Nullable="false" MaxLength="140" />
+          <Property Name="ID_USUARIO" Type="number" Nullable="false" Precision="5" />
           <Property Name="FECHA_REG" Type="date" />
         </EntityType>
         <EntityType Name="SG_AMORTIZACIONES">
@@ -394,6 +412,8 @@
           <Property Name="LITTER_ACT" Type="number" Nullable="false" Precision="15" Scale="5" />
           <Property Name="ESTADO" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="DESCRIPCION" Type="varchar2" MaxLength="300" />
+          <Property Name="ENT_LITTER_INI_MN" Type="number" Precision="15" Scale="5" />
+          <Property Name="LITTER_ACT_MN" Type="number" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="SG_POS_TURNOS">
           <Key>
@@ -422,6 +442,7 @@
           <Property Name="SALDO_INICIAL" Type="number" Precision="15" Scale="5" />
           <Property Name="LIMITE" Type="number" Precision="15" Scale="5" />
           <Property Name="ULT_AJUSTE" Type="number" Precision="15" Scale="5" />
+          <Property Name="SALDO_INICIAL_MN" Type="number" Precision="15" Scale="5" />
         </EntityType>
         <EntityType Name="SG_USUARIOS">
           <Key>
@@ -472,6 +493,18 @@
             </Principal>
             <Dependent Role="SG_AJUSTE_PRECIO">
               <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_AJUSTES_TANQUE_R01">
+          <End Role="SG_TANQUES" Type="Model.Store.SG_TANQUES" Multiplicity="1" />
+          <End Role="SG_AJUSTES_TANQUE" Type="Model.Store.SG_AJUSTES_TANQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_TANQUES">
+              <PropertyRef Name="ID_TANQUE" />
+            </Principal>
+            <Dependent Role="SG_AJUSTES_TANQUE">
+              <PropertyRef Name="ID_TANQUE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -931,6 +964,9 @@
           <Parameter Name="P_FECHA" Type="varchar2" Mode="Out" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_SALDOS_MITTERS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_VERIFICAR_EDICION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
           <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
@@ -986,12 +1022,7 @@
             <Parameter Name="P_LOGIN_USR" Mode="In" Type="String" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SG_POS" EntityType="Model.SG_POS" />
           <EntitySet Name="SG_POS_TURNOS" EntityType="Model.SG_POS_TURNOS" />
-          <AssociationSet Name="SG_POS_TURNOS_R01" Association="Model.SG_POS_TURNOS_R01">
-            <End Role="SG_POS" EntitySet="SG_POS" />
-            <End Role="SG_POS_TURNOS" EntitySet="SG_POS_TURNOS" />
-          </AssociationSet>
           <FunctionImport Name="P_SG_GENERAR_POS_TURNOS">
             <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
             <Parameter Name="P_TURNO" Mode="In" Type="String" />
@@ -1099,10 +1130,6 @@
           <AssociationSet Name="SG_COMPRAS_R01" Association="Model.SG_COMPRAS_R01">
             <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
             <End Role="SG_COMPRAS" EntitySet="SG_COMPRAS" />
-          </AssociationSet>
-          <AssociationSet Name="SG_POS_R01" Association="Model.SG_POS_R01">
-            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
-            <End Role="SG_POS" EntitySet="SG_POS" />
           </AssociationSet>
           <AssociationSet Name="SG_VENTAS_CREDITO_R01" Association="Model.SG_VENTAS_CREDITO_R01">
             <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
@@ -1272,6 +1299,23 @@
             <Parameter Name="P_FECHA" Mode="Out" Type="String" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SG_AJUSTES_TANQUE" EntityType="Model.SG_AJUSTES_TANQUE" />
+          <AssociationSet Name="SG_AJUSTES_TANQUE_R01" Association="Model.SG_AJUSTES_TANQUE_R01">
+            <End Role="SG_TANQUES" EntitySet="SG_TANQUES" />
+            <End Role="SG_AJUSTES_TANQUE" EntitySet="SG_AJUSTES_TANQUE" />
+          </AssociationSet>
+          <EntitySet Name="SG_POS" EntityType="Model.SG_POS" />
+          <AssociationSet Name="SG_POS_R01" Association="Model.SG_POS_R01">
+            <End Role="SG_COMBUSTIBLES" EntitySet="SG_COMBUSTIBLES" />
+            <End Role="SG_POS" EntitySet="SG_POS" />
+          </AssociationSet>
+          <AssociationSet Name="SG_POS_TURNOS_R01" Association="Model.SG_POS_TURNOS_R01">
+            <End Role="SG_POS" EntitySet="SG_POS" />
+            <End Role="SG_POS_TURNOS" EntitySet="SG_POS_TURNOS" />
+          </AssociationSet>
+          <FunctionImport Name="P_SG_SALDOS_MITTERS">
+          <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1411,20 +1455,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SG_POS">
-          <Key>
-            <PropertyRef Name="ID_POS" />
-          </Key>
-          <Property Type="Int32" Name="ID_POS" Nullable="false" />
-          <Property Type="String" Name="CODIGO" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Type="Int16" Name="ID_COMBUSTIBLE" Nullable="false" />
-          <Property Type="Decimal" Name="ENT_LITTER_INI" Nullable="false" Precision="15" Scale="5" />
-          <Property Type="Decimal" Name="LITTER_ACT" Nullable="false" Precision="15" Scale="5" />
-          <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="DESCRIPCION" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SG_POS_TURNOS" Relationship="Model.SG_POS_TURNOS_R01" FromRole="SG_POS" ToRole="SG_POS_TURNOS" />
-          <NavigationProperty Name="SG_COMBUSTIBLES" Relationship="Model.SG_POS_R01" FromRole="SG_POS" ToRole="SG_COMBUSTIBLES" />
-        </EntityType>
         <EntityType Name="SG_POS_TURNOS">
           <Key>
             <PropertyRef Name="ID_POS_TURNO" />
@@ -1437,23 +1467,11 @@
           <Property Type="Decimal" Name="SAL_LITTER" Nullable="false" Precision="15" Scale="5" />
           <Property Type="Decimal" Name="TOTAL" Nullable="false" Precision="15" Scale="5" />
           <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
-          <NavigationProperty Name="SG_POS" Relationship="Model.SG_POS_TURNOS_R01" FromRole="SG_POS_TURNOS" ToRole="SG_POS" />
           <Property Type="DateTime" Name="FECHA_REG" />
           <Property Type="Decimal" Name="TOTAL_VENTA" Precision="15" Scale="5" />
           <Property Type="Decimal" Name="TOTAL_COSTO" Precision="15" Scale="5" />
+          <NavigationProperty Name="SG_POS" Relationship="Model.SG_POS_TURNOS_R01" FromRole="SG_POS_TURNOS" ToRole="SG_POS" />
         </EntityType>
-        <Association Name="SG_POS_TURNOS_R01">
-          <End Type="Model.SG_POS" Role="SG_POS" Multiplicity="1" />
-          <End Type="Model.SG_POS_TURNOS" Role="SG_POS_TURNOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SG_POS">
-              <PropertyRef Name="ID_POS" />
-            </Principal>
-            <Dependent Role="SG_POS_TURNOS">
-              <PropertyRef Name="ID_POS" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SG_CAJAS">
           <Key>
             <PropertyRef Name="ID_CAJA" />
@@ -1751,11 +1769,11 @@
           <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="SG_AJUSTE_PRECIO" Relationship="Model.SG_AJUSTE_PRECIO_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_AJUSTE_PRECIO" />
           <NavigationProperty Name="SG_COMPRAS" Relationship="Model.SG_COMPRAS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_COMPRAS" />
-          <NavigationProperty Name="SG_POS" Relationship="Model.SG_POS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_POS" />
           <NavigationProperty Name="SG_VENTAS_CREDITO" Relationship="Model.SG_VENTAS_CREDITO_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_VENTAS_CREDITO" />
           <NavigationProperty Name="SG_CONSUMOS" Relationship="Model.SG_CONSUMOS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_CONSUMOS" />
           <Property Type="Decimal" Name="SALDO_INICIAL" Precision="15" Scale="5" />
           <NavigationProperty Name="SG_TANQUES" Relationship="Model.SG_TANQUES_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_TANQUES" />
+          <NavigationProperty Name="SG_POS" Relationship="Model.SG_POS_R01" FromRole="SG_COMBUSTIBLES" ToRole="SG_POS" />
         </EntityType>
         <Association Name="SG_AJUSTE_PRECIO_R01">
           <End Type="Model.SG_COMBUSTIBLES" Role="SG_COMBUSTIBLES" Multiplicity="1" />
@@ -1777,18 +1795,6 @@
               <PropertyRef Name="ID_COMBUSTIBLE" />
             </Principal>
             <Dependent Role="SG_COMPRAS">
-              <PropertyRef Name="ID_COMBUSTIBLE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SG_POS_R01">
-          <End Type="Model.SG_COMBUSTIBLES" Role="SG_COMBUSTIBLES" Multiplicity="1" />
-          <End Type="Model.SG_POS" Role="SG_POS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SG_COMBUSTIBLES">
-              <PropertyRef Name="ID_COMBUSTIBLE" />
-            </Principal>
-            <Dependent Role="SG_POS">
               <PropertyRef Name="ID_COMBUSTIBLE" />
             </Dependent>
           </ReferentialConstraint>
@@ -1911,6 +1917,8 @@
           <Property Type="Decimal" Name="LIMITE" Precision="15" Scale="5" />
           <Property Type="Decimal" Name="ULT_AJUSTE" Precision="15" Scale="5" />
           <NavigationProperty Name="SG_COMBUSTIBLES" Relationship="Model.SG_TANQUES_R01" FromRole="SG_TANQUES" ToRole="SG_COMBUSTIBLES" />
+          <NavigationProperty Name="SG_AJUSTES_TANQUE" Relationship="Model.SG_AJUSTES_TANQUE_R01" FromRole="SG_TANQUES" ToRole="SG_AJUSTES_TANQUE" />
+          <Property Type="Decimal" Name="SALDO_INICIAL_MN" Precision="15" Scale="5" />
         </EntityType>
         <Association Name="SG_TANQUES_R01">
           <End Type="Model.SG_COMBUSTIBLES" Role="SG_COMBUSTIBLES" Multiplicity="1" />
@@ -1921,6 +1929,72 @@
             </Principal>
             <Dependent Role="SG_TANQUES">
               <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SG_AJUSTES_TANQUE">
+          <Key>
+            <PropertyRef Name="ID_AJUSTE" />
+          </Key>
+          <Property Type="Int32" Name="ID_AJUSTE" Nullable="false" />
+          <Property Type="Int16" Name="ID_TANQUE" Nullable="false" />
+          <Property Type="Int32" Name="NRO_COMP" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA" Nullable="false" />
+          <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="String" Name="OBSERVACION" Nullable="false" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="ID_USUARIO" Nullable="false" />
+          <Property Type="DateTime" Name="FECHA_REG" />
+          <NavigationProperty Name="SG_TANQUES" Relationship="Model.SG_AJUSTES_TANQUE_R01" FromRole="SG_AJUSTES_TANQUE" ToRole="SG_TANQUES" />
+        </EntityType>
+        <Association Name="SG_AJUSTES_TANQUE_R01">
+          <End Type="Model.SG_TANQUES" Role="SG_TANQUES" Multiplicity="1" />
+          <End Type="Model.SG_AJUSTES_TANQUE" Role="SG_AJUSTES_TANQUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_TANQUES">
+              <PropertyRef Name="ID_TANQUE" />
+            </Principal>
+            <Dependent Role="SG_AJUSTES_TANQUE">
+              <PropertyRef Name="ID_TANQUE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SG_POS">
+          <Key>
+            <PropertyRef Name="ID_POS" />
+          </Key>
+          <Property Type="Int32" Name="ID_POS" Nullable="false" />
+          <Property Type="String" Name="CODIGO" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="ID_COMBUSTIBLE" Nullable="false" />
+          <Property Type="Decimal" Name="ENT_LITTER_INI" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="LITTER_ACT" Nullable="false" Precision="15" Scale="5" />
+          <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="DESCRIPCION" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="ENT_LITTER_INI_MN" Precision="15" Scale="5" />
+          <Property Type="Decimal" Name="LITTER_ACT_MN" Precision="15" Scale="5" />
+          <NavigationProperty Name="SG_COMBUSTIBLES" Relationship="Model.SG_POS_R01" FromRole="SG_POS" ToRole="SG_COMBUSTIBLES" />
+          <NavigationProperty Name="SG_POS_TURNOS" Relationship="Model.SG_POS_TURNOS_R01" FromRole="SG_POS" ToRole="SG_POS_TURNOS" />
+        </EntityType>
+        <Association Name="SG_POS_R01">
+          <End Type="Model.SG_COMBUSTIBLES" Role="SG_COMBUSTIBLES" Multiplicity="1" />
+          <End Type="Model.SG_POS" Role="SG_POS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_COMBUSTIBLES">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Principal>
+            <Dependent Role="SG_POS">
+              <PropertyRef Name="ID_COMBUSTIBLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SG_POS_TURNOS_R01">
+          <End Type="Model.SG_POS" Role="SG_POS" Multiplicity="1" />
+          <End Type="Model.SG_POS_TURNOS" Role="SG_POS_TURNOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SG_POS">
+              <PropertyRef Name="ID_POS" />
+            </Principal>
+            <Dependent Role="SG_POS_TURNOS">
+              <PropertyRef Name="ID_POS" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1982,19 +2056,6 @@
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_ALTA_LISTA" FunctionName="Model.Store.P_SG_ALTA_LISTA" />
           <FunctionImportMapping FunctionImportName="P_SG_GRABAR_LISTAS_ITEMS" FunctionName="Model.Store.P_SG_GRABAR_LISTAS_ITEMS" />
-          <EntitySetMapping Name="SG_POS">
-            <EntityTypeMapping TypeName="Model.SG_POS">
-              <MappingFragment StoreEntitySet="SG_POS">
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
-                <ScalarProperty Name="LITTER_ACT" ColumnName="LITTER_ACT" />
-                <ScalarProperty Name="ENT_LITTER_INI" ColumnName="ENT_LITTER_INI" />
-                <ScalarProperty Name="ID_COMBUSTIBLE" ColumnName="ID_COMBUSTIBLE" />
-                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
-                <ScalarProperty Name="ID_POS" ColumnName="ID_POS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SG_POS_TURNOS">
             <EntityTypeMapping TypeName="Model.SG_POS_TURNOS">
               <MappingFragment StoreEntitySet="SG_POS_TURNOS">
@@ -2286,6 +2347,7 @@
           <EntitySetMapping Name="SG_TANQUES">
             <EntityTypeMapping TypeName="Model.SG_TANQUES">
               <MappingFragment StoreEntitySet="SG_TANQUES">
+                <ScalarProperty Name="SALDO_INICIAL_MN" ColumnName="SALDO_INICIAL_MN" />
                 <ScalarProperty Name="ULT_AJUSTE" ColumnName="ULT_AJUSTE" />
                 <ScalarProperty Name="LIMITE" ColumnName="LIMITE" />
                 <ScalarProperty Name="SALDO_INICIAL" ColumnName="SALDO_INICIAL" />
@@ -2301,6 +2363,36 @@
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CLIENTES" FunctionName="Model.Store.P_SG_GUARDAR_CLIENTES" />
           <FunctionImportMapping FunctionImportName="P_SG_ELIMINAR_CLIENTE" FunctionName="Model.Store.P_SG_ELIMINAR_CLIENTE" />
           <FunctionImportMapping FunctionImportName="P_SG_OBTENER_ULTIMO_REG" FunctionName="Model.Store.P_SG_OBTENER_ULTIMO_REG" />
+          <EntitySetMapping Name="SG_AJUSTES_TANQUE">
+            <EntityTypeMapping TypeName="Model.SG_AJUSTES_TANQUE">
+              <MappingFragment StoreEntitySet="SG_AJUSTES_TANQUE">
+                <ScalarProperty Name="FECHA_REG" ColumnName="FECHA_REG" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="OBSERVACION" ColumnName="OBSERVACION" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="NRO_COMP" ColumnName="NRO_COMP" />
+                <ScalarProperty Name="ID_TANQUE" ColumnName="ID_TANQUE" />
+                <ScalarProperty Name="ID_AJUSTE" ColumnName="ID_AJUSTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SG_POS">
+            <EntityTypeMapping TypeName="Model.SG_POS">
+              <MappingFragment StoreEntitySet="SG_POS">
+                <ScalarProperty Name="LITTER_ACT_MN" ColumnName="LITTER_ACT_MN" />
+                <ScalarProperty Name="ENT_LITTER_INI_MN" ColumnName="ENT_LITTER_INI_MN" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="LITTER_ACT" ColumnName="LITTER_ACT" />
+                <ScalarProperty Name="ENT_LITTER_INI" ColumnName="ENT_LITTER_INI" />
+                <ScalarProperty Name="ID_COMBUSTIBLE" ColumnName="ID_COMBUSTIBLE" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="ID_POS" ColumnName="ID_POS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_SG_SALDOS_MITTERS" FunctionName="Model.Store.P_SG_SALDOS_MITTERS" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2322,7 +2414,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Modelo" ZoomLevel="86">
+      <Diagram Name="Modelo" ZoomLevel="71">
         <EntityTypeShape EntityType="Model.SG_LISTAS" Width="1.5" PointX="0.5" PointY="1" Height="2.5571907552083326" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_LISTAS_ITEMS" Width="1.5" PointX="2.75" PointY="0.5" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SG_MENU_OPCIONES" Width="1.5" PointX="0.75" PointY="10.5" Height="2.9417936197916639" IsExpanded="true" />
@@ -2358,14 +2450,7 @@
           <ConnectorPoint PointX="3.2395833333333335" PointY="9.7807421874999978" />
           <ConnectorPoint PointX="3.625" PointY="9.7807421874999978" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.SG_POS" Width="1.5" PointX="9.75" PointY="3.75" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="Model.SG_POS_TURNOS" Width="1.5" PointX="5.875" PointY="6.125" Height="2.7494921875000031" />
-        <AssociationConnector Association="Model.SG_POS_TURNOS_R01" >
-          <ConnectorPoint PointX="9.75" PointY="6.31224609375" />
-          <ConnectorPoint PointX="7.708333333333333" PointY="6.3122460937499989" />
-          <ConnectorPoint PointX="7.541666666666667" PointY="6.31224609375" />
-          <ConnectorPoint PointX="7.375" PointY="6.31224609375" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CAJAS" Width="1.5" PointX="7.875" PointY="7.75" Height="2.9417936197916656" />
         <EntityTypeShape EntityType="Model.SG_INGRESOS" Width="1.5" PointX="10.625" PointY="7.75" Height="2.9417936197916745" />
         <AssociationConnector Association="Model.SG_INGRESOS_R01" >
@@ -2375,8 +2460,8 @@
         <EntityTypeShape EntityType="Model.SG_COMPRAS" Width="1.5" PointX="12.875" PointY="5.25" Height="4.0956022135416656" />
         <AssociationConnector Association="Model.SG_COMPRAS_R02" >
           <ConnectorPoint PointX="8.625" PointY="7.75" />
-          <ConnectorPoint PointX="8.625" PointY="7.2888701953125032" />
-          <ConnectorPoint PointX="12.875" PointY="7.2888701953125032" />
+          <ConnectorPoint PointX="8.625" PointY="7.3482970260416689" />
+          <ConnectorPoint PointX="12.875" PointY="7.3482970260416689" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CLIENTES" Width="1.5" PointX="3.375" PointY="11.75" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="Model.SG_EGRESOS" Width="1.5" PointX="10.125" PointY="12" Height="2.9417936197916674" />
@@ -2391,10 +2476,10 @@
         <EntityTypeShape EntityType="Model.SG_VENTAS_CREDITO" Width="1.5" PointX="7.875" PointY="12.75" Height="3.7109993489583388" />
         <AssociationConnector Association="Model.SG_AMORTIZACIONES_R01" >
           <ConnectorPoint PointX="4.875" PointY="11.84375" />
-          <ConnectorPoint PointX="5.197916666666667" PointY="11.84375" />
-          <ConnectorPoint PointX="5.364583333333333" PointY="11.84375" />
-          <ConnectorPoint PointX="5.3697941666666669" PointY="11.84375" />
-          <ConnectorPoint PointX="5.5364608333333329" PointY="11.84375" />
+          <ConnectorPoint PointX="5.1150317643229171" PointY="11.84375" />
+          <ConnectorPoint PointX="5.2816984309895831" PointY="11.84375" />
+          <ConnectorPoint PointX="5.3283517154947919" PointY="11.84375" />
+          <ConnectorPoint PointX="5.495018382161458" PointY="11.84375" />
           <ConnectorPoint PointX="10.260416666666666" PointY="11.84375" />
           <ConnectorPoint PointX="10.427083333333334" PointY="11.84375" />
           <ConnectorPoint PointX="13.125" PointY="11.84375" />
@@ -2405,18 +2490,18 @@
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_KARDEX_CLIENTE_R01" >
           <ConnectorPoint PointX="4.875" PointY="13.788198242187502" />
-          <ConnectorPoint PointX="5.197916666666667" PointY="13.788198242187502" />
-          <ConnectorPoint PointX="5.364583333333333" PointY="13.788198242187502" />
-          <ConnectorPoint PointX="5.3697941666666669" PointY="13.788198242187502" />
-          <ConnectorPoint PointX="5.5364608333333329" PointY="13.788198242187502" />
+          <ConnectorPoint PointX="5.1150317643229171" PointY="13.788198242187502" />
+          <ConnectorPoint PointX="5.2816984309895831" PointY="13.788198242187502" />
+          <ConnectorPoint PointX="5.3283517154947919" PointY="13.788198242187502" />
+          <ConnectorPoint PointX="5.495018382161458" PointY="13.788198242187502" />
           <ConnectorPoint PointX="5.625" PointY="13.788198242187502" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_VENTAS_CREDITO_R02" >
           <ConnectorPoint PointX="4.875" PointY="15.679749348958335" />
-          <ConnectorPoint PointX="5.197916666666667" PointY="15.679749348958335" />
-          <ConnectorPoint PointX="5.364583333333333" PointY="15.679749348958335" />
-          <ConnectorPoint PointX="5.3697941666666669" PointY="15.679749348958335" />
-          <ConnectorPoint PointX="5.5364608333333329" PointY="15.679749348958335" />
+          <ConnectorPoint PointX="5.1150317643229171" PointY="15.679749348958335" />
+          <ConnectorPoint PointX="5.2816984309895831" PointY="15.679749348958335" />
+          <ConnectorPoint PointX="5.3283517154947919" PointY="15.679749348958335" />
+          <ConnectorPoint PointX="5.495018382161458" PointY="15.679749348958335" />
           <ConnectorPoint PointX="7.875" PointY="15.679749348958335" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_KARDEX_EFECTIVO" Width="1.5" PointX="10.125" PointY="16" Height="3.326396484374996" />
@@ -2440,20 +2525,14 @@
           <ConnectorPoint PointX="6.75" PointY="2.125" />
           <ConnectorPoint PointX="6.75" PointY="5.875" />
           <ConnectorPoint PointX="7.625" PointY="5.875" />
-          <ConnectorPoint PointX="7.625" PointY="6.9216764304707175" />
-          <ConnectorPoint PointX="12.875" PointY="6.9216764304707175" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.SG_POS_R01" >
-          <ConnectorPoint PointX="6.5" PointY="4.75" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="4.7499999999999991" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="4.75" />
-          <ConnectorPoint PointX="9.75" PointY="4.75" />
+          <ConnectorPoint PointX="7.625" PointY="7.11619353906251" />
+          <ConnectorPoint PointX="12.875" PointY="7.11619353906251" />
         </AssociationConnector>
         <AssociationConnector Association="Model.SG_VENTAS_CREDITO_R01" >
-          <ConnectorPoint PointX="5.28125" PointY="6.27830078125" />
-          <ConnectorPoint PointX="5.28125" PointY="16.101626848958333" />
-          <ConnectorPoint PointX="5.3697941666666669" PointY="16.101626848958333" />
-          <ConnectorPoint PointX="5.5364608333333329" PointY="16.101626848958333" />
+          <ConnectorPoint PointX="5.19836509765625" PointY="6.27830078125" />
+          <ConnectorPoint PointX="5.19836509765625" PointY="16.101626848958333" />
+          <ConnectorPoint PointX="5.3283517154947919" PointY="16.101626848958333" />
+          <ConnectorPoint PointX="5.495018382161458" PointY="16.101626848958333" />
           <ConnectorPoint PointX="7.875" PointY="16.101626848958333" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_CLIENTES_CONSUMO" Width="1.5" PointX="17.5" PointY="0.5" Height="2.5571907552083317" />
@@ -2476,9 +2555,27 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.SG_TANQUES" Width="1.5" PointX="7.25" PointY="18" Height="2.5571907552083246" />
         <AssociationConnector Association="Model.SG_TANQUES_R01" >
-          <ConnectorPoint PointX="5.4531275" PointY="6.27830078125" />
-          <ConnectorPoint PointX="5.4531275" PointY="19.278595377604162" />
-          <ConnectorPoint PointX="7.25" PointY="19.278595377604162" />
+          <ConnectorPoint PointX="5.411685048828125" PointY="6.27830078125" />
+          <ConnectorPoint PointX="5.411685048828125" PointY="19.374746093749998" />
+          <ConnectorPoint PointX="7.25" PointY="19.374746093749998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.SG_AJUSTES_TANQUE" Width="1.5" PointX="12.125" PointY="17.125" Height="2.749492187499996" />
+        <AssociationConnector Association="Model.SG_AJUSTES_TANQUE_R01" >
+          <ConnectorPoint PointX="8.75" PointY="19.631694335937496" />
+          <ConnectorPoint PointX="12.125" PointY="19.631694335937496" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.SG_POS" Width="1.5" PointX="9.75" PointY="3.75" Height="3.1340950520833388" />
+        <AssociationConnector Association="Model.SG_POS_R01" >
+          <ConnectorPoint PointX="6.5" PointY="4.75" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="4.7499999999999991" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="4.75" />
+          <ConnectorPoint PointX="9.75" PointY="4.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SG_POS_TURNOS_R01" >
+          <ConnectorPoint PointX="9.75" PointY="6.5045475260416694" />
+          <ConnectorPoint PointX="7.708333333333333" PointY="6.5045475260416685" />
+          <ConnectorPoint PointX="7.541666666666667" PointY="6.5045475260416694" />
+          <ConnectorPoint PointX="7.375" PointY="6.5045475260416694" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

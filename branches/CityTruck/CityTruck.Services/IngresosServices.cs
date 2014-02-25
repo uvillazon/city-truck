@@ -73,9 +73,12 @@ namespace CityTruck.Services
                 var manager = new SG_EGRESOSManager(uow);
                 result = manager.BuscarTodos();
                 result = manager.ObtenerEgresosPorMesyAnio(ANIO, MES);
-                paginacion.total = result.Count();
-                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
-
+                if (paginacion != null)
+                {
+                    paginacion.total = result.Count();
+                    result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+                }
+                
             });
             return result;
         }

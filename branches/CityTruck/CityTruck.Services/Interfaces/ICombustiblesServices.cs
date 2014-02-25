@@ -12,6 +12,12 @@ namespace CityTruck.Services.Interfaces
     public interface ICombustiblesServices
     {
         IEnumerable<SG_COMBUSTIBLES> ObtenerCombustiblesPaginado(PagingInfo paginacion);
+
+        IEnumerable<SG_AJUSTES_TANQUE> ObtenerAjustesPorAnioYMes(string ANIO, string MES);
+
+        IEnumerable<SG_AJUSTES_TANQUE> ObtenerAjustesPaginados(PagingInfo paginacion, Expression<Func<SG_AJUSTES_TANQUE, bool>> criterio = null);
+
+
         CombustiblesModel ObtenerCombustible(Expression<Func<SG_COMBUSTIBLES, bool>> criterio = null);
 
         //RespuestaSP SP_GrabarIngreso(SG_CAJAS caja);
