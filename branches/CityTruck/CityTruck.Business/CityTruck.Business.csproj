@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SG_POSManager.cs" />
+    <Compile Include="SG_AJUSTES_TANQUEManager.cs" />
     <Compile Include="SG_TANQUESManager.cs" />
     <Compile Include="SG_DETALLES_COMPRASManager.cs" />
     <Compile Include="SG_CLIENTE_CONSUMO_COMBUSTIBLEManager.cs" />
