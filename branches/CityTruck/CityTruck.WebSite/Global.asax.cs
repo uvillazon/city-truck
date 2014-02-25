@@ -20,7 +20,12 @@ namespace CityTruck.WebSite
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            
+            routes.MapPageRoute(
+            "ReportRoute",                         // Route name
+            "Reportes/{reportname}",                // URL
+            "~/Reportes/{reportname}.aspx"   // File
+            );
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

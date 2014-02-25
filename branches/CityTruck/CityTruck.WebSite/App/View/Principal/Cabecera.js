@@ -90,6 +90,7 @@ Ext.define("App.View.Principal.Cabecera", {
 //        me.CrearMenu(me.tb, data1.Menu);
         me.CrearCabeceraLogin(me.tb, data1.Usuario);
         me.panelMenu.CrearMenu(me.panelMenu,data1);
+//        alert("entro");
     },
     CrearCabeceraLogin : function(tb,data){
         var me = this;
@@ -119,6 +120,7 @@ Ext.define("App.View.Principal.Cabecera", {
     CrearMenu: function (tb, data) {
         var me = this;
         //alert(me.tabPanel.getId());
+        
         Ext.each(data, function (menu) {
             if (menu.menus) {
                 var subMenu = Ext.create('Ext.menu.Menu');
@@ -150,9 +152,9 @@ Ext.define("App.View.Principal.Cabecera", {
     },
     CargarClase: function (menu) {
         var me = this;
-       
+       alert("dasd");
             if (menu.datos.clase) {
-            //alert(menu.estilo);
+//            alert(menu.estilo);
             if (menu.datos.estilo == null) {
                 var open = !Ext.getCmp(menu.text);
                 if (open) {
@@ -183,6 +185,7 @@ Ext.define("App.View.Principal.Cabecera", {
                 var principal = Ext.create(menu.datos.clase).show();
             }
             else {
+                alert(menu.datos.estilo);
                 //sas
             }
         }

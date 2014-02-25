@@ -13,10 +13,10 @@
         me.toolbar = Funciones.CrearMenuBar();
 
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_Imprimirsa', 'Imprimir S/A', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
-        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosTanques, me.toolbar, this);
+        //        Funciones.CrearMenu('btn_Imprimirsa', 'Imprimir S/A', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
+        //        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosTanques, me.toolbar, this);
         Funciones.CrearMenu('btn_AjustarTanque', 'Ajustar', Constantes.ICONO_CREAR, me.EventosTanques, me.toolbar, this);
-        Funciones.CrearMenu('btn_RepAjustes', 'Rep. Ajustes', 'report', me.EventosTanques, me.toolbar, this);
+        Funciones.CrearMenu('btn_RepAjustes', 'Reporte Ajustes', 'report', me.EventosTanques, me.toolbar, this);
 
         me.grid = Ext.create('App.View.Tanques.GridTanques', {
             region: 'center',
@@ -45,7 +45,15 @@
                 me.formAjustarTanque.getForm().reset();
                 me.winAjustarTanque.show();
             }
-        } else {
+        }
+        else if (btn.getItemId() == "btn_RepAjustes") {
+            var win = Ext.create("App.Config.Abstract.Window");
+            var grid = Ext.create('App.View.Tanques.Grids', { opcion: 'GridAjustes', height: 350, width: 550 });
+            win.add(grid);
+            grid.getStore().load();
+            win.show();
+        }
+        else {
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
     }

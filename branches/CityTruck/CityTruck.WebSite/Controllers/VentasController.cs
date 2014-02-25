@@ -19,7 +19,6 @@ namespace CityTruck.WebSite.Controllers
         private IVentasDiariasServices _serVen;
         private IPosTurnosServices _serPos;
         private ICombustiblesServices _serCom;
-
         public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos, ICombustiblesServices serCom)
         {
             _serVen = serVen;
@@ -367,6 +366,28 @@ namespace CityTruck.WebSite.Controllers
 
                 throw;
             }
+        }
+        #endregion
+
+        #region listas pos manguerasw
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerManguerasPaginado(PagingInfo paginacion)
+        {
+            _serPos.SP_ActualizarSaldos();
+            var cajas = _serPos.ObtnenerPuntosPaginados(paginacion);
+            var formatData = cajas.Select(x => new
+            {
+                ID_POS = x.ID_POS,
+                COMBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
+                CODIGO = x.CODIGO,
+                MITTER_INICIAL = x.ENT_LITTER_INI,
+                MITTER_INICIAL_MN = x.ENT_LITTER_INI_MN,
+                MITTER_ACTUAL_MN = x.LITTER_ACT_MN,
+                MITTER_ACTUAL = x.LITTER_ACT
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
         }
         #endregion
     }
