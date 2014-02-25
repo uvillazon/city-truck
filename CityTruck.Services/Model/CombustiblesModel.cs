@@ -12,4 +12,5 @@ namespace CityTruck.Services.Model
         public decimal? PRECIO_VENTA { get; set; }
         public decimal? PRECIO_COMPRA { get; set; }
     }
+    
 }

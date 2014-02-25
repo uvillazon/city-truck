@@ -99,5 +99,45 @@ namespace CityTruck.Services
 
             return result;
         }
+
+
+        public IEnumerable<SG_POS> ObtnenerPuntosPaginados(PagingInfo paginacion)
+        {
+            IQueryable<SG_POS> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_POSManager(uow);
+                result = manager.BuscarTodos();
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+
+            });
+            return result;
+        }
+
+
+        public RespuestaSP SP_ActualizarSaldos()
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_SALDOS_MITTERS(p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+
+            return result;
+        }
     }
 }

@@ -53,5 +53,31 @@ namespace CityTruck.Services
             return result;
         }
 
+
+
+        public IEnumerable<SG_AJUSTES_TANQUE> ObtenerAjustesPorAnioYMes(string ANIO, string MES)
+        {
+            IQueryable<SG_AJUSTES_TANQUE> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_AJUSTES_TANQUEManager(uow);
+                result = manager.ObtenerAjustesPorMesyAnio(ANIO, MES);
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_AJUSTES_TANQUE> ObtenerAjustesPaginados(PagingInfo paginacion, System.Linq.Expressions.Expression<Func<SG_AJUSTES_TANQUE, bool>> criterio = null)
+        {
+            IQueryable<SG_AJUSTES_TANQUE> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_AJUSTES_TANQUEManager(uow);
+                result = manager.BuscarTodos(criterio);
+                paginacion.total = result.Count();
+                result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
+            });
+            return result;
+        }
     }
 }
