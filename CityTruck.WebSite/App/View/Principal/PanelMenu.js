@@ -75,6 +75,7 @@
                 iconCls: menu.iconCls,
                 cls: 'botonesBtn',
                 iconAlign: 'top',
+                scale: 'button48',
                 width : Constantes.BTNANCHO,
                 height : Constantes.BTNALTO,
                 tooltip: menu.tooltip,
@@ -85,36 +86,44 @@
             });
             panel.add(menubtn);
         });
+       
     },
     CargarPanel : function(btn){
         var me = this;
 //        alert(btn.datos);
         if (btn.datos != null) {
-            var open = !Ext.getCmp(btn.datos.text);
-            if (open) {
-                var principal = Ext.create(btn.datos.clase);
-                var tab = new Ext.Panel({
-                    id: btn.datos.text,
-                    autoHeigth: true,
-                    autoWidht: true,
-                    title: btn.datos.text,
-                    autoScroll: true,
-                    iconCls: btn.datos.iconCls,
-                    tooltip: btn.datos.tooltip,
-                    viewConfig: {
-                        forceFit: true,
-                    },
-                    items: principal,
-                    closable: true,
+            if (btn.datos.estilo == null) {
+                var open = !Ext.getCmp(btn.datos.text);
+                if (open) {
+                    var principal = Ext.create(btn.datos.clase);
+                    var tab = new Ext.Panel({
+                        id: btn.datos.text,
+                        autoHeigth: true,
+                        autoWidht: true,
+                        title: btn.datos.text,
+                        autoScroll: true,
+                        iconCls: btn.datos.iconCls,
+                        tooltip: btn.datos.tooltip,
+                        viewConfig: {
+                            forceFit: true,
+                        },
+                        items: principal,
+                        closable: true,
 
-                });
-                me.tabPanel.add(tab);
-                tab.show();
+                    });
+                    me.tabPanel.add(tab);
+                    tab.show();
+                }
+                else {
+                    me.tabPanel.setActiveTab(btn.text);
+                }
             }
             else {
-                me.tabPanel.setActiveTab(btn.text);
+//                alert(btn.datos.estilo);
+                var principal = Ext.create(btn.datos.clase,{opcion : btn.datos.estilo}).show();
             }
         }
+        
 //        else if (menu.datos == "ventana") {
 //            var principal = Ext.create(btn.clase).show();
 //        }

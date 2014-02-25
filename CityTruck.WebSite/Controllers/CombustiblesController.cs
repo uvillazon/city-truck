@@ -20,7 +20,7 @@ namespace CityTruck.WebSite.Controllers
         private IPosTurnosServices _serPos;
         private ITanquesServices _serTan;
 
-        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos,ITanquesServices serTan)
+        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos, ITanquesServices serTan)
         {
             _serCom = serCom;
             _serVen = serVen;
@@ -41,6 +41,26 @@ namespace CityTruck.WebSite.Controllers
                 CANT_DISPONIBLE = x.CANT_DISPONIBLE,
                 PRECIO_VENTA = x.PRECIO_VENTA,
                 PRECIO_COMPRA = x.PRECIO_COMPRA
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formattData, Total = paginacion.total }) + ");";
+            return JavaScript(callback1);
+        }
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerAjustesPaginado(PagingInfo paginacion)
+        {
+            var cajas = _serCom.ObtenerAjustesPaginados(paginacion);
+            var formattData = cajas.Select(x => new
+            {
+                ID_COMBUSTIBLE = x.SG_TANQUES.ID_COMBUSTIBLE,
+                NOMBRE = x.SG_TANQUES.NOMBRE,
+                NRO_COMP = x.NRO_COMP,
+                OBSERVACION = x.OBSERVACION,
+                FECHA = x.FECHA,
+                CANTIDAD = x.CANTIDAD,
+                DIESEL = x.SG_TANQUES.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.CANTIDAD : 0,
+                GASOLINA = x.SG_TANQUES.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.CANTIDAD : 0,
+                
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formattData, Total = paginacion.total }) + ");";
@@ -69,12 +89,12 @@ namespace CityTruck.WebSite.Controllers
                 TOTAL = z.Sum(x => x.CANTIDAD)
             });
             var fechas = resultVenta.Union(resultCompra);
-            decimal SaldoDiesel = (decimal)_serTan.SaldoTanque(2,DateTime.Now,1);
+            decimal SaldoDiesel = (decimal)_serTan.SaldoTanque(2, DateTime.Now, 1);
             decimal SaldoGasolina = (decimal)_serTan.SaldoTanque(1, DateTime.Now, 1); ;
             decimal Venta = 0;
             decimal Compras = 0;
             decimal Ajsute = 0;
-            var ventas = fechas.GroupBy(y => new { y.FECHA }).Select(z => new { FECHA = z.Key.FECHA, TOTAL = z.Sum(x => x.TOTAL) }).OrderBy(x=>x.FECHA);
+            var ventas = fechas.GroupBy(y => new { y.FECHA }).Select(z => new { FECHA = z.Key.FECHA, TOTAL = z.Sum(x => x.TOTAL) }).OrderBy(x => x.FECHA);
             List<KardexCombustibleModel> listas = new List<KardexCombustibleModel>();
             foreach (var item in ventas)
             {
@@ -99,7 +119,7 @@ namespace CityTruck.WebSite.Controllers
                 venDia.AJUSTES_DIE = Ajsute;
                 SaldoDiesel = venDia.SALDO_INICIAL_DIE + Compras - Venta + Ajsute;
                 venDia.ACUMULADO_DIE = SaldoDiesel;
-                
+
                 //venDia.
 
                 listas.Add(venDia);
