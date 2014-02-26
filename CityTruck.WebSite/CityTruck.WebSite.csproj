@@ -304,6 +304,7 @@
     <Content Include="App\Store\Cajas\Kardex.js" />
     <Content Include="App\Store\Cajas\Cajas.js" />
     <Content Include="App\Store\Combustibles\Ajustes.js" />
+    <Content Include="App\Store\Combustibles\KardexMN.js" />
     <Content Include="App\Store\Compras\DetallesCompra.js" />
     <Content Include="App\Store\Compras\Compras.js" />
     <Content Include="App\Store\Combustibles\Combustibles.js" />
@@ -320,6 +321,7 @@
     <Content Include="App\Store\Ingresos\DetallesVenta.js" />
     <Content Include="App\Store\Ingresos\Ingresos.js" />
     <Content Include="App\Store\Tanques\Tanques.js" />
+    <Content Include="App\Store\Ventas\DetallesVentaMN.js" />
     <Content Include="App\Store\Ventas\VentasCredito.js" />
     <Content Include="App\Store\Ventas\Precios.js" />
     <Content Include="App\Store\Ventas\DetallesVenta.js" />

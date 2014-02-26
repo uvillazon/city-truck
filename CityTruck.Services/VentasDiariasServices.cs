@@ -319,5 +319,48 @@ namespace CityTruck.Services
             });
             return result;
         }
+        public VentasRegistroModel SP_UltimoRegMN()
+        {
+            VentasRegistroModel result = new VentasRegistroModel();
+            ExecuteManager(uow =>
+            {
+                //var manager = new SG_INGRESOSManager(uow);
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                ObjectParameter p_fecha = new ObjectParameter("p_fecha", typeof(String));
+                context.P_SG_OBTENER_ULTIMO_REG_MN( p_fecha, p_res);
+                var fecha = p_fecha.Value;
+                result.FECHA = p_fecha.Value.ToString();
+                result.resp = p_res.Value.ToString();
+            });
+            return result;
+        }
+
+
+
+        public RespuestaSP SP_GrabarVentasDiariasMN(SG_POS_DIA_MN p, int ID_USR)
+        {
+            RespuestaSP result = new RespuestaSP();
+            ExecuteManager(uow =>
+            {
+                //var manager = new SG_INGRESOSManager(uow);
+                var context = (CityTruckContext)uow.Context;
+                ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
+                context.P_SG_GUARDAR_POS_DIA_MN(p.ID_POS_DIA_MN, p.ID_POS, p.FECHA, p.ENT_LITTER, p.SAL_LITTER, p.TOTAL, ID_USR, p_res);
+                //context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, p_res);
+                if (p_res.Value.ToString() == "1")
+                {
+                    result.success = true;
+                    result.msg = "Proceso Ejecutado Correctamente";
+                }
+                else
+                {
+                    result.success = false;
+                    result.msg = p_res.Value.ToString();
+                }
+
+            });
+            return result;
+        }
     }
 }

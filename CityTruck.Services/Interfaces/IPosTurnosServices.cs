@@ -16,5 +16,8 @@ namespace CityTruck.Services.Interfaces
         RespuestaSP SP_GenerarPosTurnos(DateTime? FECHA,string TURNO,int ID_USR);
         RespuestaSP SP_GrabarPosTurnos(SG_POS_TURNOS posTurnos,int ID_USR);
         RespuestaSP SP_ActualizarSaldos();
+
+        IEnumerable<SG_POS_DIA_MN> ObtenerPosDias(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros);
+        RespuestaSP SP_GenerarPosDias(DateTime? FECHA, int ID_USR);
     }
 }
