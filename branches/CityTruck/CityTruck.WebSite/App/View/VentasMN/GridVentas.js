@@ -40,7 +40,7 @@
     CargarGridVentas: function () {
         var me = this;
         var fecha_actual = new Date();
-        me.store = Ext.create("App.Store.Combustibles.Kardex");
+        me.store = Ext.create("App.Store.Combustibles.KardexMN");
         me.store.load();
         //me.CargarComponentes();
 
@@ -90,21 +90,21 @@
         });
         me.columns = [
             { xtype: "rownumberer", width: 30, sortable: false },
-            { text: 'DIESEL OIL',
+            { text: 'DIESEL OIL (00:00AM a 23:59PM)',
               columns: [
                 { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
                 { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SALDO_INICIAL_DIE" },
                 { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_DIE" },
                 { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_DIE" },
-                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_DIE" },
+//                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_DIE" },
                 { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUMULADO_DIE"}]
-          }, { text: 'GASOLINA ESPECIAL',
+          }, { text: 'GASOLINA ESPECIAL (00:00AM a 23:59PM)',
               columns: [
                 { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
                 { header: "S-INICIAL", width: 100, sortable: false, dataIndex: "SALDO_INICIAL_GAS" },
                 { header: "COMPRAS", width: 100, sortable: false, dataIndex: "COMPRAS_GAS" },
                 { header: "VENTAS", width: 100, sortable: false, dataIndex: "VENTAS_GAS" },
-                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_GAS" },
+//                { header: "AJUSTES", width: 100, sortable: false, dataIndex: "AJUSTES_GAS" },
                 { header: "ACUM.", width: 100, sortable: false, dataIndex: "ACUMULADO_GAS"}]
           }
         ];

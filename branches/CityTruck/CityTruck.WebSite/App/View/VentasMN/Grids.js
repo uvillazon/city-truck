@@ -1,4 +1,4 @@
-﻿Ext.define("App.View.Tanques.Grids", {
+﻿Ext.define("App.View.VentasMN.Grids", {
     extend: "Ext.grid.Panel",
     margins: '0 2 0 0',
     loadMask: true,
@@ -9,26 +9,35 @@
     initComponent: function () {
         var me = this;
         //me.store = Ext.create("App.Store.Listas.Listas");
-        if (me.opcion == "GridAjustes") {
-            me.title = me.title == '' ? "Reporte de Ajustes" : me.title;
-            me.pieTitulo = "Ajustes";
-            me.CargarGridAjustes();
+        if (me.opcion == "GridVentasEditar") {
+            me.title = me.title == '' ? "Registros" : me.title;
+            me.pieTitulo = "Registros";
+            me.CargarGridVentasEditar();
         }
-       
         else {
             alert("Defina el tipo primero");
         }
         
         this.callParent(arguments);
     },
-    CargarGridAjustes : function(){
+    CargarGridVentasEditar : function(){
         var me = this;
-        me.store = Ext.create("App.Store.Combustibles.Ajustes");
+        me.store = Ext.create("App.Store.Ventas.DetallesVentaMN");
+        
+        me.plugins = [
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        ];
         me.columns = [
-           { header: "FECHA", width: 150, sortable: true, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
-           { header: "OBSERVACIONES", width: 180, sortable: false, dataIndex: "OBSERVACION" },
-           { header: "DIESEL", width: 100, sortable: false, dataIndex: "DIESEL" },
-           { header: "GASOLINA", width: 100, sortable: false, dataIndex: "GASOLINA" }
+           { header: "Producto", width: 150, sortable: true, dataIndex: "PRODUCTO" },
+           { header: "Entrada Lts.", width: 80, sortable: false, dataIndex: "ENT_LITTER" },
+           { header: "Salida Lts.", width: 80, sortable: false, dataIndex: "SAL_LITTER" ,editor: {
+                    xtype: 'numberfield',
+                    
+                } 
+           },
+           { header: "Total", width: 80, sortable: false, dataIndex: "TOTAL" }
         ];
 
     }

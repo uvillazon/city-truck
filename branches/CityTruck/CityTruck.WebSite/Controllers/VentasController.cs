@@ -131,6 +131,62 @@ namespace CityTruck.WebSite.Controllers
             return JavaScript(callback1);
 
         }
+        [HttpGet]
+        public ActionResult ObtenerPosDia(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros, PosTurnosModel posTurnos, bool EDITAR = false)
+        {
+            filtros.Entidad = posTurnos;
+            var result = _serPos.ObtenerPosDias(paginacion, filtros);
+            bool nuevo = false;
+            if (!EDITAR)
+            {
+                if (paginacion.total == 0)
+                {
+                    try
+                    {
+                        var spPos = _serPos.SP_GenerarPosDias(posTurnos.FECHA,  Convert.ToInt32(User.Identity.Name.Split('-')[3]));
+                        if (!spPos.success)
+                        {
+                            JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
+                            string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
+                            //string callback1 = info.callback + "(" + json + ");";
+
+
+                            return JavaScript(callback2);
+                        }
+                        else
+                        {
+                            result = _serPos.ObtenerPosDias(paginacion, filtros);
+                            nuevo = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+                }
+            }
+            var formattData = result.Select(x => new
+            {
+                PRODUCTO = x.SG_POS.CODIGO + " - " + x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                CODIGO = x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                ID_POS = x.ID_POS,
+                ID_POS_TURNO = x.ID_POS_DIA_MN,
+                ENT_LITTER = x.ENT_LITTER,
+                SAL_LITTER = nuevo == true ? x.ENT_LITTER : x.SAL_LITTER,
+                TOTAL = x.SAL_LITTER - x.ENT_LITTER
+
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Total = paginacion.total, Rows = formattData }) + ");";
+            //string callback1 = info.callback + "(" + json + ");";
+
+
+            return JavaScript(callback1);
+
+        }
+
         [HttpPost]
         public JsonResult GuardarVentasDiarias(string ventas, string nombres, DateTime FECHA, string TURNO, bool EDITAR)
         {
@@ -182,6 +238,51 @@ namespace CityTruck.WebSite.Controllers
                         RESPONSABLE = nombres
                     };
                     respuestaRSP = _serVen.SP_GenerarVentasDiarias(vent, id_usr);
+                    return Json(respuestaRSP);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost]
+        public JsonResult GuardarVentasMN(string ventas,  DateTime FECHA,  bool EDITAR)
+        {
+            try
+            {
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                if (ventas == "false")
+                {
+                    return Json(new { success = true, msg = string.Format("Proceso Ejecutado Correctamente") });
+                }
+                else
+                {
+                    dynamic pos_ventas = JsonConvert.DeserializeObject(ventas);
+                    //RespuestaSP respuestaRSP = new RespuestaSP();
+                    foreach (var o in pos_ventas)
+                    {
+                        //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res
+                        SG_POS_DIA_MN pos = new SG_POS_DIA_MN
+                        {
+                            ID_POS_DIA_MN = o.ID_POS_TURNO,
+                            ID_POS = o.ID_POS,
+                            FECHA = FECHA,
+                            ENT_LITTER = o.ENT_LITTER,
+                            SAL_LITTER = o.SAL_LITTER,
+                            TOTAL = o.TOTAL,
+                            ID_USUARIO = (short)id_usr
+                        };
+
+                        respuestaRSP = _serVen.SP_GrabarVentasDiariasMN(pos, id_usr);
+
+                        if (!respuestaRSP.success)
+                        {
+                            return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
+                        }
+                    }
                     return Json(respuestaRSP);
                 }
             }
@@ -294,13 +395,22 @@ namespace CityTruck.WebSite.Controllers
             }
         }
         [HttpPost]
-        public JsonResult VerificarUltimoRegistro()
+        public JsonResult VerificarUltimoRegistro(bool MN = false)
         {
             try
             {
-                var result = _serVen.SP_UltimoReg();
-                //return result;
-                return Json(new { success = result.resp, FECHA = result.FECHA, TURNO = result.TURNO });
+                if (!MN)
+                {
+                    var result = _serVen.SP_UltimoReg();
+                    //return result;
+                    return Json(new { success = result.resp, FECHA = result.FECHA, TURNO = result.TURNO });
+                }
+                else
+                {
+                    var result = _serVen.SP_UltimoRegMN();
+                    //return result;
+                    return Json(new { success = result.resp, FECHA = result.FECHA});
+                }
             }
             catch (Exception)
             {
