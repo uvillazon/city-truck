@@ -142,7 +142,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.20497in</Height>
+              <Height>0.17372in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -154,8 +154,8 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -202,8 +202,8 @@
                             <TextRun>
                               <Value>SALDO ANTERIOR</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -238,8 +238,8 @@
                             <TextRun>
                               <Value>RECEPCION</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -285,11 +285,9 @@
                             <TextRun>
                               <Value>VENTAS</Value>
                               <Style>
-                                <FontStyle>Normal</FontStyle>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <TextDecoration>None</TextDecoration>
                                 <Color>#000000</Color>
                               </Style>
                             </TextRun>
@@ -324,11 +322,9 @@
                             <TextRun>
                               <Value>SALDO ACTUAL</Value>
                               <Style>
-                                <FontStyle>Normal</FontStyle>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <TextDecoration>None</TextDecoration>
                                 <Color>#000000</Color>
                               </Style>
                             </TextRun>
@@ -363,8 +359,8 @@
                             <TextRun>
                               <Value>LECTURA DE TOTALIZADORES (Al inicio del dia)</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -378,8 +374,8 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -417,7 +413,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.21538in</Height>
+              <Height>0.19455in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -429,8 +425,8 @@
                             <TextRun>
                               <Value>DIA</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -467,8 +463,8 @@
                             <TextRun>
                               <Value>Litros</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -502,8 +498,8 @@
                             <TextRun>
                               <Value>Nro Factura</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -537,8 +533,8 @@
                             <TextRun>
                               <Value>Litros</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -572,8 +568,8 @@
                             <TextRun>
                               <Value>Litros</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -607,8 +603,8 @@
                             <TextRun>
                               <Value>Litros</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -642,8 +638,8 @@
                             <TextRun>
                               <Value>MANGUERA 1</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -677,8 +673,8 @@
                             <TextRun>
                               <Value>MANGUERA 2</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -712,8 +708,8 @@
                             <TextRun>
                               <Value>MANGUERA 3</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -727,8 +723,8 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -760,8 +756,8 @@
                             <TextRun>
                               <Value>MANGUERA 4</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -775,8 +771,8 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -808,8 +804,8 @@
                             <TextRun>
                               <Value>MANGUERA 5</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -843,8 +839,8 @@
                             <TextRun>
                               <Value>MANGUERA 6</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -858,8 +854,8 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -884,31 +880,31 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.23622in</Height>
+              <Height>0.18414in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="DIA">
+                    <Textbox Name="FECHA">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!DIA.Value</Value>
+                              <Value>=Fields!FECHA.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
+                                <Format>dd</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>DIA</rd:DefaultName>
+                      <rd:DefaultName>FECHA</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -930,8 +926,8 @@
                             <TextRun>
                               <Value>=Fields!SALDO_ANTERIOR.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -941,7 +937,6 @@
                       <rd:DefaultName>SALDO_ANTERIOR</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -963,8 +958,9 @@
                             <TextRun>
                               <Value>=Fields!NRO_FACTURA.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
+                                <Format>0.00;(0.00);''</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -974,7 +970,6 @@
                       <rd:DefaultName>NRO_FACTURA</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -996,8 +991,9 @@
                             <TextRun>
                               <Value>=Fields!COMPRA.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
+                                <Format>0;0-;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1007,7 +1003,6 @@
                       <rd:DefaultName>COMPRA</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1029,8 +1024,9 @@
                             <TextRun>
                               <Value>=Fields!VENTA.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
+                                <Format>0;(0);'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1040,7 +1036,6 @@
                       <rd:DefaultName>VENTA</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1062,8 +1057,8 @@
                             <TextRun>
                               <Value>=Fields!SALDO_ACTUAL.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1073,7 +1068,6 @@
                       <rd:DefaultName>SALDO_ACTUAL</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1095,8 +1089,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA1.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1106,7 +1100,6 @@
                       <rd:DefaultName>MANGUERA1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1128,8 +1121,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA2.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1139,7 +1132,6 @@
                       <rd:DefaultName>MANGUERA2</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1161,8 +1153,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA3.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1172,7 +1164,6 @@
                       <rd:DefaultName>MANGUERA3</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1194,8 +1185,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA4.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1205,7 +1196,6 @@
                       <rd:DefaultName>MANGUERA4</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1227,8 +1217,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA5.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1238,7 +1228,6 @@
                       <rd:DefaultName>MANGUERA5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1260,8 +1249,8 @@
                             <TextRun>
                               <Value>=Fields!MANGUERA6.Value</Value>
                               <Style>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1271,7 +1260,6 @@
                       <rd:DefaultName>MANGUERA6</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1296,7 +1284,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>TOTALES</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Cambria</FontFamily>
@@ -1311,7 +1299,6 @@
                       <rd:DefaultName>Textbox167</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1320,78 +1307,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox169">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>TOTALES</Value>
-                              <Style>
-                                <FontStyle>Italic</FontStyle>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox169</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox179">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontStyle>Italic</FontStyle>
-                                <FontFamily>Cambria</FontFamily>
-                                <FontSize>9pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox179</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="COMPRA1">
@@ -1416,7 +1336,6 @@
                       <rd:DefaultName>COMPRA1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1451,7 +1370,6 @@
                       <rd:DefaultName>VENTA1</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1487,7 +1405,6 @@
                       <ZIndex>1</ZIndex>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1522,7 +1439,6 @@
                       <rd:DefaultName>Textbox173</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1557,7 +1473,6 @@
                       <rd:DefaultName>Textbox174</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1592,7 +1507,6 @@
                       <rd:DefaultName>Textbox175</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1627,7 +1541,6 @@
                       <rd:DefaultName>Textbox176</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1662,7 +1575,6 @@
                       <rd:DefaultName>Textbox177</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1697,7 +1609,6 @@
                       <rd:DefaultName>Textbox178</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1746,9 +1657,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.19347cm</Top>
-        <Left>0.49424cm</Left>
-        <Height>2.2677cm</Height>
-        <Width>26.61814cm</Width>
+        <Left>0.46778cm</Left>
+        <Height>2.0031cm</Height>
+        <Width>26.61813cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2088,10 +1999,13 @@
                   <Style>
                     <FontFamily>Calibri</FontFamily>
                     <FontWeight>SemiBold</FontWeight>
+                    <Format>MMMM</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>MES</rd:DefaultName>
@@ -2150,10 +2064,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!ANIO.Value, "DataSet1")</Value>
+                  <Value>=First(Fields!FECHA.Value, "DataSet1")</Value>
                   <Style>
                     <FontFamily>Calibri</FontFamily>
                     <FontWeight>SemiBold</FontWeight>
+                    <Format>yyyy</Format>
                   </Style>
                 </TextRun>
               </TextRuns>

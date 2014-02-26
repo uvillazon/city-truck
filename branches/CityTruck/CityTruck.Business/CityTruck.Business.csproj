@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SG_KARDEX_COMBUSTIBLEManager.cs" />
     <Compile Include="SG_POS_DIA_MNManager.cs" />
     <Compile Include="SG_KARDEX_COMBUSTIBLE_MNanager.cs" />
     <Compile Include="SG_POSManager.cs" />

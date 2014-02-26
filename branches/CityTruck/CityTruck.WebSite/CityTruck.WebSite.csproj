@@ -96,6 +96,13 @@
     <Compile Include="Models\VentasDiariasModel.cs" />
     <Compile Include="Models\MenuOpcionesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\ReporteANH.aspx.cs">
+      <DependentUpon>ReporteANH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteANH.aspx.designer.cs">
+      <DependentUpon>ReporteANH.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteAutoridad.aspx.cs">
       <DependentUpon>ReporteAutoridad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1647,6 +1654,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Reportes\ReporteANH.aspx" />
     <Content Include="Reportes\ReporteAutoridad.aspx" />
     <Content Include="Reportes\ReporteEstadoResultado.aspx" />
     <Content Include="Reportes\ReporteKardexEfectivo.aspx" />
@@ -3824,6 +3832,7 @@
     <Content Include="Views\AppCityTruck\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\ReporteANH.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteEstadoResultado.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteAutoridad.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteKardexEfectivo.rdlc" />

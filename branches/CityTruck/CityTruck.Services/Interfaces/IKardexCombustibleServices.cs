@@ -12,5 +12,8 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_KARDEX_COMBUSTIBLE_MN> ObtenerKardexMNCombustible(string MES , string ANIO);
         RespuestaSP SP_ActualizarKardexMN(DateTime FECHA, int ID_USR);
+
+        IEnumerable<SG_KARDEX_COMBUSTIBLE> ObtenerKardexCombustible(string MES, string ANIO);
+        RespuestaSP SP_ActualizarKardex(DateTime FECHA, int ID_USR);
     }
 }

@@ -18,6 +18,7 @@ namespace CityTruck.Services.Interfaces
         RespuestaSP SP_ActualizarSaldos();
 
         IEnumerable<SG_POS_DIA_MN> ObtenerPosDias(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros);
+        IEnumerable<SG_POS_DIA_MN> ObtenerPosDiaPorFecha(string ANIO, string MES);
         RespuestaSP SP_GenerarPosDias(DateTime? FECHA, int ID_USR);
     }
 }
