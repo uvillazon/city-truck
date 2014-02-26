@@ -181,5 +181,18 @@ namespace CityTruck.Services
 
             return result;
         }
+
+
+        public IEnumerable<SG_POS_DIA_MN> ObtenerPosDiaPorFecha(string ANIO, string MES)
+        {
+            IQueryable<SG_POS_DIA_MN> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_POS_DIA_MNManager(uow);
+                result = manager.ObtenerVentasPorMesyAnio(ANIO, MES);
+
+            });
+            return result;
+        }
     }
 }
