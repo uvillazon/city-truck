@@ -947,6 +947,15 @@
           <Parameter Name="P_LOGIN_USR" Type="varchar2" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_AJUSTE_TANQUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_AJUSTE" Type="number" Mode="In" />
+          <Parameter Name="P_ID_COMBUSTIBLE" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA" Type="date" Mode="In" />
+          <Parameter Name="P_OBSERVACION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_AMORTIZACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_A" Type="number" Mode="In" />
           <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
@@ -1478,6 +1487,15 @@
           </AssociationSet>
           <FunctionImport Name="P_SG_ACT_KARDEX_COMBUSTIBLE">
             <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_AJUSTE_TANQUE">
+            <Parameter Name="P_ID_AJUSTE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_COMBUSTIBLE" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OBSERVACION" Mode="In" Type="String" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
@@ -2690,6 +2708,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_ACT_KARDEX_COMBUSTIBLE" FunctionName="Model.Store.P_SG_ACT_KARDEX_COMBUSTIBLE" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_AJUSTE_TANQUE" FunctionName="Model.Store.P_SG_GUARDAR_AJUSTE_TANQUE" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

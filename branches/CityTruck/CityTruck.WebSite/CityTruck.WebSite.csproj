@@ -124,6 +124,13 @@
     <Compile Include="Reportes\ReporteKardexEfectivo.aspx.designer.cs">
       <DependentUpon>ReporteKardexEfectivo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteTanque.aspx.cs">
+      <DependentUpon>ReporteTanque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteTanque.aspx.designer.cs">
+      <DependentUpon>ReporteTanque.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteUtilidadBrutaReal.aspx.cs">
       <DependentUpon>ReporteUtilidadBrutaReal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1658,6 +1665,7 @@
     <Content Include="Reportes\ReporteAutoridad.aspx" />
     <Content Include="Reportes\ReporteEstadoResultado.aspx" />
     <Content Include="Reportes\ReporteKardexEfectivo.aspx" />
+    <Content Include="Reportes\ReporteTanque.aspx" />
     <Content Include="Reportes\ReporteUtilidadBrutaReal.aspx" />
     <Content Include="Reportes\ReporteUtilidadVentaBruta.aspx" />
     <Content Include="Reportes\ReporteUtilidadVentaEstimada.aspx" />
@@ -3836,6 +3844,7 @@
     <EmbeddedResource Include="Reportes\ReporteEstadoResultado.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteAutoridad.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteKardexEfectivo.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteTanque.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteUtilidadBrutaReal.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteUtilidadVentaBruta.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteUtilidadVentaEstimada.rdlc" />

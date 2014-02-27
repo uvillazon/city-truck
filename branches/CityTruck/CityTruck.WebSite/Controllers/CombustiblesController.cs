@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
+using CityTruck.Model;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -72,48 +73,58 @@ namespace CityTruck.WebSite.Controllers
         public ActionResult ObtenerKardexCombustible(PagingInfo paginacion, string ANIO = null, string MES = null)
         {
             //string mes, anio;
-            if (ANIO == null && MES == null)
+            try
             {
-                //DateTime fecha = DateTime.Now;
-                MES = DateTime.Now.ToString("MM");
-                ANIO = DateTime.Now.ToString("yyyy");
-            }
-            string date = string.Format("01/{0}/{1}", MES, ANIO);
-            //"01/08/2008";
-            DateTime dt = Convert.ToDateTime(date);
-            _serKcm.SP_ActualizarKardex(dt, 0);
-            List<KardexCombustibleModel> listas = new List<KardexCombustibleModel>();
-            var kardex = _serKcm.ObtenerKardexCombustible(MES, ANIO);
-            var grupo = kardex.GroupBy(x => x.FECHA);
-            var diesel = kardex.Where(x => x.SG_COMBUSTIBLES.NOMBRE == "DIESEL").OrderBy(x => x.FECHA);
-            //diesel.Where(x=>x.)
-            var gasolina = kardex.Where(x => x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA").OrderBy(x => x.FECHA);
-            foreach (var item in grupo)
-            {
-                KardexCombustibleModel venDia = new KardexCombustibleModel
-                {
-                    FECHA = item.Key,
-                    //SALDO_INICIAL_DIE = diesel.where(y=>y.FECHA == item.Key).fi
-                };
-                var die = diesel.Where(x => x.FECHA == item.Key).FirstOrDefault();
-                var gas = gasolina.Where(x => x.FECHA == item.Key).FirstOrDefault();
-                venDia.SALDO_INICIAL_DIE = die.SALDO_INICIAL;
-                venDia.COMPRAS_DIE = (decimal)die.COMPRAS;
-                venDia.VENTAS_DIE = (decimal)die.VENTAS;
-                venDia.AJUSTES_DIE = (decimal)die.AJUSTES;
-                venDia.ACUMULADO_DIE = (decimal)die.ACUMULADOS;
 
-                venDia.VENTAS_GAS = (decimal)gas.VENTAS;
-                venDia.COMPRAS_GAS = (decimal)gas.COMPRAS;
-                venDia.AJUSTES_GAS = (decimal)gas.AJUSTES;
-                venDia.SALDO_INICIAL_GAS = gas.SALDO_INICIAL;
-                venDia.ACUMULADO_GAS = (decimal)gas.ACUMULADOS;
-                listas.Add(venDia);
+
+                if (ANIO == null && MES == null)
+                {
+                    //DateTime fecha = DateTime.Now;
+                    MES = DateTime.Now.ToString("MM");
+                    ANIO = DateTime.Now.ToString("yyyy");
+                }
+                string date = string.Format("01/{0}/{1}", MES, ANIO);
+                //"01/08/2008";
+                DateTime dt = Convert.ToDateTime(date);
+                _serKcm.SP_ActualizarKardex(dt, 0);
+                List<KardexCombustibleModel> listas = new List<KardexCombustibleModel>();
+                var kardex = _serKcm.ObtenerKardexCombustible(MES, ANIO);
+                var grupo = kardex.GroupBy(x => x.FECHA);
+                var diesel = kardex.Where(x => x.SG_COMBUSTIBLES.NOMBRE == "DIESEL").OrderBy(x => x.FECHA);
+                //diesel.Where(x=>x.)
+                var gasolina = kardex.Where(x => x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA").OrderBy(x => x.FECHA);
+                foreach (var item in grupo)
+                {
+                    KardexCombustibleModel venDia = new KardexCombustibleModel
+                    {
+                        FECHA = item.Key,
+                        //SALDO_INICIAL_DIE = diesel.where(y=>y.FECHA == item.Key).fi
+                    };
+                    var die = diesel.Where(x => x.FECHA == item.Key).FirstOrDefault();
+                    var gas = gasolina.Where(x => x.FECHA == item.Key).FirstOrDefault();
+                    venDia.SALDO_INICIAL_DIE = die.SALDO_INICIAL;
+                    venDia.COMPRAS_DIE = (decimal)die.COMPRAS;
+                    venDia.VENTAS_DIE = (decimal)die.VENTAS;
+                    venDia.AJUSTES_DIE = (decimal)die.AJUSTES;
+                    venDia.ACUMULADO_DIE = (decimal)die.ACUMULADOS;
+
+                    venDia.VENTAS_GAS = (decimal)gas.VENTAS;
+                    venDia.COMPRAS_GAS = (decimal)gas.COMPRAS;
+                    venDia.AJUSTES_GAS = (decimal)gas.AJUSTES;
+                    venDia.SALDO_INICIAL_GAS = gas.SALDO_INICIAL;
+                    venDia.ACUMULADO_GAS = (decimal)gas.ACUMULADOS;
+                    listas.Add(venDia);
+                }
+                listas = listas.OrderBy(x => x.FECHA).ToList();
+                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
+                return JavaScript(callback1);
             }
-            listas = listas.OrderBy(x => x.FECHA).ToList();
-            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
-            return JavaScript(callback1);
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 
@@ -127,7 +138,7 @@ namespace CityTruck.WebSite.Controllers
                 MES = DateTime.Now.ToString("MM");
                 ANIO = DateTime.Now.ToString("yyyy");
             }
-            string date = string.Format("01/{0}/{1}",MES,ANIO);
+            string date = string.Format("01/{0}/{1}", MES, ANIO);
             //"01/08/2008";
             DateTime dt = Convert.ToDateTime(date);
             _serKcm.SP_ActualizarKardexMN(dt, 0);
@@ -162,6 +173,21 @@ namespace CityTruck.WebSite.Controllers
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
 
+        }
+        public JsonResult GuardarAjusteTanque(SG_AJUSTES_TANQUE ajus, int ID_COMBUSTIBLE)
+        {
+            try
+            {
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                respuestaRSP = _serTan.SP_GuardarAjuste(ajus, ID_COMBUSTIBLE, id_usr);
+                return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

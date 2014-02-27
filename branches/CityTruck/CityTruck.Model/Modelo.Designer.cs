@@ -2700,6 +2700,81 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_ACT_KARDEX_COMBUSTIBLE", p_FECHAParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_AJUSTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_OBSERVACION">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CANTIDAD">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_AJUSTE_TANQUE(Nullable<global::System.Decimal> p_ID_AJUSTE, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.DateTime> p_FECHA, global::System.String p_OBSERVACION, Nullable<global::System.Decimal> p_CANTIDAD, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_AJUSTEParameter;
+            if (p_ID_AJUSTE.HasValue)
+            {
+                p_ID_AJUSTEParameter = new ObjectParameter("P_ID_AJUSTE", p_ID_AJUSTE);
+            }
+            else
+            {
+                p_ID_AJUSTEParameter = new ObjectParameter("P_ID_AJUSTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_COMBUSTIBLEParameter;
+            if (p_ID_COMBUSTIBLE.HasValue)
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
+            }
+            else
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_OBSERVACIONParameter;
+            if (p_OBSERVACION != null)
+            {
+                p_OBSERVACIONParameter = new ObjectParameter("P_OBSERVACION", p_OBSERVACION);
+            }
+            else
+            {
+                p_OBSERVACIONParameter = new ObjectParameter("P_OBSERVACION", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_CANTIDADParameter;
+            if (p_CANTIDAD.HasValue)
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", p_CANTIDAD);
+            }
+            else
+            {
+                p_CANTIDADParameter = new ObjectParameter("P_CANTIDAD", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_AJUSTE_TANQUE", p_ID_AJUSTEParameter, p_ID_COMBUSTIBLEParameter, p_FECHAParameter, p_OBSERVACIONParameter, p_CANTIDADParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
     }

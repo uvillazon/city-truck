@@ -12,6 +12,6 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_TANQUES> ObtenerTanquesPaginado(PagingInfo paginacion);
         decimal? SaldoTanque(int ID_COMBUSTIBLE , DateTime FECHA, int ID_USR);
-
+        RespuestaSP SP_GuardarAjuste(SG_AJUSTES_TANQUE ajus,int ID_COMBUSTIBLE, int ID_USR);
     }
 }
