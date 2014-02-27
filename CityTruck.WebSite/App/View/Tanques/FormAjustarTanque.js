@@ -7,12 +7,12 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    
+
     CargarComponentes: function () {
         var me = this;
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Nro Ajuste",
-            readOnly : true,
+            readOnly: true,
             name: "NRO_AJUSTE"
 
         });
@@ -22,40 +22,42 @@
             fieldLabel: "Combustible",
             name: "ID_COMBUSTIBLE",
             displayField: 'NOMBRE',
-            valueField : 'ID_COMBUSTIBLE',
+            valueField: 'ID_COMBUSTIBLE',
             store: me.store_combustible,
-            colspan : 2,
+            colspan: 2,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl: function () { return "{NOMBRE} - {DESCRIPCION}" }
         });
-        
-         me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
+
+        me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
             fieldLabel: "Fecha",
             name: "FECHA",
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
         });
 
-         me.num_saldo_actual = Ext.create("App.Config.Componente.NumberFieldBase", {
+        me.num_saldo_actual = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Saldo Actual",
             name: "SALDO",
-            readOnly : true,
+            readOnly: true,
             allowDecimals: true,
             maxValue: 999999999
         });
 
-         me.num_cantidad = Ext.create("App.Config.Componente.NumberFieldBase", {
+        me.num_cantidad = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Cantidad",
             name: "CANTIDAD",
             allowDecimals: false,
+            allowNegative: true,
+            minValue: -99999999,
             maxValue: 999999999
         });
 
-         me.num_nuevo_saldo = Ext.create("App.Config.Componente.NumberFieldBase", {
+        me.num_nuevo_saldo = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Nuevo Saldo",
             name: "NUEVO_SALDO",
-            readOnly : true,
+            readOnly: true,
             allowDecimals: true,
             maxValue: 999999999
         });
@@ -63,7 +65,7 @@
         me.txt_obs = Ext.create("App.Config.Componente.TextAreaBase", {
             fieldLabel: "Observaciones",
             width: '90%',
-            name: "OBSERVACIONES"
+            name: "OBSERVACION"
 
         });
 
@@ -76,16 +78,30 @@
             me.num_nuevo_saldo,
             me.txt_obs
         ];
-       
-      
+
+
 
     },
-    cargarEventos : function(){
+    cargarEdtiar: function (venta) {
         var me = this;
-
+        me.date_fecha.setValue(venta.get('FECHA'));
+        me.date_fecha.setReadOnly(true);
+        me.venta = venta;
+    },
+    cargarEventos: function () {
+        var me = this;
+        me.cbx_combustible.on('select', function (cmb, record) {
+            if (record[0].get('NOMBRE') == "GASOLINA") {
+                me.num_saldo_actual.setValue(me.venta.get('ACUMULADO_GAS'));
+            } else {
+                me.num_saldo_actual.setValue(me.venta.get('ACUMULADO_DIE'));
+            }
+//            alert(record[0].get('NOMBRE'));
+//            alert(me.venta.get('ACUMULADO_DIE'));
+        });
         me.num_cantidad.on('change', function (num, newvalue, oldvalue) {
-           // este valor debe obtenerse de la base de datos costo en bs por litro de combustible
-            var total = me.num_saldo_actual.getValue() - newvalue;
+            // este valor debe obtenerse de la base de datos costo en bs por litro de combustible
+            var total = me.num_saldo_actual.getValue() + newvalue;
             me.num_nuevo_saldo.setValue(total);
         });
     }

@@ -71,24 +71,33 @@ namespace CityTruck.WebSite.Models
     }
     public class UtilidadBrutaReal
     {
-        public decimal ING_DIESEL_VALORADO { get; set; }
-        //public decimal ING_INV_DIESEL_INICIAL { get; set; }
-        public decimal ING_GASOLINA_VALORADO { get; set; }
-        public decimal EGR_DIESEL_VALORADO { get; set; }
-        public decimal EGR_GASOLINA_VALORADO { get; set; }
-        public decimal EXC_DIESEL_VALORADO { get; set; }
-        public decimal EXC_GASOLINA_VALORADO { get; set; }
-        public decimal PER_DIESEL_VALORADO { get; set; }
-        public decimal PER_GASOLINA_VALORADO { get; set; }
+        public decimal ING_INV_INI_VAL_GAS { get; set; }
+        public decimal ING_VEN_TOT_VAL_GAS { get; set; }
+        public decimal ING_INV_INI_VAL_DIE { get; set; }
+        public decimal ING_VEN_TOT_VAL_DIE { get; set; }
+        public decimal ING_INV_INI_FIS_GAS { get; set; }
+        public decimal ING_VEN_TOT_FIS_GAS { get; set; }
+        public decimal ING_INV_INI_FIS_DIE { get; set; }
+        public decimal ING_VEN_TOT_FIS_DIE { get; set; }
 
-        public decimal ING_DIESEL_FISICO { get; set; }
-        public decimal ING_GASOLINA_FISICO { get; set; }
-        public decimal EGR_DIESEL_FISICO { get; set; }
-        public decimal EGR_GASOLINA_FISICO { get; set; }
+        public decimal EGR_INV_INI_VAL_GAS { get; set; }
+        public decimal EGR_VEN_TOT_VAL_GAS { get; set; }
+        public decimal EGR_INV_INI_VAL_DIE { get; set; }
+        public decimal EGR_VEN_TOT_VAL_DIE { get; set; }
+        public decimal EGR_INV_INI_FIS_GAS { get; set; }
+        public decimal EGR_VEN_TOT_FIS_GAS { get; set; }
+        public decimal EGR_INV_INI_FIS_DIE { get; set; }
+        public decimal EGR_VEN_TOT_FIS_DIE { get; set; }
+
+
         public decimal EXC_DIESEL_FISICO { get; set; }
         public decimal EXC_GASOLINA_FISICO { get; set; }
         public decimal PER_DIESEL_FISICO { get; set; }
         public decimal PER_GASOLINA_FISICO { get; set; }
+        public decimal EXC_DIESEL_VALORADO { get; set; }
+        public decimal EXC_GASOLINA_VALORADO { get; set; }
+        public decimal PER_DIESEL_VALORADO { get; set; }
+        public decimal PER_GASOLINA_VALORADO { get; set; }
 
     }
 }

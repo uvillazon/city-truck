@@ -16,7 +16,7 @@
         var fecha = fecha1 == null? new Date() : fecha1;
         me.store_precio = Ext.create("App.Store.Ventas.Precios");
         me.store_precio.setExtraParams({FECHA : fecha});
-        me.store_precio.load();
+//        me.store_precio.load();
     },
     CargarFecha : function(store){
         var me = this;
@@ -211,6 +211,7 @@
                 else{
                     e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
                     me.CargarTotales();
+                    me.CargarTotalesCredito();
                 }
             }
         });

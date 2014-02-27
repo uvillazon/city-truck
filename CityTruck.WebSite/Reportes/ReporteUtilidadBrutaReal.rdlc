@@ -12,52 +12,68 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Fields>
-        <Field Name="ING_DIESEL_VALORADO">
-          <DataField>ING_DIESEL_VALORADO</DataField>
+        <Field Name="ING_INV_INI_VAL_GAS">
+          <DataField>ING_INV_INI_VAL_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ING_GASOLINA_VALORADO">
-          <DataField>ING_GASOLINA_VALORADO</DataField>
+        <Field Name="ING_VEN_TOT_VAL_GAS">
+          <DataField>ING_VEN_TOT_VAL_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EGR_DIESEL_VALORADO">
-          <DataField>EGR_DIESEL_VALORADO</DataField>
+        <Field Name="ING_INV_INI_VAL_DIE">
+          <DataField>ING_INV_INI_VAL_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EGR_GASOLINA_VALORADO">
-          <DataField>EGR_GASOLINA_VALORADO</DataField>
+        <Field Name="ING_VEN_TOT_VAL_DIE">
+          <DataField>ING_VEN_TOT_VAL_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EXC_DIESEL_VALORADO">
-          <DataField>EXC_DIESEL_VALORADO</DataField>
+        <Field Name="ING_INV_INI_FIS_GAS">
+          <DataField>ING_INV_INI_FIS_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EXC_GASOLINA_VALORADO">
-          <DataField>EXC_GASOLINA_VALORADO</DataField>
+        <Field Name="ING_VEN_TOT_FIS_GAS">
+          <DataField>ING_VEN_TOT_FIS_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="PER_DIESEL_VALORADO">
-          <DataField>PER_DIESEL_VALORADO</DataField>
+        <Field Name="ING_INV_INI_FIS_DIE">
+          <DataField>ING_INV_INI_FIS_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="PER_GASOLINA_VALORADO">
-          <DataField>PER_GASOLINA_VALORADO</DataField>
+        <Field Name="ING_VEN_TOT_FIS_DIE">
+          <DataField>ING_VEN_TOT_FIS_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ING_DIESEL_FISICO">
-          <DataField>ING_DIESEL_FISICO</DataField>
+        <Field Name="EGR_INV_INI_VAL_GAS">
+          <DataField>EGR_INV_INI_VAL_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ING_GASOLINA_FISICO">
-          <DataField>ING_GASOLINA_FISICO</DataField>
+        <Field Name="EGR_VEN_TOT_VAL_GAS">
+          <DataField>EGR_VEN_TOT_VAL_GAS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EGR_DIESEL_FISICO">
-          <DataField>EGR_DIESEL_FISICO</DataField>
+        <Field Name="EGR_INV_INI_VAL_DIE">
+          <DataField>EGR_INV_INI_VAL_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EGR_GASOLINA_FISICO">
-          <DataField>EGR_GASOLINA_FISICO</DataField>
+        <Field Name="EGR_VEN_TOT_VAL_DIE">
+          <DataField>EGR_VEN_TOT_VAL_DIE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EGR_INV_INI_FIS_GAS">
+          <DataField>EGR_INV_INI_FIS_GAS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EGR_VEN_TOT_FIS_GAS">
+          <DataField>EGR_VEN_TOT_FIS_GAS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EGR_INV_INI_FIS_DIE">
+          <DataField>EGR_INV_INI_FIS_DIE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EGR_VEN_TOT_FIS_DIE">
+          <DataField>EGR_VEN_TOT_FIS_DIE</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="EXC_DIESEL_FISICO">
@@ -74,6 +90,22 @@
         </Field>
         <Field Name="PER_GASOLINA_FISICO">
           <DataField>PER_GASOLINA_FISICO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EXC_DIESEL_VALORADO">
+          <DataField>EXC_DIESEL_VALORADO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EXC_GASOLINA_VALORADO">
+          <DataField>EXC_GASOLINA_VALORADO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PER_DIESEL_VALORADO">
+          <DataField>PER_DIESEL_VALORADO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PER_GASOLINA_VALORADO">
+          <DataField>PER_GASOLINA_VALORADO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -96,25 +128,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.86967in</Width>
+              <Width>1.74913in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>0.86371in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>0.86371in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.30717in</Width>
+              <Width>1.18663in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09884in</Width>
+              <Width>0.9783in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.18217in</Width>
+              <Width>1.06163in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.54675in</Width>
+              <Width>1.42621in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -132,8 +164,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -167,8 +198,7 @@
                             <TextRun>
                               <Value>VALORADO</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -206,8 +236,7 @@
                             <TextRun>
                               <Value>FISICO</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -250,8 +279,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -285,8 +313,7 @@
                             <TextRun>
                               <Value>TOTAL BS</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -319,8 +346,7 @@
                             <TextRun>
                               <Value>DIESEL Bs</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -353,8 +379,7 @@
                             <TextRun>
                               <Value>GASOLINA BS</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -387,8 +412,7 @@
                             <TextRun>
                               <Value>TOTAL (Lts.)</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -421,8 +445,7 @@
                             <TextRun>
                               <Value>DIESEL (Lts.)</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -455,8 +478,7 @@
                             <TextRun>
                               <Value>GASOLINA (Lts.)</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -494,8 +516,7 @@
                             <TextRun>
                               <Value>TOTAL INGRESO</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -519,27 +540,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ING_DIESEL_VALORADO1">
+                    <Textbox Name="Textbox12">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_VALORADO.Value) + Sum(Fields!ING_GASOLINA_VALORADO.Value)</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_GAS.Value) +Sum(Fields!ING_VEN_TOT_VAL_GAS.Value) + Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ING_DIESEL_VALORADO1</rd:DefaultName>
+                      <rd:DefaultName>Textbox12</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -562,13 +582,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_VALORADO.Value)</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -591,27 +610,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ING_GASOLINA_VALORADO">
+                    <Textbox Name="Textbox14">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_VALORADO.Value)</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_GAS.Value) +Sum(Fields!ING_VEN_TOT_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ING_GASOLINA_VALORADO</rd:DefaultName>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -627,27 +645,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_DIESEL_FISICO">
+                    <Textbox Name="Textbox17">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_FISICO.Value)+Sum(Fields!ING_GASOLINA_FISICO.Value, "DataSet1")</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_DIESEL_FISICO</rd:DefaultName>
+                      <rd:DefaultName>Textbox17</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -670,13 +687,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_FISICO.Value)</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -706,13 +722,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_FISICO.Value)</Value>
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -749,7 +764,8 @@
                             <TextRun>
                               <Value>INV. INICIAL</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -781,12 +797,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_GAS.Value) + Sum(Fields!ING_INV_INI_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -809,26 +824,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox75">
+                    <Textbox Name="ING_INV_INI_VAL_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox75</rd:DefaultName>
+                      <rd:DefaultName>ING_INV_INI_VAL_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -844,26 +858,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox76">
+                    <Textbox Name="ING_INV_INI_VAL_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox76</rd:DefaultName>
+                      <rd:DefaultName>ING_INV_INI_VAL_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -886,12 +899,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_INV_INI_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -914,26 +926,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox78">
+                    <Textbox Name="ING_INV_INI_FIS_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox78</rd:DefaultName>
+                      <rd:DefaultName>ING_INV_INI_FIS_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -949,26 +960,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox79">
+                    <Textbox Name="ING_INV_INI_FIS_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_INV_INI_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox79</rd:DefaultName>
+                      <rd:DefaultName>ING_INV_INI_FIS_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -998,7 +1008,8 @@
                             <TextRun>
                               <Value>TOTAL VENTAS</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1030,12 +1041,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_VAL_GAS.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1058,26 +1068,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox68">
+                    <Textbox Name="ING_VEN_TOT_VAL_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox68</rd:DefaultName>
+                      <rd:DefaultName>ING_VEN_TOT_VAL_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1093,26 +1102,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox69">
+                    <Textbox Name="ING_VEN_TOT_VAL_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox69</rd:DefaultName>
+                      <rd:DefaultName>ING_VEN_TOT_VAL_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1135,12 +1143,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1163,26 +1170,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox71">
+                    <Textbox Name="ING_VEN_TOT_FIS_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox71</rd:DefaultName>
+                      <rd:DefaultName>ING_VEN_TOT_FIS_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1198,26 +1204,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox72">
+                    <Textbox Name="ING_VEN_TOT_FIS_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox72</rd:DefaultName>
+                      <rd:DefaultName>ING_VEN_TOT_FIS_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1247,8 +1252,7 @@
                             <TextRun>
                               <Value>TOTAL EGRESO</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -1272,27 +1276,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_DIESEL_VALORADO1">
+                    <Textbox Name="Textbox18">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_DIESEL_VALORADO.Value) + Sum(Fields!EGR_GASOLINA_VALORADO.Value, "DataSet1")</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_DIESEL_VALORADO1</rd:DefaultName>
+                      <rd:DefaultName>Textbox18</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1308,27 +1311,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_DIESEL_VALORADO">
+                    <Textbox Name="Textbox20">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_DIESEL_VALORADO.Value)</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_DIESEL_VALORADO</rd:DefaultName>
+                      <rd:DefaultName>Textbox20</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1344,27 +1346,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_GASOLINA_VALORADO">
+                    <Textbox Name="ING_INV_INI_FIS_DIE1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_GASOLINA_VALORADO.Value)</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_GASOLINA_VALORADO</rd:DefaultName>
+                      <rd:DefaultName>ING_INV_INI_FIS_DIE1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1380,27 +1381,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox28">
+                    <Textbox Name="Textbox21">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_DIESEL_FISICO.Value, "DataSet1")+Sum(Fields!EGR_GASOLINA_FISICO.Value, "DataSet1")</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox28</rd:DefaultName>
+                      <rd:DefaultName>Textbox21</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1416,27 +1416,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_DIESEL_FISICO1">
+                    <Textbox Name="Textbox37">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_DIESEL_FISICO.Value)</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_DIESEL_FISICO1</rd:DefaultName>
+                      <rd:DefaultName>Textbox37</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1452,27 +1451,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EGR_GASOLINA_FISICO">
+                    <Textbox Name="Textbox39">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EGR_GASOLINA_FISICO.Value)</Value>
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EGR_GASOLINA_FISICO</rd:DefaultName>
+                      <rd:DefaultName>Textbox39</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1502,7 +1500,8 @@
                             <TextRun>
                               <Value>INV. INICIAL</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1534,12 +1533,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_INV_INI_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1562,26 +1560,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox89">
+                    <Textbox Name="EGR_INV_INI_VAL_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox89</rd:DefaultName>
+                      <rd:DefaultName>EGR_INV_INI_VAL_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1597,26 +1594,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox90">
+                    <Textbox Name="EGR_INV_INI_VAL_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox90</rd:DefaultName>
+                      <rd:DefaultName>EGR_INV_INI_VAL_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1639,12 +1635,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_INV_INI_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1667,26 +1662,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox92">
+                    <Textbox Name="EGR_INV_INI_FIS_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox92</rd:DefaultName>
+                      <rd:DefaultName>EGR_INV_INI_FIS_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1702,26 +1696,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox93">
+                    <Textbox Name="EGR_INV_INI_FIS_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_INV_INI_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox93</rd:DefaultName>
+                      <rd:DefaultName>EGR_INV_INI_FIS_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1749,9 +1742,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>TOTAL VENTAS</Value>
+                              <Value>TOTAL COMPRAS</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1783,12 +1777,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1811,26 +1804,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox82">
+                    <Textbox Name="EGR_VEN_TOT_VAL_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox82</rd:DefaultName>
+                      <rd:DefaultName>EGR_VEN_TOT_VAL_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1846,26 +1838,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox83">
+                    <Textbox Name="EGR_VEN_TOT_VAL_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox83</rd:DefaultName>
+                      <rd:DefaultName>EGR_VEN_TOT_VAL_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1888,12 +1879,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1916,26 +1906,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox85">
+                    <Textbox Name="EGR_VEN_TOT_FIS_DIE">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox85</rd:DefaultName>
+                      <rd:DefaultName>EGR_VEN_TOT_FIS_DIE</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1951,26 +1940,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox86">
+                    <Textbox Name="EGR_VEN_TOT_FIS_GAS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox86</rd:DefaultName>
+                      <rd:DefaultName>EGR_VEN_TOT_FIS_GAS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2000,8 +1988,7 @@
                             <TextRun>
                               <Value>UTILIDAD BRUTA</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -2025,6 +2012,41 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox30">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_GAS.Value) +Sum(Fields!ING_VEN_TOT_VAL_GAS.Value) + Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)) - (Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value))</Value>
+                              <Style>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox30</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#d8d8d8</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox32">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -2032,13 +2054,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Sum(Fields!ING_DIESEL_VALORADO.Value) + Sum(Fields!ING_GASOLINA_VALORADO.Value)) - (Sum(Fields!EGR_DIESEL_VALORADO.Value) + Sum(Fields!EGR_GASOLINA_VALORADO.Value, "DataSet1"))</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)) - ( Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value))</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2068,13 +2089,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_VALORADO.Value, "DataSet1")-Sum(Fields!EGR_DIESEL_VALORADO.Value, "DataSet1")</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_GAS.Value) + Sum(Fields!ING_VEN_TOT_VAL_GAS.Value)) - (Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value))</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2104,13 +2124,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_VALORADO.Value, "DataSet1")-Sum(Fields!EGR_GASOLINA_VALORADO.Value, "DataSet1")</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)) - (Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value))</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2140,13 +2159,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Sum(Fields!ING_DIESEL_FISICO.Value)+Sum(Fields!ING_GASOLINA_FISICO.Value, "DataSet1")) - (Sum(Fields!EGR_DIESEL_FISICO.Value, "DataSet1")+Sum(Fields!EGR_GASOLINA_FISICO.Value, "DataSet1"))</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value)) - (Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value))</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2176,13 +2194,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_DIESEL_FISICO.Value, "DataSet1")-Sum(Fields!EGR_DIESEL_FISICO.Value, "DataSet1")</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)) - (Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value))</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2190,42 +2207,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox36</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>#d8d8d8</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox37">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_FISICO.Value, "DataSet1")-Sum(Fields!EGR_GASOLINA_FISICO.Value, "DataSet1")</Value>
-                              <Style>
-                                <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox37</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2255,8 +2236,7 @@
                             <TextRun>
                               <Value> EXCEDENTE/PERDIDA</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -2280,26 +2260,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EXC_DIESEL_VALORADO1">
+                    <Textbox Name="Textbox40">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_VALORADO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EXC_DIESEL_VALORADO1</rd:DefaultName>
+                      <rd:DefaultName>Textbox40</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2322,12 +2301,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_VALORADO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2357,12 +2336,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_GASOLINA_VALORADO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2392,12 +2371,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_FISICO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2427,12 +2406,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_FISICO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2455,26 +2434,25 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EXC_GASOLINA_FISICO1">
+                    <Textbox Name="Textbox41">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_GASOLINA_FISICO.Value)</Value>
+                              <Value />
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EXC_GASOLINA_FISICO1</rd:DefaultName>
+                      <rd:DefaultName>Textbox41</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2504,7 +2482,8 @@
                             <TextRun>
                               <Value>EXCEDENTE</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2529,26 +2508,24 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox46">
+                    <Textbox Name="Textbox42">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_VALORADO.Value, "DataSet1")+Sum(Fields!EXC_GASOLINA_VALORADO.Value, "DataSet1")</Value>
+                              <Value />
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox46</rd:DefaultName>
+                      <rd:DefaultName>Textbox42</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2574,9 +2551,8 @@
                               <Value>=Sum(Fields!EXC_DIESEL_VALORADO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2609,9 +2585,8 @@
                               <Value>=Sum(Fields!EXC_GASOLINA_VALORADO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2641,12 +2616,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!EXC_DIESEL_FISICO.Value, "DataSet1")+Sum(Fields!EXC_GASOLINA_FISICO.Value, "DataSet1")</Value>
+                              <Value />
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2679,9 +2653,8 @@
                               <Value>=Sum(Fields!EXC_DIESEL_FISICO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2714,9 +2687,8 @@
                               <Value>=Sum(Fields!EXC_GASOLINA_FISICO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2753,7 +2725,8 @@
                             <TextRun>
                               <Value>PERDIDA</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2778,26 +2751,24 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox53">
+                    <Textbox Name="Textbox43">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!PER_DIESEL_VALORADO.Value, "DataSet1")+Sum(Fields!PER_GASOLINA_VALORADO.Value, "DataSet1")</Value>
+                              <Value />
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox53</rd:DefaultName>
+                      <rd:DefaultName>Textbox43</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2823,9 +2794,8 @@
                               <Value>=Sum(Fields!PER_DIESEL_VALORADO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2858,9 +2828,8 @@
                               <Value>=Sum(Fields!PER_GASOLINA_VALORADO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2890,12 +2859,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!PER_DIESEL_FISICO.Value, "DataSet1")+Sum(Fields!PER_GASOLINA_FISICO.Value, "DataSet1")</Value>
+                              <Value />
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2928,9 +2896,8 @@
                               <Value>=Sum(Fields!PER_DIESEL_FISICO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2963,9 +2930,8 @@
                               <Value>=Sum(Fields!PER_GASOLINA_FISICO.Value)</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontFamily>Calibri</FontFamily>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3002,8 +2968,7 @@
                             <TextRun>
                               <Value>UTILIDAD BRUTA</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
+                                <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -3034,12 +2999,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Sum(Fields!ING_DIESEL_VALORADO.Value) + Sum(Fields!ING_GASOLINA_VALORADO.Value)) - (Sum(Fields!EGR_DIESEL_VALORADO.Value) + Sum(Fields!EGR_GASOLINA_VALORADO.Value, "DataSet1")) + Sum(Fields!EXC_DIESEL_VALORADO.Value)</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_GAS.Value) +Sum(Fields!ING_VEN_TOT_VAL_GAS.Value) + Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)) - (Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3069,12 +3034,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Sum(Fields!ING_DIESEL_VALORADO.Value, "DataSet1")-Sum(Fields!EGR_DIESEL_VALORADO.Value, "DataSet1"))+Sum(Fields!EXC_DIESEL_VALORADO.Value)</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_DIE.Value) + Sum(Fields!ING_VEN_TOT_VAL_DIE.Value)) - ( Sum(Fields!EGR_INV_INI_VAL_DIE.Value) + Sum(Fields!EGR_VEN_TOT_VAL_DIE.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3097,26 +3062,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox62">
+                    <Textbox Name="Textbox25">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_VALORADO.Value, "DataSet1")-Sum(Fields!EGR_GASOLINA_VALORADO.Value, "DataSet1")</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_VAL_GAS.Value) + Sum(Fields!ING_VEN_TOT_VAL_GAS.Value)) - (Sum(Fields!EGR_INV_INI_VAL_GAS.Value) + Sum(Fields!EGR_VEN_TOT_VAL_GAS.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox62</rd:DefaultName>
+                      <rd:DefaultName>Textbox25</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -3139,12 +3104,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=((Sum(Fields!ING_DIESEL_FISICO.Value)+Sum(Fields!ING_GASOLINA_FISICO.Value, "DataSet1")) - (Sum(Fields!EGR_DIESEL_FISICO.Value, "DataSet1")+Sum(Fields!EGR_GASOLINA_FISICO.Value, "DataSet1")))+ Sum(Fields!EXC_DIESEL_FISICO.Value)</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)) - (Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3167,26 +3132,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox64">
+                    <Textbox Name="Textbox26">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Sum(Fields!ING_DIESEL_FISICO.Value, "DataSet1")-Sum(Fields!EGR_DIESEL_FISICO.Value, "DataSet1")) + Sum(Fields!EXC_DIESEL_FISICO.Value)</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_DIE.Value) + Sum(Fields!ING_VEN_TOT_FIS_DIE.Value)) - (Sum(Fields!EGR_INV_INI_FIS_DIE.Value) + Sum(Fields!EGR_VEN_TOT_FIS_DIE.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox64</rd:DefaultName>
+                      <rd:DefaultName>Textbox26</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -3202,26 +3167,26 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox65">
+                    <Textbox Name="Textbox27">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!ING_GASOLINA_FISICO.Value, "DataSet1")-Sum(Fields!EGR_GASOLINA_FISICO.Value, "DataSet1")</Value>
+                              <Value>=(Sum(Fields!ING_INV_INI_FIS_GAS.Value) + Sum(Fields!ING_VEN_TOT_FIS_GAS.Value)) - (Sum(Fields!EGR_INV_INI_FIS_GAS.Value) + Sum(Fields!EGR_VEN_TOT_FIS_GAS.Value))</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00);'-'</Format>
+                                <FontStyle>Italic</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>ExtraBold</FontWeight>
+                                <Format>0.00;- 0.00;'-'</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox65</rd:DefaultName>
+                      <rd:DefaultName>Textbox27</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -3268,10 +3233,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.36136cm</Top>
-        <Left>2.64031cm</Left>
+        <Top>1.20261cm</Top>
+        <Left>0.36489cm</Left>
         <Height>7.79999cm</Height>
-        <Width>22.79168cm</Width>
+        <Width>20.64847cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3282,10 +3247,87 @@
     <Height>3.60683in</Height>
     <Style />
   </Body>
-  <Width>11.05208in</Width>
+  <Width>8.40625in</Width>
   <Page>
-    <PageHeight>21cm</PageHeight>
-    <PageWidth>29.7cm</PageWidth>
+    <PageHeader>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>UTILIDAD BRUTA REAL</Value>
+                  <Style>
+                    <FontFamily>Calibri</FontFamily>
+                    <FontSize>15pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>1.41556cm</Top>
+          <Left>0.47072cm</Left>
+          <Height>0.94396cm</Height>
+          <Width>20.41043cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Now()</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox5</rd:DefaultName>
+          <Top>0.18048cm</Top>
+          <Left>15.92052cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.96063cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
