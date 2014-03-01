@@ -48,7 +48,7 @@
             store: me.store_cuenta,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl : function () { return "{NOMBRE}" }
         });
         me.num_saldo = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Saldo",
@@ -69,9 +69,12 @@
             name: "NUEVO_SALDO",
             readOnly : true
         });
-         me.txt_concepto = Ext.create("App.Config.Componente.TextFieldBase", {
+         me.txt_concepto = Ext.create("App.Config.Componente.TextAreaBase", {
             fieldLabel: "Concepto",
             name: "CONCEPTO",
+             width: 240,
+            height: 50,
+            maxLength: 100,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
         });
