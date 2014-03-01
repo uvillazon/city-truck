@@ -75,6 +75,7 @@ namespace CityTruck.WebSite.Reportes
                 }
                 result.Add(venDia);
             }
+            result = result.OrderBy(x => x.FECHA).ToList();
             return result;
         }
         public IEnumerable<EstadoResultadoModel> ReporteEstadoResultado(string ANIO = null, string MES = null)
@@ -324,6 +325,7 @@ namespace CityTruck.WebSite.Reportes
             //JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             //string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = listas, Total = paginacion.total }) + ");";
             //return JavaScript(callback1);
+            result = result.OrderBy(x => x.FECHA).ToList();
             return result;
         }
         public IEnumerable<KardexCombustibleModel> ReporteTanques(string ANIO = null, string MES = null)

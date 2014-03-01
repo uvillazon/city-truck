@@ -353,7 +353,7 @@
             colspan : 2,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl : function () { return "{DESCRIPCION}" }
         });
          me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Litros",
@@ -524,7 +524,7 @@
             colspan : 2,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{NOMBRE} - {DESCRIPCION}" }
+            textoTpl : function () { return "{DESCRIPCION}" }
         });
          me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Litros",
