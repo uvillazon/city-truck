@@ -39,7 +39,7 @@ namespace CityTruck.WebSite.Reportes
                     //SALDO_INICIAL_DIE = diesel.where(y=>y.FECHA == item.Key).fi
                 };
                 var com = combustible.Where(x => x.FECHA == item.Key).FirstOrDefault();
-                var pos = posMes.Where(x => x.FECHA == item.Key);
+                var pos = posMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE);
                 venDia.PRODUCTO = com.SG_COMBUSTIBLES.DESCRIPCION;
                 venDia.MES = com.FECHA.ToString("MMMM").ToUpper();
                 venDia.SALDO_ANTERIOR = com.SALDO_INICIAL;
