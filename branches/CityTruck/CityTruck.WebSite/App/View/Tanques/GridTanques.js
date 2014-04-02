@@ -12,6 +12,9 @@
     formulario: null,
     imagenes: true,
     toolbar: '',
+    selModel: {
+        selType: 'cellmodel'
+    },
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridTanques") {

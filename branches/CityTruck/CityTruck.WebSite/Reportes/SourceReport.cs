@@ -26,9 +26,11 @@ namespace CityTruck.WebSite.Reportes
             DateTime dt = Convert.ToDateTime(date);
             var _serKcm = new KardexCombustibleServices();
             var _serPos = new PosTurnosServices();
+            var _serAju = new AjustePosServices();
             _serKcm.SP_ActualizarKardexMN(dt, 0);
             var kardex = _serKcm.ObtenerKardexMNCombustible(MES, ANIO);
             var posMes = _serPos.ObtenerPosDiaPorFecha(ANIO, MES);
+            var ajusteposMes = _serAju.ObtenerAjustePosPorFecha(ANIO, MES);
             var grupo = kardex.GroupBy(x => x.FECHA);
             var combustible = kardex.Where(x => x.SG_COMBUSTIBLES.ID_COMBUSTIBLE == ID_COMBUSTIBLE);
             foreach (var item in grupo)
@@ -39,7 +41,8 @@ namespace CityTruck.WebSite.Reportes
                     //SALDO_INICIAL_DIE = diesel.where(y=>y.FECHA == item.Key).fi
                 };
                 var com = combustible.Where(x => x.FECHA == item.Key).FirstOrDefault();
-                var pos = posMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE);
+                var pos = posMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE).OrderBy(y=>y.ID_POS);
+                var posajuste = ajusteposMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE).OrderBy(y => y.ID_POS);
                 venDia.PRODUCTO = com.SG_COMBUSTIBLES.DESCRIPCION;
                 venDia.MES = com.FECHA.ToString("MMMM").ToUpper();
                 venDia.SALDO_ANTERIOR = com.SALDO_INICIAL;
@@ -66,6 +69,31 @@ namespace CityTruck.WebSite.Reportes
                     else if (cont == 3)
                     {
                         venDia.MANGUERA4 = puntos.TOTAL;
+                    }
+                    else
+                    {
+                        cont++;
+                    }
+                    cont++;
+                }
+                cont = 0;
+                foreach (var puntos in posajuste)
+                {
+                    if (cont == 0)
+                    {
+                        venDia.MANGUERA1 =(decimal)(venDia.MANGUERA1 + puntos.AJUSTE);
+                    }
+                    else if (cont == 1)
+                    {
+                        venDia.MANGUERA2 = (decimal)(venDia.MANGUERA2 + puntos.AJUSTE);
+                    }
+                    else if (cont == 2)
+                    {
+                        venDia.MANGUERA3 = (decimal)(venDia.MANGUERA3 + puntos.AJUSTE);
+                    }
+                    else if (cont == 3)
+                    {
+                        venDia.MANGUERA4 = (decimal)(venDia.MANGUERA4 + puntos.AJUSTE);
                     }
                     else
                     {

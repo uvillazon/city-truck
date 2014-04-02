@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -44,6 +45,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_COMBUSTIBLE_MN_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_KARDEX_COMBUSTIBLE_MN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_COMBUSTIBLE_MN), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_POS_DIA_MN_R01", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_POS), "SG_POS_DIA_MN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_POS_DIA_MN), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_COMBUSTIBLE_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_KARDEX_COMBUSTIBLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_COMBUSTIBLE), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_AJUSTE_POS_R01", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_POS), "SG_AJUSTE_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AJUSTE_POS), true)]
 
 #endregion
 
@@ -558,8 +560,25 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_KARDEX_COMBUSTIBLE> _SG_KARDEX_COMBUSTIBLE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_AJUSTE_POS> SG_AJUSTE_POS
+        {
+            get
+            {
+                if ((_SG_AJUSTE_POS == null))
+                {
+                    _SG_AJUSTE_POS = base.CreateObjectSet<SG_AJUSTE_POS>("SG_AJUSTE_POS");
+                }
+                return _SG_AJUSTE_POS;
+            }
+        }
+        private ObjectSet<SG_AJUSTE_POS> _SG_AJUSTE_POS;
 
         #endregion
+
         #region Métodos AddTo
     
         /// <summary>
@@ -793,8 +812,17 @@ namespace CityTruck.Model
         {
             base.AddObject("SG_KARDEX_COMBUSTIBLE", sG_KARDEX_COMBUSTIBLE);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_AJUSTE_POS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_AJUSTE_POS(SG_AJUSTE_POS sG_AJUSTE_POS)
+        {
+            base.AddObject("SG_AJUSTE_POS", sG_AJUSTE_POS);
+        }
 
         #endregion
+
         #region Importaciones de funciones
     
         /// <summary>
@@ -2775,14 +2803,334 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_AJUSTE_TANQUE", p_ID_AJUSTEParameter, p_ID_COMBUSTIBLEParameter, p_FECHAParameter, p_OBSERVACIONParameter, p_CANTIDADParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GENERAR_AJUSTE_POS(Nullable<global::System.DateTime> p_FECHA, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GENERAR_AJUSTE_POS", p_FECHAParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_AJUSTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_POS">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_AJUSTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_AJUSTE_POS(Nullable<global::System.Decimal> p_ID_AJUSTE, Nullable<global::System.Decimal> p_ID_POS, Nullable<global::System.DateTime> p_FECHA, Nullable<global::System.Decimal> p_AJUSTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_AJUSTEParameter;
+            if (p_ID_AJUSTE.HasValue)
+            {
+                p_ID_AJUSTEParameter = new ObjectParameter("P_ID_AJUSTE", p_ID_AJUSTE);
+            }
+            else
+            {
+                p_ID_AJUSTEParameter = new ObjectParameter("P_ID_AJUSTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_POSParameter;
+            if (p_ID_POS.HasValue)
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", p_ID_POS);
+            }
+            else
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_AJUSTEParameter;
+            if (p_AJUSTE.HasValue)
+            {
+                p_AJUSTEParameter = new ObjectParameter("P_AJUSTE", p_AJUSTE);
+            }
+            else
+            {
+                p_AJUSTEParameter = new ObjectParameter("P_AJUSTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_AJUSTE_POS", p_ID_AJUSTEParameter, p_ID_POSParameter, p_FECHAParameter, p_AJUSTEParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entidades
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_AJUSTE_POS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_AJUSTE_POS : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_AJUSTE_POS.
+        /// </summary>
+        /// <param name="iD_AJUSTE">Valor inicial de la propiedad ID_AJUSTE.</param>
+        /// <param name="iD_POS">Valor inicial de la propiedad ID_POS.</param>
+        /// <param name="fECHA">Valor inicial de la propiedad FECHA.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        public static SG_AJUSTE_POS CreateSG_AJUSTE_POS(global::System.Int32 iD_AJUSTE, global::System.Int32 iD_POS, global::System.DateTime fECHA, global::System.Int16 iD_USUARIO)
+        {
+            SG_AJUSTE_POS sG_AJUSTE_POS = new SG_AJUSTE_POS();
+            sG_AJUSTE_POS.ID_AJUSTE = iD_AJUSTE;
+            sG_AJUSTE_POS.ID_POS = iD_POS;
+            sG_AJUSTE_POS.FECHA = fECHA;
+            sG_AJUSTE_POS.ID_USUARIO = iD_USUARIO;
+            return sG_AJUSTE_POS;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_AJUSTE
+        {
+            get
+            {
+                return _ID_AJUSTE;
+            }
+            set
+            {
+                if (_ID_AJUSTE != value)
+                {
+                    OnID_AJUSTEChanging(value);
+                    ReportPropertyChanging("ID_AJUSTE");
+                    _ID_AJUSTE = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_AJUSTE");
+                    OnID_AJUSTEChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_AJUSTE;
+        partial void OnID_AJUSTEChanging(global::System.Int32 value);
+        partial void OnID_AJUSTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_POS
+        {
+            get
+            {
+                return _ID_POS;
+            }
+            set
+            {
+                OnID_POSChanging(value);
+                ReportPropertyChanging("ID_POS");
+                _ID_POS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_POS");
+                OnID_POSChanged();
+            }
+        }
+        private global::System.Int32 _ID_POS;
+        partial void OnID_POSChanging(global::System.Int32 value);
+        partial void OnID_POSChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> AJUSTE
+        {
+            get
+            {
+                return _AJUSTE;
+            }
+            set
+            {
+                OnAJUSTEChanging(value);
+                ReportPropertyChanging("AJUSTE");
+                _AJUSTE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AJUSTE");
+                OnAJUSTEChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _AJUSTE;
+        partial void OnAJUSTEChanging(Nullable<global::System.Decimal> value);
+        partial void OnAJUSTEChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+
+        #endregion
+
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_AJUSTE_POS_R01", "SG_POS")]
+        public SG_POS SG_POS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_AJUSTE_POS_R01", "SG_POS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_AJUSTE_POS_R01", "SG_POS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_POS> SG_POSReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_AJUSTE_POS_R01", "SG_POS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_POS>("Model.SG_AJUSTE_POS_R01", "SG_POS", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
@@ -2818,6 +3166,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3040,6 +3389,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3082,6 +3432,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3118,6 +3469,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3316,6 +3668,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3358,6 +3711,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3396,6 +3750,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3642,6 +3997,7 @@ namespace CityTruck.Model
         partial void OnOBSERVACIONChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3722,6 +4078,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3758,6 +4115,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3980,6 +4338,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4094,6 +4453,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4118,6 +4478,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4292,6 +4653,7 @@ namespace CityTruck.Model
         partial void OnCONSUMO_BSChanged();
 
         #endregion
+
     
     }
     
@@ -4329,6 +4691,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4647,6 +5010,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4717,6 +5081,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4747,6 +5112,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4945,6 +5311,7 @@ namespace CityTruck.Model
         partial void OnCONSUMO_BSChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4971,6 +5338,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5005,6 +5373,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5225,8 +5594,33 @@ namespace CityTruck.Model
         private Nullable<global::System.Decimal> _SALDO_INICIAL;
         partial void OnSALDO_INICIALChanging(Nullable<global::System.Decimal> value);
         partial void OnSALDO_INICIALChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> SALDO_INICIAL_MN
+        {
+            get
+            {
+                return _SALDO_INICIAL_MN;
+            }
+            set
+            {
+                OnSALDO_INICIAL_MNChanging(value);
+                ReportPropertyChanging("SALDO_INICIAL_MN");
+                _SALDO_INICIAL_MN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SALDO_INICIAL_MN");
+                OnSALDO_INICIAL_MNChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _SALDO_INICIAL_MN;
+        partial void OnSALDO_INICIAL_MNChanging(Nullable<global::System.Decimal> value);
+        partial void OnSALDO_INICIAL_MNChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5407,6 +5801,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5455,6 +5850,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5797,6 +6193,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5899,6 +6296,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5941,6 +6339,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6235,6 +6634,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6315,6 +6715,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6349,6 +6750,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6523,6 +6925,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6565,6 +6968,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6603,6 +7007,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6825,6 +7230,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6867,6 +7273,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6905,6 +7312,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7127,6 +7535,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7169,6 +7578,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7211,6 +7621,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7481,6 +7892,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7523,6 +7935,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7553,6 +7966,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7751,6 +8165,7 @@ namespace CityTruck.Model
         partial void OnACUMULADOSChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7793,6 +8208,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7823,6 +8239,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8021,6 +8438,7 @@ namespace CityTruck.Model
         partial void OnACUMULADOSChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8063,6 +8481,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8105,6 +8524,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8375,6 +8795,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8417,6 +8838,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8451,6 +8873,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8625,6 +9048,7 @@ namespace CityTruck.Model
         partial void OnESTADOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8651,6 +9075,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8681,6 +9106,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8831,6 +9257,7 @@ namespace CityTruck.Model
         partial void OnESTADOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8933,6 +9360,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8963,6 +9391,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9185,6 +9614,7 @@ namespace CityTruck.Model
         partial void OnORDENChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9211,6 +9641,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9241,6 +9672,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9343,6 +9775,7 @@ namespace CityTruck.Model
         partial void OnESTADOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9391,6 +9824,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9421,6 +9855,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9523,6 +9958,7 @@ namespace CityTruck.Model
         partial void OnESTADOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9603,6 +10039,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9637,6 +10074,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9859,6 +10297,7 @@ namespace CityTruck.Model
         partial void OnLITTER_ACT_MNChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9943,8 +10382,31 @@ namespace CityTruck.Model
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_AJUSTE_POS_R01", "SG_AJUSTE_POS")]
+        public EntityCollection<SG_AJUSTE_POS> SG_AJUSTE_POS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_AJUSTE_POS>("Model.SG_AJUSTE_POS_R01", "SG_AJUSTE_POS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_AJUSTE_POS>("Model.SG_AJUSTE_POS_R01", "SG_AJUSTE_POS", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9981,6 +10443,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10227,6 +10690,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10269,6 +10733,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10307,6 +10772,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10577,6 +11043,7 @@ namespace CityTruck.Model
         partial void OnTOTAL_COSTOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10619,6 +11086,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10649,6 +11117,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10847,6 +11316,7 @@ namespace CityTruck.Model
         partial void OnSALDO_INICIAL_MNChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10911,6 +11381,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10945,6 +11416,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11143,6 +11615,7 @@ namespace CityTruck.Model
         partial void OnESTADOChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -11185,6 +11658,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11227,6 +11701,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11521,6 +11996,7 @@ namespace CityTruck.Model
         partial void OnFECHA_REGChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -11601,6 +12077,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11631,6 +12108,7 @@ namespace CityTruck.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11757,9 +12235,11 @@ namespace CityTruck.Model
         partial void OnTOTALChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }
