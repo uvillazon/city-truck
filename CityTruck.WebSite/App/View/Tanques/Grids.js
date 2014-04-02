@@ -14,6 +14,11 @@
             me.pieTitulo = "Ajustes";
             me.CargarGridAjustes();
         }
+        else if (me.opcion == "GridAjustesPos") {
+            me.title = me.title == '' ? "Reporte de Ajustes" : me.title;
+            me.pieTitulo = "Ajustes";
+            me.CargarGridAjustePos();
+        }
        
         else {
             alert("Defina el tipo primero");
@@ -31,6 +36,25 @@
            { header: "GASOLINA", width: 100, sortable: false, dataIndex: "GASOLINA" }
         ];
 
-    }
+    },
+    CargarGridAjustePos : function(){
+        var me = this;
+        me.store = Ext.create("App.Store.Combustibles.Ajustes");
+        
+        me.plugins = [
+            Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        ];
+        me.columns = [
+           { header: "Producto", width: 150, sortable: true, dataIndex: "PRODUCTO" },
+           { header: "Ajuste Lts.", width: 80, sortable: false, dataIndex: "AJUSTE" ,editor: {
+                    xtype: 'numberfield',
+                    
+                } 
+           }
+        ];
+
+    },
 });
 

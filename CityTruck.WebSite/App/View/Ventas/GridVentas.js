@@ -12,7 +12,10 @@
     win: null,
     formulario: null,
     imagenes: true,
-    toolbar : null,
+    toolbar: null,
+    selModel: {
+        selType: 'cellmodel'
+    },
     initComponent: function () {
         var me = this;
         if (me.opcion == "GridVentas") {

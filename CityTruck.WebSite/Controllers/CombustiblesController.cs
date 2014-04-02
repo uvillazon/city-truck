@@ -10,6 +10,7 @@ using System.Collections;
 using CityTruck.WebSite.Models;
 using CityTruck.Services.Model;
 using CityTruck.Model;
+using Newtonsoft.Json;
 
 namespace CityTruck.WebSite.Controllers
 {
@@ -17,12 +18,13 @@ namespace CityTruck.WebSite.Controllers
     {
         private ICombustiblesServices _serCom;
         private IVentasDiariasServices _serVen;
+        private IAjustePosServices _serAju;
         private IComprasServices _serComp;
         private IPosTurnosServices _serPos;
         private ITanquesServices _serTan;
         private IKardexCombustibleServices _serKcm;
 
-        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos, ITanquesServices serTan, IKardexCombustibleServices serKcm)
+        public CombustiblesController(ICombustiblesServices serCom, IVentasDiariasServices serVen, IComprasServices serComp, IPosTurnosServices serPos, ITanquesServices serTan, IKardexCombustibleServices serKcm, IAjustePosServices serAju)
         {
             _serCom = serCom;
             _serVen = serVen;
@@ -30,6 +32,7 @@ namespace CityTruck.WebSite.Controllers
             _serPos = serPos;
             _serTan = serTan;
             _serKcm = serKcm;
+            _serAju = serAju;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -182,6 +185,107 @@ namespace CityTruck.WebSite.Controllers
                 RespuestaSP respuestaRSP = new RespuestaSP();
                 respuestaRSP = _serTan.SP_GuardarAjuste(ajus, ID_COMBUSTIBLE, id_usr);
                 return Json(respuestaRSP);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpGet]
+        public ActionResult ObtenerAjustePos(PagingInfo paginacion, FiltrosModel<PosTurnosModel> filtros, PosTurnosModel posTurnos)
+        {
+            filtros.Entidad = posTurnos;
+            var result = _serAju.ObtenerAjustePos(paginacion, filtros);
+            
+            if (paginacion.total == 0)
+            {
+                try
+                {
+                    var spPos = _serAju.SP_GenerarAjustePos(posTurnos.FECHA, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
+                    if (!spPos.success)
+                    {
+                        JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
+                        string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
+                        //string callback1 = info.callback + "(" + json + ");";
+
+
+                        return JavaScript(callback2);
+                    }
+                    else
+                    {
+                        result = _serAju.ObtenerAjustePos(paginacion, filtros);
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+            if (filtros.Contiene == "AJUSTES_DIE")
+            {
+                result = result.Where(x => x.SG_POS.ID_COMBUSTIBLE == 2);
+            }
+            else { result = result.Where(x => x.SG_POS.ID_COMBUSTIBLE == 1); }
+            
+            var formattData = result.Select(x => new
+            {
+                PRODUCTO = x.SG_POS.CODIGO + " - " + x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                CODIGO = x.SG_POS.SG_COMBUSTIBLES.NOMBRE,
+                ID_POS = x.ID_POS,
+                ID_AJUSTE = x.ID_AJUSTE,
+                AJUSTE = x.AJUSTE
+
+            });
+            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+            string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Total = paginacion.total, Rows = formattData }) + ");";
+            //string callback1 = info.callback + "(" + json + ");";
+
+
+            return JavaScript(callback1);
+
+        }
+
+        [HttpPost]
+        public JsonResult GuardarAjustePos(string ajustes, DateTime FECHA)
+        {
+            try
+            {
+                RespuestaSP respuestaRSP = new RespuestaSP();
+                int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
+                if (ajustes == "false")
+                {
+                    respuestaRSP.success = false;
+                    respuestaRSP.msg = "No existe ningun cambio...";
+                    return Json(respuestaRSP);
+                }
+                else
+                {
+                    dynamic pos_ajustes = JsonConvert.DeserializeObject(ajustes);
+                    //RespuestaSP respuestaRSP = new RespuestaSP();
+                    foreach (var o in pos_ajustes)
+                    {
+                        //p_id_ot,p_id_poste,p_id_cod_man,p_instruc_sol,p_idcentro_costo,p_descripcion_cc,p_login_usr,p_res
+                        SG_AJUSTE_POS pos = new SG_AJUSTE_POS
+                        {
+                            ID_AJUSTE = o.ID_AJUSTE,
+                            ID_POS = o.ID_POS,
+                            FECHA = FECHA,
+                            AJUSTE = o.AJUSTE,
+                            ID_USUARIO = (short)id_usr
+                        };
+
+                        respuestaRSP = _serAju.SP_GuardarAjustePos(pos, id_usr);
+
+                        if (!respuestaRSP.success)
+                        {
+                            return Json(new { success = false, msg = string.Format("Se produjo un error al intentar grabar la OT: {0}") });
+                        }
+                    }
+                    return Json(respuestaRSP);
+                }
             }
             catch (Exception)
             {

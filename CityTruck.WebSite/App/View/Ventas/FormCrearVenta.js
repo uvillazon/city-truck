@@ -57,12 +57,27 @@
                 });
 //        alert(store.getId());
     },
-    CargarEditarVenta : function(venta){
+    CargarEditarVenta : function(venta,turno){
         var me = this;
         me.venta = venta;
         me.date_fecha.setValue(me.venta.get('FECHA'));
         me.date_fecha.setReadOnly(true);
-//        me.date_fecha.setReadOnly(true);
+        me.cbx_turno.setValue(turno);
+        me.cbx_turno.setReadOnly(true);
+        me.CargarValoresVenta();
+//        me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+//        me.gridVenta.getStore().setExtraParam('TURNO',turno);
+//        me.gridVenta.getStore().setExtraParam('EDITAR',false);
+//        me.gridVenta.getStore().load();
+
+//        me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+//        me.gridVentaCredito.getStore().setExtraParam('TURNO',turno);
+//        me.gridVentaCredito.getStore().load();
+
+//        me.gridVentaConsumo.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
+//        me.gridVentaConsumo.getStore().setExtraParam('TURNO',turno);
+//        me.gridVentaConsumo.getStore().load();
+//        me.permiso = true;
     },
     CargarComponentes: function () {
         var me = this;
@@ -109,14 +124,7 @@
         Funciones.CrearMenu('btn_EditarConsumo', 'Editar', Constantes.ICONO_EDITAR, me.EventosVenta, me.toolbarConsumo, this);
         Funciones.CrearMenu('btn_BajaConsumo', 'Eliminar', Constantes.ICONO_BAJA, me.EventosVenta, me.toolbarConsumo, this);
         me.gridVentaConsumo.addDocked(me.toolbarConsumo, 1);
-//        me.formResumen = Ext.create("App.View.Ventas.Forms", {
-//            opcion: 'formResumen',
-//            botones: false,
-//            columns: 3,
-//            width: 350,
-//            colspan: 2
-//        });
-//        Funciones.BloquearFormularioReadOnly(me.formResumen);
+
         me.store_turno = Ext.create('App.Store.Listas.StoreLista');
         me.store_turno.setExtraParam('ID_LISTA', Lista.Buscar('TURNO'));
         me.cbx_turno = Ext.create("App.Config.Componente.ComboBase", {
@@ -146,11 +154,10 @@
 
 
     },
-    cargarEventos : function(){
+    CargarValoresVenta : function(){
         var me = this;
-        me.cbx_turno.on('select',function(cmb,record){
-            if(me.date_fecha.getValue() != null){
-                Ext.Ajax.request({
+        var cmb = me.cbx_turno;
+        Ext.Ajax.request({
                     url: Constantes.HOST + 'Ventas/VerificarVentas',
                     params: {
                         FECHA: me.date_fecha.getValue(),
@@ -192,6 +199,12 @@
                         }
                     }
                 });
+    },
+    cargarEventos : function(){
+        var me = this;
+        me.cbx_turno.on('select',function(cmb,record){
+            if(me.date_fecha.getValue() != null){
+                me.CargarValoresVenta();
                 
             }
             else{
@@ -229,6 +242,7 @@
             }
         });
         me.gridVentaCredito.getStore().on('load',function(str,records,success){
+//            alert("entro Credito");
             if(!success){
                 str.removeAll();
                 Ext.Msg.alert("Error","Ocurrio algun Error Informar a TI.");
@@ -238,6 +252,7 @@
             }
         });
         me.gridVentaConsumo.getStore().on('load',function(str,records,success){
+//            alert("entro Creditoconsumo");
             if(!success){
                 str.removeAll();
                 Ext.Msg.alert("Error","Ocurrio algun Error Informar a TI.");
@@ -251,6 +266,7 @@
         var me = this;
         var totalGasolina = 0;
         var totalDiesel = 0;
+//        alert("malo");
         me.gridVenta.getStore().each(function(record){
             if(record.get('CODIGO')== 'GASOLINA'){
                 totalGasolina= totalGasolina +  record.get('TOTAL');
@@ -335,6 +351,7 @@
     },
     CargarTotales : function(){
         var me = this;
+//        alert("asdasda");
         var totalGasolina = 0;
         var totalDiesel = 0;
         var totalGasolinaBs = 0;
@@ -356,7 +373,6 @@
 
         me.formSubTotales.txt_diesel.setValue(totalDiesel);
         me.formSubTotales.txt_gasolina.setValue(totalGasolina);
-
         me.formSubTotales.txt_diesel_bs.setValue(totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS);
         me.formSubTotales.txt_gasolina_bs.setValue(totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS);
 
@@ -368,7 +384,7 @@
         me.formSubTotales.txt_total_Bs_costo.setValue(totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS);
 
          me.formSubTotales.txt_utilidad.setValue((totalDiesel * Constantes.CONFIG_PRECIO_VENTA_DIS + totalGasolina* Constantes.CONFIG_PRECIO_VENTA_GAS) - (totalDiesel * Constantes.CONFIG_PRECIO_COSTO_DIS + totalGasolina* Constantes.CONFIG_PRECIO_COSTO_GAS) );
-        
+//        alert("final");
 
     },
     EventosVenta : function(btn){

@@ -26,10 +26,10 @@ Ext.define("App.Config.Constantes", {
     LiSTAS: null,
     URLLISTAS: 'Listas/ObtenerTodasLasListas',
     URLIMAGEN: "Imagenes/VerImagen?",
-//    CONFIG_PRECIO_VENTA_GAS: 3.74,
-//    CONFIG_PRECIO_VENTA_DIS: 3.72,
-//    CONFIG_PRECIO_COSTO_GAS: 3.52,
-//    CONFIG_PRECIO_COSTO_DIS: 3.54,
+    CONFIG_PRECIO_VENTA_GAS: 3.74,
+    CONFIG_PRECIO_VENTA_DIS: 3.72,
+    CONFIG_PRECIO_COSTO_GAS: 3.52,
+    CONFIG_PRECIO_COSTO_DIS: 3.54,
     CONFIG_CUENTA_VENTA: 1,
     UnidadesRequeridas: function (unidad, requerido) {
         if (requerido) {

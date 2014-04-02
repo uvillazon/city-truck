@@ -14,7 +14,7 @@
         var me = this;
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
-        Funciones.CrearMenu('btn_CrearVentaMN', 'Crear Venta MN', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
+//        Funciones.CrearMenu('btn_CrearVentaMN', 'Crear Venta MN', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_VER, me.EventosVenta, me.toolbar, this, null, true);
 
@@ -40,6 +40,16 @@
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
+        if (!disabled) {
+            var campo = selModel.nextSelection.columnHeader.dataIndex;
+           
+            if (campo == "VENTA_DIA") { me.turno = "DIA"; }
+            else if (campo == "VENTA_TARDE") { me.turno = "TARDE"; }
+            else if (campo == "VENTA_NOCHE") { me.turno = "NOCHE"; }
+            else { me.turno == ""; }
+//            alert(me.turno);
+        }
+        else { me.turno == ""; }
         Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
     },
     EventosVenta: function (btn) {
@@ -69,6 +79,10 @@
             me.CrearVentaMN();
         }
         else if (btn.getItemId() == "btn_Detalle") {
+            if (me.turno == "") {
+                Ext.Msg.alert("Aviso", "Seleccione DIA , TARDE , NOCHE ");
+                return false;
+            }
             if (me.winEditarVenta == null) {
                 me.winEditarVenta = Ext.create("App.Config.Abstract.Window");
                 me.panelVentasEditar = Ext.create("App.View.Ventas.FormCrearVenta", {
@@ -77,12 +91,12 @@
                     botones: false,
                     editar: true
                 });
-                me.panelVentasEditar.CargarEditarVenta(me.record);
+                me.panelVentasEditar.CargarEditarVenta(me.record, me.turno);
                 me.winEditarVenta.add(me.panelVentasEditar);
                 me.winEditarVenta.show();
             } else {
                 me.panelVentasEditar.getForm().reset();
-                me.panelVentasEditar.CargarEditarVenta(me.record);
+                me.panelVentasEditar.CargarEditarVenta(me.record, me.turno);
                 me.panelVentasEditar.gridVenta.getStore().removeAll();
                 me.panelVentasEditar.gridVentaCredito.getStore().removeAll();
                 me.panelVentasEditar.gridVentaConsumo.getStore().removeAll();
@@ -95,6 +109,6 @@
     },
     CrearVentaMN: function () {
         var me = this;
-        var win = Ext.create("App.Config.Abstract.Window", {botones : true, textGuardar : 'Guardar Registro a MN' });
+        var win = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Registro a MN' });
     }
 });

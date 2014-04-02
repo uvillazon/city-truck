@@ -39,28 +39,49 @@
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
+        if (!disabled) {
+            var campo = selModel.nextSelection.columnHeader.dataIndex;
+            //            alert(campo);
+            me.ajuste = campo;
+            //            if (campo == "AJUSTES_DIE") { me.turno = "AJUSTE"; }
+            //            else if (campo == "VENTA_TARDE") { me.turno = "TARDE"; }
+            //            else if (campo == "VENTA_NOCHE") { me.turno = "NOCHE"; }
+            //            else { me.turno == ""; }
+            //            alert(me.turno);
+        }
+        else { me.ajuste == ""; }
         Funciones.DisabledButton('btn_AjustarTanque', me.toolbar, disabled);
     },
     EventosTanques: function (btn) {
         var me = this;
         if (btn.getItemId() == "btn_AjustarTanque") {
-            if (me.winAjustarTanque == null) {
-                me.winAjustarTanque = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
-                me.formAjustarTanque = Ext.create("App.View.Tanques.FormAjustarTanque", {
-                    columns: 1,
-                    title: 'Formulario de Ajuste de Tanques ',
-                    botones: false
-                })
-                me.formAjustarTanque.cargarEdtiar(me.record);
-                me.winAjustarTanque.add(me.formAjustarTanque);
-                me.winAjustarTanque.show();
-                me.winAjustarTanque.btn_guardar.on('click', me.guardarAjuste, this);
-            } else {
-                me.formAjustarTanque.getForm().reset();
-                me.formAjustarTanque.cargarEdtiar(me.record);
-                me.winAjustarTanque.show();
-                me.winAjustarTanque.btn_guardar.on('click', me.guardarAjuste, this);
+            if (me.ajuste == "AJUSTES_DIE") {
+                //                alert("Diesel");
+                me.VentanaAjustePos();
             }
+            else if (me.ajuste == "AJUSTES_GAS") {
+                me.VentanaAjustePos();
+            }
+            else {
+                Ext.Msg.alert("Aviso", "Seleccione en la posicion de AJUSTE y el COMBUSTIBLE");
+            }
+            //            if (me.winAjustarTanque == null) {
+            //                me.winAjustarTanque = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
+            //                me.formAjustarTanque = Ext.create("App.View.Tanques.FormAjustarTanque", {
+            //                    columns: 1,
+            //                    title: 'Formulario de Ajuste de Tanques ',
+            //                    botones: false
+            //                })
+            //                me.formAjustarTanque.cargarEdtiar(me.record);
+            //                me.winAjustarTanque.add(me.formAjustarTanque);
+            //                me.winAjustarTanque.show();
+            //                me.winAjustarTanque.btn_guardar.on('click', me.guardarAjuste, this);
+            //            } else {
+            //                me.formAjustarTanque.getForm().reset();
+            //                me.formAjustarTanque.cargarEdtiar(me.record);
+            //                me.winAjustarTanque.show();
+            //                me.winAjustarTanque.btn_guardar.on('click', me.guardarAjuste, this);
+            //            }
         }
         else if (btn.getItemId() == "btn_RepAjustes") {
             var win = Ext.create("App.Config.Abstract.Window");
@@ -76,9 +97,23 @@
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
     },
-    guardarAjuste: function () {
+    VentanaAjustePos: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Combustibles', 'GuardarAjusteTanque', me.winAjustarTanque, me.formAjustarTanque, me.grid, 'Esta Seguro de Guardar Ajuste?', null, me.winAjustarTanque);
+        var win = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Ajuste' });
+        var form = Ext.create("App.View.Tanques.FormAjustarTanque", {
+            columns: 1,
+            title: 'Formulario de Ajuste de Tanques ',
+            botones: false
+        });
+        form.gridAjuste.getStore().setExtraParams({ FECHA: me.record.get('FECHA') });
+        form.gridAjuste.getStore().setExtraParams({ Contiene: me.ajuste });
+        form.gridAjuste.getStore().load();
+        form.date_fecha.setValue(me.record.get('FECHA'));
+        win.add(form);
+        win.show();
+        win.btn_guardar.on('click', function () {
+            Funciones.AjaxRequestWin('Combustibles', 'GuardarAjustePos', win, form, me.grid, 'Esta Seguro de Guardar Ajuste?', { ajustes: Funciones.convertirJson(form.gridAjuste) }, win);
+        });
     }
 
 });
