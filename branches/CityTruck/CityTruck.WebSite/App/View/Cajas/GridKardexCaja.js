@@ -43,9 +43,9 @@
             { header: "Nro <br>Comprobante", width: 80, sortable: false, dataIndex: "NRO_COMP", hidden: true },
             { header: "Fecha", width: 100, sortable: false, dataIndex: "FECHA", renderer: Ext.util.Format.dateRenderer('d/m/Y') },
             { header: "Detalle", width: 245, sortable: false, dataIndex: "DETALLE" },
-            { header: "Ingreso", width: 80, sortable: false, dataIndex: "INGRESO", align: "right" },
-            { header: "Egreso", width: 80, sortable: false, dataIndex: "EGRESO", align: "right" },
-            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO", align: "right"}
+            { header: "Ingreso", width: 80, sortable: false, dataIndex: "INGRESO", align: "right", renderer: Ext.util.Format.numberRenderer('0,000.00') },
+            { header: "Egreso", width: 80, sortable: false, dataIndex: "EGRESO", align: "right", renderer: Ext.util.Format.numberRenderer('0,000.00') },
+            { header: "Saldo", width: 80, sortable: false, dataIndex: "SALDO", align: "right", renderer: Ext.util.Format.numberRenderer('0,000.00') }
 
         ];
 

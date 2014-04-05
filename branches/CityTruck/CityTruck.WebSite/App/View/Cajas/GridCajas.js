@@ -111,7 +111,7 @@
             { header: "Descripcion", width: 200, sortable: true, dataIndex: "DESCRIPCION" },
             { header: "Nro<br>Cuenta", width: 100, sortable: true, dataIndex: "NRO_CUENTA" },
             { header: "Moneda", width: 100, sortable: true, dataIndex: "MONEDA" },
-            { header: "Saldo", width: 150, sortable: true, dataIndex: "SALDO" },
+            { header: "Saldo", width: 150, sortable: true, dataIndex: "SALDO", renderer: Ext.util.Format.numberRenderer('0,000.00') },
         ];
 
         me.button_search.on('click', this.buscarBotonCodigo, this);

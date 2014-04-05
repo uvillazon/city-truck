@@ -530,6 +530,7 @@
             fieldLabel: "Litros",
             name: "IMPORTE_LTS",
             allowDecimals: true,
+            readOnly : true,
             maxValue: 999999999,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
@@ -537,7 +538,7 @@
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe Total",
             name: "IMPORTE_BS",
-            readOnly : true,
+            readOnly : false,
             allowDecimals: true,
             maxValue: 999999999,
         });
