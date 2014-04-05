@@ -15,7 +15,8 @@
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_CrearRegistro', 'Crear Registro', Constantes.ICONO_CREAR, me.EventosPrincipal, me.toolbar, this);
         Funciones.CrearMenu('btn_EditarRegistro', 'Editar Registro', Constantes.ICONO_EDITAR, me.EventosPrincipal, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_reporte', 'Imprimir Reporte', 'printer', me.EventosPrincipal, me.toolbar, this);
+        Funciones.CrearMenu('btn_reporte', 'Reporte Almacenes', 'printer', me.EventosPrincipal, me.toolbar, this);
+        Funciones.CrearMenu('btn_reporteANH', 'Reporte ANH', 'printer', me.EventosPrincipal, me.toolbar, this);
 
         me.grid = Ext.create('App.View.VentasMN.GridVentas', {
             region: 'center',
@@ -72,6 +73,13 @@
         }
         else if (btn.getItemId() == "btn_reporte") {
             window.open(Constantes.HOST + 'Reportes/ReporteANH?ANIO=' + me.grid.cbx_anio.getValue() + '&MES=' + me.grid.cbx_mes.getValue());
+        }
+        else if (btn.getItemId() == "btn_reporteANH") {
+            var win = Ext.create("App.View.Reportes.Reportes", { opcion: "ReporteAutoridad" });
+            win.cbx_mes.setValue(me.grid.cbx_mes.getValue());
+            win.cbx_anio.setValue(me.grid.cbx_anio.getValue());
+            win.show();
+
         }
         else {
             Ext.Msg.alert("Aviso", "No Existe el botton");

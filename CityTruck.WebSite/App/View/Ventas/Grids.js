@@ -56,8 +56,8 @@
         me.store = Ext.create("App.Store.Ventas.VentasCredito");
         me.columns = [
            { header: "CLIENTE", width: 180, sortable: false, dataIndex: "CLIENTE" },
-           { header: "DIESEL", width: 100, sortable: false, dataIndex: "DIESEL" },
-           { header: "GASOLINA", width: 100, sortable: false, dataIndex: "GASOLINA" }
+           { header: "DIESEL", width: 100, sortable: false, dataIndex: "DIESEL" ,renderer: Ext.util.Format.numberRenderer('0,000.00') },
+           { header: "GASOLINA", width: 100, sortable: false, dataIndex: "GASOLINA" , renderer: Ext.util.Format.numberRenderer('0,000.00')}
         ];
 
     },
@@ -67,8 +67,8 @@
         //        me.store = Ext.create("App.Store.SolicitudesMantenimiento.CodigosSolucion");
         me.columns = [
             { header: "USUARIO", width: 180, sortable: false, dataIndex: "CLIENTE" },
-            { header: "DIESEL", width: 120, sortable: false, dataIndex: "DIESEL" },
-            { header: "GASOLINA", width: 120, sortable: false, dataIndex: "GASOLINA" }
+            { header: "DIESEL", width: 120, sortable: false, dataIndex: "DIESEL" ,renderer: Ext.util.Format.numberRenderer('0,000.00')},
+            { header: "GASOLINA", width: 120, sortable: false, dataIndex: "GASOLINA" ,renderer: Ext.util.Format.numberRenderer('0,000.00') }
         ];
     },
 });

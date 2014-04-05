@@ -14,7 +14,7 @@
     </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="1000px" Height="600px"
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="1200px" Height="600px"
         Font-Names="Verdana" Font-Size="8pt" InteractiveDeviceInfos="(Colección)" WaitMessageFont-Names="Verdana"
         WaitMessageFont-Size="14pt">
         <LocalReport ReportPath="Reportes\ReporteAutoridad.rdlc">

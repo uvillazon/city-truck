@@ -14,7 +14,7 @@
         var me = this;
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearVenta', 'Crear Venta', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
-//        Funciones.CrearMenu('btn_CrearVentaMN', 'Crear Venta MN', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
+        //        Funciones.CrearMenu('btn_CrearVentaMN', 'Crear Venta MN', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_VER, me.EventosVenta, me.toolbar, this, null, true);
 
@@ -42,12 +42,12 @@
         var disabled = selections.length === 0;
         if (!disabled) {
             var campo = selModel.nextSelection.columnHeader.dataIndex;
-           
+
             if (campo == "VENTA_DIA") { me.turno = "DIA"; }
             else if (campo == "VENTA_TARDE") { me.turno = "TARDE"; }
             else if (campo == "VENTA_NOCHE") { me.turno = "NOCHE"; }
-            else { me.turno == ""; }
-//            alert(me.turno);
+            else { me.turno = ""; }
+            //            alert(me.turno);
         }
         else { me.turno == ""; }
         Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
@@ -79,6 +79,7 @@
             me.CrearVentaMN();
         }
         else if (btn.getItemId() == "btn_Detalle") {
+//            alert(me.turno);
             if (me.turno == "") {
                 Ext.Msg.alert("Aviso", "Seleccione DIA , TARDE , NOCHE ");
                 return false;
