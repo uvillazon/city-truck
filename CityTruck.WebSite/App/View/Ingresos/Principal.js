@@ -14,9 +14,7 @@
         me.toolbar = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearIngreso', 'Crear Ingreso', Constantes.ICONO_CREAR, me.EventosIngreso, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
-        // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosIngreso, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_EDITAR, me.EventosIngreso, me.toolbar, this, null, true);
 
         me.grid = Ext.create('App.View.Ingresos.GridIngresos', {
             region: 'center',
@@ -40,9 +38,7 @@
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
-        Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-        //Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
     },
     EventosIngreso: function (btn) {
         var me = this;
@@ -50,14 +46,8 @@
             case "btn_CrearIngreso":
                 me.MostrarFormIngreso(true);
                 break;
-            case "btn_Editar":
-                me.MostrarFormIngreso(false, false);
-                break;
             case "btn_Detalle":
-                me.MostrarFormIngreso(false, true);
-                break;
-            case "btn_Eliminar":
-                me.EliminarRegistro();
+                me.MostrarFormIngreso(false, false);
                 break;
             default:
                 Ext.Msg.alert("Aviso", "No Existe el botton");
@@ -65,36 +55,66 @@
     },
     MostrarFormIngreso: function (isNew, block) {
         var me = this;
+
         if (me.winCrearIngreso == null) {
             me.winCrearIngreso = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
             me.formIngreso = Ext.create("App.View.Ingresos.FormIngreso", {
                 columns: 1,
                 title: 'Registro de Otros Ingresos ',
-                botones: false
+                botones: false,
+                dockButtons: true
             });
 
             me.winCrearIngreso.add(me.formIngreso);
             me.winCrearIngreso.btn_guardar.on('click', me.GuardarIngresos, this);
+            me.formIngreso.down('#docked_modificar').on('click', me.ModificarIngresos, this);
+            me.formIngreso.down('#docked_eliminar').on('click', me.EliminarRegistro, this);
+            me.formIngreso.down('#docked_comprobante').on('click', me.ImprimirComprobante, this);
         } else {
             me.formIngreso.getForm().reset();
             me.formIngreso.CargarStore();
         }
         if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formIngreso.ocultarSaldos(false);
+            me.formIngreso.mostrarSaldos(false);
             me.formIngreso.CargarStore();
             me.formIngreso.CargarDatos(me.recordSelected);
-        } else
-            me.formIngreso.ocultarSaldos(true);
+            me.formIngreso.down('#docked').setDisabled(false);
+            me.winCrearIngreso.btn_guardar.setDisabled(true);
+        } else {
+            me.formIngreso.mostrarSaldos(true);
+            me.formIngreso.down('#docked').setDisabled(true);
+            me.winCrearIngreso.btn_guardar.setDisabled(false);
+        }
+
         me.winCrearIngreso.show();
     },
     GuardarIngresos: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, me.winCrearIngreso);
+        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, null, 'ID_INGRESO');
+        me.formIngreso.down('#docked').setDisabled(false);
+        me.winCrearIngreso.btn_guardar.setDisabled(true);
+    },
+
+    ModificarIngresos: function () {
+        var me = this;
+        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Modificar el Ingreso?', null);
     },
 
     EliminarRegistro: function () {
         var me = this;
-        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar este Registro", { ID_INGRESO: me.id_ingreso }, me.grid, null);
+        me.id_ingreso = me.formIngreso.txt_id.getValue();
+        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar el Ingreso", { ID_INGRESO: me.id_ingreso }, me.grid, me.winCrearIngreso);
+    },
+
+    ImprimirComprobante: function () {
+        var me = this;
+        var usuario = Ext.getCmp('__NonmbreUsuarioSession').getValue();
+        var usrEncode = Funciones.encodeStr(usuario);
+
+        console.log(usrEncode);
+        console.log(Funciones.decodeStr(usrEncode));
+        var id = me.formIngreso.txt_id.getValue();
+        window.open(Constantes.HOST + 'Reportes/ReporteIngreso?ID=' + id + '&user=' + usrEncode);
     }
 
 });

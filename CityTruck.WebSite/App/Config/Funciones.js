@@ -180,6 +180,7 @@ Ext.define("App.Config.Funciones", {
     AjaxRequestWin: function (controlador, accion, mask, form, grid, msg, param, win) {
 
         var formSend = form.getForm();
+        var formObject = form; 
         //var time = (timeout == null) ? 
         var mensaje = (msg == null) ? 'Esta Seguro de Guardar Los cambios?' : msg;
         if (formSend.isValid()) {
@@ -193,12 +194,19 @@ Ext.define("App.Config.Funciones", {
                         params: param,
                         timeout : 1200,
                         success: function (form, action) {
-                            mask.el.unmask();
+                            mask.el.unmask();                           
                             Ext.MessageBox.alert('Exito', action.result.msg);
                             //me.Formulario.Bloquear();
                             if (grid != null) {
                                 try {
                                     grid.getStore().load();
+                                    grid.store.on('load', function(st) {                                        
+                                        if(action.result.id && formObject.txt_id) {
+                                          var row = st.findRecord(formObject.txt_id.getName(), action.result.id)
+                                          formObject.CargarDatos(row);
+                                          grid.getSelectionModel().select(row, true);
+                                        }      
+                                    });                                                                  
                                 }
                                 catch (err) {
                                     grid.load();
@@ -210,6 +218,9 @@ Ext.define("App.Config.Funciones", {
                         },
                         failure: function (form, action) {
                             mask.el.unmask();
+                            if (formObject.txt_id) {
+                               formObject.txt_id.setValue(-1);
+                            }
                             Ext.MessageBox.alert('Error', action.result.msg);
                         }
                     });
@@ -427,7 +438,7 @@ Ext.define("App.Config.Funciones", {
             },
         });
     },
-    AjaxRequestGrid: function (controlador, accion, mask, msg, param, grid,win) {
+    AjaxRequestGrid: function (controlador, accion, mask, msg, param, grid, win) {
         var mensaje = (msg == null) ? 'Esta Seguro de Guardar Los cambios?' : msg;
         Ext.MessageBox.confirm('Confirmacion?', mensaje, function (btn) {
             if (btn == 'yes') {
@@ -439,7 +450,7 @@ Ext.define("App.Config.Funciones", {
                         mask.el.unmask();
                         var str = Ext.JSON.decode(response.responseText);
                         if (str.success == true) {
-                            if (grid != null&& win!= null) {
+                            if (grid != null && win != null) {
                                 grid.getStore().load();
                                 win.hide();
                             }

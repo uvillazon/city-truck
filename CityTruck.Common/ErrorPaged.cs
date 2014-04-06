@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace CityTruck.Common
 {
@@ -27,5 +26,8 @@ namespace CityTruck.Common
 
         [DataMember]
         public string msg { get; set; }
+
+        [DataMember]
+        public int id { get; set; }
     }
 }

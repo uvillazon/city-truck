@@ -61,3 +61,7 @@ P_SG_GENERAR_VENTAS_DIARIAS
 
 06/02/2014 22:36
 P_SG_ELIMINAR_CAJA
+
+-----------------------------------------------------------------
+06/04/2014 19:50
+P_SG_GUARDAR_INGRESOS

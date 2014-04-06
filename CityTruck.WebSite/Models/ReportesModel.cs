@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CityTruck.Model;
 
 namespace CityTruck.WebSite.Models
 {
@@ -26,10 +22,11 @@ namespace CityTruck.WebSite.Models
         public decimal MANGUERA5 { get; set; }
         public decimal MANGUERA6 { get; set; }
         public DateTime FECHA { get; set; }
-      
-       
+
+
     }
-    public class EstadoResultadoModel {
+    public class EstadoResultadoModel
+    {
         public string MES { get; set; }
         public decimal UTILIDA_BRUTA_NETA { get; set; }
         public DateTime FECHA { get; set; }
@@ -37,7 +34,8 @@ namespace CityTruck.WebSite.Models
         public decimal TOTAL { get; set; }
 
     }
-    public class UtilidadVentaBruta {
+    public class UtilidadVentaBruta
+    {
         public decimal ING_DIESEL_VALORADO { get; set; }
         public decimal ING_GASOLINA_VALORADO { get; set; }
         public decimal EGR_DIESEL_VALORADO { get; set; }
@@ -57,7 +55,8 @@ namespace CityTruck.WebSite.Models
         public decimal PER_GASOLINA_FISICO { get; set; }
 
     }
-    public class UtilidadVentaEstimada {
+    public class UtilidadVentaEstimada
+    {
         public decimal ING_DIESEL_VALORADO { get; set; }
         public decimal ING_GASOLINA_VALORADO { get; set; }
         public decimal EGR_DIESEL_VALORADO { get; set; }
@@ -100,4 +99,15 @@ namespace CityTruck.WebSite.Models
         public decimal PER_GASOLINA_VALORADO { get; set; }
 
     }
+    public class IngresosModel
+    {
+        public string MES { get; set; }
+        public DateTime FECHA { get; set; }
+        public string DETALLE { get; set; }
+        public decimal TOTAL { get; set; }
+        public string TOTAL_LITERAL { get; set; }
+        public string USUARIO { get; set; }
+
+    }
+
 }

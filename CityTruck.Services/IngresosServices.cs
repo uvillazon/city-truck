@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
-using System.Text;
-using CityTruck.Services.Interfaces;
+using CityTruck.Business;
 using CityTruck.Common;
 using CityTruck.Model;
-using CityTruck.Services.Model;
-using CityTruck.Business.Interfaces;
-using System.Linq.Dynamic;
-using LinqKit;
-using CityTruck.Business;
-using System.Data.Objects;
+using CityTruck.Services.Interfaces;
 
 namespace CityTruck.Services
 {
@@ -22,7 +17,7 @@ namespace CityTruck.Services
         {
             //_manListas = manListas;
         }
-       
+
         public IEnumerable<SG_INGRESOS> ObtenerIngresosPaginado(PagingInfo paginacion, string ANIO, string MES)
         {
             IQueryable<SG_INGRESOS> result = null;
@@ -40,7 +35,19 @@ namespace CityTruck.Services
             return result;
         }
 
-        public RespuestaSP SP_GrabarIngreso(SG_INGRESOS ing,int ID_USR)
+        public SG_INGRESOS ObtenerIngreso(int ID)
+        {
+            SG_INGRESOS result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_INGRESOSManager(uow);
+
+                result = manager.ObtenerIngresoPorId(ID).FirstOrDefault();
+            });
+            return result;
+        }
+
+        public RespuestaSP SP_GrabarIngreso(SG_INGRESOS ing, int ID_USR)
         {
             RespuestaSP result = new RespuestaSP();
             ExecuteManager(uow =>
@@ -49,17 +56,29 @@ namespace CityTruck.Services
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
                 context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, p_res);
-                if (p_res.Value.ToString() == "1")
+
+                try
                 {
-                    result.success = true;
-                    result.msg = "Proceso Ejecutado Correctamente";
+                    int result_id = Int32.Parse(p_res.Value.ToString());
+                    if (result_id > 0)
+                    {
+                        result.success = true;
+                        result.msg = "Proceso Ejecutado Correctamente";
+                        result.id = result_id;
+                    }
+                    else
+                    {
+                        result.success = false;
+                        result.msg = p_res.Value.ToString();
+                        result.id = -1;
+                    }
                 }
-                else
+                catch (FormatException e)
                 {
                     result.success = false;
                     result.msg = p_res.Value.ToString();
+                    result.id = -1;
                 }
-
             });
             return result;
         }
@@ -78,7 +97,7 @@ namespace CityTruck.Services
                     paginacion.total = result.Count();
                     result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
                 }
-                
+
             });
             return result;
         }
