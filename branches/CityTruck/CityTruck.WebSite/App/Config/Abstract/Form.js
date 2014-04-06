@@ -18,7 +18,7 @@ Ext.define("App.Config.Abstract.Form", {
     fieldDefaults: {
         margin: '2',
         align: 'left',
-        labelWidth: 110,
+        labelWidth: 110
     },
     icono: true,
     record: null,
@@ -26,6 +26,7 @@ Ext.define("App.Config.Abstract.Form", {
     tituloEncabezado: 'redtertetert',
     cssEncabezado: 'resaltarRojo',
     bloquearFormulario: true,
+    dockButtons: false,
     initComponent: function () {
         var me = this;
         me.iconCls = (me.icono) ? 'application_form_add' : '';
@@ -51,13 +52,25 @@ Ext.define("App.Config.Abstract.Form", {
                 width: 120,
                 textAlign: 'center',
                 iconCls: 'disk',
-                margin: 10,
+                margin: 10
 
             });
+            
             me.buttons = [me.btn_guardar, me.btn_limpiar];
         }
         this.layout.columns = this.columns;
-
+        if (me.dockButtons) {
+            me.dockedItems = [{
+                xtype: 'toolbar',
+                itemId: 'docked',
+                dock: 'top',
+                items: [
+                    { xtype: 'button', itemId: 'docked_modificar', text: 'Modificar', iconCls: Constantes.ICONO_EDITAR },
+                    { xtype: 'button', itemId: 'docked_comprobante', text: 'Comprobante', iconCls: Constantes.ICONO_IMPRIMIR },
+                    { xtype: 'button', itemId: 'docked_eliminar', text: 'Eliminar', iconCls: Constantes.ICONO_BAJA }
+                ]
+            }];
+        }
         this.callParent();
         //me.addDocked(me.encabezado, 'top');
     },
@@ -94,8 +107,8 @@ Ext.define("App.Config.Abstract.Form", {
         var me = this;
         me.record = record;
         me.getForm().reset();
-        if(bloquear) 
-           me.BloquearFormulario();
+        if (bloquear)
+            me.BloquearFormulario();
         me.getForm().loadRecord(record);
     },
     loadFormulario: function (controlador, accion, params) {

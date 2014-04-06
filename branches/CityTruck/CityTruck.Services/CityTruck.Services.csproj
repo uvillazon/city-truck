@@ -47,13 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjustePosServices.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="CajasServices.cs" />
     <Compile Include="ClientesConsumoServices.cs" />
     <Compile Include="ComprasServices.cs" />
     <Compile Include="CombustiblesServices.cs" />
     <Compile Include="ClientesServices.cs" />
-    <Compile Include="AjustePosServices.cs" />
     <Compile Include="Interfaces\IAjustePosServices.cs" />
     <Compile Include="KardexCombustibleServices.cs" />
     <Compile Include="Interfaces\IKardexCombustibleServices.cs" />

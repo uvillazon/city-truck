@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using CityTruck.Model;
 using CityTruck.Services;
-using CityTruck.Services.Interfaces;
 using CityTruck.WebSite.Models;
 
 namespace CityTruck.WebSite.Reportes
@@ -41,7 +39,7 @@ namespace CityTruck.WebSite.Reportes
                     //SALDO_INICIAL_DIE = diesel.where(y=>y.FECHA == item.Key).fi
                 };
                 var com = combustible.Where(x => x.FECHA == item.Key).FirstOrDefault();
-                var pos = posMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE).OrderBy(y=>y.ID_POS);
+                var pos = posMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE).OrderBy(y => y.ID_POS);
                 var posajuste = ajusteposMes.Where(x => x.FECHA == item.Key && x.SG_POS.ID_COMBUSTIBLE == ID_COMBUSTIBLE).OrderBy(y => y.ID_POS);
                 venDia.PRODUCTO = com.SG_COMBUSTIBLES.DESCRIPCION;
                 venDia.MES = com.FECHA.ToString("MMMM").ToUpper();
@@ -81,7 +79,7 @@ namespace CityTruck.WebSite.Reportes
                 {
                     if (cont == 0)
                     {
-                        venDia.MANGUERA1 =(decimal)(venDia.MANGUERA1 + puntos.AJUSTE);
+                        venDia.MANGUERA1 = (decimal)(venDia.MANGUERA1 + puntos.AJUSTE);
                     }
                     else if (cont == 1)
                     {
@@ -177,12 +175,13 @@ namespace CityTruck.WebSite.Reportes
                     totalcostoGas = totalcostoGas + item.TOTALCOSTO;
 
                 }
-                else {
+                else
+                {
                     totalventaDie = totalventaDie + item.TOTALVENTA;
                     totalCantidadDie = totalCantidadDie + item.TOTAL_CANTIDAD;
                     totalcostoDie = totalcostoDie + item.TOTALCOSTO;
                 }
-                
+
             }
             result1.ING_DIESEL_FISICO = (decimal)totalCantidadDie;
             result1.ING_GASOLINA_FISICO = (decimal)totalCantidadGas;
@@ -394,6 +393,25 @@ namespace CityTruck.WebSite.Reportes
                 venDia.ACUMULADO_GAS = (decimal)gas.ACUMULADOS;
                 result.Add(venDia);
             }
+            return result;
+        }
+
+        public IEnumerable<IngresosModel> ReporteIngreso(int ID, string U)
+        {
+            List<IngresosModel> result = new List<IngresosModel>();
+            var servicio = new IngresosServices();
+            NumLetra nl = new NumLetra();
+            SG_INGRESOS ingreso = servicio.ObtenerIngreso(ID);
+            IngresosModel ingresoModel = new IngresosModel()
+            {
+                DETALLE = ingreso.CONCEPTO,
+                FECHA = DateTime.Now,
+                TOTAL = ingreso.IMPORTE,
+                USUARIO = U,
+                TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true)
+            };
+
+            result.Add(ingresoModel);
             return result;
         }
     }

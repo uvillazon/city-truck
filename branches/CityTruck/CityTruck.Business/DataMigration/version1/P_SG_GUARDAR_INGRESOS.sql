@@ -5,7 +5,7 @@ p_concepto  SG_INGRESOS.CONCEPTO%type,
 p_id_caja SG_INGRESOS.ID_CAJA%type,
 p_importe SG_INGRESOS.IMPORTE%type,
 p_id_usr   NUMBER,
---el resultado si es ok toda la operacion '1' y si no te devolvera el mensaje del error
+--el resultado si es ok toda la operacion 'Id' del regiratro y si no te devolvera el mensaje del error
 p_res OUT VARCHAR2
 )
 IS
@@ -30,12 +30,14 @@ IF v_res='0' THEN
         v_id_ingreso := Q_SG_INGRESOS.nextval;
         select MAx(NRO_COMP) INTO v_nro FROM SG_INGRESOS ;
        if v_nro is null then
-            v_nro:= 0;
+            v_nro:= 1;
+       ELSE 
+                  v_nro:= v_nro +1;
         end if;
         INSERT INTO SG_INGRESOS VALUES  (v_id_ingreso, v_nro, p_fecha, 'OTROS INGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
         
         v_res := '0';
-         IF v_res = '0' THEN
+        IF v_res = '0' THEN
             INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
              VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_ingreso , 'INGRESO' ,p_fecha,'INGRESO  NRO: '||v_nro ||  '- '||p_concepto,p_importe,0,0,p_id_usr,sysdate );
         END IF;
@@ -55,17 +57,17 @@ IF v_res='0' THEN
                                       DETALLE = 'INGRESO  NRO: '|| v_nro ||  '- '||p_concepto,
                                       INGRESO = p_importe
        WHERE ID_OPERACION = p_id_ingreso AND OPERACION = 'INGRESO';
+       v_id_ingreso:= p_id_ingreso;
                                       
     END IF;
 END IF;
     if v_res = 0 THEN
-        v_res := '1';
          P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
          IF p_id_caja <> v_id_caja THEN
            P_SG_ACT_KARDEX_EFECTIVO(v_id_caja,p_fecha,p_id_usr,v_res); 
          END IF;
      COMMIT;
-
+      v_res := TO_CHAR(v_id_ingreso);   
     ELSE
         ROLLBACK;
         

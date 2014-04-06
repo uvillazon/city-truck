@@ -110,9 +110,10 @@
 
         me.txt_nuevo_saldo.setValue(res);
     },
-    ocultarSaldos: function (value) {
+    mostrarSaldos: function (value) {
         var me = this;
         me.num_saldo.setVisible(value);
         me.txt_nuevo_saldo.setVisible(value);
     }
+
 });

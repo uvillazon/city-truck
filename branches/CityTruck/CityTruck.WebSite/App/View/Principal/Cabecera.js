@@ -103,6 +103,11 @@ Ext.define("App.View.Principal.Cabecera", {
             tooltip: "Cerrar Session",
             scope: me,
             handler: me.SalirSession
+        },{
+            xtype:'textfield',
+            hidden: true,
+            id:"__NonmbreUsuarioSession",
+            value: data.Nombre   
         }
         );
 
