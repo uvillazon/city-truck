@@ -36,6 +36,10 @@
           <DataField>USUARIO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="NRO_COMPROBANTE">
+          <DataField>NRO_COMPROBANTE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>CityTruckWebSiteReportes</DataSourceName>
@@ -45,7 +49,7 @@
         <rd:DataSetName>CityTruck.WebSite.Reportes</rd:DataSetName>
         <rd:TableName>SourceReport</rd:TableName>
         <rd:ObjectDataSourceSelectMethod>ReporteIngreso</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.IEnumerable`1[CityTruck.WebSite.Models.IngresosModel] ReporteIngreso(Int32)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.IEnumerable`1[CityTruck.WebSite.Models.IngresosModel] ReporteIngreso(Int32, System.String)</rd:ObjectDataSourceSelectMethodSignature>
         <rd:ObjectDataSourceType>CityTruck.WebSite.Reportes.SourceReport, CityTruck.WebSite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
@@ -401,7 +405,7 @@
         <Top>1.1998cm</Top>
         <Left>0.89112cm</Left>
         <Height>1.8cm</Height>
-        <Width>15.86084cm</Width>
+        <Width>15.86083cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -864,7 +868,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Now()</Value>
+                  <Value>=First(Fields!NRO_COMPROBANTE.Value, "DataSet1")</Value>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>

@@ -109,12 +109,8 @@
     ImprimirComprobante: function () {
         var me = this;
         var usuario = Ext.getCmp('__NonmbreUsuarioSession').getValue();
-        var usrEncode = Funciones.encodeStr(usuario);
-
-        console.log(usrEncode);
-        console.log(Funciones.decodeStr(usrEncode));
         var id = me.formIngreso.txt_id.getValue();
-        window.open(Constantes.HOST + 'Reportes/ReporteIngreso?ID=' + id + '&user=' + usrEncode);
+        window.open(Constantes.HOST + 'Reportes/ReporteIngreso?ID=' + id + '&U=' + usuario);
     }
 
 });
