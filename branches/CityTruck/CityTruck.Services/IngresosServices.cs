@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
+using System.Text;
+using CityTruck.Services.Interfaces;
 using CityTruck.Business;
 using CityTruck.Common;
 using CityTruck.Model;
-using CityTruck.Services.Interfaces;
+using CityTruck.Services.Model;
+using System.Linq.Dynamic;
+using LinqKit;
 
 namespace CityTruck.Services
 {
