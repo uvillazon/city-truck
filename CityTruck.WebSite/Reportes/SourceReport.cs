@@ -398,18 +398,19 @@ namespace CityTruck.WebSite.Reportes
             return result;
         }
 
-        public IEnumerable<IngresosModel> ReporteIngreso(int ID, string U)
+        public IEnumerable<IngresosModel> ReporteIngreso(int ID)
         {
             List<IngresosModel> result = new List<IngresosModel>();
             var servicio = new IngresosServices();
             NumLetra nl = new NumLetra();
             SG_INGRESOS ingreso = servicio.ObtenerIngreso(ID);
+            string user = HttpContext.Current.User.Identity.Name.Split('-')[0];
             IngresosModel ingresoModel = new IngresosModel()
             {
                 DETALLE = ingreso.CONCEPTO,
                 FECHA = DateTime.Now,
                 TOTAL = ingreso.IMPORTE,
-                USUARIO = U,
+                USUARIO = user,
                 TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true),
                 NRO_COMPROBANTE = ingreso.NRO_COMP
             };

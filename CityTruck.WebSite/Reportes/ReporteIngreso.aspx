@@ -31,7 +31,6 @@
         TypeName="CityTruck.WebSite.Reportes.SourceReport">
         <SelectParameters>
             <asp:QueryStringParameter Name="ID" QueryStringField="ID" Type="Int32" />
-            <asp:QueryStringParameter Name="U" QueryStringField="U" Type="String" />
         </SelectParameters>
     </asp:ObjectDataSource>
     </form>
