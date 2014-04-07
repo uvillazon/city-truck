@@ -108,9 +108,8 @@
 
     ImprimirComprobante: function () {
         var me = this;
-        var usuario = Ext.getCmp('__NonmbreUsuarioSession').getValue();
         var id = me.formIngreso.txt_id.getValue();
-        window.open(Constantes.HOST + 'Reportes/ReporteIngreso?ID=' + id + '&U=' + usuario);
+        window.open(Constantes.HOST + 'Reportes/ReporteIngreso?ID=' + id);
     }
 
 });
