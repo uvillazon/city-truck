@@ -410,7 +410,8 @@ namespace CityTruck.WebSite.Reportes
                 FECHA = DateTime.Now,
                 TOTAL = ingreso.IMPORTE,
                 USUARIO = U,
-                TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true)
+                TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true),
+                NRO_COMPROBANTE = ingreso.NRO_COMP
             };
 
             result.Add(ingresoModel);

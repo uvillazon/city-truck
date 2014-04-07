@@ -111,6 +111,7 @@ namespace CityTruck.WebSite.Models
         public decimal TOTAL { get; set; }
         public string TOTAL_LITERAL { get; set; }
         public string USUARIO { get; set; }
+        public int NRO_COMPROBANTE { get; set; }
 
     }
 
