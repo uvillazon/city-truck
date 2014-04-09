@@ -111,6 +111,13 @@
     <Compile Include="Reportes\ReporteAutoridad.aspx.designer.cs">
       <DependentUpon>ReporteAutoridad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteEgreso.aspx.cs">
+      <DependentUpon>ReporteEgreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEgreso.aspx.designer.cs">
+      <DependentUpon>ReporteEgreso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ReporteEstadoResultado.aspx.cs">
       <DependentUpon>ReporteEstadoResultado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1671,6 +1678,7 @@
     <Content Include="Global.asax" />
     <Content Include="Reportes\ReporteANH.aspx" />
     <Content Include="Reportes\ReporteAutoridad.aspx" />
+    <Content Include="Reportes\ReporteEgreso.aspx" />
     <Content Include="Reportes\ReporteEstadoResultado.aspx" />
     <Content Include="Reportes\ReporteIngreso.aspx" />
     <Content Include="Reportes\ReporteKardexEfectivo.aspx" />
@@ -3849,6 +3857,7 @@
     <Content Include="Views\AppCityTruck\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\ReporteEgreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteIngreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteANH.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteEstadoResultado.rdlc" />

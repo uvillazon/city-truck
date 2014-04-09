@@ -93,6 +93,7 @@
         Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, null, 'ID_INGRESO');
         me.formIngreso.down('#docked').setDisabled(false);
         me.winCrearIngreso.btn_guardar.setDisabled(true);
+        me.formIngreso.mostrarSaldos(false);
     },
 
     ModificarIngresos: function () {

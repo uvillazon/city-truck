@@ -32,8 +32,5 @@ namespace CityTruck.Business
             var query = context.SG_INGRESOS.Where(x => x.ID_INGRESO == ID);
             return query;
         }
-
-
-
     }
 }

@@ -103,7 +103,7 @@ namespace CityTruck.WebSite.Models
         public decimal PER_GASOLINA_VALORADO { get; set; }
 
     }
-    public class IngresosModel
+    public class IngresosEgresosModel
     {
         public string MES { get; set; }
         public DateTime FECHA { get; set; }

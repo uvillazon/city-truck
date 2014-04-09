@@ -398,14 +398,14 @@ namespace CityTruck.WebSite.Reportes
             return result;
         }
 
-        public IEnumerable<IngresosModel> ReporteIngreso(int ID)
+        public IEnumerable<IngresosEgresosModel> ReporteIngreso(int ID)
         {
-            List<IngresosModel> result = new List<IngresosModel>();
+            List<IngresosEgresosModel> result = new List<IngresosEgresosModel>();
             var servicio = new IngresosServices();
             NumLetra nl = new NumLetra();
             SG_INGRESOS ingreso = servicio.ObtenerIngreso(ID);
             string user = HttpContext.Current.User.Identity.Name.Split('-')[0];
-            IngresosModel ingresoModel = new IngresosModel()
+            IngresosEgresosModel ingresoModel = new IngresosEgresosModel()
             {
                 DETALLE = ingreso.CONCEPTO,
                 FECHA = DateTime.Now,
@@ -413,6 +413,27 @@ namespace CityTruck.WebSite.Reportes
                 USUARIO = user,
                 TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true),
                 NRO_COMPROBANTE = ingreso.NRO_COMP
+            };
+
+            result.Add(ingresoModel);
+            return result;
+        }
+
+        public IEnumerable<IngresosEgresosModel> ReporteEgreso(int ID)
+        {
+            List<IngresosEgresosModel> result = new List<IngresosEgresosModel>();
+            var servicio = new IngresosServices();
+            NumLetra nl = new NumLetra();
+            SG_EGRESOS egreso = servicio.ObtenerEgreso(ID);
+            string user = HttpContext.Current.User.Identity.Name.Split('-')[0];
+            IngresosEgresosModel ingresoModel = new IngresosEgresosModel()
+            {
+                DETALLE = egreso.CONCEPTO,
+                FECHA = DateTime.Now,
+                TOTAL = egreso.IMPORTE,
+                USUARIO = user,
+                TOTAL_LITERAL = nl.Convertir(egreso.IMPORTE.ToString(), true),
+                NRO_COMPROBANTE = egreso.NRO_COMP
             };
 
             result.Add(ingresoModel);
