@@ -11,6 +11,8 @@ p_res OUT VARCHAR2
 IS
  v_cnt NUMBER:=0;
  v_res VARCHAR2(1000):='0';
+ v_saldo NUMBER := 0;
+  v_saldo_egreso NUMBER := 0;
  v_id_egreso  SG_EGRESOS.ID_EGRESO%type;
  v_id_caja SG_EGRESOS.ID_CAJA%type;
  v_nro  SG_EGRESOS.NRO_COMP%type;
@@ -27,50 +29,75 @@ IF v_res='0' THEN
 --vamos a crear nuestra secuencia
    if p_id_egreso = 0 THEN
          --creacion
-        v_id_egreso := Q_SG_EGRESOS.nextval;
-        select MAx(NRO_COMP) INTO v_nro FROM SG_EGRESOS ;
-       
-        if v_nro is null then
-            v_nro:= 0;
-        end if;
-        INSERT INTO SG_EGRESOS VALUES  (v_id_egreso, v_nro + 1 , p_fecha, 'OTROS EGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
-        
-        v_res := '0';
-         IF v_res = '0' THEN
+        IF v_res='0' THEN
+                SELECT SALDO into v_saldo FROM SG_CAJAS  WHERE ID_CAJA = p_id_caja;
+                IF v_saldo <p_importe THEN
+                    v_res := 'saldo insuficiente...';
+                END IF;
+            --verificamos saldo
+            
+        END IF; 
+        IF v_res='0' THEN
+            
            
-            --vamos a insertar kardex efectivo
-            INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
-             VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_egreso , 'EGRESO' ,p_fecha,'EGRESO  NRO: '||v_nro ||  '- '||p_concepto,0,p_importe,0,p_id_usr,sysdate );
-          
-        END IF;
+            v_id_egreso := Q_SG_EGRESOS.nextval;
+            select MAx(NRO_COMP) INTO v_nro FROM SG_EGRESOS ;
+           
+            if v_nro is null then
+                v_nro:= 1;
+            else 
+                 v_nro:= v_nro+ 1;
+            end if;
+            INSERT INTO SG_EGRESOS VALUES  (v_id_egreso, v_nro, p_fecha, 'OTROS EGRESOS',p_concepto ,p_id_caja ,p_importe ,p_id_usr, sysdate );
+            
+            v_res := '0';
+             IF v_res = '0' THEN
+               
+                --vamos a insertar kardex efectivo
+                INSERT INTO SG_KARDEX_EFECTIVO ( ID_KARDEX, ID_CAJA, ID_OPERACION ,OPERACION ,FECHA ,DETALLE, INGRESO, EGRESO ,SALDO, ID_USUARIO ,FECHA_REG )
+                 VALUES (Q_SG_KARDEX_EFECTIVO.nextval , p_id_caja , v_id_egreso , 'EGRESO' ,p_fecha,'EGRESO  NRO: '||v_nro ||  '- '||p_concepto,0,p_importe,0,p_id_usr,sysdate );
+              
+            END IF;
+         END IF;
     ELSE
+        IF v_res='0' THEN
+                SELECT IMPORTE into v_saldo_egreso FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso; 
+                SELECT SALDO into v_saldo FROM SG_CAJAS  WHERE ID_CAJA = p_id_caja;
+                IF (v_saldo + v_saldo_egreso ) <p_importe THEN
+                    v_res := 'saldo insuficiente...';
+                END IF;
+            --verificamos saldo
+            
+        END IF; 
         --editar
+        IF v_res = '0' THEN
         
-        SELECT NRO_COMP, ID_CAJA INTO v_nro, v_id_caja FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso;
-        
-        UPDATE SG_EGRESOS SET FECHA=p_fecha, 
-                               CONCEPTO = p_concepto, 
-                               ID_CAJA = p_id_caja, 
-                               IMPORTE = p_importe
-        WHERE ID_EGRESO = p_id_egreso;
-        
-        
-        UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
-                                      FECHA = p_fecha,
-                                      DETALLE = 'EGRESO  NRO: '|| v_nro  ||  '- '||p_concepto,
-                                      EGRESO = p_importe
-       WHERE ID_OPERACION = p_id_egreso AND OPERACION = 'EGRESO';
-                                      
+            SELECT NRO_COMP, ID_CAJA INTO v_nro, v_id_caja FROM SG_EGRESOS WHERE ID_EGRESO = p_id_egreso;
+            
+            UPDATE SG_EGRESOS SET FECHA=p_fecha, 
+                                   CONCEPTO = p_concepto, 
+                                   ID_CAJA = p_id_caja, 
+                                   IMPORTE = p_importe
+            WHERE ID_EGRESO = p_id_egreso;
+            
+            
+            UPDATE SG_KARDEX_EFECTIVO SET ID_CAJA =  p_id_caja,
+                                          FECHA = p_fecha,
+                                          DETALLE = 'EGRESO  NRO: '|| v_nro  ||  '- '||p_concepto,
+                                          EGRESO = p_importe
+           WHERE ID_OPERACION = p_id_egreso AND OPERACION = 'EGRESO';
+           v_id_egreso:= p_id_egreso;
+       END IF;                           
     END IF;
 END IF;
-    if v_res = 0 THEN
-        v_res := '1';
+    if v_res = '0' THEN
+      
      COMMIT;
       P_SG_ACT_KARDEX_EFECTIVO(p_id_caja,p_fecha,p_id_usr,v_res);
       IF p_id_caja <> v_id_caja THEN
         P_SG_ACT_KARDEX_EFECTIVO(v_id_caja,p_fecha,p_id_usr,v_res);
       END IF;
-
+     v_res := TO_CHAR(v_id_egreso); 
     ELSE
         ROLLBACK;
         

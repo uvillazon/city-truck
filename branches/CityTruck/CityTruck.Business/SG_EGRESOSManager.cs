@@ -25,6 +25,13 @@ namespace CityTruck.Business
             var query = context.SG_EGRESOS.Where(x => x.FECHA.Month == mes && x.FECHA.Year == anio);
             return query;
         }
-        
+
+        public IQueryable<SG_EGRESOS> ObtenerEgresoPorId(int ID)
+        {
+            var context = (CityTruckContext)Context;
+            var query = context.SG_EGRESOS.Where(x => x.ID_EGRESO == ID);
+            return query;
+        }
+
     }
 }
