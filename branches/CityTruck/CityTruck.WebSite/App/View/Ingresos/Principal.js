@@ -74,16 +74,18 @@
             me.formIngreso.getForm().reset();
             me.formIngreso.CargarStore();
         }
-        if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
+        if (!isNew && me.recordSelected) {
             me.formIngreso.mostrarSaldos(false);
             me.formIngreso.CargarStore();
             me.formIngreso.CargarDatos(me.recordSelected);
             me.formIngreso.down('#docked').setDisabled(false);
             me.winCrearIngreso.btn_guardar.setDisabled(true);
+            me.formIngreso.habilitarFormulario(false);
         } else {
             me.formIngreso.mostrarSaldos(true);
             me.formIngreso.down('#docked').setDisabled(true);
             me.winCrearIngreso.btn_guardar.setDisabled(false);
+            me.formIngreso.habilitarFormulario(true, true);
         }
 
         me.winCrearIngreso.show();
@@ -98,7 +100,8 @@
 
     ModificarIngresos: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Modificar el Ingreso?', null);
+        me.formIngreso.habilitarFormulario(true);
+        me.winCrearIngreso.btn_guardar.setDisabled(false);
     },
 
     EliminarRegistro: function () {
