@@ -81,23 +81,27 @@
             me.formEgreso.CargarDatos(me.recordSelected);
             me.formEgreso.down('#docked').setDisabled(false);
             me.winCrearEgreso.btn_guardar.setDisabled(true);
+            me.formEgreso.habilitarFormulario(false);
         } else {
             me.formEgreso.mostrarSaldos(true);
             me.formEgreso.down('#docked').setDisabled(true);
             me.winCrearEgreso.btn_guardar.setDisabled(false);
+            me.formEgreso.habilitarFormulario(true, true);
         }
         me.winCrearEgreso.show();
     },
     GuardarEgresos: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Guardar el Egreso?', null);
+        Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Guardar el Egreso?', null, null, 'ID_EGRESO');
         me.formEgreso.down('#docked').setDisabled(false);
         me.winCrearEgreso.btn_guardar.setDisabled(true);
         me.formEgreso.mostrarSaldos(false);
     },
     ModificarEgresos: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Egresos', 'GuardarEgreso', me.winCrearEgreso, me.formEgreso, me.grid, 'Esta Seguro de Modificar el Egreso?', null);
+        me.formEgreso.habilitarFormulario(true);
+        me.winCrearEgreso.btn_guardar.setDisabled(false);
+        
     },
 
     EliminarRegistro: function () {

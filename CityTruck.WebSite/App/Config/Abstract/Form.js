@@ -120,5 +120,7 @@ Ext.define("App.Config.Abstract.Form", {
                 console.log("No existe ningun dato")
             }
         });
+    },
+    habilitarFormulario: function (value) {
     }
 });

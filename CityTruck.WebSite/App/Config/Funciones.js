@@ -177,7 +177,7 @@ Ext.define("App.Config.Funciones", {
         return grupo;
     },
     //Ajax Request Con Confirmacion para los Windows
-    AjaxRequestWin: function (controlador, accion, mask, form, grid, msg, param, win) {
+    AjaxRequestWin: function (controlador, accion, mask, form, grid, msg, param, win, id_name) {
 
         var formSend = form.getForm();
         var formObject = form; 
@@ -196,16 +196,20 @@ Ext.define("App.Config.Funciones", {
                         success: function (form, action) {
                             mask.el.unmask();                           
                             Ext.MessageBox.alert('Exito', action.result.msg);
-                            //me.Formulario.Bloquear();
                             if (grid != null) {
+                            var storeTmp = grid.getStore();
                                 try {
+                                    
                                     grid.getStore().load();
-                                    grid.store.on('load', function(st) {                                        
-                                        if(action.result.id && formObject.txt_id) {
-                                          var row = st.findRecord(formObject.txt_id.getName(), action.result.id)
-                                          formObject.CargarDatos(row);
-                                          grid.getSelectionModel().select(row, true);
-                                        }      
+                                    grid.store.on('load', function(st) {                                      
+                                        if(action.result.id && id_name) {
+                                          var row = st.findRecord(id_name, action.result.id);
+                                          if (row) {
+                                            formObject.CargarDatos(row);
+                                            grid.getSelectionModel().select(row, true);
+                                          }
+                                        }
+                                        formObject.habilitarFormulario(false);      
                                     });                                                                  
                                 }
                                 catch (err) {

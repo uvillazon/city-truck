@@ -111,5 +111,15 @@
         var me = this;
        me.num_saldo.setVisible(value);
        me.txt_nuevo_saldo.setVisible(value);
+    }, 
+    habilitarFormulario: function (habilitar, crear) {
+        var me = this;
+        var fields = new Array('REGISTRAR', 'NRO_COMP');
+        if (!crear)
+            fields.push('FECHA');
+         Funciones.BloquearFormulario(me, new Array('docked_modificar', 'docked_eliminar', 'docked_comprobante'));
+        if (habilitar) {
+            Funciones.DesbloquearFormulario(me, fields, false);
+        }
     }
 });
