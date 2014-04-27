@@ -7,7 +7,7 @@
         me.cargarEventos();
         this.callParent(arguments);
     },
-    CargarStore : function(){
+    CargarStore: function () {
         var me = this;
         me.store_moneda.load();
     },
@@ -22,13 +22,13 @@
         });
         me.txt_nro_cmp = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "C\u00F3digo",
-//            readOnly : true,
+            //            readOnly : true,
             name: "CODIGO",
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
 
         });
-         me.txt_nombre = Ext.create("App.Config.Componente.TextFieldBase", {
+        me.txt_nombre = Ext.create("App.Config.Componente.TextFieldBase", {
             fieldLabel: "Nombre",
             name: "NOMBRE",
             afterLabelTextTpl: Constantes.REQUERIDO,
@@ -37,18 +37,18 @@
         me.num_nro_cuenta = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Nro Cuenta",
             name: "NRO_CUENTA",
-             allowBlank: false
+            allowBlank: false
 
         });
-     
 
-         me.store_moneda = Ext.create('App.Store.Listas.StoreLista');
+
+        me.store_moneda = Ext.create('App.Store.Listas.StoreLista');
         me.store_moneda.setExtraParam('ID_LISTA', Lista.Buscar('MONEDA'));
         me.cbx_moneda = Ext.create("App.Config.Componente.ComboBase", {
             fieldLabel: "Moneda",
             name: "MONEDA",
             displayField: 'VALOR',
-//            valueField: 'CODIGO',
+            //            valueField: 'CODIGO',
             store: me.store_moneda,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
@@ -76,15 +76,22 @@
             me.num_saldo,
             me.txt_descp
         ];
-       
-      
 
-    }, ocultarSaldos: function(value) {
+
+
+    }, mostrarSaldos: function (value) {
         var me = this;
         me.num_saldo.setVisible(value);
     },
-    cargarEventos : function(){
+    cargarEventos: function () {
         var me = this;
-       
+
+    }, habilitarFormulario: function (habilitar) {
+        var me = this;
+        if (habilitar) {
+            Funciones.DesbloquearFormulario(me, null, true);
+        } else {
+            Funciones.BloquearFormulario(me, new Array('docked_modificar', 'docked_eliminar', 'docked_comprobante'));
+        }
     }
 });

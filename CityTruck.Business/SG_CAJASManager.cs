@@ -16,6 +16,13 @@ namespace CityTruck.Business
 
         public SG_CAJASManager(IUnitOfWork uow) : base(uow) { }
 
+        public IQueryable<SG_CAJAS> ObtenerCajaPorId(int ID)
+        {
+            var context = (CityTruckContext)Context;
+            var query = context.SG_CAJAS.Where(x => x.ID_CAJA == ID);
+            return query;
+        }
+
         //public IQueryable<SG_CAJAS> ObtenerCajasPorMesyAnio(string ANIO, string MES)
         //{
         //    var context = (CityTruckContext)Context;
@@ -28,6 +35,6 @@ namespace CityTruck.Business
         //}
 
 
-        
+
     }
 }

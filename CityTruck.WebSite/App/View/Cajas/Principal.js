@@ -18,9 +18,7 @@
         Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.EventosCaja, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCaja, me.toolbar, this, null, true);
-        // Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCaja, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCaja, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
 
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
@@ -44,9 +42,7 @@
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
-        Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
-        //Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Kardex', me.toolbar, disabled);
     },
     EventosCaja: function (btn) {
@@ -56,14 +52,8 @@
             case "btn_CrearCaja":
                 me.MostrarForm(true);
                 break;
-            case "btn_Editar":
-                me.MostrarForm(false, false);
-                break;
             case "btn_Detalle":
-                me.MostrarForm(false, true);
-                break;
-            case "btn_Eliminar":
-                me.EliminarRegistro();
+                me.MostrarForm(false, false);
                 break;
             case "btn_Kardex":
                 me.CrearVentanaKardex();
@@ -79,29 +69,51 @@
             me.winCrearCaja = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar' });
             me.formCrearCaja = Ext.create("App.View.Cajas.FormCaja", {
                 title: 'Registro de Cajas ',
-                botones: false
+                botones: false,
+                dockButtons: true
             });
             me.winCrearCaja.add(me.formCrearCaja);
             me.winCrearCaja.btn_guardar.on('click', me.GuardarCajas, this);
+            me.formCrearCaja.down('#docked_modificar').on('click', me.Modificar, this);
+            me.formCrearCaja.down('#docked_eliminar').on('click', me.EliminarRegistro, this);
+            me.formCrearCaja.down('#docked_comprobante').setVisible(false);
 
         } else {
             me.formCrearCaja.getForm().reset();
             me.formCrearCaja.CargarStore();
         }
 
-        if (!isNew && !Funciones.isEmpty(me.recordSelected)) {
-            me.formCrearCaja.ocultarSaldos(false);
+        if (!isNew && me.recordSelected) {
+            me.formCrearCaja.mostrarSaldos(false);
             me.formCrearCaja.CargarStore();
             me.formCrearCaja.CargarDatos(me.recordSelected);
-        } else
+            me.formCrearCaja.down('#docked').setDisabled(false);
+            me.winCrearCaja.btn_guardar.setDisabled(true);
+            me.formCrearCaja.habilitarFormulario(false);
+        } else {
             me.formCrearCaja.CargarStore();
-            me.formCrearCaja.ocultarSaldos(true);
+            me.formCrearCaja.mostrarSaldos(true);
+            me.formCrearCaja.down('#docked').setDisabled(true);
+            me.winCrearCaja.btn_guardar.setDisabled(false);
+            me.formCrearCaja.habilitarFormulario(true);
+        }
+
         me.winCrearCaja.show();
     },
     GuardarCajas: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Cajas', 'GuardarCaja', me.winCrearCaja, me.formCrearCaja, me.grid, 'Esta Seguro de Guardar la Caja?', null, me.winCrearCaja);
-    }, CrearVentanaKardex: function () {
+        Funciones.AjaxRequestWin('Cajas', 'GuardarCaja', me.winCrearCaja, me.formCrearCaja, me.grid, 'Esta Seguro de Guardar la Caja?', null, null, 'ID_CAJA');
+        me.formCrearCaja.down('#docked').setDisabled(false);
+        me.winCrearCaja.btn_guardar.setDisabled(true);
+        me.formCrearCaja.mostrarSaldos(false);
+    },
+
+    Modificar: function () {
+        var me = this;
+        me.formCrearCaja.habilitarFormulario(true);
+        me.winCrearCaja.btn_guardar.setDisabled(false);
+    },
+    CrearVentanaKardex: function () {
         var me = this;
         var buttonGroup = [{
             xtype: 'button',
@@ -188,7 +200,8 @@
 
     }, EliminarRegistro: function () {
         var me = this;
-        Funciones.AjaxRequestGrid("Cajas", "EliminarCaja", me, "Esta Seguro de Eliminar este Registro", { ID_CAJA: me.id_caja }, me.grid, null);
+        me.id_caja = me.formCrearCaja.txt_id.getValue();
+        Funciones.AjaxRequestGrid("Cajas", "EliminarCaja", me, "Esta Seguro de Eliminar este Registro", { ID_CAJA: me.id_caja }, me.grid, me.winCrearCaja);
 
     }
 });
