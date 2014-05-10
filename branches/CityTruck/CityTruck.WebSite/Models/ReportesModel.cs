@@ -106,12 +106,24 @@ namespace CityTruck.WebSite.Models
     public class IngresosEgresosModel
     {
         public string MES { get; set; }
+        public string CAJA { get; set; }
         public DateTime FECHA { get; set; }
         public string DETALLE { get; set; }
         public decimal TOTAL { get; set; }
         public string TOTAL_LITERAL { get; set; }
         public string USUARIO { get; set; }
         public int NRO_COMPROBANTE { get; set; }
+
+    }
+    public class VentaDiaria
+    {
+        public string TIPO { get; set; }
+        public string DETALLE { get; set; }
+        public decimal PARCIAL { get; set; }
+        public DateTime FECHA { get; set; }
+        public string TURNO { get; set; }
+        public string USUARIO { get; set; }
+
 
     }
 

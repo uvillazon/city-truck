@@ -19,11 +19,13 @@ namespace CityTruck.WebSite.Controllers
         private IVentasDiariasServices _serVen;
         private IPosTurnosServices _serPos;
         private ICombustiblesServices _serCom;
-        public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos, ICombustiblesServices serCom)
+        private IAjustePosServices _serAjus;
+        public VentasController(IVentasDiariasServices serVen, IPosTurnosServices serPos, ICombustiblesServices serCom, IAjustePosServices serAjus)
         {
             _serVen = serVen;
             _serPos = serPos;
             _serCom = serCom;
+            _serAjus = serAjus;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -447,11 +449,13 @@ namespace CityTruck.WebSite.Controllers
         {
             try
             {
+                //var combs= _serCom.ObtenerCombustible(x=>x.mn
                 int id_usr = Convert.ToInt32(User.Identity.Name.Split('-')[3]);
                 RespuestaSP respuestaRSP = new RespuestaSP();
 
                 respuestaRSP = _serVen.SP_GrabarConsumo(p, id_usr);
 
+                
 
                 return Json(respuestaRSP);
             }
@@ -483,17 +487,20 @@ namespace CityTruck.WebSite.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ObtenerManguerasPaginado(PagingInfo paginacion)
         {
-            _serPos.SP_ActualizarSaldos();
+            //_serPos.SP_ActualizarSaldos();
             var cajas = _serPos.ObtnenerPuntosPaginados(paginacion);
             var formatData = cajas.Select(x => new
             {
                 ID_POS = x.ID_POS,
                 COMBUSTIBLE = x.SG_COMBUSTIBLES.NOMBRE,
+                ID_COMBUSTIBLE = x.SG_COMBUSTIBLES.ID_COMBUSTIBLE,
                 CODIGO = x.CODIGO,
-                MITTER_INICIAL = x.ENT_LITTER_INI,
-                MITTER_INICIAL_MN = x.ENT_LITTER_INI_MN,
-                MITTER_ACTUAL_MN = x.LITTER_ACT_MN,
-                MITTER_ACTUAL = x.LITTER_ACT
+                PRECIO_VENTA = x.SG_COMBUSTIBLES.PRECIO_VENTA,
+                PRECIO_COMPRA = x.SG_COMBUSTIBLES.PRECIO_COMPRA,
+                //MITTER_INICIAL = x.ENT_LITTER_INI,
+                //MITTER_INICIAL_MN = x.ENT_LITTER_INI_MN,
+                //MITTER_ACTUAL_MN = x.LITTER_ACT_MN,
+                //MITTER_ACTUAL = x.LITTER_ACT
             });
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";

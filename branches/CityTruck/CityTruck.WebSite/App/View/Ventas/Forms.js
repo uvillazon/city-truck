@@ -459,6 +459,13 @@
         me.cbx_combustible.on('select',function(cmd,record){
             me.combustible = record[0];
             me.num_precio.setValue(me.combustible.get('PRECIO_VENTA'));
+            try{
+                me.num_id_combustible.reset();
+                me.num_id_combustible.setValue(me.combustible.get('ID_COMBUSTIBLE'));
+            }
+            catch (e){
+                console.log("error");
+            }
         });
 
 //        me.num_litros.on('change',function(num,newvalue,oldvalue){
@@ -502,6 +509,16 @@
     },
     CargarFormConsumo : function(){
         var me = this;
+        me.store_tipo = Ext.create('App.Store.Listas.StoreLista');
+        me.store_tipo.setExtraParam('ID_LISTA', Lista.Buscar('TIPO_CONSUMO'));
+        me.cbx_registrar= Ext.create("App.Config.Componente.ComboBase", {
+            fieldLabel: "Tipo Consumo",
+            name: "TIPO",
+            displayField: 'VALOR',
+            store: me.store_tipo,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false
+        });
         me.store_cliente = Ext.create('App.Store.ConsumoPropio.ClientesConsumo');
         me.cbx_cliente = Ext.create("App.Config.Componente.ComboAutoBase", {
             fieldLabel: "Cliente",
@@ -514,17 +531,17 @@
             textoTpl: function () { return "{CODIGO} - {NOMBRE}" },
             store: me.store_cliente,
         });
-        me.store_combustible = Ext.create('App.Store.Combustibles.Combustibles').load();
+        me.store_combustible = Ext.create('App.Store.Puntos.Puntos').load();
         me.cbx_combustible = Ext.create("App.Config.Componente.ComboBase", {
-            fieldLabel: "Combustible",
-            name: "ID_COMBUSTIBLE",
-            displayField: 'NOMBRE',
-            valueField : 'ID_COMBUSTIBLE',
+            fieldLabel: "Manguera",
+            name: "ID_POS",
+            displayField: 'CODIGO',
+            valueField : 'ID_POS',
             store: me.store_combustible,
             colspan : 2,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
-            textoTpl : function () { return "{DESCRIPCION}" }
+            textoTpl : function () { return "{CODIGO}" }
         });
          me.num_litros = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Litros",
@@ -534,6 +551,14 @@
             maxValue: 999999999,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false,
+        });
+        me.num_id_combustible = Ext.create("App.Config.Componente.NumberFieldBase", {
+            name: "ID_COMBUSTIBLE",
+            allowDecimals: true,
+            hidden : true,
+            afterLabelTextTpl: Constantes.REQUERIDO,
+            allowBlank: false,
+            
         });
         me.num_importe = Ext.create("App.Config.Componente.NumberFieldBase", {
             fieldLabel: "Importe Total",
@@ -550,7 +575,9 @@
             maxValue: 999999999,
         });
         me.items = [
+            me.num_id_combustible,
             me.cbx_cliente,
+            me.cbx_registrar,
             me.cbx_combustible,
             me.num_precio,
             me.num_litros,
@@ -606,6 +633,7 @@
             me.txt_id_combustible,
             me.txt_id_consumo,
             me.txt_cliente,
+           
             me.txt_combustible,
             me.num_precio,
             me.num_litros,

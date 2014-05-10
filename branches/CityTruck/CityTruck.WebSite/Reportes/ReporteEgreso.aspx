@@ -16,7 +16,8 @@
         </asp:ScriptManager>
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
             Font-Size="8pt" InteractiveDeviceInfos="(Colección)" 
-            WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="709px">
+            WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1000px" 
+            Height="800px">
             <LocalReport ReportPath="Reportes\ReporteEgreso.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />

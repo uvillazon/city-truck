@@ -35,8 +35,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_AJUSTE_PRECIO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_AJUSTE_PRECIO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AJUSTE_PRECIO), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_COMPRAS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_COMPRAS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_VENTAS_CREDITO_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_VENTAS_CREDITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_VENTAS_CREDITO), true)]
-[assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R02", "SG_CLIENTES_CONSUMO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES_CONSUMO), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
-[assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_DETALLES_COMPRAS_R01", "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMPRAS), "SG_DETALLES_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_DETALLES_COMPRAS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_TANQUES_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_TANQUES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_TANQUES), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_AJUSTES_TANQUE_R01", "SG_TANQUES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_TANQUES), "SG_AJUSTES_TANQUE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AJUSTES_TANQUE), true)]
@@ -46,6 +44,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_POS_DIA_MN_R01", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_POS), "SG_POS_DIA_MN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_POS_DIA_MN), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_KARDEX_COMBUSTIBLE_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_KARDEX_COMBUSTIBLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_KARDEX_COMBUSTIBLE), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_AJUSTE_POS_R01", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_POS), "SG_AJUSTE_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AJUSTE_POS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R02", "SG_CLIENTES_CONSUMO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES_CONSUMO), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R03", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CityTruck.Model.SG_POS), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 
 #endregion
 
@@ -420,22 +421,6 @@ namespace CityTruck.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SG_CONSUMOS> SG_CONSUMOS
-        {
-            get
-            {
-                if ((_SG_CONSUMOS == null))
-                {
-                    _SG_CONSUMOS = base.CreateObjectSet<SG_CONSUMOS>("SG_CONSUMOS");
-                }
-                return _SG_CONSUMOS;
-            }
-        }
-        private ObjectSet<SG_CONSUMOS> _SG_CONSUMOS;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SG_CLIENTE_CONSUMO_COMBUSTIBLE> SG_CLIENTE_CONSUMO_COMBUSTIBLE
         {
             get
@@ -576,6 +561,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_AJUSTE_POS> _SG_AJUSTE_POS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_CONSUMOS> SG_CONSUMOS
+        {
+            get
+            {
+                if ((_SG_CONSUMOS == null))
+                {
+                    _SG_CONSUMOS = base.CreateObjectSet<SG_CONSUMOS>("SG_CONSUMOS");
+                }
+                return _SG_CONSUMOS;
+            }
+        }
+        private ObjectSet<SG_CONSUMOS> _SG_CONSUMOS;
 
         #endregion
 
@@ -742,14 +743,6 @@ namespace CityTruck.Model
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SG_CONSUMOS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSG_CONSUMOS(SG_CONSUMOS sG_CONSUMOS)
-        {
-            base.AddObject("SG_CONSUMOS", sG_CONSUMOS);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SG_CLIENTE_CONSUMO_COMBUSTIBLE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSG_CLIENTE_CONSUMO_COMBUSTIBLE(SG_CLIENTE_CONSUMO_COMBUSTIBLE sG_CLIENTE_CONSUMO_COMBUSTIBLE)
@@ -819,6 +812,14 @@ namespace CityTruck.Model
         public void AddToSG_AJUSTE_POS(SG_AJUSTE_POS sG_AJUSTE_POS)
         {
             base.AddObject("SG_AJUSTE_POS", sG_AJUSTE_POS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_CONSUMOS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_CONSUMOS(SG_CONSUMOS sG_CONSUMOS)
+        {
+            base.AddObject("SG_CONSUMOS", sG_CONSUMOS);
         }
 
         #endregion
@@ -1646,125 +1647,6 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_CLIENTE_CONSUMO", p_ID_CLIENTEParameter, p_CODIGOParameter, p_NOMBREParameter, p_RESPONSABLEParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID_CONSUMO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RESPONSABLE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_PRECIO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_IMPORTE_BS">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_IMPORTE_LTS">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_CONSUMO(Nullable<global::System.Decimal> p_ID_CONSUMO, Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, global::System.String p_RESPONSABLE, Nullable<global::System.Decimal> p_PRECIO, Nullable<global::System.Decimal> p_IMPORTE_BS, Nullable<global::System.Decimal> p_IMPORTE_LTS, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_CONSUMOParameter;
-            if (p_ID_CONSUMO.HasValue)
-            {
-                p_ID_CONSUMOParameter = new ObjectParameter("P_ID_CONSUMO", p_ID_CONSUMO);
-            }
-            else
-            {
-                p_ID_CONSUMOParameter = new ObjectParameter("P_ID_CONSUMO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_CLIENTEParameter;
-            if (p_ID_CLIENTE.HasValue)
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
-            }
-            else
-            {
-                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_COMBUSTIBLEParameter;
-            if (p_ID_COMBUSTIBLE.HasValue)
-            {
-                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
-            }
-            else
-            {
-                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_FECHAParameter;
-            if (p_FECHA.HasValue)
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
-            }
-            else
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter p_TURNOParameter;
-            if (p_TURNO != null)
-            {
-                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
-            }
-            else
-            {
-                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_RESPONSABLEParameter;
-            if (p_RESPONSABLE != null)
-            {
-                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", p_RESPONSABLE);
-            }
-            else
-            {
-                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_PRECIOParameter;
-            if (p_PRECIO.HasValue)
-            {
-                p_PRECIOParameter = new ObjectParameter("P_PRECIO", p_PRECIO);
-            }
-            else
-            {
-                p_PRECIOParameter = new ObjectParameter("P_PRECIO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_IMPORTE_BSParameter;
-            if (p_IMPORTE_BS.HasValue)
-            {
-                p_IMPORTE_BSParameter = new ObjectParameter("P_IMPORTE_BS", p_IMPORTE_BS);
-            }
-            else
-            {
-                p_IMPORTE_BSParameter = new ObjectParameter("P_IMPORTE_BS", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_IMPORTE_LTSParameter;
-            if (p_IMPORTE_LTS.HasValue)
-            {
-                p_IMPORTE_LTSParameter = new ObjectParameter("P_IMPORTE_LTS", p_IMPORTE_LTS);
-            }
-            else
-            {
-                p_IMPORTE_LTSParameter = new ObjectParameter("P_IMPORTE_LTS", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_CONSUMO", p_ID_CONSUMOParameter, p_ID_CLIENTEParameter, p_ID_COMBUSTIBLEParameter, p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_PRECIOParameter, p_IMPORTE_BSParameter, p_IMPORTE_LTSParameter, p_ID_USRParameter, p_RES);
         }
     
         /// <summary>
@@ -2897,6 +2779,147 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_AJUSTE_POS", p_ID_AJUSTEParameter, p_ID_POSParameter, p_FECHAParameter, p_AJUSTEParameter, p_ID_USRParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_CONSUMO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CLIENTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_COMBUSTIBLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_POS">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TIPO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RESPONSABLE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_PRECIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE_BS">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE_LTS">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_CONSUMO(Nullable<global::System.Decimal> p_ID_CONSUMO, Nullable<global::System.Decimal> p_ID_CLIENTE, Nullable<global::System.Decimal> p_ID_COMBUSTIBLE, Nullable<global::System.Decimal> p_ID_POS, global::System.String p_TIPO, Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, global::System.String p_RESPONSABLE, Nullable<global::System.Decimal> p_PRECIO, Nullable<global::System.Decimal> p_IMPORTE_BS, Nullable<global::System.Decimal> p_IMPORTE_LTS, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_CONSUMOParameter;
+            if (p_ID_CONSUMO.HasValue)
+            {
+                p_ID_CONSUMOParameter = new ObjectParameter("P_ID_CONSUMO", p_ID_CONSUMO);
+            }
+            else
+            {
+                p_ID_CONSUMOParameter = new ObjectParameter("P_ID_CONSUMO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_CLIENTEParameter;
+            if (p_ID_CLIENTE.HasValue)
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", p_ID_CLIENTE);
+            }
+            else
+            {
+                p_ID_CLIENTEParameter = new ObjectParameter("P_ID_CLIENTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_COMBUSTIBLEParameter;
+            if (p_ID_COMBUSTIBLE.HasValue)
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", p_ID_COMBUSTIBLE);
+            }
+            else
+            {
+                p_ID_COMBUSTIBLEParameter = new ObjectParameter("P_ID_COMBUSTIBLE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_POSParameter;
+            if (p_ID_POS.HasValue)
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", p_ID_POS);
+            }
+            else
+            {
+                p_ID_POSParameter = new ObjectParameter("P_ID_POS", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_TIPOParameter;
+            if (p_TIPO != null)
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", p_TIPO);
+            }
+            else
+            {
+                p_TIPOParameter = new ObjectParameter("P_TIPO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_TURNOParameter;
+            if (p_TURNO != null)
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
+            }
+            else
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_RESPONSABLEParameter;
+            if (p_RESPONSABLE != null)
+            {
+                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", p_RESPONSABLE);
+            }
+            else
+            {
+                p_RESPONSABLEParameter = new ObjectParameter("P_RESPONSABLE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_PRECIOParameter;
+            if (p_PRECIO.HasValue)
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", p_PRECIO);
+            }
+            else
+            {
+                p_PRECIOParameter = new ObjectParameter("P_PRECIO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTE_BSParameter;
+            if (p_IMPORTE_BS.HasValue)
+            {
+                p_IMPORTE_BSParameter = new ObjectParameter("P_IMPORTE_BS", p_IMPORTE_BS);
+            }
+            else
+            {
+                p_IMPORTE_BSParameter = new ObjectParameter("P_IMPORTE_BS", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTE_LTSParameter;
+            if (p_IMPORTE_LTS.HasValue)
+            {
+                p_IMPORTE_LTSParameter = new ObjectParameter("P_IMPORTE_LTS", p_IMPORTE_LTS);
+            }
+            else
+            {
+                p_IMPORTE_LTSParameter = new ObjectParameter("P_IMPORTE_LTS", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_CONSUMO", p_ID_CONSUMOParameter, p_ID_CLIENTEParameter, p_ID_COMBUSTIBLEParameter, p_ID_POSParameter, p_TIPOParameter, p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_PRECIOParameter, p_IMPORTE_BSParameter, p_IMPORTE_LTSParameter, p_ID_USRParameter, p_RES);
         }
 
         #endregion
@@ -5696,28 +5719,6 @@ namespace CityTruck.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_CONSUMOS_R01", "SG_CONSUMOS")]
-        public EntityCollection<SG_CONSUMOS> SG_CONSUMOS
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R01", "SG_CONSUMOS");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R01", "SG_CONSUMOS", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TANQUES_R01", "SG_TANQUES")]
         public EntityCollection<SG_TANQUES> SG_TANQUES
         {
@@ -5796,6 +5797,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_KARDEX_COMBUSTIBLE>("Model.SG_KARDEX_COMBUSTIBLE_R01", "SG_KARDEX_COMBUSTIBLE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_CONSUMOS_R01", "SG_CONSUMOS")]
+        public EntityCollection<SG_CONSUMOS> SG_CONSUMOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R01", "SG_CONSUMOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R01", "SG_CONSUMOS", value);
                 }
             }
         }
@@ -6632,6 +6655,54 @@ namespace CityTruck.Model
         private Nullable<global::System.DateTime> _FECHA_REG;
         partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
         partial void OnFECHA_REGChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID_POS
+        {
+            get
+            {
+                return _ID_POS;
+            }
+            set
+            {
+                OnID_POSChanging(value);
+                ReportPropertyChanging("ID_POS");
+                _ID_POS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_POS");
+                OnID_POSChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID_POS;
+        partial void OnID_POSChanging(Nullable<global::System.Int32> value);
+        partial void OnID_POSChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TIPO
+        {
+            get
+            {
+                return _TIPO;
+            }
+            set
+            {
+                OnTIPOChanging(value);
+                ReportPropertyChanging("TIPO");
+                _TIPO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TIPO");
+                OnTIPOChanged();
+            }
+        }
+        private global::System.String _TIPO;
+        partial void OnTIPOChanging(global::System.String value);
+        partial void OnTIPOChanged();
 
         #endregion
 
@@ -6710,6 +6781,44 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_COMBUSTIBLES>("Model.SG_CONSUMOS_R01", "SG_COMBUSTIBLES", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_CONSUMOS_R03", "SG_POS")]
+        public SG_POS SG_POS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_CONSUMOS_R03", "SG_POS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_CONSUMOS_R03", "SG_POS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_POS> SG_POSReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_POS>("Model.SG_CONSUMOS_R03", "SG_POS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_POS>("Model.SG_CONSUMOS_R03", "SG_POS", value);
                 }
             }
         }
@@ -10401,6 +10510,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_AJUSTE_POS>("Model.SG_AJUSTE_POS_R01", "SG_AJUSTE_POS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_CONSUMOS_R03", "SG_CONSUMOS")]
+        public EntityCollection<SG_CONSUMOS> SG_CONSUMOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R03", "SG_CONSUMOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_CONSUMOS>("Model.SG_CONSUMOS_R03", "SG_CONSUMOS", value);
                 }
             }
         }
