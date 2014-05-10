@@ -167,6 +167,13 @@
     <Compile Include="Reportes\ReporteUtilidadVentaEstimada.aspx.designer.cs">
       <DependentUpon>ReporteUtilidadVentaEstimada.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteVentaDiaria.aspx.cs">
+      <DependentUpon>ReporteVentaDiaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteVentaDiaria.aspx.designer.cs">
+      <DependentUpon>ReporteVentaDiaria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\SourceReport.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1686,6 +1693,7 @@
     <Content Include="Reportes\ReporteUtilidadBrutaReal.aspx" />
     <Content Include="Reportes\ReporteUtilidadVentaBruta.aspx" />
     <Content Include="Reportes\ReporteUtilidadVentaEstimada.aspx" />
+    <Content Include="Reportes\ReporteVentaDiaria.aspx" />
     <Content Include="Scripts\Extjs\bootstrap.js" />
     <Content Include="Scripts\Extjs\build.xml" />
     <Content Include="Scripts\Extjs\ext-all.js" />
@@ -3857,6 +3865,7 @@
     <Content Include="Views\AppCityTruck\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\ReporteVentaDiaria.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteEgreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteIngreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteANH.rdlc" />

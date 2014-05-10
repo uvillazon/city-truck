@@ -229,7 +229,7 @@ namespace CityTruck.Services
             {
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GUARDAR_CONSUMO(p.ID_CONSUMO, p.ID_CLIENTE, p.ID_COMBUSTIBLE, p.FECHA, p.TURNO, p.RESPONSABLE, p.PRECIO, p.IMPORTE_BS, p.IMPORTE_LTS, ID_USR, p_res);
+                context.P_SG_GUARDAR_CONSUMO(p.ID_CONSUMO, p.ID_CLIENTE, p.ID_COMBUSTIBLE,p.ID_POS,p.TIPO, p.FECHA, p.TURNO, p.RESPONSABLE, p.PRECIO, p.IMPORTE_BS, p.IMPORTE_LTS, ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;

@@ -17,6 +17,7 @@
         //        Funciones.CrearMenu('btn_CrearVentaMN', 'Crear Venta MN', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', Constantes.ICONO_IMPRIMIR, me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', Constantes.ICONO_VER, me.EventosVenta, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Reporte', 'Comprobanbte', Constantes.ICONO_IMPRIMIR, me.EventosVenta, me.toolbar, this, null, true);
 
 
         me.grid = Ext.create('App.View.Ventas.GridVentas', {
@@ -51,6 +52,7 @@
         }
         else { me.turno == ""; }
         Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
+        Funciones.DisabledButton('btn_Reporte', me.toolbar, disabled);
     },
     EventosVenta: function (btn) {
         var me = this;
@@ -79,7 +81,7 @@
             me.CrearVentaMN();
         }
         else if (btn.getItemId() == "btn_Detalle") {
-//            alert(me.turno);
+            //            alert(me.turno);
             if (me.turno == "") {
                 Ext.Msg.alert("Aviso", "Seleccione DIA , TARDE , NOCHE ");
                 return false;
@@ -102,6 +104,14 @@
                 me.panelVentasEditar.gridVentaCredito.getStore().removeAll();
                 me.panelVentasEditar.gridVentaConsumo.getStore().removeAll();
                 me.winEditarVenta.show();
+            }
+        }
+        else if (btn.getItemId() == "btn_Reporte") {
+            if (me.turno == "") {
+                Ext.Msg.alert("Error", "Seleccione un TURNO")
+            }
+            else {
+                window.open(Constantes.HOST + 'Reportes/ReporteVentaDiaria?FECHA=' + me.record.get('FECHA') + '&TURNO=' + me.turno);
             }
         }
         else {

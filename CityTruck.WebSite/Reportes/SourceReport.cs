@@ -408,8 +408,9 @@ namespace CityTruck.WebSite.Reportes
             IngresosEgresosModel ingresoModel = new IngresosEgresosModel()
             {
                 DETALLE = ingreso.CONCEPTO,
-                FECHA = DateTime.Now,
+                FECHA = ingreso.FECHA,
                 TOTAL = ingreso.IMPORTE,
+                CAJA = ingreso.ID_CAJA != 1 ? string.Format("{0} - {1}  Nro Cuenta : {2} {3}", ingreso.SG_CAJAS.CODIGO, ingreso.SG_CAJAS.NOMBRE, ingreso.SG_CAJAS.NRO_CUENTA, ingreso.SG_CAJAS.DESCRIPCION) : string.Format("{0} - {1} ", ingreso.SG_CAJAS.CODIGO, ingreso.SG_CAJAS.NOMBRE),
                 USUARIO = user,
                 TOTAL_LITERAL = nl.Convertir(ingreso.IMPORTE.ToString(), true),
                 NRO_COMPROBANTE = ingreso.NRO_COMP
@@ -429,14 +430,71 @@ namespace CityTruck.WebSite.Reportes
             IngresosEgresosModel ingresoModel = new IngresosEgresosModel()
             {
                 DETALLE = egreso.CONCEPTO,
-                FECHA = DateTime.Now,
+                FECHA = egreso.FECHA,
                 TOTAL = egreso.IMPORTE,
+                CAJA = egreso.ID_CAJA != 1 ? string.Format("{0} - {1}  Nro Cuenta : {2} {3}", egreso.SG_CAJAS.CODIGO, egreso.SG_CAJAS.NOMBRE, egreso.SG_CAJAS.NRO_CUENTA, egreso.SG_CAJAS.DESCRIPCION) : string.Format("{0} - {1} ", egreso.SG_CAJAS.CODIGO, egreso.SG_CAJAS.NOMBRE),
                 USUARIO = user,
                 TOTAL_LITERAL = nl.Convertir(egreso.IMPORTE.ToString(), true),
                 NRO_COMPROBANTE = egreso.NRO_COMP
             };
 
             result.Add(ingresoModel);
+            return result;
+        }
+        public IEnumerable<VentaDiaria> ReporteVentaDiaria()
+        {
+
+            List<VentaDiaria> result = new List<VentaDiaria>();
+            VentaDiaria ven = new VentaDiaria() { 
+                TIPO = "Ventas Combustibles",
+                DETALLE = "Diesel",
+                PARCIAL = 446,
+                FECHA = DateTime.Now,
+                TURNO = "DIA"
+
+            };
+            VentaDiaria ven1 = new VentaDiaria()
+            {
+                TIPO = "Ventas Combustibles",
+                DETALLE = "Gasolina",
+                PARCIAL = 527,
+                FECHA = DateTime.Now,
+                TURNO = "DIA"
+
+            };
+            VentaDiaria ven2 = new VentaDiaria()
+            {
+                TIPO = "Cuentas Por Cobrar",
+                DETALLE = "Sergio Mercado GASOLINA",
+                PARCIAL = 10,
+                FECHA = DateTime.Now,
+                TURNO = "DIA"
+
+            };
+            VentaDiaria ven21 = new VentaDiaria()
+            {
+                TIPO = "Cuentas Por Cobrar",
+                DETALLE = "Sergio Mercado DIESEL",
+                PARCIAL = 10,
+                FECHA = DateTime.Now,
+                TURNO = "DIA"
+
+            };
+            VentaDiaria ven3 = new VentaDiaria()
+            {
+                TIPO = "Consumo Propio",
+                DETALLE = "CityTruck",
+                PARCIAL = 10,
+                FECHA = DateTime.Now,
+                TURNO = "DIA"
+
+            };
+            result.Add(ven);
+            result.Add(ven1);
+            result.Add(ven2);
+            result.Add(ven21);
+            result.Add(ven3);
+
             return result;
         }
     }

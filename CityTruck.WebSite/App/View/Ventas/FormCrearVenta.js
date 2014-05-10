@@ -81,6 +81,16 @@
     },
     CargarComponentes: function () {
         var me = this;
+//        me.dockedItems = [{
+//                xtype: 'toolbar',
+//                itemId: 'docked',
+//                dock: 'top',
+//                items: [
+//                    { xtype: 'button', itemId: 'docked_modificar', text: 'Modificar', iconCls: Constantes.ICONO_EDITAR },
+//                    { xtype: 'button', itemId: 'docked_comprobante', text: 'Comprobante', iconCls: Constantes.ICONO_IMPRIMIR },
+////                    { xtype: 'button', itemId: 'docked_eliminar', text: 'Eliminar', iconCls: Constantes.ICONO_BAJA }
+//                ]
+//            }];
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
                     opcion: 'GridVentasEditar',
                     title : 'MITTERS',
