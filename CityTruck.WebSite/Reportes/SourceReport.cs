@@ -497,5 +497,40 @@ namespace CityTruck.WebSite.Reportes
 
             return result;
         }
+        public IEnumerable<DetalleMangueraModel> ReporteVenta(DateTime FECHA  , string TURNO)
+        {
+            List<DetalleMangueraModel> result = new List<DetalleMangueraModel>() { 
+              new DetalleMangueraModel(){COMBUSTIBLE = "GASOLINA" ,ENT_LITTER = 122 , SAL_LITTER = 200 , MANGUERA = "GASOLINAS 1" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
+              new DetalleMangueraModel(){COMBUSTIBLE = "GASOLINA" ,ENT_LITTER = 22 , SAL_LITTER = 200 , MANGUERA = "GASOLINAS 2" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
+              new DetalleMangueraModel(){COMBUSTIBLE = "DIESEL" ,ENT_LITTER = 222 , SAL_LITTER = 200 , MANGUERA = "DIESEL 1" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
+              new DetalleMangueraModel(){COMBUSTIBLE = "DIESEL" ,ENT_LITTER = 322 , SAL_LITTER = 200 , MANGUERA = "DIESEL 2" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
+            };
+            //var servicio = new IngresosServices();
+            //var puntosVentaService = new PosTurnosServices();
+            //var egresos = servicio.ObtenerEgresosPaginado(null, ANIO, MES);
+            //var ventas = puntosVentaService.ObtenerPosTurnosPorFecha(ANIO, MES);
+            //var totales = ventas.GroupBy(x => x.FECHA).Select(y => new { FECHA = y.Key, TOTALVENTA = y.Sum(x => x.TOTAL_VENTA), TOTALCOSTO = y.Sum(x => x.TOTAL_COSTO) });
+            //decimal? totalventa = 0;
+            //decimal? totalcosto = 0;
+            //foreach (var item in totales)
+            //{
+            //    totalventa = totalventa + item.TOTALVENTA;
+            //    totalcosto = totalcosto + item.TOTALCOSTO;
+            //}
+            //foreach (var item in egresos.OrderBy(x => x.FECHA))
+            //{
+            //    EstadoResultadoModel egre = new EstadoResultadoModel()
+            //    {
+            //        FECHA = item.FECHA,
+            //        DETALLE = item.CONCEPTO,
+            //        //MES =  item.FECHA.ToString("MMMM").ToUpper();
+            //        TOTAL = item.IMPORTE,
+            //        UTILIDA_BRUTA_NETA = (decimal)(totalventa - totalcosto)
+            //    };
+            //    egre.MES = item.FECHA.ToString("MMMM").ToUpper();
+            //    result.Add(egre);
+            //}
+            return result;
+        }
     }
 }
