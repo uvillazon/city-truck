@@ -126,5 +126,17 @@ namespace CityTruck.WebSite.Models
 
 
     }
+    public class DetalleMangueraModel
+    {
+        public string MANGUERA { get; set; }
+        public string COMBUSTIBLE { get; set; }
+        public DateTime FECHA { get; set; }
+        public string TURNO { get; set; }
+        public string RESPONSABLE { get; set; }
+        public string USUARIO { get; set; }
+        public decimal ENT_LITTER { get; set; }
+        public decimal SAL_LITTER { get; set; }
+
+    }
 
 }
