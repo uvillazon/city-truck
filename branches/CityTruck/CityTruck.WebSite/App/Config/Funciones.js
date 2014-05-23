@@ -287,7 +287,7 @@ Ext.define("App.Config.Funciones", {
         }
     },
     //Ajax Request Con Confirmacion para los FormPanel
-    AjaxRequestForm: function (controlador, accion, mask, form, grid, msg, param, Formulario) {
+    AjaxRequestForm: function (controlador, accion, mask, form, grid, msg, param, Formulario,btn) {
 
         var formSend = form.getForm();
         var mensaje = (msg == null) ? 'Esta Seguro de Guardar Los cambios?' : msg;
@@ -308,6 +308,9 @@ Ext.define("App.Config.Funciones", {
                             }
                             if (Formulario != null) {
                                 Formulario.BloquearFormulario();
+                            }
+                            if (btn != null){
+                                
                             }
                         },
                         failure: function (form, action) {
