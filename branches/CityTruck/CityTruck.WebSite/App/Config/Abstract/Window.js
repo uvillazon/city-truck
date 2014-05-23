@@ -17,9 +17,11 @@ Ext.define("App.Config.Abstract.Window", {
     botones: false,
     mostrarBotonCerrar: false,
     btn3 : null,
+    btn4 : null,
     buttons: '',
     textGuardar: 'Guardar',
     textCerrar : 'Cerrar',
+    itemId : '',
     initComponent: function () {
         var me = this;
         if (!me.botones) {
@@ -67,7 +69,7 @@ Ext.define("App.Config.Abstract.Window", {
                 text: me.textGuardar,
                 minHeight: 27,
                 minWidth: 80,
-                itemId: 'btn_guardar',
+                itemId: me.itemId == ''?'btn_guardar' : me.itemId,
                 textAlign: 'center',
                 iconCls: 'disk',
                 //margin: 10,
@@ -76,7 +78,10 @@ Ext.define("App.Config.Abstract.Window", {
             if (this.btn3 != null) {
                 this.btn3.removeCls("botones");
             }
-            this.buttons = [this.btn_guardar, this.btn3,this.btn_cerrar];
+            if (this.btn4 != null) {
+                this.btn4.removeCls("botones");
+            }
+            this.buttons = [this.btn4, this.btn3,this.btn_guardar, this.btn_cerrar];
         }
         //       var me = this;
         //        me.on('minimize', me.minimizar,this);
