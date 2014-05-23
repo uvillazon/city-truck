@@ -24,7 +24,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_PERFILES_OPCIONES_R02", "SG_MENU_OPCIONES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_MENU_OPCIONES), "SG_PERFILES_OPCIONES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_PERFILES_OPCIONES), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_PERFILES_OPCIONES_R01", "SG_PERFILES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_PERFILES), "SG_PERFILES_OPCIONES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_PERFILES_OPCIONES), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_USUARIOS_R01", "SG_PERFILES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_PERFILES), "SG_USUARIOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_USUARIOS), true)]
-[assembly: EdmRelationshipAttribute("Model", "SG_INGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_INGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_INGRESOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_COMPRAS_R02", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_COMPRAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_COMPRAS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_EGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_EGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_EGRESOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_AMORTIZACIONES_R01", "SG_CLIENTES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES), "SG_AMORTIZACIONES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_AMORTIZACIONES), true)]
@@ -47,6 +46,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R02", "SG_CLIENTES_CONSUMO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CLIENTES_CONSUMO), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R03", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CityTruck.Model.SG_POS), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_INGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_INGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_INGRESOS), true)]
 
 #endregion
 
@@ -225,22 +225,6 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_CAJAS> _SG_CAJAS;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<SG_INGRESOS> SG_INGRESOS
-        {
-            get
-            {
-                if ((_SG_INGRESOS == null))
-                {
-                    _SG_INGRESOS = base.CreateObjectSet<SG_INGRESOS>("SG_INGRESOS");
-                }
-                return _SG_INGRESOS;
-            }
-        }
-        private ObjectSet<SG_INGRESOS> _SG_INGRESOS;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -577,6 +561,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_CONSUMOS> _SG_CONSUMOS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_INGRESOS> SG_INGRESOS
+        {
+            get
+            {
+                if ((_SG_INGRESOS == null))
+                {
+                    _SG_INGRESOS = base.CreateObjectSet<SG_INGRESOS>("SG_INGRESOS");
+                }
+                return _SG_INGRESOS;
+            }
+        }
+        private ObjectSet<SG_INGRESOS> _SG_INGRESOS;
 
         #endregion
 
@@ -644,14 +644,6 @@ namespace CityTruck.Model
         public void AddToSG_CAJAS(SG_CAJAS sG_CAJAS)
         {
             base.AddObject("SG_CAJAS", sG_CAJAS);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SG_INGRESOS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSG_INGRESOS(SG_INGRESOS sG_INGRESOS)
-        {
-            base.AddObject("SG_INGRESOS", sG_INGRESOS);
         }
     
         /// <summary>
@@ -820,6 +812,14 @@ namespace CityTruck.Model
         public void AddToSG_CONSUMOS(SG_CONSUMOS sG_CONSUMOS)
         {
             base.AddObject("SG_CONSUMOS", sG_CONSUMOS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_INGRESOS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_INGRESOS(SG_INGRESOS sG_INGRESOS)
+        {
+            base.AddObject("SG_INGRESOS", sG_INGRESOS);
         }
 
         #endregion
@@ -1124,81 +1124,6 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_POS_TURNO", p_ID_POS_TURNOParameter, p_ID_POSParameter, p_TURNOParameter, p_FECHAParameter, p_ENT_LITTERParameter, p_SAL_LITTERParameter, p_TOTALParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="p_ID_INGRESO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GUARDAR_INGRESOS(Nullable<global::System.Decimal> p_ID_INGRESO, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_ID_INGRESOParameter;
-            if (p_ID_INGRESO.HasValue)
-            {
-                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", p_ID_INGRESO);
-            }
-            else
-            {
-                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_FECHAParameter;
-            if (p_FECHA.HasValue)
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
-            }
-            else
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter p_CONCEPTOParameter;
-            if (p_CONCEPTO != null)
-            {
-                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
-            }
-            else
-            {
-                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_ID_CAJAParameter;
-            if (p_ID_CAJA.HasValue)
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
-            }
-            else
-            {
-                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_IMPORTEParameter;
-            if (p_IMPORTE.HasValue)
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
-            }
-            else
-            {
-                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GUARDAR_INGRESOS", p_ID_INGRESOParameter, p_FECHAParameter, p_CONCEPTOParameter, p_ID_CAJAParameter, p_IMPORTEParameter, p_ID_USRParameter, p_RES);
         }
     
         /// <summary>
@@ -3018,6 +2943,92 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_USUARIO", p_ID_USUARIOParameter, p_LOGINParameter, p_NOMBREParameter, p_EMAILParameter, p_ID_PERFILParameter, p_ESTADOParameter, p_CONTRASENAParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_INGRESO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONCEPTO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_CAJA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_IMPORTE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_AMORTIZACION">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_INGRESOS(Nullable<global::System.Decimal> p_ID_INGRESO, Nullable<global::System.DateTime> p_FECHA, global::System.String p_CONCEPTO, Nullable<global::System.Decimal> p_ID_CAJA, Nullable<global::System.Decimal> p_IMPORTE, Nullable<global::System.Decimal> p_ID_USR, Nullable<global::System.Decimal> p_ID_AMORTIZACION, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_INGRESOParameter;
+            if (p_ID_INGRESO.HasValue)
+            {
+                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", p_ID_INGRESO);
+            }
+            else
+            {
+                p_ID_INGRESOParameter = new ObjectParameter("P_ID_INGRESO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_CONCEPTOParameter;
+            if (p_CONCEPTO != null)
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", p_CONCEPTO);
+            }
+            else
+            {
+                p_CONCEPTOParameter = new ObjectParameter("P_CONCEPTO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_CAJAParameter;
+            if (p_ID_CAJA.HasValue)
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", p_ID_CAJA);
+            }
+            else
+            {
+                p_ID_CAJAParameter = new ObjectParameter("P_ID_CAJA", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_IMPORTEParameter;
+            if (p_IMPORTE.HasValue)
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", p_IMPORTE);
+            }
+            else
+            {
+                p_IMPORTEParameter = new ObjectParameter("P_IMPORTE", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_AMORTIZACIONParameter;
+            if (p_ID_AMORTIZACION.HasValue)
+            {
+                p_ID_AMORTIZACIONParameter = new ObjectParameter("P_ID_AMORTIZACION", p_ID_AMORTIZACION);
+            }
+            else
+            {
+                p_ID_AMORTIZACIONParameter = new ObjectParameter("P_ID_AMORTIZACION", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_INGRESOS", p_ID_INGRESOParameter, p_FECHAParameter, p_CONCEPTOParameter, p_ID_CAJAParameter, p_IMPORTEParameter, p_ID_USRParameter, p_ID_AMORTIZACIONParameter, p_RES);
+        }
 
         #endregion
 
@@ -4468,28 +4479,6 @@ namespace CityTruck.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_INGRESOS_R01", "SG_INGRESOS")]
-        public EntityCollection<SG_INGRESOS> SG_INGRESOS
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_INGRESOS>("Model.SG_INGRESOS_R01", "SG_INGRESOS");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_INGRESOS>("Model.SG_INGRESOS_R01", "SG_INGRESOS", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SG_COMPRAS_R02", "SG_COMPRAS")]
         public EntityCollection<SG_COMPRAS> SG_COMPRAS
         {
@@ -4568,6 +4557,28 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_KARDEX_EFECTIVO>("Model.SG_KARDEX_EFECTIVO_R01", "SG_KARDEX_EFECTIVO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_INGRESOS_R01", "SG_INGRESOS")]
+        public EntityCollection<SG_INGRESOS> SG_INGRESOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_INGRESOS>("Model.SG_INGRESOS_R01", "SG_INGRESOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_INGRESOS>("Model.SG_INGRESOS_R01", "SG_INGRESOS", value);
                 }
             }
         }
@@ -7739,6 +7750,30 @@ namespace CityTruck.Model
         private Nullable<global::System.DateTime> _FECHA_REG;
         partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
         partial void OnFECHA_REGChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ID_AMORTIZACION
+        {
+            get
+            {
+                return _ID_AMORTIZACION;
+            }
+            set
+            {
+                OnID_AMORTIZACIONChanging(value);
+                ReportPropertyChanging("ID_AMORTIZACION");
+                _ID_AMORTIZACION = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_AMORTIZACION");
+                OnID_AMORTIZACIONChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ID_AMORTIZACION;
+        partial void OnID_AMORTIZACIONChanging(Nullable<global::System.Int32> value);
+        partial void OnID_AMORTIZACIONChanged();
 
         #endregion
 

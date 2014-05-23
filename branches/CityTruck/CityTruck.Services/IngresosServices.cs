@@ -60,7 +60,7 @@ namespace CityTruck.Services
                 //var manager = new SG_INGRESOSManager(uow);
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, p_res);
+                context.P_SG_GUARDAR_INGRESOS(ing.ID_INGRESO, ing.FECHA, ing.CONCEPTO, ing.ID_CAJA, ing.IMPORTE, ID_USR, ing.ID_AMORTIZACION,p_res);
 
                 try
                 {
