@@ -2921,6 +2921,103 @@ namespace CityTruck.Model
     
             return base.ExecuteFunction("P_SG_GUARDAR_CONSUMO", p_ID_CONSUMOParameter, p_ID_CLIENTEParameter, p_ID_COMBUSTIBLEParameter, p_ID_POSParameter, p_TIPOParameter, p_FECHAParameter, p_TURNOParameter, p_RESPONSABLEParameter, p_PRECIOParameter, p_IMPORTE_BSParameter, p_IMPORTE_LTSParameter, p_ID_USRParameter, p_RES);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_ID_USUARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_LOGIN">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_NOMBRE">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_EMAIL">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_PERFIL">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ESTADO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_CONTRASENA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GUARDAR_USUARIO(Nullable<global::System.Decimal> p_ID_USUARIO, global::System.String p_LOGIN, global::System.String p_NOMBRE, global::System.String p_EMAIL, Nullable<global::System.Decimal> p_ID_PERFIL, global::System.String p_ESTADO, global::System.String p_CONTRASENA, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_ID_USUARIOParameter;
+            if (p_ID_USUARIO.HasValue)
+            {
+                p_ID_USUARIOParameter = new ObjectParameter("P_ID_USUARIO", p_ID_USUARIO);
+            }
+            else
+            {
+                p_ID_USUARIOParameter = new ObjectParameter("P_ID_USUARIO", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_LOGINParameter;
+            if (p_LOGIN != null)
+            {
+                p_LOGINParameter = new ObjectParameter("P_LOGIN", p_LOGIN);
+            }
+            else
+            {
+                p_LOGINParameter = new ObjectParameter("P_LOGIN", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_NOMBREParameter;
+            if (p_NOMBRE != null)
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", p_NOMBRE);
+            }
+            else
+            {
+                p_NOMBREParameter = new ObjectParameter("P_NOMBRE", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_EMAILParameter;
+            if (p_EMAIL != null)
+            {
+                p_EMAILParameter = new ObjectParameter("P_EMAIL", p_EMAIL);
+            }
+            else
+            {
+                p_EMAILParameter = new ObjectParameter("P_EMAIL", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_PERFILParameter;
+            if (p_ID_PERFIL.HasValue)
+            {
+                p_ID_PERFILParameter = new ObjectParameter("P_ID_PERFIL", p_ID_PERFIL);
+            }
+            else
+            {
+                p_ID_PERFILParameter = new ObjectParameter("P_ID_PERFIL", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ESTADOParameter;
+            if (p_ESTADO != null)
+            {
+                p_ESTADOParameter = new ObjectParameter("P_ESTADO", p_ESTADO);
+            }
+            else
+            {
+                p_ESTADOParameter = new ObjectParameter("P_ESTADO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_CONTRASENAParameter;
+            if (p_CONTRASENA != null)
+            {
+                p_CONTRASENAParameter = new ObjectParameter("P_CONTRASENA", p_CONTRASENA);
+            }
+            else
+            {
+                p_CONTRASENAParameter = new ObjectParameter("P_CONTRASENA", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GUARDAR_USUARIO", p_ID_USUARIOParameter, p_LOGINParameter, p_NOMBREParameter, p_EMAILParameter, p_ID_PERFILParameter, p_ESTADOParameter, p_CONTRASENAParameter, p_ID_USRParameter, p_RES);
+        }
 
         #endregion
 
@@ -11744,6 +11841,30 @@ namespace CityTruck.Model
         private global::System.String _ESTADO;
         partial void OnESTADOChanging(global::System.String value);
         partial void OnESTADOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CONTRASENA
+        {
+            get
+            {
+                return _CONTRASENA;
+            }
+            set
+            {
+                OnCONTRASENAChanging(value);
+                ReportPropertyChanging("CONTRASENA");
+                _CONTRASENA = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CONTRASENA");
+                OnCONTRASENAChanged();
+            }
+        }
+        private global::System.String _CONTRASENA;
+        partial void OnCONTRASENAChanging(global::System.String value);
+        partial void OnCONTRASENAChanged();
 
         #endregion
 

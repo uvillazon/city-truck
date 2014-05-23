@@ -79,6 +79,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\CombustiblesController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\EgresosController.cs" />
     <Compile Include="Controllers\IngresosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="Reportes\ReporteAutoridad.aspx.designer.cs">
       <DependentUpon>ReporteAutoridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteCmpVenta.aspx.cs">
+      <DependentUpon>ReporteCmpVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCmpVenta.aspx.designer.cs">
+      <DependentUpon>ReporteCmpVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\ReporteEgreso.aspx.cs">
       <DependentUpon>ReporteEgreso.aspx</DependentUpon>
@@ -294,6 +302,9 @@
     <Content Include="App\Model\ConsumoPropio\Clientes.js" />
     <Content Include="App\Model\ConsumoPropio\ConsumoPropio.js" />
     <Content Include="App\Model\ConsumoPropio\Consumos.js" />
+    <Content Include="App\Model\Usuarios\Usuarios.js" />
+    <Content Include="App\Model\Usuarios\Perfiles.js" />
+    <Content Include="App\Model\Usuarios\MenuOpciones.js" />
     <Content Include="App\Model\Puntos\Puntos.js" />
     <Content Include="App\Model\Puntos\Kardex.js" />
     <Content Include="App\Model\Egresos\Egresos.js" />
@@ -351,6 +362,9 @@
     <Content Include="App\Store\ConsumoPropio\ClientesConsumo.js" />
     <Content Include="App\Store\ConsumoPropio\ConsumoPropio.js" />
     <Content Include="App\Store\ConsumoPropio\Consumos.js" />
+    <Content Include="App\Store\Usuarios\Usuarios.js" />
+    <Content Include="App\Store\Usuarios\Perfiles.js" />
+    <Content Include="App\Store\Usuarios\MenuOpciones.js" />
     <Content Include="App\Store\Puntos\Puntos.js" />
     <Content Include="App\Store\Puntos\Kardex.js" />
     <Content Include="App\Store\Egresos\Egresos.js" />
@@ -432,6 +446,11 @@
     <Content Include="App\View\ConsumoPropio\Forms.js" />
     <Content Include="App\View\ConsumoPropio\GridConsumoPropio.js" />
     <Content Include="App\View\ConsumoPropio\Principal.js" />
+    <Content Include="App\View\Usuarios\FormUsuario.js" />
+    <Content Include="App\View\Usuarios\Forms.js" />
+    <Content Include="App\View\Usuarios\GridUsuarios.js" />
+    <Content Include="App\View\Usuarios\Grids.js" />
+    <Content Include="App\View\Usuarios\Principal.js" />
     <Content Include="App\View\VentasMN\FormRegistro.js" />
     <Content Include="App\View\VentasMN\Grids.js" />
     <Content Include="App\View\VentasMN\GridVentas.js" />
@@ -1685,6 +1704,7 @@
     <Content Include="Global.asax" />
     <Content Include="Reportes\ReporteANH.aspx" />
     <Content Include="Reportes\ReporteAutoridad.aspx" />
+    <Content Include="Reportes\ReporteCmpVenta.aspx" />
     <Content Include="Reportes\ReporteEgreso.aspx" />
     <Content Include="Reportes\ReporteEstadoResultado.aspx" />
     <Content Include="Reportes\ReporteIngreso.aspx" />
@@ -3865,6 +3885,7 @@
     <Content Include="Views\AppCityTruck\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\Report1.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteVentaDiaria.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteEgreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteIngreso.rdlc" />

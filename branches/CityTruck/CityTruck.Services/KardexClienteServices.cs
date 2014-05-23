@@ -33,6 +33,14 @@ namespace CityTruck.Services
                 result = manager.BuscarTodos();
                 filtros.FiltrarDatos();
                 result = filtros.Diccionario.Count() > 0 ? result.Where(filtros.Predicado, filtros.Diccionario.Values.ToArray()) : result;
+                if (filtros.FECHA_INICIAL != null) {
+                    result = result.Where(x => x.FECHA >= filtros.FECHA_INICIAL);
+                }
+                if (filtros.FECHA_FINAL != null) {
+                    DateTime fecha = (DateTime)filtros.FECHA_FINAL;
+                    fecha = fecha.AddDays(1);
+                    result = result.Where(x => x.FECHA < fecha);
+                }
                 paginacion.total = result.Count();
                 result = manager.QueryPaged(result, paginacion.limit, paginacion.start, paginacion.sort, paginacion.dir);
 
