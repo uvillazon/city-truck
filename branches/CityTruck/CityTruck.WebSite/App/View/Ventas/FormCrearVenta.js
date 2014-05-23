@@ -99,9 +99,9 @@
                     height : 250,
 //                    rowspan : 2,
                 });
-        me.toolbarVenta = Funciones.CrearMenuBar();
-        Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
-        me.gridVenta.addDocked(me.toolbarVenta, 1);
+//        me.toolbarVenta = Funciones.CrearMenuBar();
+//        Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
+//        me.gridVenta.addDocked(me.toolbarVenta, 1);
         me.formSubTotales = Ext.create("App.View.Ventas.Forms", {
             opcion: 'formSubTotales',
             botones: false,
@@ -399,6 +399,7 @@
     },
     EventosVenta : function(btn){
         var me = this;
+//          alert(btn.getItemId());
         if(btn.getItemId() == "btn_GuardarCambios"){
             if(me.isValid() == true){
 //                alert("sadsadadsadsadad");

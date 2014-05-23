@@ -54,17 +54,23 @@
         Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Reporte', me.toolbar, disabled);
     },
+    EventosForm: function (btn) {
+        var me = this;
+    },
     EventosVenta: function (btn) {
         var me = this;
         if (btn.getItemId() == "btn_CrearVenta") {
             if (me.winCrearVenta == null) {
-                me.winCrearVenta = Ext.create("App.Config.Abstract.Window");
+                me.btn4 = Funciones.CrearMenu('btn_ImprimirReporte', 'Imprimir Reporte', 'printer', me.EventosForm, null, this ,null,true);
+                me.btn3 = Funciones.CrearMenu('btn_ModificarVenta', 'Modificar', Constantes.ICONO_EDITAR, me.EventosForm, null, this,null,true);
+                me.winCrearVenta = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: "Guardar Venta", itemId: 'btn_GuardarCambios' ,btn3 : me.btn3 , btn4 : me.btn4 });
                 me.panelVentas = Ext.create("App.View.Ventas.FormCrearVenta", {
                     columns: 4,
                     title: 'Formulario de Registro de Ventas ',
                     botones: false
                 });
                 me.panelVentas.CargarFecha();
+                me.winCrearVenta.btn_guardar.on('click', me.panelVentas.EventosVenta, me.panelVentas);
                 me.winCrearVenta.add(me.panelVentas);
                 me.winCrearVenta.show();
             } else {
@@ -87,7 +93,9 @@
                 return false;
             }
             if (me.winEditarVenta == null) {
-                me.winEditarVenta = Ext.create("App.Config.Abstract.Window");
+                me.btn4 = Funciones.CrearMenu('btn_ImprimirReporte', 'Imprimir Reporte', 'printer', me.EventosForm, null, this, null, true);
+                me.btn3 = Funciones.CrearMenu('btn_ModificarVenta', 'Modificar', Constantes.ICONO_EDITAR, me.EventosForm, null, this, null, true);
+                me.winEditarVenta = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: "Guardar Venta", itemId: 'btn_GuardarCambios', btn3: me.btn3, btn4: me.btn4 });
                 me.panelVentasEditar = Ext.create("App.View.Ventas.FormCrearVenta", {
                     columns: 4,
                     title: 'Formulario de Registro de Ventas ',
@@ -95,6 +103,7 @@
                     editar: true
                 });
                 me.panelVentasEditar.CargarEditarVenta(me.record, me.turno);
+                me.winEditarVenta.btn_guardar.on('click', me.panelVentasEditar.EventosVenta, me.panelVentasEditar);
                 me.winEditarVenta.add(me.panelVentasEditar);
                 me.winEditarVenta.show();
             } else {
@@ -121,5 +130,9 @@
     CrearVentaMN: function () {
         var me = this;
         var win = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Registro a MN' });
+    },
+    GuardarVenta: function () {
+        var me = this;
+        me.panelVentas.EventosVenta('btn_GuardarCambios');
     }
 });
