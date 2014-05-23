@@ -170,6 +170,7 @@
             me.winKardexCaja.add(me.gridKardexCaja);
             me.winKardexCaja.show();
         } else {
+            me.gridKardexCaja.LimpiarGrid();
             me.gridKardexCaja.store.setExtraParams({ ID_CLIENTE: me.id_cliente });
             me.gridKardexCaja.store.load();
             me.winKardexCaja.show();

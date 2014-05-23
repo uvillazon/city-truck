@@ -119,7 +119,7 @@
             fields.push('FECHA');
          Funciones.BloquearFormulario(me, new Array('docked_modificar', 'docked_eliminar', 'docked_comprobante'));
         if (habilitar) {
-            Funciones.DesbloquearFormulario(me, fields, false);
+            Funciones.DesbloquearFormulario(me, fields, true);
         }
     }
 });

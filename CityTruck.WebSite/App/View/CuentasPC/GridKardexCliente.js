@@ -15,6 +15,7 @@
         var me = this;
         if (me.opcion == "GridKardexCuentasPC") {
             me.CargarGridKardexCuentasPC();
+            me.EventoKardex();
         }
         else {
             alert("No selecciono ninguna opcion");
@@ -29,7 +30,27 @@
         me.store.load();
         //me.CargarComponentes();
 
+        me.date_fechaInicial = Ext.create("App.Config.Componente.DateFieldBase", {
+            fieldLabel: 'Fecha Inicial',
+            margin: '5',
+            name: 'FECHA_INICIAL',
+            opcion: 'blanco',
+        });
 
+        me.date_fechaFinal = Ext.create("App.Config.Componente.DateFieldBase", {
+            fieldLabel: 'Fecha Final',
+            name: 'FECHA_FINAL',
+            margin: '5',
+            opcion: 'blanco',
+        });
+        me.toolBar = Ext.create('Ext.toolbar.Toolbar', {
+            items: [
+                me.date_fechaInicial,
+                me.date_fechaFinal
+            ]
+        });
+        this.dockedItems = me.toolBar;
+        me.dock = this.dockedItems;
         this.bbar = Ext.create('Ext.PagingToolbar', {
             store: me.store,
             displayInfo: true,
@@ -52,5 +73,28 @@
         this.dockedItems = me.toolBar;
         me.dock = this.dockedItems;
 
+    },
+    EventoKardex : function(){
+        var me = this;
+        me.date_fechaInicial.on('select',function(field, value, eOpts ){
+//            alert(value);
+            me.store.setExtraParams({FECHA_INICIAL : value});
+            me.store.setExtraParams({FECHA_FINAL : me.date_fechaFinal.getValue()});
+            me.store.load();
+            
+            
+        });
+        me.date_fechaFinal.on('select',function(field, value, eOpts ){
+            me.store.setExtraParams({FECHA_INICIAL : me.date_fechaInicial.getValue()});
+            me.store.setExtraParams({FECHA_FINAL : value});
+            me.store.load();
+            
+        });
+    },
+    LimpiarGrid : function(){
+        var me = this;
+        me.store.limpiarParametros();
+        me.date_fechaInicial.reset();
+        me.date_fechaFinal.reset();
     }
 });
