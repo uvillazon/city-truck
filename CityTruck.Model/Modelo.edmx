@@ -535,6 +535,7 @@
           <Property Name="FCH_BAJA" Type="date" />
           <Property Name="ID_PERFIL" Type="number" Nullable="false" Precision="5" />
           <Property Name="ESTADO" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="CONTRASENA" Type="varchar2" MaxLength="300" />
         </EntityType>
         <EntityType Name="SG_VENTAS_CREDITO">
           <Key>
@@ -1134,6 +1135,17 @@
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="P_SG_GUARDAR_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
+          <Parameter Name="P_ID_USUARIO" Type="number" Mode="In" />
+          <Parameter Name="P_LOGIN" Type="varchar2" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_EMAIL" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID_PERFIL" Type="number" Mode="In" />
+          <Parameter Name="P_ESTADO" Type="char" Mode="In" />
+          <Parameter Name="P_CONTRASENA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID_USR" Type="number" Mode="In" />
+          <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="P_SG_GUARDAR_VENTA_CREDITO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_ID_VENTA" Type="number" Mode="In" />
           <Parameter Name="P_ID_CLIENTE" Type="number" Mode="In" />
@@ -1585,6 +1597,17 @@
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="P_SG_GUARDAR_USUARIO">
+            <Parameter Name="P_ID_USUARIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_LOGIN" Mode="In" Type="String" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_EMAIL" Mode="In" Type="String" />
+            <Parameter Name="P_ID_PERFIL" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ESTADO" Mode="In" Type="String" />
+            <Parameter Name="P_CONTRASENA" Mode="In" Type="String" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SG_LISTAS">
           <Key>
@@ -1663,6 +1686,7 @@
           <Property Name="ID_PERFIL" Type="Int16" Nullable="false" />
           <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
           <NavigationProperty Name="SG_PERFILES" Relationship="Model.SG_USUARIOS_R01" FromRole="SG_USUARIOS" ToRole="SG_PERFILES" />
+          <Property Type="String" Name="CONTRASENA" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="SG_LISTAS_ITEMS_R01">
           <End Role="SG_LISTAS" Type="Model.SG_LISTAS" Multiplicity="1" />
@@ -2439,7 +2463,8 @@
             <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SG_USUARIOS"><EntityTypeMapping TypeName="Model.SG_USUARIOS"><MappingFragment StoreEntitySet="SG_USUARIOS">
-            <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+            <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
             <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
             <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
             <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
@@ -2854,6 +2879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_CONSUMO" FunctionName="Model.Store.P_SG_GUARDAR_CONSUMO" />
+          <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_USUARIO" FunctionName="Model.Store.P_SG_GUARDAR_USUARIO" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

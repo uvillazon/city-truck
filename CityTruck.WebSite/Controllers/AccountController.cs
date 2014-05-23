@@ -33,10 +33,10 @@ namespace CityTruck.WebSite.Controllers
         {
             TestOracleConexion testConexion = new TestOracleConexion();
             testConexion.CadenaConexion = ConfigurationManager.ConnectionStrings["CityTruckContext"].ConnectionString;
-            if (testConexion.TestConnection(loginUsername, loginPassword))
+            if (testConexion.TestConnection("citytruck", "CityTruck"))
             {
                 var managerUsuario = new UsuariosServices();
-                var usuarios = managerUsuario.ObtenerUsuariosPorCriterio(x => x.LOGIN.ToUpper() == loginUsername.ToUpper() && x.ESTADO == "A").FirstOrDefault();
+                var usuarios = managerUsuario.ObtenerUsuariosPorCriterio(x => x.LOGIN.ToUpper() == loginUsername.ToUpper() &&x.CONTRASENA ==loginPassword && x.ESTADO == "A").FirstOrDefault();
                 if (usuarios != null)
                 {
                     Session["connection"] = testConexion.CadenaConexion;
@@ -54,7 +54,7 @@ namespace CityTruck.WebSite.Controllers
                     return Json(new { success = true }, JsonRequestBehavior.DenyGet);
                 }
                 else {
-                    return Json(new { success = false , msg = "El Usuario se Encuentra Bloqueado del sistema" }, JsonRequestBehavior.DenyGet);
+                    return Json(new { success = false, msg = "El Nombre de Usuario o Contraseña es Incorrecto" }, JsonRequestBehavior.DenyGet);
                 }
             }
             else
