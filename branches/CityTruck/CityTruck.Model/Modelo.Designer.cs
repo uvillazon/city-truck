@@ -990,48 +990,6 @@ namespace CityTruck.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
-        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
-        public int P_SG_GENERAR_POS_TURNOS(Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
-        {
-            ObjectParameter p_FECHAParameter;
-            if (p_FECHA.HasValue)
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
-            }
-            else
-            {
-                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter p_TURNOParameter;
-            if (p_TURNO != null)
-            {
-                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
-            }
-            else
-            {
-                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
-            }
-    
-            ObjectParameter p_ID_USRParameter;
-            if (p_ID_USR.HasValue)
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
-            }
-            else
-            {
-                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
-            }
-    
-            return base.ExecuteFunction("P_SG_GENERAR_POS_TURNOS", p_FECHAParameter, p_TURNOParameter, p_ID_USRParameter, p_RES);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         /// <param name="p_ID_POS_TURNO">No hay documentación de metadatos disponible.</param>
         /// <param name="p_ID_POS">No hay documentación de metadatos disponible.</param>
         /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
@@ -3028,6 +2986,59 @@ namespace CityTruck.Model
             }
     
             return base.ExecuteFunction("P_SG_GUARDAR_INGRESOS", p_ID_INGRESOParameter, p_FECHAParameter, p_CONCEPTOParameter, p_ID_CAJAParameter, p_IMPORTEParameter, p_ID_USRParameter, p_ID_AMORTIZACIONParameter, p_RES);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="p_FECHA">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_TURNO">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ELIMINAR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_ID_USR">No hay documentación de metadatos disponible.</param>
+        /// <param name="p_RES">No hay documentación de metadatos disponible.</param>
+        public int P_SG_GENERAR_POS_TURNOS(Nullable<global::System.DateTime> p_FECHA, global::System.String p_TURNO, Nullable<global::System.Decimal> p_ELIMINAR, Nullable<global::System.Decimal> p_ID_USR, ObjectParameter p_RES)
+        {
+            ObjectParameter p_FECHAParameter;
+            if (p_FECHA.HasValue)
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", p_FECHA);
+            }
+            else
+            {
+                p_FECHAParameter = new ObjectParameter("P_FECHA", typeof(global::System.DateTime));
+            }
+    
+            ObjectParameter p_TURNOParameter;
+            if (p_TURNO != null)
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", p_TURNO);
+            }
+            else
+            {
+                p_TURNOParameter = new ObjectParameter("P_TURNO", typeof(global::System.String));
+            }
+    
+            ObjectParameter p_ELIMINARParameter;
+            if (p_ELIMINAR.HasValue)
+            {
+                p_ELIMINARParameter = new ObjectParameter("P_ELIMINAR", p_ELIMINAR);
+            }
+            else
+            {
+                p_ELIMINARParameter = new ObjectParameter("P_ELIMINAR", typeof(global::System.Decimal));
+            }
+    
+            ObjectParameter p_ID_USRParameter;
+            if (p_ID_USR.HasValue)
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", p_ID_USR);
+            }
+            else
+            {
+                p_ID_USRParameter = new ObjectParameter("P_ID_USR", typeof(global::System.Decimal));
+            }
+    
+            return base.ExecuteFunction("P_SG_GENERAR_POS_TURNOS", p_FECHAParameter, p_TURNOParameter, p_ELIMINARParameter, p_ID_USRParameter, p_RES);
         }
 
         #endregion

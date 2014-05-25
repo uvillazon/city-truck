@@ -50,14 +50,14 @@ namespace CityTruck.Services
             return result;
         }
 
-        public RespuestaSP SP_GenerarPosTurnos(DateTime? FECHA, string TURNO, int ID_USR)
+        public RespuestaSP SP_GenerarPosTurnos(DateTime? FECHA, string TURNO, int ID_USR, int ELIMINAR = 0)
         {
             RespuestaSP result = new RespuestaSP();
             ExecuteManager(uow =>
             {
                 var context = (CityTruckContext)uow.Context;
                 ObjectParameter p_res = new ObjectParameter("p_res", typeof(String));
-                context.P_SG_GENERAR_POS_TURNOS(FECHA,TURNO,ID_USR, p_res);
+                context.P_SG_GENERAR_POS_TURNOS(FECHA, TURNO, ELIMINAR, ID_USR, p_res);
                 if (p_res.Value.ToString() == "1")
                 {
                     result.success = true;
@@ -190,6 +190,21 @@ namespace CityTruck.Services
             {
                 var manager = new SG_POS_DIA_MNManager(uow);
                 result = manager.ObtenerVentasPorMesyAnio(ANIO, MES);
+
+            });
+            return result;
+        }
+
+
+        public IEnumerable<SG_POS_TURNOS> ObtenerPosTurnosPorCriterio(System.Linq.Expressions.Expression<Func<SG_POS_TURNOS, bool>> criterio = null)
+        {
+            IQueryable<SG_POS_TURNOS> result = null;
+            ExecuteManager(uow =>
+            {
+                var manager = new SG_POS_TURNOSManager(uow);
+                result = manager.BuscarTodos(criterio);
+                //result = manager.BuscarTodos(x=>x.FECHA == filtros.Entidad.FECHA);
+                
 
             });
             return result;

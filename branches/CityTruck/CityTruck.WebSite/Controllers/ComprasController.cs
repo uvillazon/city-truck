@@ -66,7 +66,7 @@ namespace CityTruck.WebSite.Controllers
                 ID_COMPRA = x.ID_COMPRA,
                 ID_DETALLE = x.ID_DETALLE,
                 DETALLE = x.DETALLE,
-                IMPORTE = x.IMPORTE
+                SIMPORTE = x.IMPORTE
             });
 
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
@@ -94,7 +94,7 @@ namespace CityTruck.WebSite.Controllers
                             ID_DETALLE = item.ID_DETALLE,
                             DETALLE = item.DETALLE,
                             ID_COMPRA = id_compra,
-                            IMPORTE = item.IMPORTE,
+                            IMPORTE = item.SIMPORTE,
                         };
                         respuestaSP = _serCmp.SP_GrabarDetalleCompra(detalleCompra, id_usr);
                     }
@@ -107,7 +107,7 @@ namespace CityTruck.WebSite.Controllers
             {
                 respuestaSP.success = false;
             }
-
+            respuestaSP.id = id_compra;
             return Json(respuestaSP);
         }
         [HttpPost]

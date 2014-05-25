@@ -18,8 +18,8 @@
         Funciones.CrearMenu('btn_Crear', 'Nuevo', Constantes.ICONO_CREAR, me.EventosCompras, me.toolbar, this);
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCompras, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCompras, me.toolbar, this, null, true);
-        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCompras, me.toolbar, this, null, true);
+//        Funciones.CrearMenu('btn_Editar', 'Editar', Constantes.ICONO_EDITAR, me.EventosCompras, me.toolbar, this, null, true);
+//        Funciones.CrearMenu('btn_Eliminar', 'Eliminar', Constantes.ICONO_BAJA, me.EventosCompras, me.toolbar, this, null, true);
 
         me.grid = Ext.create('App.View.Compras.GridCompras', {
             region: 'west',
@@ -52,9 +52,9 @@
     onSelectChange: function (selModel, selections) {
         var me = this;
         var disabled = selections.length === 0;
-        Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
+//        Funciones.DisabledButton('btn_Editar', me.toolbar, disabled);
         Funciones.DisabledButton('btn_Detalle', me.toolbar, disabled);
-        Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
+//        Funciones.DisabledButton('btn_Eliminar', me.toolbar, disabled);
     },
     CargarEventos : function(){
         var me = this;
@@ -69,39 +69,67 @@
     },
     EventosCompras: function (btn) {
         var me = this;
-        if (btn.getItemId() == "btn_Crear") {
+        if (btn.getItemId() == "btn_Crear" || btn.getItemId() =="btn_Detalle") {
             if (me.winCrearCompra == null) {
                 me.winCrearCompra = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Compra' });
                 me.formCompra = Ext.create("App.View.Compras.FormCompra", {
                     columns: 2,
                     title: 'Formulario de Registro de Compras ',
-                    botones: false
+                    botones: false,
+                     dockButtons: true
                 })
-
+                me.formCompra.down('#docked').setDisabled(true);
+                me.formCompra.down('#docked_modificar').on('click', me.ModificarCompra, this);
+                me.formCompra.down('#docked_eliminar').on('click', me.EliminarRegistro, this);
+//            me.formCompra.down('#docked_comprobante').on('click', me.ImprimirComprobante, this);
                 me.winCrearCompra.add(me.formCompra);
                 me.winCrearCompra.btn_guardar.on('click', me.GuardarCompras, this);
                 me.winCrearCompra.show();
             } else {
+                me.formCompra.down('#docked').setDisabled(true);
+                me.winCrearCompra.btn_guardar.setDisabled(false);
+                me.formCompra.habilitarFormulario(true, true);
                 me.formCompra.getForm().reset();
                 me.formCompra.gridDetalle.getStore().removeAll();
                 me.formCompra.CargarStore();
                 me.winCrearCompra.show();
             }
+            if(btn.getItemId() =="btn_Detalle"){
+                 me.formCompra.habilitarFormulario(true, true);
+                 me.formCompra.CargarDatos(me.record);
+                 me.formCompra.gridDetalle.getStore().setExtraParams({ID_COMPRA : me.record.get('ID_COMPRA')});
+                 me.formCompra.gridDetalle.getStore().load();
+                 me.formCompra.down('#docked').setDisabled(false);
+                 me.winCrearCompra.btn_guardar.setDisabled(true);
+                 me.formCompra.habilitarFormulario(false);
+            }
         }
-        else if(btn.getItemId() == "btn_Detalle"){
-            var win = Ext.create("App.Config.Abstract.Window");
-            var form = Ext.create("App.View.Compras.FormCompra",{
-                    columns: 2,
-                    title: 'Formulario de Registro de Compras ',
-                    botones: false
-            });
-            Funciones.BloquearFormularioReadOnly(form);
-            win.add(form);
-            form.loadRecord(me.record);
-            form.gridDetalle.getStore().setExtraParams({ID_COMPRA : me.record.get('ID_COMPRA')});
-            form.gridDetalle.getStore().load();
-            win.show();
-        }
+//        else if(btn.getItemId() == "btn_Detalle"){
+//            if (me.winCrearCompra == null) {
+//                me.winCrearCompra = Ext.create("App.Config.Abstract.Window", { botones: true, textGuardar: 'Guardar Nuevo Compra' });
+//                me.formCompra = Ext.create("App.View.Compras.FormCompra", {
+//                    columns: 2,
+//                    title: 'Formulario de Registro de Compras ',
+//                    botones: false,
+//                     dockButtons: true
+//                })
+//                me.formCompra.down('#docked').setDisabled(true);
+//                me.formCompra.down('#docked_modificar').on('click', me.ModificarCompra, this);
+//                me.formCompra.down('#docked_eliminar').on('click', me.EliminarRegistro, this);
+////            me.formCompra.down('#docked_comprobante').on('click', me.ImprimirComprobante, this);
+//                me.winCrearCompra.add(me.formCompra);
+//                me.winCrearCompra.btn_guardar.on('click', me.GuardarCompras, this);
+//                me.winCrearCompra.show();
+//            } else {
+//                me.formCompra.down('#docked').setDisabled(true);
+//                me.winCrearCompra.btn_guardar.setDisabled(false);
+//                me.formCompra.habilitarFormulario(true, true);
+//                me.formCompra.getForm().reset();
+//                me.formCompra.gridDetalle.getStore().removeAll();
+//                me.formCompra.CargarStore();
+//                me.winCrearCompra.show();
+//            }
+//        }
         else if(btn.getItemId()== "btn_Editar"){
             var win = Ext.create("App.Config.Abstract.Window",{botones : true , textGuardar : 'Editar Compra'});
             var form = Ext.create("App.View.Compras.FormCompra",{
@@ -127,9 +155,24 @@
             Ext.Msg.alert("Aviso", "No Existe el botton");
         }
     },
+    EliminarRegistro: function () {
+        var me = this;
+        me.id_compra = me.formCompra.txt_id_compra.getValue();
+//        Funciones.AjaxRequestGrid("Ingresos", "EliminarIngreso", me, "Esta Seguro de Eliminar el Ingreso", { ID_INGRESO: me.id_ingreso }, me.grid, me.winCrearIngreso);
+        Funciones.AjaxRequestGrid("Compras", "EliminarCompra", me, "Esta Seguro de Eliminar este Registro", { ID_COMPRA: me.id_compra }, me.grid, me.winCrearCompra);
+    },
     GuardarCompras: function () {
         var me = this;
-        Funciones.AjaxRequestWin('Compras', 'GuardarCompra', me.winCrearCompra, me.formCompra, me.grid, 'Esta Seguro de Guardar la Compra?', { detalles: Funciones.convertirJson(me.formCompra.gridDetalle) }, me.winCrearCompra);
+        Funciones.AjaxRequestWin('Compras', 'GuardarCompra', me.winCrearCompra, me.formCompra, me.grid, 'Esta Seguro de Guardar la Compra?', { detalles: Funciones.convertirJson(me.formCompra.gridDetalle) },null,"ID_COMPRA");
+//        Funciones.AjaxRequestWin('Ingresos', 'GuardarIngreso', me.winCrearIngreso, me.formIngreso, me.grid, 'Esta Seguro de Guardar el Ingreso?', null, null, 'ID_INGRESO');
+        me.formCompra.down('#docked').setDisabled(false);
+        me.winCrearCompra.btn_guardar.setDisabled(true);
+//        me.formIngreso.mostrarSaldos(false);
+    },
+    ModificarCompra: function () {
+        var me = this;
+        me.formCompra.habilitarFormulario(true);
+        me.winCrearCompra.btn_guardar.setDisabled(false);
     },
     CargarTotales : function(){
         var me = this;

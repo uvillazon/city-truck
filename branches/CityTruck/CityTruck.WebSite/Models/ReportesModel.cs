@@ -138,5 +138,32 @@ namespace CityTruck.WebSite.Models
         public decimal SAL_LITTER { get; set; }
 
     }
+    public class VentaCreditoConsumo
+    {
+        public string CLIENTE { get; set; }
+        public decimal GASOLINA { get; set; }
+        public decimal DIESEL { get; set; }
+        
+
+
+    }
+    public class VentaCreditoConsumoTotal
+    {
+        public decimal TOTAL_VENTA_GAS { get; set; }
+        public decimal TOTAL_VENTA_DIE { get; set; }
+        public decimal CREDITO_DIE { get; set; }
+        public decimal CREDITO_GAS { get; set; }
+        public decimal CONSUMO_DIE { get; set; }
+        public decimal CONSUMO_GAS { get; set; }
+        public decimal TOTAL_LITROS_GAS { get; set; }
+        public decimal TOTAL_LITROS_DIE { get; set; }
+        public decimal PRECIO_VENTA_DIE { get; set; }
+        public decimal PRECIO_VENTA_GAS { get; set; }
+        public decimal PRECIO_COMPRA_DIE { get; set; }
+        public decimal PRECIO_COMPRA_GAS { get; set; }
+
+
+
+    }
 
 }

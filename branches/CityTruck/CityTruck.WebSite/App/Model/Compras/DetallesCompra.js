@@ -4,6 +4,7 @@
             { type: "int", name: "ID_DETALLE" },
             { type: "int", name: "ID_COMPRA" },
             { type: "float", name: "IMPORTE" },
+            { type: "float", name: "SIMPORTE" },
             { type: "float", name: "PRECIO" },
             { type: "string", name: "DETALLE" }
         ]

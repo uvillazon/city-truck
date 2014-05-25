@@ -90,7 +90,7 @@ namespace CityTruck.WebSite.Controllers
                 {
                     try
                     {
-                        var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]));
+                        var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]) , 0);
                         if (!spPos.success)
                         {
                             JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
@@ -112,6 +112,31 @@ namespace CityTruck.WebSite.Controllers
                         throw;
                     }
 
+                }
+                else {
+                    try
+                    {
+                        var spPos = _serPos.SP_GenerarPosTurnos(posTurnos.FECHA, posTurnos.TURNO, Convert.ToInt32(User.Identity.Name.Split('-')[3]) , 1);
+                        if (!spPos.success)
+                        {
+                            JavaScriptSerializer javaScriptSerializer2 = new JavaScriptSerializer();
+                            string callback2 = paginacion.callback + "(" + javaScriptSerializer2.Serialize(new { success = false, msg = spPos.msg }) + ");";
+                            //string callback1 = info.callback + "(" + json + ");";
+
+
+                            return JavaScript(callback2);
+                        }
+                        else
+                        {
+                            result = _serPos.ObtenerPosTurnos(paginacion, filtros);
+                            nuevo = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                 }
             }
             var formattData = result.Select(x => new

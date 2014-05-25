@@ -55,7 +55,7 @@ Ext.define("App.Config.Abstract.Form", {
                 margin: 10
 
             });
-            
+
             me.buttons = [me.btn_guardar, me.btn_limpiar];
         }
         this.layout.columns = this.columns;
@@ -105,6 +105,7 @@ Ext.define("App.Config.Abstract.Form", {
     },
     CargarDatos: function (record, bloquear) {
         var me = this;
+//        alert("asdasd");
         me.record = record;
         me.getForm().reset();
         if (bloquear)

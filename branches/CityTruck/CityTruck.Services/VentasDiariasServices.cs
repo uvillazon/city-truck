@@ -362,5 +362,28 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPorCriterio(Expression<Func<SG_VENTAS_CREDITO, bool>> criterio = null)
+        {
+            IQueryable<SG_VENTAS_CREDITO> result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_VENTAS_CREDITOManager(uow);
+                result = managerVentas.BuscarTodos(criterio);
+            });
+            return result;
+        }
+
+        public IEnumerable<SG_CONSUMOS> ObtenerConsumosPorCriterio(Expression<Func<SG_CONSUMOS, bool>> criterio = null)
+        {
+            IQueryable<SG_CONSUMOS> result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_CONSUMOSManager(uow);
+                result = managerVentas.BuscarTodos(criterio);
+            });
+            return result;
+        }
     }
 }

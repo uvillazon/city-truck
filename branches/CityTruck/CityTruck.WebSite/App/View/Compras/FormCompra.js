@@ -21,6 +21,12 @@
             name: "NRO_COMP",
 
         });
+        me.txt_id_compra = Ext.create("App.Config.Componente.TextFieldBase", {
+            fieldLabel: "Nro Comprobante",
+            hidden : true,
+            name: "ID_COMPRA",
+
+        });
          me.date_fecha = Ext.create("App.Config.Componente.DateFieldBase", {
             fieldLabel: "Fecha",
             name: "FECHA",
@@ -122,6 +128,7 @@
         Funciones.CrearMenu('btn_Crear', 'Crear', Constantes.ICONO_CREAR, me.EventosDetalle, me.toolbarDetalle, this);
         me.gridDetalle.addDocked(me.toolbarDetalle, 1);
         me.items = [
+            me.txt_id_compra,
             me.txt_nro_cmp,
             me.cbx_tipo,
             me.date_fecha,
@@ -192,7 +199,7 @@
         });
          me.gridDetalle.on('edit', function(editor, e){
             
-            if (e.field == "IMPORTE"){
+            if (e.field == "SIMPORTE"){
 //                    e.record.set('TOTAL',e.value - e.record.get('ENT_LITTER') );
                     me.CargarTotales();
             }
@@ -207,10 +214,27 @@
         var total = 0;
         me.gridDetalle.getStore().each(function(record){
 //            alert(record.get('TOTAL'));
-            total= total +  record.get('IMPORTE');
+            total= total +  record.get('SIMPORTE');
 
         });
         me.num_total.setValue(total + me.num_importe.getValue() );
 
     },
+    habilitarFormulario: function (habilitar, crear) {
+        var me = this;
+        var fields = new Array('NRO_COMP','IMPORTE');
+        if (!crear){
+            fields.push('FECHA');
+            fields.push('ID_COMBUSTIBLE');
+            fields.push('ID_CAJA');
+        }
+        Funciones.BloquearFormulario(me, new Array('docked_modificar', 'docked_eliminar', 'docked_comprobante'));
+
+        if (habilitar) {
+            Funciones.DesbloquearFormulario(me, fields, true);
+        }
+    }
+//    CargarDatos : function(rpc){
+//        alert("entro");
+//    },
 });
