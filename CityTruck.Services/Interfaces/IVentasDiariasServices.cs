@@ -29,8 +29,10 @@ namespace CityTruck.Services.Interfaces
         VentasRegistroModel SP_UltimoRegMN();
 
         IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPaginado(PagingInfo paginacion, FiltrosModel<VentasCreditoModel> filtros);
+        IEnumerable<SG_VENTAS_CREDITO> ObtenerVentasCreditoPorCriterio(Expression<Func<SG_VENTAS_CREDITO, bool>> criterio= null);
 
         IEnumerable<SG_CONSUMOS> ObtenerConsumosPaginado(PagingInfo paginacion, FiltrosModel<ConsumosModel> filtros);
+        IEnumerable<SG_CONSUMOS> ObtenerConsumosPorCriterio(Expression<Func<SG_CONSUMOS, bool>> criterio = null);
         RespuestaSP SP_GrabarConsumo(SG_CONSUMOS p, int ID_USR);
         RespuestaSP SP_EliminarConsumo(int ID_CONSUMO, int ID_USR);
         //RespuestaSP SP_GrabarVentasDiariasMN(string Ventas, int ID_USR);

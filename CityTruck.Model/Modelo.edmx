@@ -981,6 +981,7 @@
         <Function Name="P_SG_GENERAR_POS_TURNOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CITYTRUCK">
           <Parameter Name="P_FECHA" Type="date" Mode="In" />
           <Parameter Name="P_TURNO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ELIMINAR" Type="number" Mode="In" />
           <Parameter Name="P_ID_USR" Type="number" Mode="In" />
           <Parameter Name="P_RES" Type="varchar2" Mode="Out" />
         </Function>
@@ -1229,12 +1230,6 @@
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
           <EntitySet Name="SG_POS_TURNOS" EntityType="Model.SG_POS_TURNOS" />
-          <FunctionImport Name="P_SG_GENERAR_POS_TURNOS">
-            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
-            <Parameter Name="P_TURNO" Mode="In" Type="String" />
-            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
-            <Parameter Name="P_RES" Mode="Out" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="P_SG_GUARDAR_POS_TURNO">
             <Parameter Name="P_ID_POS_TURNO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_POS" Mode="In" Type="Decimal" />
@@ -1609,6 +1604,13 @@
             <Parameter Name="P_IMPORTE" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_AMORTIZACION" Mode="In" Type="Decimal" />
+            <Parameter Name="P_RES" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_SG_GENERAR_POS_TURNOS">
+            <Parameter Name="P_FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TURNO" Mode="In" Type="String" />
+            <Parameter Name="P_ELIMINAR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_USR" Mode="In" Type="Decimal" />
             <Parameter Name="P_RES" Mode="Out" Type="String" />
           </FunctionImport>
           </EntityContainer>
@@ -2496,7 +2498,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="P_SG_GENERAR_POS_TURNOS" FunctionName="Model.Store.P_SG_GENERAR_POS_TURNOS" />
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_POS_TURNO" FunctionName="Model.Store.P_SG_GUARDAR_POS_TURNO" />
           <EntitySetMapping Name="SG_CAJAS">
             <EntityTypeMapping TypeName="Model.SG_CAJAS">
@@ -2885,6 +2886,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_SG_GUARDAR_INGRESOS" FunctionName="Model.Store.P_SG_GUARDAR_INGRESOS" />
+          <FunctionImportMapping FunctionImportName="P_SG_GENERAR_POS_TURNOS" FunctionName="Model.Store.P_SG_GENERAR_POS_TURNOS" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

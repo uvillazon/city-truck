@@ -3885,7 +3885,10 @@
     <Content Include="Views\AppCityTruck\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\Report1.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteCmpVenta.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteVentaConsumo.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteVentaCredito.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteVentaCreditoConsumo.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteVentaDiaria.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteEgreso.rdlc" />
     <EmbeddedResource Include="Reportes\ReporteIngreso.rdlc" />

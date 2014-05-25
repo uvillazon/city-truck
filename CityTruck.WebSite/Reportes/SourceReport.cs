@@ -499,38 +499,80 @@ namespace CityTruck.WebSite.Reportes
         }
         public IEnumerable<DetalleMangueraModel> ReporteVenta(DateTime FECHA  , string TURNO)
         {
-            List<DetalleMangueraModel> result = new List<DetalleMangueraModel>() { 
-              new DetalleMangueraModel(){COMBUSTIBLE = "GASOLINA" ,ENT_LITTER = 122 , SAL_LITTER = 200 , MANGUERA = "GASOLINAS 1" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
-              new DetalleMangueraModel(){COMBUSTIBLE = "GASOLINA" ,ENT_LITTER = 22 , SAL_LITTER = 200 , MANGUERA = "GASOLINAS 2" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
-              new DetalleMangueraModel(){COMBUSTIBLE = "DIESEL" ,ENT_LITTER = 222 , SAL_LITTER = 200 , MANGUERA = "DIESEL 1" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
-              new DetalleMangueraModel(){COMBUSTIBLE = "DIESEL" ,ENT_LITTER = 322 , SAL_LITTER = 200 , MANGUERA = "DIESEL 2" , FECHA = DateTime.Now , TURNO = "DIA" , RESPONSABLE = "nombre"},
-            };
-            //var servicio = new IngresosServices();
-            //var puntosVentaService = new PosTurnosServices();
-            //var egresos = servicio.ObtenerEgresosPaginado(null, ANIO, MES);
-            //var ventas = puntosVentaService.ObtenerPosTurnosPorFecha(ANIO, MES);
-            //var totales = ventas.GroupBy(x => x.FECHA).Select(y => new { FECHA = y.Key, TOTALVENTA = y.Sum(x => x.TOTAL_VENTA), TOTALCOSTO = y.Sum(x => x.TOTAL_COSTO) });
-            //decimal? totalventa = 0;
-            //decimal? totalcosto = 0;
-            //foreach (var item in totales)
-            //{
-            //    totalventa = totalventa + item.TOTALVENTA;
-            //    totalcosto = totalcosto + item.TOTALCOSTO;
-            //}
-            //foreach (var item in egresos.OrderBy(x => x.FECHA))
-            //{
-            //    EstadoResultadoModel egre = new EstadoResultadoModel()
-            //    {
-            //        FECHA = item.FECHA,
-            //        DETALLE = item.CONCEPTO,
-            //        //MES =  item.FECHA.ToString("MMMM").ToUpper();
-            //        TOTAL = item.IMPORTE,
-            //        UTILIDA_BRUTA_NETA = (decimal)(totalventa - totalcosto)
-            //    };
-            //    egre.MES = item.FECHA.ToString("MMMM").ToUpper();
-            //    result.Add(egre);
-            //}
+            var servicio = new PosTurnosServices();
+            var query = servicio.ObtenerPosTurnosPorCriterio(x => x.FECHA == FECHA && x.TURNO == TURNO);
+            var result = query.Select(x => new DetalleMangueraModel
+            {
+                COMBUSTIBLE = x.SG_POS.SG_COMBUSTIBLES.DESCRIPCION,
+                ENT_LITTER = x.ENT_LITTER,
+                SAL_LITTER = x.SAL_LITTER,
+                MANGUERA = x.SG_POS.CODIGO,
+                FECHA = FECHA,
+                TURNO = TURNO,
+                RESPONSABLE = "RESPONSABLE"
+            });
             return result;
         }
+        public IEnumerable<VentaCreditoConsumo> ReporteVentaCredito(DateTime FECHA, string TURNO)
+        {
+            var servicio = new VentasDiariasServices();
+            var query = servicio.ObtenerVentasCreditoPorCriterio(x => x.FECHA == FECHA && x.TURNO == TURNO);
+            var result = query.Select(x => new VentaCreditoConsumo
+            {
+                CLIENTE = x.SG_CLIENTES.EMPRESA,
+                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
+                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            });
+            return result;
+        }
+        public IEnumerable<VentaCreditoConsumo> ReporteVentaConsumo(DateTime FECHA, string TURNO)
+        {
+            var servicio = new VentasDiariasServices();
+            var query = servicio.ObtenerConsumosPorCriterio(x => x.FECHA == FECHA && x.TURNO == TURNO);
+            var result = query.Select(x => new VentaCreditoConsumo
+            {
+                CLIENTE = x.SG_CLIENTES_CONSUMO.NOMBRE,
+                DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
+                GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            });
+            return result;
+        }
+        public IEnumerable<VentaCreditoConsumoTotal> ReporteVentaCreditoConsumo(DateTime FECHA, string TURNO)
+        {
+            List<VentaCreditoConsumoTotal> result = new List<VentaCreditoConsumoTotal>();
+            VentaCreditoConsumoTotal model = new VentaCreditoConsumoTotal();
+
+            var servicio = new VentasDiariasServices();
+            var serComb = new CombustiblesServices();
+            var ventas = ReporteVenta(FECHA, TURNO);
+            var creditos = ReporteVentaCredito(FECHA, TURNO);
+            var consumo = ReporteVentaConsumo(FECHA, TURNO);
+            var grupoventas = ventas.GroupBy(x => x.COMBUSTIBLE).Select(y => new { COMBUSTIBLE = y.Key, TOTAL = y.Sum(z => z.SAL_LITTER) - y.Sum(z => z.ENT_LITTER) });
+            model.TOTAL_LITROS_GAS = grupoventas.Where(x => x.COMBUSTIBLE == "GASOLINA ESPECIAL").FirstOrDefault().TOTAL;
+            model.TOTAL_LITROS_DIE = grupoventas.Where(x => x.COMBUSTIBLE == "DIESEL  OIL").FirstOrDefault().TOTAL;
+            model.PRECIO_COMPRA_GAS = (decimal)serComb.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 1).PRECIO_COMPRA;
+            model.PRECIO_COMPRA_DIE = (decimal)serComb.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 2).PRECIO_COMPRA;
+            model.PRECIO_VENTA_DIE = (decimal)serComb.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 2).PRECIO_VENTA;
+            model.PRECIO_VENTA_GAS = (decimal)serComb.ObtenerCombustible(x => x.ID_COMBUSTIBLE == 1).PRECIO_VENTA;
+            model.TOTAL_VENTA_DIE = model.TOTAL_LITROS_DIE * model.PRECIO_VENTA_DIE;
+            model.TOTAL_VENTA_GAS = model.TOTAL_LITROS_GAS * model.PRECIO_VENTA_GAS;
+            model.CREDITO_DIE = creditos.Sum(x => x.DIESEL);
+            model.CREDITO_GAS = creditos.Sum(x => x.GASOLINA);
+            model.CONSUMO_DIE = consumo.Sum(x => x.DIESEL);
+            model.CONSUMO_GAS = consumo.Sum(x => x.GASOLINA);
+            result.Add(model);
+            //
+            //var consumo = ReporteVentaConsumo(FECHA, TURNO);
+            //var query = servicio.ObtenerConsumosPorCriterio(x => x.FECHA == FECHA && x.TURNO == TURNO);
+            //var result = query.Select(x => new VentaCreditoConsumo
+            //{
+            //    CLIENTE = x.SG_CLIENTES_CONSUMO.NOMBRE,
+            //    DIESEL = x.SG_COMBUSTIBLES.NOMBRE == "DIESEL" ? x.IMPORTE_BS : 0,
+            //    GASOLINA = x.SG_COMBUSTIBLES.NOMBRE == "GASOLINA" ? x.IMPORTE_BS : 0,
+            //});
+
+            return result;
+        }
+        
     }
 }

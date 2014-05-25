@@ -48,7 +48,7 @@
                     xtype: 'textfield'
                 }
             },
-           { header: "Total", width: 100, sortable: false, dataIndex: "IMPORTE" , editor: {
+           { header: "Total", width: 100, sortable: false, dataIndex: "SIMPORTE" , editor: {
                     xtype: 'numberfield',
                     allowNegative: false,
                     allowDecimals : true,

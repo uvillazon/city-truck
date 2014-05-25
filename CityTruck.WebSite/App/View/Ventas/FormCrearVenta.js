@@ -1,6 +1,5 @@
 ﻿Ext.define("App.View.Ventas.FormCrearVenta", {
     extend: "App.Config.Abstract.Form",
-//    title: "Datos de Orden de Trabajo",dsdsdsddsdsdsds
     cargarStores: true,
     columns: 2,
     editar : false,
@@ -16,17 +15,14 @@
         var fecha = fecha1 == null? new Date() : fecha1;
         me.store_precio = Ext.create("App.Store.Ventas.Precios");
         me.store_precio.setExtraParams({FECHA : fecha});
-//        me.store_precio.load();
     },
     CargarFecha : function(store){
         var me = this;
-//        alert("sadasd2");
         Ext.Ajax.request({
                     method : 'POST',
                     url: Constantes.HOST + 'Ventas/VerificarUltimoRegistro',
                     success: function(response){
                         var str = Ext.JSON.decode(response.responseText);
-                        //                        alert(str.success + "FECHA : "+str.FECHA + "TURNO : "+str.TURNO);
                         if (str.success == 0){
                              var fecha = new Date();
                              me.cbx_turno.setReadOnly(false);
@@ -55,7 +51,6 @@
                         }
                     }
                 });
-//        alert(store.getId());
     },
     CargarEditarVenta : function(venta,turno){
         var me = this;
@@ -65,47 +60,19 @@
         me.cbx_turno.setValue(turno);
         me.cbx_turno.setReadOnly(true);
         me.CargarValoresVenta();
-//        me.gridVenta.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//        me.gridVenta.getStore().setExtraParam('TURNO',turno);
-//        me.gridVenta.getStore().setExtraParam('EDITAR',false);
-//        me.gridVenta.getStore().load();
-
-//        me.gridVentaCredito.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//        me.gridVentaCredito.getStore().setExtraParam('TURNO',turno);
-//        me.gridVentaCredito.getStore().load();
-
-//        me.gridVentaConsumo.getStore().setExtraParamDate('FECHA',me.date_fecha.getValue());
-//        me.gridVentaConsumo.getStore().setExtraParam('TURNO',turno);
-//        me.gridVentaConsumo.getStore().load();
-//        me.permiso = true;
     },
     CargarComponentes: function () {
         var me = this;
-//        me.dockedItems = [{
-//                xtype: 'toolbar',
-//                itemId: 'docked',
-//                dock: 'top',
-//                items: [
-//                    { xtype: 'button', itemId: 'docked_modificar', text: 'Modificar', iconCls: Constantes.ICONO_EDITAR },
-//                    { xtype: 'button', itemId: 'docked_comprobante', text: 'Comprobante', iconCls: Constantes.ICONO_IMPRIMIR },
-////                    { xtype: 'button', itemId: 'docked_eliminar', text: 'Eliminar', iconCls: Constantes.ICONO_BAJA }
-//                ]
-//            }];
         me.gridVenta = Ext.create("App.View.Ventas.Grids", {
                     opcion: 'GridVentasEditar',
                     title : 'MITTERS',
                     colspan: 2,
                     width: 400,
                     height : 250,
-//                    rowspan : 2,
                 });
-//        me.toolbarVenta = Funciones.CrearMenuBar();
-//        Funciones.CrearMenu('btn_GuardarCambios', 'Guardar Cambios', 'disk', me.EventosVenta, me.toolbarVenta, this);
-//        me.gridVenta.addDocked(me.toolbarVenta, 1);
         me.formSubTotales = Ext.create("App.View.Ventas.Forms", {
             opcion: 'formSubTotales',
             botones: false,
-//            width: 350,
             colspan: 2
         });
         Funciones.BloquearFormularioReadOnly(me.formSubTotales);
@@ -121,8 +88,6 @@
             width: 450,
             height : 250
         });
-
-        
         me.toolbarCredito = Funciones.CrearMenuBar();
         Funciones.CrearMenu('btn_CrearCredito', 'Crear Credito', Constantes.ICONO_CREAR, me.EventosVenta, me.toolbarCredito, this);
         Funciones.CrearMenu('btn_EditarCredito', 'Editar', Constantes.ICONO_EDITAR, me.EventosVenta, me.toolbarCredito, this);
@@ -141,7 +106,6 @@
             fieldLabel: "Turno",
             name: "TURNO",
             displayField: 'VALOR',
-//            valueField: 'CODIGO',
             store: me.store_turno,
             afterLabelTextTpl: Constantes.REQUERIDO,
             allowBlank: false
@@ -276,7 +240,6 @@
         var me = this;
         var totalGasolina = 0;
         var totalDiesel = 0;
-//        alert("malo");
         me.gridVenta.getStore().each(function(record){
             if(record.get('CODIGO')== 'GASOLINA'){
                 totalGasolina= totalGasolina +  record.get('TOTAL');
@@ -403,7 +366,7 @@
         if(btn.getItemId() == "btn_GuardarCambios"){
             if(me.isValid() == true){
 //                alert("sadsadadsadsadad");
-                    Funciones.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta), EDITAR : me.editar}, null);
+                    me.AjaxRequestForm('Ventas', 'GuardarVentasDiarias', me, me, me.gridVenta, 'Esta Seguro de Guardar Las Ventas Diarias', {ventas : Funciones.convertirJson(me.gridVenta), EDITAR : me.editar}, null);
             }
             else{
                 
@@ -538,5 +501,87 @@
     GuardarVentaCredito : function(){
         var me = this;
         Funciones.AjaxRequestWin("Ventas", "GuardarVentaCredito", me.winVentaCredito, me.formVentaCredito, me.gridVentaCredito, "Esta Seguro de Guardar la venta de Credito", { FECHA: me.date_fecha.getValue(), TURNO : me.cbx_turno.getValue(),RESPONSABLE : me.txt_nombres.getValue()}, me.winVentaCredito)
+    },
+    BloquerBotones : function(disabled){
+        var me = this;
+//        alert(disabled);
+        Funciones.DisabledButton("btn_CrearCredito", me, disabled);
+        Funciones.DisabledButton("btn_BajaCredito", me, disabled);
+        Funciones.DisabledButton("btn_CrearConsumo", me, disabled);
+        Funciones.DisabledButton("btn_EditarCredito", me, disabled);
+        Funciones.DisabledButton("btn_EditarConsumo", me, disabled);
+        Funciones.DisabledButton("btn_BajaConsumo", me, disabled);
+    },
+    ModoDetalle : function(){
+        var me = this;
+//        alert("entro");
+        me.BloquerBotones(true);
+        me.editar= true;
+        me.permiso = false;
+        Funciones.DisabledButton("btn_GuardarCambios", me.winPadre, true);
+        Funciones.DisabledButton("btn_ImprimirReporte", me.winPadre, false);
+        Funciones.DisabledButton("btn_ModificarVenta", me.winPadre, false);
+        me.txt_nombres.setReadOnly(true);        
+    },
+    ModoModificar: function(){
+        var me = this;
+//        alert("entro");
+        me.BloquerBotones(false);
+//        me.editar= true;
+        me.permiso = true;
+        Funciones.DisabledButton("btn_GuardarCambios", me.winPadre, false);
+        Funciones.DisabledButton("btn_ImprimirReporte", me.winPadre, true);
+        Funciones.DisabledButton("btn_ModificarVenta", me.winPadre, true);
+        me.txt_nombres.setReadOnly(false);        
+    },
+    ModoCreacion: function(){
+        var me = this;
+        me.BloquerBotones(true);
+        me.permiso = true;
+        me.editar = false,
+        Funciones.DisabledButton("btn_GuardarCambios", me.winPadre, false);
+        Funciones.DisabledButton("btn_ImprimirReporte", me.winPadre, true);
+        Funciones.DisabledButton("btn_ModificarVenta", me.winPadre, true);
+        me.txt_nombres.setReadOnly(false);        
+    },
+    AjaxRequestForm: function (controlador, accion, mask, form, grid, msg, param, Formulario,btn) {
+        var me = this;
+        var formSend = form.getForm();
+        var mensaje = (msg == null) ? 'Esta Seguro de Guardar Los cambios?' : msg;
+        if (formSend.isValid()) {
+            Ext.MessageBox.confirm('Confirmacion?', mensaje, function (btn) {
+                if (btn == 'yes') {
+                    mask.el.mask('Procesando...', 'x-mask-loading');
+                    formSend.submit({
+                        submitEmptyText: false,
+                        url: Constantes.HOST + '' + controlador + '/' + accion + '',
+                        params: param,
+                        success: function (form, action) {
+                            mask.el.unmask();
+                            grid.getStore().setExtraParam('EDITAR',true);
+                            if (grid != null) {
+                                grid.getStore().load();
+                            }
+                            me.ModoDetalle();
+                            Ext.MessageBox.alert('Exito', action.result.msg);
+                        },
+                        failure: function (form, action) {
+                            mask.el.unmask();
+                            Ext.MessageBox.alert('Error', action.result.msg);
+                        }
+                    });
+
+                }
+            });
+
+        }
+        else {
+            Ext.MessageBox.alert('Error', "Falta Parametros. Revisar Formulario.");
+        }
+    },
+    VerReporteVenta : function(){
+        var me = this;
+        window.open(Constantes.HOST + 'Reportes/ReporteCmpVenta?TURNO=' + me.cbx_turno.getValue() + '&FECHA=' + me.date_fecha.getSubmitValue());
+        
     }
 });
