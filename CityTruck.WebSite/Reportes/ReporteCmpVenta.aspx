@@ -17,8 +17,23 @@
     
     </div>
     <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="423px" 
-        Width="754px">
+        Width="838px" Font-Names="Verdana" Font-Size="8pt" 
+        InteractiveDeviceInfos="(Colección)" WaitMessageFont-Names="Verdana" 
+        WaitMessageFont-Size="14pt">
+        <LocalReport ReportPath="Reportes\ReporteCmpVenta.rdlc" OnSubreportProcessing="ReportViewer1_SubreportProcessing">
+            <DataSources>
+                <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
+            </DataSources>
+        </LocalReport>
     </rsweb:ReportViewer>
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+        SelectMethod="ReporteVenta" TypeName="CityTruck.WebSite.Reportes.SourceReport">
+        <SelectParameters>
+            <asp:QueryStringParameter DefaultValue="" Name="FECHA" QueryStringField="FECHA" 
+                Type="DateTime" />
+            <asp:QueryStringParameter Name="TURNO" QueryStringField="TURNO" Type="String" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
     </form>
 </body>
 </html>
