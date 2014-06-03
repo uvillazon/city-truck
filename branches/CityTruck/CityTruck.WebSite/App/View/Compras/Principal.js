@@ -81,7 +81,7 @@
                 me.formCompra.down('#docked').setDisabled(true);
                 me.formCompra.down('#docked_modificar').on('click', me.ModificarCompra, this);
                 me.formCompra.down('#docked_eliminar').on('click', me.EliminarRegistro, this);
-//            me.formCompra.down('#docked_comprobante').on('click', me.ImprimirComprobante, this);
+                me.formCompra.down('#docked_comprobante').on('click', me.ImprimirComprobante, this);
                 me.winCrearCompra.add(me.formCompra);
                 me.winCrearCompra.btn_guardar.on('click', me.GuardarCompras, this);
                 me.winCrearCompra.show();
@@ -224,5 +224,10 @@
 
         me.form.txt_total.setValue(cantidadDiesel + cantidadAdicionalDiesel);
         me.form.txt_total_diesel.setValue(cantidadGasolina +cantidadAdicionalGasolina );
+    },
+    ImprimirComprobante: function () {
+        var me = this;
+        var id = me.formCompra.txt_id_compra.getValue();
+        window.open(Constantes.HOST + 'Reportes/ReporteCmpCompra?ID_COMPRA=' + id);
     }
 });
