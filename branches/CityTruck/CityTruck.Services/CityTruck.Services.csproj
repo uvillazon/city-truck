@@ -54,6 +54,7 @@
     <Compile Include="ComprasServices.cs" />
     <Compile Include="CombustiblesServices.cs" />
     <Compile Include="ClientesServices.cs" />
+    <Compile Include="TransferenciasServices.cs" />
     <Compile Include="Interfaces\IAjustePosServices.cs" />
     <Compile Include="KardexCombustibleServices.cs" />
     <Compile Include="Interfaces\IKardexCombustibleServices.cs" />

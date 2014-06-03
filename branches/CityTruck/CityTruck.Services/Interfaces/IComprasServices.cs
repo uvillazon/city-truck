@@ -13,7 +13,9 @@ namespace CityTruck.Services.Interfaces
     {
         IEnumerable<SG_COMPRAS> ObtenerComprasPaginado(PagingInfo paginacion ,string ANIO,string MES);
         IEnumerable<SG_COMPRAS> ObtenerComprasPorCriterio(Expression<Func<SG_COMPRAS, bool>> criterio);
+        //IEnumerable<SG_COMPRAS> ObtenerComprasPorCriterio(Expression<Func<SG_COMPRAS, bool>> criterio);
         IEnumerable<SG_DETALLES_COMPRAS> ObtenerDetallesPorCriterio(Expression<Func<SG_DETALLES_COMPRAS, bool>> criterio);
+        IEnumerable<SG_DETALLES_COMPRAS> ObtenerDetallesAgrupados(PagingInfo paginacion);
         RespuestaSP SP_GrabarCompra(SG_COMPRAS comp, int ID_USR);
         RespuestaSP SP_GrabarDetalleCompra(SG_DETALLES_COMPRAS det,int ID_USR);
         RespuestaSP SP_EliminarCompra(int ID_COMPRA, int ID_USR);
