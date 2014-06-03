@@ -47,6 +47,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R01", "SG_COMBUSTIBLES", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_COMBUSTIBLES), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_CONSUMOS_R03", "SG_POS", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CityTruck.Model.SG_POS), "SG_CONSUMOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_CONSUMOS), true)]
 [assembly: EdmRelationshipAttribute("Model", "SG_INGRESOS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_INGRESOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_INGRESOS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_TRANSFERENCIAS_R01", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_TRANSFERENCIAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_TRANSFERENCIAS), true)]
+[assembly: EdmRelationshipAttribute("Model", "SG_TRANSFERENCIAS_R02", "SG_CAJAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CityTruck.Model.SG_CAJAS), "SG_TRANSFERENCIAS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CityTruck.Model.SG_TRANSFERENCIAS), true)]
 
 #endregion
 
@@ -577,6 +579,22 @@ namespace CityTruck.Model
             }
         }
         private ObjectSet<SG_INGRESOS> _SG_INGRESOS;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SG_TRANSFERENCIAS> SG_TRANSFERENCIAS
+        {
+            get
+            {
+                if ((_SG_TRANSFERENCIAS == null))
+                {
+                    _SG_TRANSFERENCIAS = base.CreateObjectSet<SG_TRANSFERENCIAS>("SG_TRANSFERENCIAS");
+                }
+                return _SG_TRANSFERENCIAS;
+            }
+        }
+        private ObjectSet<SG_TRANSFERENCIAS> _SG_TRANSFERENCIAS;
 
         #endregion
 
@@ -820,6 +838,14 @@ namespace CityTruck.Model
         public void AddToSG_INGRESOS(SG_INGRESOS sG_INGRESOS)
         {
             base.AddObject("SG_INGRESOS", sG_INGRESOS);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SG_TRANSFERENCIAS. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSG_TRANSFERENCIAS(SG_TRANSFERENCIAS sG_TRANSFERENCIAS)
+        {
+            base.AddObject("SG_TRANSFERENCIAS", sG_TRANSFERENCIAS);
         }
 
         #endregion
@@ -4590,6 +4616,50 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_INGRESOS>("Model.SG_INGRESOS_R01", "SG_INGRESOS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TRANSFERENCIAS_R01", "SG_TRANSFERENCIAS")]
+        public EntityCollection<SG_TRANSFERENCIAS> SG_TRANSFERENCIAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_TRANSFERENCIAS>("Model.SG_TRANSFERENCIAS_R01", "SG_TRANSFERENCIAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_TRANSFERENCIAS>("Model.SG_TRANSFERENCIAS_R01", "SG_TRANSFERENCIAS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TRANSFERENCIAS_R02", "SG_TRANSFERENCIAS")]
+        public EntityCollection<SG_TRANSFERENCIAS> SG_TRANSFERENCIAS1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SG_TRANSFERENCIAS>("Model.SG_TRANSFERENCIAS_R02", "SG_TRANSFERENCIAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_TRANSFERENCIAS>("Model.SG_TRANSFERENCIAS_R02", "SG_TRANSFERENCIAS", value);
                 }
             }
         }
@@ -11650,6 +11720,371 @@ namespace CityTruck.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SG_AJUSTES_TANQUE>("Model.SG_AJUSTES_TANQUE_R01", "SG_AJUSTES_TANQUE", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SG_TRANSFERENCIAS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SG_TRANSFERENCIAS : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SG_TRANSFERENCIAS.
+        /// </summary>
+        /// <param name="iD_TRANSFERENCIA">Valor inicial de la propiedad ID_TRANSFERENCIA.</param>
+        /// <param name="iD_CAJA_ORIGEN">Valor inicial de la propiedad ID_CAJA_ORIGEN.</param>
+        /// <param name="iD_CAJA_DESTINO">Valor inicial de la propiedad ID_CAJA_DESTINO.</param>
+        /// <param name="nRO_COMP">Valor inicial de la propiedad NRO_COMP.</param>
+        /// <param name="fECHA">Valor inicial de la propiedad FECHA.</param>
+        /// <param name="iMPORTE_BS">Valor inicial de la propiedad IMPORTE_BS.</param>
+        /// <param name="iD_USUARIO">Valor inicial de la propiedad ID_USUARIO.</param>
+        public static SG_TRANSFERENCIAS CreateSG_TRANSFERENCIAS(global::System.Int32 iD_TRANSFERENCIA, global::System.Int32 iD_CAJA_ORIGEN, global::System.Int32 iD_CAJA_DESTINO, global::System.Int32 nRO_COMP, global::System.DateTime fECHA, global::System.Decimal iMPORTE_BS, global::System.Int16 iD_USUARIO)
+        {
+            SG_TRANSFERENCIAS sG_TRANSFERENCIAS = new SG_TRANSFERENCIAS();
+            sG_TRANSFERENCIAS.ID_TRANSFERENCIA = iD_TRANSFERENCIA;
+            sG_TRANSFERENCIAS.ID_CAJA_ORIGEN = iD_CAJA_ORIGEN;
+            sG_TRANSFERENCIAS.ID_CAJA_DESTINO = iD_CAJA_DESTINO;
+            sG_TRANSFERENCIAS.NRO_COMP = nRO_COMP;
+            sG_TRANSFERENCIAS.FECHA = fECHA;
+            sG_TRANSFERENCIAS.IMPORTE_BS = iMPORTE_BS;
+            sG_TRANSFERENCIAS.ID_USUARIO = iD_USUARIO;
+            return sG_TRANSFERENCIAS;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_TRANSFERENCIA
+        {
+            get
+            {
+                return _ID_TRANSFERENCIA;
+            }
+            set
+            {
+                if (_ID_TRANSFERENCIA != value)
+                {
+                    OnID_TRANSFERENCIAChanging(value);
+                    ReportPropertyChanging("ID_TRANSFERENCIA");
+                    _ID_TRANSFERENCIA = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID_TRANSFERENCIA");
+                    OnID_TRANSFERENCIAChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID_TRANSFERENCIA;
+        partial void OnID_TRANSFERENCIAChanging(global::System.Int32 value);
+        partial void OnID_TRANSFERENCIAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_CAJA_ORIGEN
+        {
+            get
+            {
+                return _ID_CAJA_ORIGEN;
+            }
+            set
+            {
+                OnID_CAJA_ORIGENChanging(value);
+                ReportPropertyChanging("ID_CAJA_ORIGEN");
+                _ID_CAJA_ORIGEN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_CAJA_ORIGEN");
+                OnID_CAJA_ORIGENChanged();
+            }
+        }
+        private global::System.Int32 _ID_CAJA_ORIGEN;
+        partial void OnID_CAJA_ORIGENChanging(global::System.Int32 value);
+        partial void OnID_CAJA_ORIGENChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID_CAJA_DESTINO
+        {
+            get
+            {
+                return _ID_CAJA_DESTINO;
+            }
+            set
+            {
+                OnID_CAJA_DESTINOChanging(value);
+                ReportPropertyChanging("ID_CAJA_DESTINO");
+                _ID_CAJA_DESTINO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_CAJA_DESTINO");
+                OnID_CAJA_DESTINOChanged();
+            }
+        }
+        private global::System.Int32 _ID_CAJA_DESTINO;
+        partial void OnID_CAJA_DESTINOChanging(global::System.Int32 value);
+        partial void OnID_CAJA_DESTINOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NRO_COMP
+        {
+            get
+            {
+                return _NRO_COMP;
+            }
+            set
+            {
+                OnNRO_COMPChanging(value);
+                ReportPropertyChanging("NRO_COMP");
+                _NRO_COMP = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NRO_COMP");
+                OnNRO_COMPChanged();
+            }
+        }
+        private global::System.Int32 _NRO_COMP;
+        partial void OnNRO_COMPChanging(global::System.Int32 value);
+        partial void OnNRO_COMPChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FECHA
+        {
+            get
+            {
+                return _FECHA;
+            }
+            set
+            {
+                OnFECHAChanging(value);
+                ReportPropertyChanging("FECHA");
+                _FECHA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA");
+                OnFECHAChanged();
+            }
+        }
+        private global::System.DateTime _FECHA;
+        partial void OnFECHAChanging(global::System.DateTime value);
+        partial void OnFECHAChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CONCEPTO
+        {
+            get
+            {
+                return _CONCEPTO;
+            }
+            set
+            {
+                OnCONCEPTOChanging(value);
+                ReportPropertyChanging("CONCEPTO");
+                _CONCEPTO = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CONCEPTO");
+                OnCONCEPTOChanged();
+            }
+        }
+        private global::System.String _CONCEPTO;
+        partial void OnCONCEPTOChanging(global::System.String value);
+        partial void OnCONCEPTOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal IMPORTE_BS
+        {
+            get
+            {
+                return _IMPORTE_BS;
+            }
+            set
+            {
+                OnIMPORTE_BSChanging(value);
+                ReportPropertyChanging("IMPORTE_BS");
+                _IMPORTE_BS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IMPORTE_BS");
+                OnIMPORTE_BSChanged();
+            }
+        }
+        private global::System.Decimal _IMPORTE_BS;
+        partial void OnIMPORTE_BSChanging(global::System.Decimal value);
+        partial void OnIMPORTE_BSChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ID_USUARIO
+        {
+            get
+            {
+                return _ID_USUARIO;
+            }
+            set
+            {
+                OnID_USUARIOChanging(value);
+                ReportPropertyChanging("ID_USUARIO");
+                _ID_USUARIO = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_USUARIO");
+                OnID_USUARIOChanged();
+            }
+        }
+        private global::System.Int16 _ID_USUARIO;
+        partial void OnID_USUARIOChanging(global::System.Int16 value);
+        partial void OnID_USUARIOChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FECHA_REG
+        {
+            get
+            {
+                return _FECHA_REG;
+            }
+            set
+            {
+                OnFECHA_REGChanging(value);
+                ReportPropertyChanging("FECHA_REG");
+                _FECHA_REG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FECHA_REG");
+                OnFECHA_REGChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FECHA_REG;
+        partial void OnFECHA_REGChanging(Nullable<global::System.DateTime> value);
+        partial void OnFECHA_REGChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OBSERVACION
+        {
+            get
+            {
+                return _OBSERVACION;
+            }
+            set
+            {
+                OnOBSERVACIONChanging(value);
+                ReportPropertyChanging("OBSERVACION");
+                _OBSERVACION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OBSERVACION");
+                OnOBSERVACIONChanged();
+            }
+        }
+        private global::System.String _OBSERVACION;
+        partial void OnOBSERVACIONChanging(global::System.String value);
+        partial void OnOBSERVACIONChanged();
+
+        #endregion
+
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TRANSFERENCIAS_R01", "SG_CAJAS")]
+        public SG_CAJAS SG_CAJAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R01", "SG_CAJAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R01", "SG_CAJAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_CAJAS> SG_CAJASReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R01", "SG_CAJAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R01", "SG_CAJAS", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "SG_TRANSFERENCIAS_R02", "SG_CAJAS")]
+        public SG_CAJAS SG_CAJAS1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R02", "SG_CAJAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R02", "SG_CAJAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SG_CAJAS> SG_CAJAS1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R02", "SG_CAJAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SG_CAJAS>("Model.SG_TRANSFERENCIAS_R02", "SG_CAJAS", value);
                 }
             }
         }
