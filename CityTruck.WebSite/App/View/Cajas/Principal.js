@@ -19,6 +19,7 @@
         Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporteGrid, me.toolbar, this);
         Funciones.CrearMenu('btn_Kardex', 'Kardex', 'folder_database', me.EventosCaja, me.toolbar, this, null, true);
         Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.EventosCaja, me.toolbar, this, null, true);
+        Funciones.CrearMenu('btn_Transferencia', 'Transferencia de Fondos', 'arrow_refresh_small', me.EventosCaja, me.toolbar, this);
 
         me.grid = Ext.create('App.View.Cajas.GridCajas', {
             region: 'center',
@@ -57,6 +58,9 @@
                 break;
             case "btn_Kardex":
                 me.CrearVentanaKardex();
+                break;
+            case "btn_Transferencia":
+                me.VentanaTransferenciaFondos();
                 break;
             default:
                 Ext.Msg.alert("Aviso", "No Existe el botton");
@@ -203,5 +207,16 @@
         me.id_caja = me.formCrearCaja.txt_id.getValue();
         Funciones.AjaxRequestGrid("Cajas", "EliminarCaja", me, "Esta Seguro de Eliminar este Registro", { ID_CAJA: me.id_caja }, me.grid, me.winCrearCaja);
 
+    },
+    VentanaTransferenciaFondos: function () {
+        var me = this;
+        var win = Ext.create("App.Config.Abstract.Window", { botones: false });
+        me.toolbar = Funciones.CrearMenuBar();
+        Funciones.CrearMenu('btn_CrearCaja', 'Crear Caja', Constantes.ICONO_CREAR, me.Eventos, me.toolbar, this);
+        Funciones.CrearMenu('btn_Imprimir', 'Imprimir', 'printer', me.ImprimirReporte, me.toolbar, this);
+        Funciones.CrearMenu('btn_Detalle', 'Detalle', 'report', me.Eventos, me.toolbar, this, null, true);
+        var grid = Ext.create("App.View.Cajas.Grids", { opcion: 'GridTransferencia', toolbar: me.toolbar , width: 700,   height: 400});
+        win.add(grid);
+        win.show();
     }
 });

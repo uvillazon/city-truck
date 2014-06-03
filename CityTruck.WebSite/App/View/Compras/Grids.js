@@ -43,9 +43,19 @@
                         handler: me.handler
                     }]
         });
+        me.storeDetalle = Ext.create("App.Store.Compras.DetallesCompra",{
+            url : 'Compras/ObtenerDetalles',
+            
+        });
+        me.storeDetalle.load();
         me.columns = [
            { header: "Detalle", width: 200, sortable: true, dataIndex: "DETALLE" , editor: {
-                    xtype: 'textfield'
+                    xtype: 'combo',
+                    queryMode: 'local',
+                    displayField: 'DETALLE',
+                    valueField: 'DETALLE',
+                    typeAhead: true,
+                    store : me.storeDetalle
                 }
             },
            { header: "Total", width: 100, sortable: false, dataIndex: "SIMPORTE" , editor: {
