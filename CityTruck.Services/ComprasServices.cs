@@ -166,5 +166,18 @@ namespace CityTruck.Services
             });
             return result;
         }
+
+
+        public IEnumerable<SG_DETALLES_COMPRAS> ObtenerDetallesAgrupados(PagingInfo paginacion)
+        {
+            IQueryable<SG_DETALLES_COMPRAS> result = null;
+            ExecuteManager(uow =>
+            {
+                var managerVentas = new SG_DETALLES_COMPRASManager(uow);
+                result = managerVentas.BuscarTodos();
+
+            });
+            return result;
+        }
     }
 }
