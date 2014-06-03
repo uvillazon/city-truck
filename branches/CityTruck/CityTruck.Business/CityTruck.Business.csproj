@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SG_TRANSFERENCIASManager.cs" />
     <Compile Include="SG_PERFILESManager.cs" />
     <Compile Include="SG_AJUSTE_POSManager.cs" />
     <Compile Include="SG_KARDEX_COMBUSTIBLEManager.cs" />
