@@ -17,7 +17,7 @@ namespace CityTruck.WebSite.Controllers
     {
         private ICajasServices _serCaj;
         private IKardexEfectivoServices _serKar;
-        public CajasController(ICajasServices serCaj,IKardexEfectivoServices serKar)
+        public CajasController(ICajasServices serCaj, IKardexEfectivoServices serKar)
         {
             _serCaj = serCaj;
             _serKar = serKar;
@@ -38,12 +38,16 @@ namespace CityTruck.WebSite.Controllers
                 SALDO = x.SALDO,
                 COMPRAS = x.SG_COMPRAS.Count(),
             });
+            //formatData.ToList().Add(new
+            //{
+            //    SALDO = formatData.Sum(x => x.SALDO)
+            //});
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
         }
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult ObtenerKardexEfectivoPaginado(PagingInfo paginacion,FiltrosModel<KardexEfectivoModel> filtros ,KardexEfectivoModel Kardex )
+        public ActionResult ObtenerKardexEfectivoPaginado(PagingInfo paginacion, FiltrosModel<KardexEfectivoModel> filtros, KardexEfectivoModel Kardex)
         {
             filtros.Entidad = Kardex;
             var kardexd = _serKar.ObtenerKardexEfectivo(paginacion, filtros);
@@ -58,7 +62,7 @@ namespace CityTruck.WebSite.Controllers
                 SALDO = x.SALDO,
                 DETALLE = x.DETALLE,
             });
-            formatData = formatData.OrderByDescending(x => x.FECHA).ThenByDescending(x => x.ID_KARDEX);
+            formatData = formatData.OrderBy(x => x.FECHA).ThenBy(x => x.ID_KARDEX);
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string callback1 = paginacion.callback + "(" + javaScriptSerializer.Serialize(new { Rows = formatData, Total = paginacion.total }) + ");";
             return JavaScript(callback1);
