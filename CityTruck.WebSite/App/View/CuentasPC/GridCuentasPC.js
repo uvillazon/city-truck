@@ -41,9 +41,16 @@
         var me = this;
         var fecha_actual = new Date();
         me.store = Ext.create("App.Store.Clientes.Clientes");
+        me.store.on('load', me.CargarTotales, me);
         me.store.load();
         //me.CargarComponentes();
-
+        me.viewConfig = {
+            getRowClass: function (record, rowIndex, rowParams, store) {
+                if (record.data.EMPRESA === "Total") {
+                    return "GridTotales";
+                }
+            }
+        };
         me.store_mes = Ext.create('App.Store.Listas.StoreLista');
         me.store_mes.setExtraParam('ID_LISTA', Lista.Buscar('MES'));
         me.cbx_mes = Ext.create("App.Config.Componente.ComboBase", {
@@ -108,12 +115,29 @@
             { xtype: "rownumberer", width: 30, sortable: false },
             { header: "C\u00F3digo", width: 100, sortable: false, dataIndex: "CODIGO" },
             { header: "Nombre", width: 250, sortable: false, dataIndex: "EMPRESA" },
-            { header: "Saldo", width: 100, sortable: false, dataIndex: "SALDO" },
-            { header: "Consumo", width: 100, sortable: false, dataIndex: "CONSUMO" }
+//            { header: "Saldo (Lts)", width: 100, sortable: false, dataIndex: "CONSUMO", align: "right", renderer: Ext.util.Format.numberRenderer('0,000.00') },
+            { header: "Saldo (Bs)", width: 100, sortable: false, dataIndex: "SALDO" ,align: "right" , renderer: Ext.util.Format.numberRenderer('0,000.00')}
+            
         ];
         //me.button_search.on('click', this.buscarBotonCodigo, this);
         this.dockedItems = me.toolBar;
         me.dock = this.dockedItems;
+
+    },
+    CargarTotales: function (str, record) {
+        var me = this;
+        var saldo = 0;
+//        var consumo = 0;
+        me.store.each(function (record) {
+            saldo = saldo + record.get('SALDO');
+//            consumo = consumo + record.get('CONSUMO');
+        });
+        var rec = Ext.create('App.Store.Clientes.Clientes', {
+            EMPRESA: "Total",
+            SALDO: saldo,
+//            CONSUMO: consumo
+        });
+        me.getStore().add(rec);
 
     }
 });
